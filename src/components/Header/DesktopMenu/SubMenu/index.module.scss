@@ -1,0 +1,19 @@
+@import "../../../../styles/color.scss";
+@import "../../../../styles/mixins.scss";
+.container {
+  @include container_1160 {
+    height: 400px;
+    position: fixed;
+    position: absolute;
+    top: 72px;
+    .bg_div {
+      height: inherit;
+      background-color: $base-dark-grey;
+      opacity: 0.48;
+      border-radius: 0px 0px 14px 14px;
+      z-index: 0;
+      .content {
+      }
+    }
+  }
+}

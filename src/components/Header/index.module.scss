@@ -1,0 +1,88 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  height: 72px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+
+  @include container_1160 {
+  }
+
+  @include container_920 {
+  }
+  .container_active {
+    height: inherit;
+    @include container_1160 {
+    }
+    position: absolute;
+    background-color: $base-dark-grey;
+    opacity: 0.48;
+    border-radius: 14px 14px 0px 0px;
+    z-index: 0;
+  }
+  .main_part {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .buttons {
+    height: inherit;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+
+    .button_watch_for_free {
+      @include pink-button;
+      height: 32px;
+      width: 213px;
+      padding: 7px 11px;
+      cursor: pointer;
+      margin-right: 20px;
+    }
+
+    .button_search {
+      height: 32px;
+      width: 70px;
+      background-color: transparent;
+      border: 0;
+      color: $base-ligth-grey;
+      font-family: "IviSans", sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .button_notification {
+      width: 44px;
+      height: inherit;
+      position: relative;
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      &::before {
+        position: absolute;
+        content: "";
+        width: 20px;
+        height: 20px;
+        top: 26px;
+        left: 11px;
+        background-color: red;
+      }
+    }
+
+    .button_profile {
+      width: 48px;
+      height: 48px;
+      background-color: transparent;
+      border: 2px solid $base-grey;
+      border-radius: 8px;
+      margin-left: 12px;
+      cursor: pointer;
+    }
+  }
+}

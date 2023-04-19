@@ -1,6 +1,6 @@
 import { NextComponentType, NextPageContext } from "next";
 import { FC, ReactElement, ReactNode } from "react";
-import { Header } from "./Header/Header";
+import { Header } from "./Header";
 
 type Props = {
   children?: ReactNode;

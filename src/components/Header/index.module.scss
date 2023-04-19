@@ -55,6 +55,9 @@
       font-family: "IviSans", sans-serif;
       font-size: 15px;
       cursor: pointer;
+      @include container_920 {
+        display: none;
+      }
     }
 
     .button_notification {
@@ -73,6 +76,9 @@
         left: 11px;
         background-color: red;
       }
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
     }
 
     .button_profile {
@@ -83,6 +89,9 @@
       border-radius: 8px;
       margin-left: 12px;
       cursor: pointer;
+      @media screen and (max-width: 600px) {
+        display: none;
+      }
     }
   }
 }

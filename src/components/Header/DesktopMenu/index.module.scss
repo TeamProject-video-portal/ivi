@@ -1,0 +1,19 @@
+@import "../../../styles/color.scss";
+@import "../../../styles/mixins.scss";
+.navigation {
+  @include container_1160 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 32px;
+    width: 460px;
+    .link,
+    .link_movies {
+      @include font-regular;
+      color: $base-grey;
+      padding-left: 15px;
+    }
+  }
+  @include container_920 {
+    display: none;
+  }
+}

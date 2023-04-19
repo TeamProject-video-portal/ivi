@@ -9,7 +9,6 @@
 @mixin container_920 {
   @media screen and (min-width: 600px) and (max-width: 1160px) {
     width: 100%;
-    background-color: red;
     margin: 0 auto;
     @content;
   }
@@ -20,4 +19,29 @@
   font-style: normal;
   font-weight: 500;
   line-height: 20px;
+}
+
+@mixin font-small-p {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+}
+
+@mixin font-for-button {
+  font-family: "IviSans", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+@mixin pink-button {
+  background-color: $base-pink;
+  border: 1px solid $base-pink;
+  border-radius: 8px;
+  text-align: center;
+  box-sizing: border-box;
+  @include font-for-button;
+  color: $base-white;
 }

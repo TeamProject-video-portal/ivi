@@ -3,7 +3,7 @@ import styles from './Button.module.scss';
 
 type ButtonProps = {
   children?: any;
-  className: string;
+  className?: string;
 };
 
 export const Button: FC<ButtonProps> = ({ children, className }) => {

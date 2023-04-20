@@ -1,0 +1,9 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  @include container_1280 {
+  }
+  @include container_600 {
+  }
+}

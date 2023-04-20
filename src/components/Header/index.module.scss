@@ -9,14 +9,14 @@
   justify-content: space-between;
   position: relative;
 
-  @include container_1160 {
+  @include container_1280 {
   }
 
   @include container_920 {
   }
   .container_active {
     height: inherit;
-    @include container_1160 {
+    @include container_1280 {
     }
     position: absolute;
     background-color: $base-dark-grey;

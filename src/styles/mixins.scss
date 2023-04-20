@@ -32,6 +32,12 @@
   }
 }
 
+@mixin _1160 {
+  @media screen and (max-width: 1160px) {
+    @content;
+  }
+}
+
 @mixin font-regular {
   font-size: 15px;
   font-style: normal;

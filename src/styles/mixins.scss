@@ -1,19 +1,15 @@
 @mixin container_1160 {
   @media screen and (min-width: 1160px) {
-    width: auto;
+    width: 1160px;
     margin: 0 auto;
-    padding-right: 20px;
-    padding-left: 20px;
     @content;
   }
 }
 
 @mixin container_920 {
   @media screen and (min-width: 600px) and (max-width: 1160px) {
-    width: auto;
+    width: 100%;
     margin: 0 auto;
-    padding-right: 20px;
-    padding-left: 20px;
     @content;
   }
 }
@@ -32,6 +28,12 @@
     margin: 0 auto;
     padding-right: 20px;
     padding-left: 20px;
+    @content;
+  }
+}
+
+@mixin _1160 {
+  @media screen and (max-width: 1160px) {
     @content;
   }
 }

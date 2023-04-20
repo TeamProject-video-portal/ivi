@@ -2,12 +2,16 @@
 @import "../../styles/mixins.scss";
 
 .container {
-  display: flex;
-  padding-bottom: 48px;
-  padding-top: 48px;
   @include container_1280 {
   }
   @include container_600 {
+  }
+  .content {
+    display: flex;
+    padding-bottom: 48px;
+    padding-top: 48px;
+    border-top: 1px solid $base-light-grey;
+    border-bottom: 1px solid $base-light-grey;
   }
   .cols {
     display: flex;
@@ -37,9 +41,13 @@
         transition: all 0.4s ease 0s;
       }
     }
-  }
-  .support {
-    margin-top: 20px;
+    &__sert,
+    &__sert:hover {
+      background-image: linear-gradient(-45deg, #c447ff, #ea003d);
+      background-clip: text;
+      font-weight: 500;
+      -webkit-text-fill-color: transparent;
+    }
   }
   .btn {
     background-color: $base-dark-purple;
@@ -50,6 +58,54 @@
       background-color: $base-light-purple;
       border: 1px solid $base-light-purple;
       transition: all 0.4s ease 0s;
+    }
+  }
+  .support {
+    margin-top: 20px;
+    &__chatbtn {
+      @extend .btn;
+      height: 40px;
+      width: 196px;
+    }
+    &__btns {
+      display: flex;
+      column-gap: 12px;
+      margin-top: 12px;
+    }
+    &__iconBtn {
+      @extend .btn;
+      width: 40px;
+      height: 40px;
+      font-size: 18px;
+      line-height: 1;
+    }
+  }
+  .ask {
+    @include font-regular;
+    display: block;
+    margin-top: 8px;
+    transition: all 0.4s ease 0s;
+    &:hover {
+      opacity: 0.48;
+    }
+  }
+  .widget {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__img {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      height: 104px;
+      width: 104px;
+      background: linear-gradient(180deg, $base-light-lilac 0, $base-dark-lilac);
+      border-radius: 20px;
+      box-shadow: 0 0 104px $base-light-lilac;
+    }
+    &__text {
+      text-align: center;
+      margin-top: 24px;
     }
   }
 }

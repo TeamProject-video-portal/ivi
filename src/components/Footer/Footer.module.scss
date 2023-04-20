@@ -2,8 +2,54 @@
 @import "../../styles/mixins.scss";
 
 .container {
+  display: flex;
+  padding-bottom: 48px;
+  padding-top: 48px;
   @include container_1280 {
   }
   @include container_600 {
+  }
+  .cols {
+    display: flex;
+    flex-direction: column;
+    padding: 0 12px;
+    width: 25%;
+    p {
+      @include font-footer;
+      color: $base-grey;
+    }
+    &__title {
+      margin-bottom: 8px;
+      line-height: 1.33;
+      font-weight: 700;
+    }
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+    &__link {
+      @include font-footer;
+      color: $base-grey;
+      cursor: pointer;
+      &:hover {
+        color: $base-white;
+        transition: all 0.4s ease 0s;
+      }
+    }
+  }
+  .support {
+    margin-top: 20px;
+  }
+  .btn {
+    background-color: $base-dark-purple;
+    border-radius: 8px;
+    border: 1px solid $base-dark-purple;
+    color: $base-white;
+    &:hover {
+      background-color: $base-light-purple;
+      border: 1px solid $base-light-purple;
+      transition: all 0.4s ease 0s;
+    }
   }
 }

@@ -46,9 +46,8 @@ const MobileMenu: FC = () => {
               <span>Каталог</span>
             </div>
           </Link>
-          <Link href="/">
-            {" "}
-            <div className={styles.item}>
+          <Link href="https://www.ivi.ru/movies?ivi_search" >
+            <div div className={styles.item}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
@@ -60,9 +59,8 @@ const MobileMenu: FC = () => {
               </IconContext.Provider>
               <span>Поиск</span>
             </div>
-          </Link>
-
-          <Link href="/">
+          </Link >
+          <Link href="https://www.ivi.ru/tvplus">
             <div className={styles.item}>
               <IconContext.Provider
                 value={{
@@ -74,8 +72,8 @@ const MobileMenu: FC = () => {
                 </div>
               </IconContext.Provider>
               <span>Профиль</span>
-            </div>{" "}
-          </Link>
+            </div>
+          </Link >
           <Button>
             <div className={`${styles.item}  ${open && styles.item_open}`} onClick={() => setOpen(!open)}>
               <IconContext.Provider
@@ -90,8 +88,8 @@ const MobileMenu: FC = () => {
               <span>{open ? 'Закрыть' : 'Ещё'}</span>
             </div>
           </Button>
-        </div>
-      </div>
+        </div >
+      </div >
       <MobileModal open={open} />
     </>
   );

@@ -13,6 +13,7 @@ const Layout: FC<Props> = ({ children }) => {
       <Header />
       <main className="main">{children}</main>
       <MobileMenu />
+
       <Footer />
     </div>
   );

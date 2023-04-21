@@ -52,6 +52,14 @@
   line-height: 20px;
 }
 
+@mixin btn-stories {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 12px;
+  white-space: nowrap;
+}
+
 @mixin font-small-p {
   font-size: 10px;
   font-style: normal;

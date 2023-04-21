@@ -4,9 +4,13 @@ import styles from "./Footer.module.scss"
 import { Button } from "../Button/Button";
 import { IoMailOutline } from 'react-icons/io5';
 import { GoMail } from 'react-icons/go';
+import { MdDevicesOther } from 'react-icons/md';
+import { BsTvFill } from 'react-icons/bs';
 import { HiOutlinePhone, HiOutlineSpeakerphone } from "react-icons/hi";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 import Image from "next/image";
 import speakerphone from "../../images/speakerphone.png"
+import { Socials } from "../Socials/Socials";
 
 export const Footer: FC = () => {
   return (
@@ -96,6 +100,56 @@ export const Footer: FC = () => {
               </div>
               <p className={styles.widget__text}>Смотрите фильмы, сериалы и мультфильмы без рекламы</p>
             </Link>
+          </div>
+        </div>
+        <div className={styles.content}>
+          <div className={styles.columns}>
+            <div className={styles.stories}>
+              <Link href={'https://go.onelink.me/app/devicesiOS'}>
+                <Button className={styles.stories__btn}>
+                  <FaApple />
+                  <div>
+                    <span>Загрузить в</span>
+                    <div>App Store</div>
+                  </div>
+                </Button>
+              </Link>
+              <Link href={'https://go.onelink.me/app/devicesAndroid'}>
+                <Button className={styles.stories__btn}>
+                  <FaGooglePlay />
+                  <div>
+                    <span>Доступно в</span>
+                    <div>Google Play</div>
+                  </div>
+                </Button>
+              </Link>
+              <Link href={'https://www.ivi.ru/pages/tvsmart/'}>
+                <Button className={styles.stories__btn}>
+                  <BsTvFill />
+                  <div>
+                    <span>Смотрите на</span>
+                    <div>Smart TV</div>
+                  </div>
+                </Button>
+              </Link>
+              <Link href={'https://www.ivi.ru/devices'}>
+                <Button className={styles.stories__btn}>
+                  <MdDevicesOther />
+                  <div>
+                    <div>Все устройства</div>
+                  </div>
+                </Button>
+              </Link>
+            </div>
+            <div className={styles.copyrights}>
+              <p>© 2023 ООО «Иви.ру»</p>
+              <p>HBO ® and related service marks are the property of Home Box Office, Inc</p>
+            </div>
+          </div>
+          <div className={styles.columns}>
+            <div className={styles.socials}>
+              <Socials />
+            </div>
           </div>
         </div>
       </div>

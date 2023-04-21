@@ -1,15 +1,109 @@
 @import "../../../styles/color.scss";
+@import "../../../styles/mixins.scss";
 
 .mobileModal {
   display: none;
   &_open {
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
+    @include _1160 {
+      position: fixed;
+      right: 0;
+      left: 0;
+      top: 0;
+      bottom: 60px;
+      display: flex;
+      background-color: $base-dark-blue;
+      overflow-y: auto;
+      z-index: 100;
+    }
+  }
+}
+.btn {
+  background-color: $base-dark-purple;
+  border-radius: 8px;
+  border: 1px solid $base-dark-purple;
+  color: $base-white;
+  &:hover {
+    background-color: $base-light-purple;
+    border: 1px solid $base-light-purple;
+    transition: all 0.4s ease 0s;
+  }
+}
+.container {
+  padding: 0 32px;
+  width: 100%;
+  .group {
+    padding-top: 32px;
+    &:not(:first-child) {
+      margin-top: 32px;
+      border-top: 1px solid $base-light-grey;
+    }
+    p {
+      opacity: 0.48;
+    }
+  }
+  .buttons {
     display: flex;
-    background-color: $base-dark-blue;
-    z-index: 100;
+    flex-wrap: wrap;
+    gap: 24px;
+    &_dev {
+      margin-top: 16px;
+    }
+    svg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+  .buttonTop,
+  .buttonBottom {
+    @extend .btn;
+    @include mobil-footer;
+    flex-grow: 1;
+    column-gap: 12px;
+    padding: 6px 16px;
+  }
+  .buttonTop {
+    justify-content: flex-start;
+    height: 48px;
+    svg {
+      color: #7e798f;
+    }
+  }
+  .buttonBottom {
+    height: 40px;
+    span {
+      @include btn-stories;
+      display: block;
+      text-align: left;
+    }
+  }
+  .styles.buttonChat {
+    @extend .btn;
+    @include mobil-footer;
+  }
+  .buttonIcon {
+    @extend .btn;
+    padding: 0 12px;
+    height: 100%;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+  }
+  .link {
+    display: flex;
+    column-gap: 12px;
+    @include font-regular;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.72;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  .copyright {
+    margin-top: 40px;
   }
 }

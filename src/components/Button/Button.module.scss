@@ -1,7 +1,19 @@
+@import "../../styles/color.scss";
+
 .button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   background-color: transparent;
+  &_purple {
+    background-color: $base-dark-purple;
+    border-radius: 8px;
+    color: $base-white;
+    &:hover {
+      background-color: $base-light-purple;
+      border: 1px solid $base-light-purple;
+      transition: all 0.4s ease 0s;
+    }
+  }
 }

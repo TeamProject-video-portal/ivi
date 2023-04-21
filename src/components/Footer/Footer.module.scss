@@ -115,7 +115,6 @@
     &__btn {
       @extend .btn;
       @include font-footer;
-      font-family: iviSans;
       padding: 0 12px;
       height: 100%;
       svg {

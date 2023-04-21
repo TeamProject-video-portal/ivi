@@ -47,7 +47,7 @@ const MobileMenu: FC = () => {
             </div>
           </Link>
           <Link href="https://www.ivi.ru/movies?ivi_search" >
-            <div div className={styles.item}>
+            <div className={styles.item}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,

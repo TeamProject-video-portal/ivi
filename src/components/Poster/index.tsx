@@ -19,7 +19,7 @@ const Poster: FC = () => {
         {isOpen && <Info />}
       </div>
       <div className={styles.description}>
-        <span className={styles.name}>Мультфильм Простоквашино (2018)</span>
+        <span className={styles.name}>Маша и Медведь</span>
         <span className={styles.tariff}>Бесплатно</span>
       </div>
     </div>

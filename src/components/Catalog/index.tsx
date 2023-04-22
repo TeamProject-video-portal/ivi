@@ -4,9 +4,11 @@ import styles from "./index.module.scss";
 import SwiperCore, { Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
+
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
 import { IconContext } from "react-icons";
+
 SwiperCore.use([Navigation]);
 
 const Catalog: FC = () => {
@@ -37,40 +39,26 @@ const Catalog: FC = () => {
     });
   };
   return (
-    <div className={styles.Catalog}>
-      <button ref={navPrevButton} className={styles.prev_button}>
-        <IconContext.Provider
-          value={{
-            className: `${styles.prev}`,
-            color: "blue",
-          }}
-        >
-          <GrPrevious />
-        </IconContext.Provider>
-      </button>
+    <div className={styles.container}>
+      <h4 className={styles.title}>Сериалы-новинки</h4>
+      <div className={styles.Catalog}>
+        <button ref={navPrevButton} className={styles.prev_button}></button>
 
-      <div className={styles.container}>
-        <Swiper
-          slidesPerView={5}
-          slidesPerGroup={1}
-          onBeforeInit={onBeforeInit}
-        >
-          {renderSlides()}
-        </Swiper>
+        <div className={styles.container}>
+          <Swiper
+            slidesPerView={5}
+            slidesPerGroup={1}
+            onBeforeInit={onBeforeInit}
+          >
+            {renderSlides()}
+          </Swiper>
+        </div>
+        <button
+          ref={navNextButton}
+          className={styles.next_button}
+          onClick={() => console.log(123)}
+        ></button>
       </div>
-      <button
-        ref={navNextButton}
-        className={styles.next_button}
-        onClick={() => console.log(123)}
-      >
-        <IconContext.Provider
-          value={{
-            className: `${styles.next}`,
-          }}
-        >
-          <GrNext />
-        </IconContext.Provider>
-      </button>
     </div>
   );
 };

@@ -1,0 +1,39 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.Catalog {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 1280px;
+  margin: 0 auto;
+
+  .container {
+    width: 1280px;
+    z-index: 0;
+  }
+
+  .prev_button,
+  .next_button {
+    width: 25px;
+    height: 52px;
+    position: relative;
+    z-index: 100;
+    background-color: blue;
+
+    .prev,
+    .next {
+      width: inherit;
+      height: inherit;
+      color: $base-light-blue;
+    }
+  }
+
+  .prev_button {
+    right: 10px;
+  }
+
+  .next_button {
+    left: -50px;
+  }
+}

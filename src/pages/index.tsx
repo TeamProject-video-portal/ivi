@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import Link from "next/link";
 import Poster from "@/components/Poster";
+import Catalog from "@/components/Catalog";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {
@@ -16,7 +17,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <h1>Main Page</h1>
-      <Poster />
+      <Catalog />
     </>
   );
 };

@@ -3,7 +3,6 @@ import { FC, ReactElement, ReactNode } from "react";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
 import MobileMenu from "./MobileMenu";
-
 type Props = {
   children?: ReactNode;
 };

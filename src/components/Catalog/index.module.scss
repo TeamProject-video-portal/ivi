@@ -1,39 +1,62 @@
 @import "../../styles/color.scss";
 @import "../../styles/mixins.scss";
 
-.Catalog {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.container {
   width: 1280px;
   margin: 0 auto;
-
-  .container {
-    width: 1280px;
-    z-index: 0;
+  padding: 30px 0;
+  box-sizing: border-box;
+  .title {
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    color: white;
+    margin-left: 30px;
   }
 
-  .prev_button,
-  .next_button {
-    width: 25px;
-    height: 52px;
+  .Catalog {
     position: relative;
-    z-index: 100;
-    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: inherit;
+    justify-content: space-around;
 
-    .prev,
-    .next {
-      width: inherit;
-      height: inherit;
-      color: $base-light-blue;
+    .container {
+      z-index: 0;
+      @include container_1280 {
+      }
     }
-  }
 
-  .prev_button {
-    right: 10px;
-  }
+    .prev_button,
+    .next_button {
+      width: 20px !important;
+      height: 52px;
+      z-index: 100;
+      background-repeat: no-repeat;
+      background-size: auto;
+      object-fit: cover;
+      background-color: transparent;
+      position: relative;
+    }
 
-  .next_button {
-    left: -50px;
+    .prev_button {
+      &::after {
+        position: absolute;
+        content: "";
+        width: inherit;
+        height: inherit;
+        top: 0;
+        left: 0;
+        background-image: url("../../images/icons/arrow_back.svg");
+      }
+    }
+
+    .next_button {
+      background-image: url("../../images/icons/arrow_back.svg");
+      transform: rotate(180deg);
+      position: relative;
+      left: -30px;
+    }
   }
 }

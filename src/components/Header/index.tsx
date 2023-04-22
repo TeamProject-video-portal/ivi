@@ -14,7 +14,7 @@ import { IconContext } from "react-icons";
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   return (
-    <header>
+    <header className={styles.header}>
       <div className={styles.container}>
         {isOpenSubMenu && <div className={styles.container_active}></div>}
 

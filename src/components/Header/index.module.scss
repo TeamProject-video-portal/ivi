@@ -1,131 +1,139 @@
 @import "../../styles/color.scss";
 @import "../../styles/mixins.scss";
+.header {
+  position: fixed;
+  top: 0;
+  background-color: $base-dark-blue;
+  z-index: 1000;
+  width: 100%;
 
-.container {
-  height: 72px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
+  .container {
+    height: 72px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
 
-  @include container_1280 {
-  }
-
-  @include container_920 {
-  }
-  .container_active {
-    height: inherit;
     @include container_1280 {
     }
-    position: absolute;
-    background-color: $base-dark-grey;
-    opacity: 0.48;
-    border-radius: 14px 14px 0px 0px;
-    z-index: 0;
-  }
-  .main_part {
-    height: inherit;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-  }
 
-  .buttons {
-    height: inherit;
-    display: flex;
-    align-items: center;
-    z-index: 1;
-
-    .button_watch_for_free {
-      @include pink-button;
-      height: 32px;
-      width: 213px;
-      padding: 7px 11px;
-      cursor: pointer;
-      margin-right: 20px;
+    @include container_920 {
     }
-
-    .button_search {
-      height: 32px;
-      width: 70px;
-      color: $base-ligth-grey;
-      font-size: 15px;
-      cursor: pointer;
+    .container_active {
+      height: inherit;
+      @include container_1280 {
+      }
+      position: absolute;
+      background-color: $base-dark-grey;
+      opacity: 0.48;
+      border-radius: 14px 14px 0px 0px;
+      z-index: 0;
+    }
+    .main_part {
+      height: inherit;
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: space-between;
-
-      .search_icon {
-        width: 20px;
-        height: 20px;
-        color: $base-ligth-grey;
-        margin-top: 3px;
-      }
-      &:hover {
-        .search_icon,
-        span {
-          color: $base-white;
-        }
-      }
-      @include container_920 {
-        display: none;
-      }
+      z-index: 1;
     }
 
-    .button_notification {
-      width: 44px;
-      height: 44px;
-      background-color: transparent;
-      border: 0;
-      cursor: pointer;
-      padding: 10px;
-      margin-left: 12px;
-      .notification_icon {
-        width: 24px;
-        height: 24px;
-        color: $base-ligth-grey;
-        transition: 0.1s;
+    .buttons {
+      height: inherit;
+      display: flex;
+      align-items: center;
+      z-index: 1;
+
+      .button_watch_for_free {
+        @include pink-button;
+        height: 32px;
+        width: 213px;
+        padding: 7px 11px;
+        cursor: pointer;
+        margin-right: 20px;
       }
 
-      &:hover {
-        padding: 9px;
+      .button_search {
+        height: 32px;
+        width: 70px;
+        color: $base-ligth-grey;
+        font-size: 15px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .search_icon {
+          width: 20px;
+          height: 20px;
+          color: $base-ligth-grey;
+          margin-top: 3px;
+        }
+        &:hover {
+          .search_icon,
+          span {
+            color: $base-white;
+          }
+        }
+        @include container_920 {
+          display: none;
+        }
+      }
+
+      .button_notification {
+        width: 44px;
+        height: 44px;
+        background-color: transparent;
+        border: 0;
+        cursor: pointer;
+        padding: 10px;
+        margin-left: 12px;
         .notification_icon {
-          color: $base-white;
-          width: 26px;
-          height: 26px;
+          width: 24px;
+          height: 24px;
+          color: $base-ligth-grey;
+          transition: 0.1s;
+        }
+
+        &:hover {
+          padding: 9px;
+          .notification_icon {
+            color: $base-white;
+            width: 26px;
+            height: 26px;
+          }
+        }
+        @media screen and (max-width: 600px) {
+          display: none;
         }
       }
-      @media screen and (max-width: 600px) {
-        display: none;
-      }
-    }
 
-    .button_profile {
-      width: 48px;
-      height: 48px;
-      background-color: transparent;
-      border: 2px solid $base-grey;
-      border-radius: 8px;
-      margin-left: 12px;
-      cursor: pointer;
-      padding: 12px;
-      box-sizing: border-box;
+      .button_profile {
+        width: 48px;
+        height: 48px;
+        background-color: transparent;
+        border: 2px solid $base-grey;
+        border-radius: 8px;
+        margin-left: 12px;
+        cursor: pointer;
+        padding: 12px;
+        box-sizing: border-box;
 
-      .profile_icon {
-        width: 20px;
-        height: 20px;
-        color: $base-ligth-grey;
-      }
-      @media screen and (max-width: 600px) {
-        display: none;
-      }
-      &:hover {
-        border-color: rgb(255, 255, 255, 0.85);
-        box-shadow: rgba(255, 255, 255, 0.45) 0px 0px 14px;
         .profile_icon {
-          color: $base-white;
+          width: 20px;
+          height: 20px;
+          color: $base-ligth-grey;
+        }
+        @media screen and (max-width: 600px) {
+          display: none;
+        }
+        &:hover {
+          border-color: rgb(255, 255, 255, 0.85);
+          box-shadow: rgba(255, 255, 255, 0.45) 0px 0px 14px;
+          .profile_icon {
+            color: $base-white;
+          }
         }
       }
     }

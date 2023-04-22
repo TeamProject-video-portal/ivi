@@ -15,7 +15,7 @@ const Poster: FC = () => {
       onMouseLeave={() => setIsOpen(false)}
     >
       <div className={styles.poster}>
-        <Image src={posterImage} alt="" className={styles.img}></Image>
+        <Image src={posterImage} alt="" className={styles.img} fill></Image>
         {isOpen && <Info />}
       </div>
       <div className={styles.description}>

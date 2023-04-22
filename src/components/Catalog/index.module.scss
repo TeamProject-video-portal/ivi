@@ -2,10 +2,13 @@
 @import "../../styles/mixins.scss";
 
 .container {
-  width: 1280px;
+  width: 100%;
+  max-width: 1280px;
   margin: 0 auto;
+  height: 500px;
   padding: 30px 0;
   box-sizing: border-box;
+
   .title {
     font-size: 24px;
     font-style: normal;
@@ -14,7 +17,7 @@
     margin-left: 30px;
   }
 
-  .Catalog {
+  .catalog {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -30,33 +33,32 @@
 
     .prev_button,
     .next_button {
-      width: 20px !important;
+      width: 50px !important;
       height: 52px;
       z-index: 100;
       background-repeat: no-repeat;
       background-size: auto;
       object-fit: cover;
       background-color: transparent;
-      position: relative;
+      position: absolute;
+      top: 40%;
     }
 
     .prev_button {
-      &::after {
-        position: absolute;
-        content: "";
-        width: inherit;
-        height: inherit;
-        top: 0;
-        left: 0;
-        background-image: url("../../images/icons/arrow_back.svg");
-      }
+      left: -15px;
     }
 
     .next_button {
-      background-image: url("../../images/icons/arrow_back.svg");
-      transform: rotate(180deg);
-      position: relative;
-      left: -30px;
+      right: -10px;
+    }
+    .prev,
+    .next {
+      width: 50px !important;
+      height: 52px;
+      object-fit: cover;
+      z-index: 98;
+
+      color: $base-light-blue;
     }
   }
 }

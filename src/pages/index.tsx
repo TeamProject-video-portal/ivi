@@ -5,6 +5,7 @@ import styles from "@/styles/Home.module.scss";
 import Link from "next/link";
 import Poster from "@/components/Poster";
 import Catalog from "@/components/Catalog";
+import Banner from "@/components/Banner";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {
@@ -16,7 +17,8 @@ const Home = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Main Page</h1>
+
+      <Banner />
       <Catalog />
     </>
   );

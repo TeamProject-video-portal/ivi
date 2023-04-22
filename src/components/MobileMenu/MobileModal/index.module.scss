@@ -8,12 +8,12 @@
       position: fixed;
       right: 0;
       left: 0;
-      top: 0;
-      bottom: 60px;
+      top: 72px;
+      bottom: 48px;
       display: flex;
       background-color: $base-dark-blue;
       overflow-y: auto;
-      z-index: 100;
+      z-index: 1000;
     }
   }
 }

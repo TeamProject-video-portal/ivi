@@ -1,40 +1,47 @@
 @import "../../styles/color.scss";
 @import "../../styles/mixins.scss";
 
-.container {
+.wrapper {
   width: 100%;
-  height: 300px;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr 40px;
-  @include container_920 {
-    height: 250px;
-  }
-  .poster {
-    width: inherit;
-    grid-row-start: 1;
-    position: relative;
-    .img {
-      width: inherit;
-      height: auto;
-      object-fit: cover;
-      border-radius: 10px;
-    }
-  }
+  padding-top: 180%;
+  position: relative;
+  .container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    box-sizing: border-box;
 
-  .description {
-    display: flex;
-    flex-direction: column;
-    margin-top: 8px;
-    .name {
-      font-size: 15px;
-      font-weight: 500;
-      color: $base-light-blue;
+    .poster {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 40px);
+      position: relative;
+      .img {
+        width: inherit;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+      }
     }
-    .tariff {
-      font-size: 13px;
-      font-weight: 400;
-      color: $base-grey;
+
+    .description {
+      display: flex;
+      flex-direction: column;
+      margin-top: 8px;
+      .name {
+        font-size: 15px;
+        font-weight: 500;
+        color: $base-light-blue;
+      }
+      .tariff {
+        font-size: 13px;
+        font-weight: 400;
+        color: $base-grey;
+      }
     }
   }
 }

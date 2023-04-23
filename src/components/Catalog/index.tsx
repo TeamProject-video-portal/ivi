@@ -1,13 +1,12 @@
 import React, { FC } from "react";
 import styles from "./index.module.scss";
-import "swiper/swiper-bundle.css";
-import CustomSwiper from "./CustomSwiper";
+import Carousel from "../Carousel";
 
 const Catalog: FC = () => {
   return (
     <div className={styles.container}>
       <h4 className={styles.title}>Сериалы-новинки</h4>
-      <CustomSwiper />
+      <Carousel />
     </div>
   );
 };

@@ -12,14 +12,19 @@ import { GoInfo, GoMail } from "react-icons/go";
 import { TbDeviceTv } from "react-icons/tb";
 import { MdDevicesOther, MdOutlineVideoLibrary } from "react-icons/md";
 import { HiOutlinePhone, HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi2";
+import { ModalListItem } from "./ModalListItem";
+import { ContextSubMenu } from "@/components/ContextSubMenu";
+import { DropDownMenuFilm } from "@/components/ContextSubMenu/DropDownMenuFilm";
+import { DropDownMenuAnim } from "@/components/ContextSubMenu/DropDownMenuAnim";
+import { DropDownMenuSerial } from "@/components/ContextSubMenu/DropDownMenuSerial";
 
 type MobileModalProps = {
-  open: boolean;
+  modal: boolean;
 };
 
-export const MobileModal: FC<MobileModalProps> = ({ open }) => {
+export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
   return (
-    <div className={open ? styles.mobileModal_open : styles.mobileModal}>
+    <div className={modal ? styles.mobileModal_open : styles.mobileModal}>
       <div className={styles.container}>
         <div className={styles.group}>
           <div className={styles.buttons}>
@@ -38,10 +43,22 @@ export const MobileModal: FC<MobileModalProps> = ({ open }) => {
             <ul className={styles.list}>
               <li><Link href={'/'} className={styles.link}>Мой Иви</Link></li>
               <li><Link href={'https://www.ivi.ru/new'} className={styles.link}>Что нового</Link></li>
-              <li className={styles.link}><BiCameraMovie />Фильмы<span><HiOutlineChevronDown /></span></li>
-              <li className={styles.link}><MdOutlineVideoLibrary />Сериалы<span><HiOutlineChevronDown /></span></li>
-              <li className={styles.link}><WiTrain />Мультфильмы<span><HiOutlineChevronDown /></span></li>
-              <li className={styles.link}><BsTv />TV+<span><HiOutlineChevronDown /></span></li>
+              <ModalListItem key="Фильмы" icon={BiCameraMovie} text="Фильмы">
+                <ContextSubMenu className={styles.contextMenu} title="Все фильмы">
+                  <DropDownMenuFilm />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="Сериалы" icon={MdOutlineVideoLibrary} text="Сериалы">
+                <ContextSubMenu className={styles.contextMenu} title="Все сериалы">
+                  <DropDownMenuSerial />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="Мультфильмы" icon={WiTrain} text="Мультфильмы">
+                <ContextSubMenu className={styles.contextMenu} title="Все мультфильмы">
+                  <DropDownMenuAnim />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="TV+" icon={BsTv} text="TV+" />
               <li><Link href={'https://www.ivi.ru/goodmovies'} className={styles.link}>Что посмотреть</Link></li>
             </ul>
           </nav>
@@ -54,7 +71,7 @@ export const MobileModal: FC<MobileModalProps> = ({ open }) => {
         </div>
         <div className={styles.group}>
           <ul className={styles.list}>
-            <li className={styles.link}><GoInfo />О нас<span><HiOutlineChevronDown /></span></li>
+            <ModalListItem icon={GoInfo} text="О нас" />
             <li><Link href={'https://www.ivi.ru/code'} className={styles.link}><TbDeviceTv />Вход по коду</Link></li>
           </ul>
           <div className={`${styles.buttons} ${styles.buttons_dev}`}>
@@ -74,7 +91,7 @@ export const MobileModal: FC<MobileModalProps> = ({ open }) => {
           </div>
         </div>
         <div className={styles.group}>
-          <li className={styles.link}><BiMessageAlt />Служба поддержки<span><HiOutlineChevronDown /></span></li>
+          <ModalListItem icon={BiMessageAlt} text="Служба поддержки" />
         </div>
         <div className={styles.group}>
           <Socials />

@@ -12,14 +12,20 @@ import { Button } from "../Button/Button";
 import { MobileModal } from "./MobileModal";
 
 const MobileMenu: FC = () => {
-  const [open, setOpen] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [activeItem, setActiveItem] = useState('');
+
+  const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    setModal(false);
+    setActiveItem(e.target.closest(`.${styles.item}`).dataset.title)
+  }
 
   return (
     <>
       <div className={styles.container}>
         <div className={styles.items}>
           <Link href="/">
-            <div className={styles.item}>
+            <div className={`${styles.item}  ${(activeItem == "ivi") && styles.item_open}`} data-title="ivi" onClick={onClickHandler}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
@@ -33,7 +39,7 @@ const MobileMenu: FC = () => {
             </div>
           </Link>
           <Link href="/movies">
-            <div className={styles.item}>
+            <div className={`${styles.item}  ${(activeItem == "catalog") && styles.item_open}`} data-title="catalog" onClick={onClickHandler}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
@@ -46,8 +52,8 @@ const MobileMenu: FC = () => {
               <span>Каталог</span>
             </div>
           </Link>
-          <Link href="https://www.ivi.ru/movies?ivi_search" >
-            <div className={styles.item}>
+          <Link href="https://www.ivi.ru/profile?ivi_search" >
+            <div className={`${styles.item}  ${(activeItem == "search") && styles.item_open}`} data-title="search" onClick={onClickHandler}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
@@ -60,8 +66,8 @@ const MobileMenu: FC = () => {
               <span>Поиск</span>
             </div>
           </Link >
-          <Link href="https://www.ivi.ru/tvplus">
-            <div className={styles.item}>
+          <Link href="/">
+            <div className={`${styles.item}  ${(activeItem == "profile") && styles.item_open}`} data-title="profile" onClick={onClickHandler}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
@@ -75,22 +81,22 @@ const MobileMenu: FC = () => {
             </div>
           </Link >
           <Button>
-            <div className={`${styles.item}  ${open && styles.item_open}`} onClick={() => setOpen(!open)}>
+            <div className={`${styles.item}  ${modal && styles.item_open}`} data-title="more" onClick={(e) => { setModal(!modal); setActiveItem(e.target.dataset.title) }}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,
                 }}
               >
                 <div>
-                  {open ? <CgClose /> : <BsThreeDots />}
+                  {modal ? <CgClose /> : <BsThreeDots />}
                 </div>
               </IconContext.Provider>
-              <span>{open ? 'Закрыть' : 'Ещё'}</span>
+              <span>{modal ? 'Закрыть' : 'Ещё'}</span>
             </div>
           </Button>
         </div >
       </div >
-      <MobileModal open={open} />
+      <MobileModal modal={modal} />
     </>
   );
 };

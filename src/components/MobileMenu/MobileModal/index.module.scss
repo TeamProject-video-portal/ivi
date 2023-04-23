@@ -9,7 +9,7 @@
       right: 0;
       left: 0;
       top: 72px;
-      bottom: 48px;
+      bottom: 30px;
       display: flex;
       background-color: $base-dark-blue;
       overflow-y: auto;
@@ -32,9 +32,8 @@
   padding: 0 32px;
   width: 100%;
   .group {
-    padding-top: 32px;
+    padding: 32px 0;
     &:not(:first-child) {
-      margin-top: 32px;
       border-top: 1px solid $base-light-grey;
     }
     p {
@@ -51,6 +50,24 @@
     svg {
       height: 20px;
       width: 20px;
+    }
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 21px;
+  }
+  .link {
+    display: flex;
+    column-gap: 12px;
+    @include font-regular;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.72;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
     }
   }
   .buttonTop,
@@ -85,25 +102,28 @@
     padding: 0 12px;
     height: 100%;
   }
-  .list {
-    display: flex;
-    flex-direction: column;
-    row-gap: 24px;
-  }
-  .link {
-    display: flex;
-    column-gap: 12px;
-    @include font-regular;
-    cursor: pointer;
-    &:hover {
-      opacity: 0.72;
-    }
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
   .copyright {
     margin-top: 40px;
+  }
+}
+.contextMenu {
+  color: $base-grey-menu;
+  a:hover {
+    color: $base-white;
+  }
+  ul {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+    width: 256px;
+    margin-right: 24px;
+  }
+  h3 {
+    margin: 24px 0 12px;
+    @include font-footer-bold;
+    color: $base-white;
+  }
+  div:nth-of-type(3) {
+    margin-top: 24px;
   }
 }

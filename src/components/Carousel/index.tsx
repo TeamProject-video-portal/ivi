@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import styles from "./index.module.scss";
 import Slider from "react-slick";
-import Image from "next/image";
-import bannerImg from "../../images/banner__foto.jpeg";
-import { settings } from "./settings";
+import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Banner: FC = () => {
+import { settings } from "./settings";
+
+const Carousel: FC = () => {
   const renderSlides = () => {
     let arr = [];
     for (let i = 0; i < 10; i++) {
@@ -16,15 +16,20 @@ const Banner: FC = () => {
     return arr.map((item, index) => {
       return (
         <div key={index}>
-          <Image src={bannerImg} alt="" className={styles.slide}></Image>
+          <Poster />
         </div>
       );
     });
   };
+
   return (
-    <div className={styles.container}>
-      <Slider {...settings}>{renderSlides()}</Slider>
+    <div>
+      <Slider {...settings} className={styles.container}>
+        {renderSlides()}
+      </Slider>
+      <></>
     </div>
   );
 };
-export default Banner;
+
+export default Carousel;

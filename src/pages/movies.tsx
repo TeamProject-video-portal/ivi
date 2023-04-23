@@ -1,3 +1,4 @@
+import Carousel from "@/components/Carousel";
 import Head from "next/head";
 
 const MoviesPage = () => {
@@ -7,6 +8,7 @@ const MoviesPage = () => {
         <title>Поиск фильмов</title>
       </Head>
       <h1>Films</h1>
+      <Carousel />
     </>
   );
 };

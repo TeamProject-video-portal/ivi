@@ -9,6 +9,7 @@
     top: 72px;
     .wrapper {
       height: inherit;
+
       width: inherit;
       position: relative;
       .bg_div {
@@ -43,6 +44,7 @@
             &:hover {
               color: $base-white;
             }
+
           }
         }
       }

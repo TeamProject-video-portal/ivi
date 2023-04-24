@@ -1,0 +1,11 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/color.scss";
+
+.submenu {
+  @include font-footer;
+  background-color: transparent;
+}
+.content {
+  display: flex;
+  flex-wrap: wrap;
+}

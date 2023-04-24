@@ -20,28 +20,28 @@ export const Footer: FC = () => {
           <nav className={styles.cols}>
             <h3 className={styles.cols__title}>О нас</h3>
             <ul className={styles.list}>
-              <li>
+              <li key='0'>
                 <Link href={'https://corp.ivi.ru/'} className={styles.list__link}>О компании</Link>
               </li>
-              <li>
+              <li key='1'>
                 <Link href={'https://corp.ivi.ru/career/#career-vacancy-block'} className={styles.list__link}>Вакансии</Link>
               </li>
-              <li>
+              <li key='2'>
                 <Link href={'https://www.ivi.ru/pages/beta/'} className={styles.list__link}>Программа бета-тестирования</Link>
               </li>
-              <li>
+              <li key='3'>
                 <Link href={'https://www.ivi.ru/info/partners'} className={styles.list__link}>Информация для партнёров</Link>
               </li>
-              <li>
+              <li key='4'>
                 <Link href={'https://corp.ivi.ru/advertisers/'} className={styles.list__link}>Размещение рекламы</Link>
               </li>
-              <li>
+              <li key='5'>
                 <Link href={'https://www.ivi.ru/info/agreement'} className={styles.list__link}>Пользовательское соглашение</Link>
               </li>
-              <li>
+              <li key='6'>
                 <Link href={'https://www.ivi.ru/info/confidential'} className={styles.list__link}>Политика конфиденциальности</Link>
               </li>
-              <li>
+              <li key='7'>
                 <Link href={'https://www.ivi.ru/info/goryachaya-liniya-komplaens'} className={styles.list__link}>Комплаенс</Link>
               </li>
             </ul>
@@ -49,28 +49,28 @@ export const Footer: FC = () => {
           <nav className={styles.cols}>
             <h3 className={styles.cols__title}>Разделы</h3>
             <ul className={styles.list}>
-              <li>
+              <li key='0'>
                 <Link href={'https://www.ivi.ru/'} className={styles.list__link}>Мой Иви</Link>
               </li>
-              <li>
+              <li key='1'>
                 <Link href={'https://www.ivi.ru/new'} className={styles.list__link}>Что нового</Link>
               </li>
-              <li>
+              <li key='2'>
                 <Link href={'https://www.ivi.ru/movies'} className={styles.list__link}>Фильмы</Link>
               </li>
-              <li>
+              <li key='3'>
                 <Link href={'https://www.ivi.ru/series'} className={styles.list__link}>Сериалы</Link>
               </li>
-              <li>
+              <li key='4'>
                 <Link href={'https://www.ivi.ru/animation'} className={styles.list__link}>Мультфильмы</Link>
               </li>
-              <li>
+              <li key='5'>
                 <Link href={'https://www.ivi.ru/tvplus'} className={styles.list__link}>TV+</Link>
               </li>
-              <li>
+              <li key='6'>
                 <Link href={'https://www.ivi.ru/goodmovies'} className={styles.list__link}>Что посмотреть</Link>
               </li>
-              <li className={styles.list__sert}>
+              <li className={styles.list__sert} key='7'>
                 <Link href={'https://www.ivi.ru/cert'} className={styles.list__link}>Активация сертификата</Link>
               </li>
             </ul>
@@ -105,7 +105,7 @@ export const Footer: FC = () => {
         <div className={styles.content}>
           <div className={styles.columns}>
             <div className={styles.stories}>
-              <Link href={'https://go.onelink.me/app/devicesiOS'}>
+              <Link href={'https://go.onelink.me/app/devicesiOS'} key='App Store'>
                 <Button className={styles.stories__btn}>
                   <FaApple />
                   <div>
@@ -114,7 +114,7 @@ export const Footer: FC = () => {
                   </div>
                 </Button>
               </Link>
-              <Link href={'https://go.onelink.me/app/devicesAndroid'}>
+              <Link href={'https://go.onelink.me/app/devicesAndroid'} key='Google Play'>
                 <Button className={styles.stories__btn}>
                   <FaGooglePlay />
                   <div>
@@ -123,7 +123,7 @@ export const Footer: FC = () => {
                   </div>
                 </Button>
               </Link>
-              <Link href={'https://www.ivi.ru/pages/tvsmart/'}>
+              <Link href={'https://www.ivi.ru/pages/tvsmart/'} key='Smart TV'>
                 <Button className={styles.stories__btn}>
                   <BsTvFill />
                   <div>
@@ -132,7 +132,7 @@ export const Footer: FC = () => {
                   </div>
                 </Button>
               </Link>
-              <Link href={'https://www.ivi.ru/devices'}>
+              <Link href={'https://www.ivi.ru/devices'} key='all devices'>
                 <Button className={styles.stories__btn}>
                   <MdDevicesOther />
                   <div>
@@ -153,6 +153,6 @@ export const Footer: FC = () => {
           </div>
         </div>
       </div>
-    </footer>
+    </footer >
   );
 };

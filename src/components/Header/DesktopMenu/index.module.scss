@@ -12,9 +12,10 @@
     width: 460px;
     .link,
     .link_movies {
+      display: inline-block;
       @include font-regular;
       color: $base-grey;
-      padding-left: 15px;
+      padding: 15px 0 15px 15px;
     }
   }
 }

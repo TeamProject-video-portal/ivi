@@ -1,25 +1,36 @@
-import { FC } from "react";
+import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
-import { ContextSubMenu } from "@/components/ContextSubMenu";
-import { DropDownMenuFilm } from "@/components/ContextSubMenu/DropDownMenuFilm";
-import { DropDownMenuSerial } from "@/components/ContextSubMenu/DropDownMenuSerial";
-import { DropDownMenuAnim } from "@/components/ContextSubMenu/DropDownMenuAnim";
+import Ad from "./Ad/Ad";
 
 type Props = {
-  subMenuTitle: string;
+  isOpenSubMenu: boolean;
+  setIsOpenSubMenu: Dispatch<SetStateAction<boolean>>;
 };
 
 const SubMenu: FC<Props> = (props) => {
   return (
-    <div className={styles.container}>
-      <div className={styles.bg_div}>
-        <ContextSubMenu className={styles.content}>
-          {props.subMenuTitle === 'film' && <DropDownMenuFilm />}
-          {props.subMenuTitle === 'series' && <DropDownMenuSerial />}
-          {props.subMenuTitle === 'anim' && <DropDownMenuAnim />}
-        </ContextSubMenu>
-      </div>
+    <div
+      className={styles.container}
+      onMouseLeave={() => props.setIsOpenSubMenu(false)}
+    >
+      {props.isOpenSubMenu && (
+        <div className={styles.wrapper}>
+          <div className={styles.bg_div}></div>
+          <div className={styles.content}>
+            <div className={styles.list}>
+              {" "}
+              <h5>Жанры</h5>
+              <p>Артхаус</p>
+              <p>Боевик</p>
+              <p>Вестерн</p>
+              <p>something titles</p>
+              <p>something titles</p>
+            </div>
+            <Ad />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

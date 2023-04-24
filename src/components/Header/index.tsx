@@ -12,6 +12,7 @@ import WatchingButton from "./Buttons/WatchForFree";
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const [subMenuTitle, setSubMenuTitle] = useState("");
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>

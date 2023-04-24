@@ -53,6 +53,14 @@
   line-height: 20px;
 }
 
+@mixin font-footer-bold {
+  font-family: iviSans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+}
+
 @mixin mobil-footer {
   font-family: iviSans;
   font-size: 16px;

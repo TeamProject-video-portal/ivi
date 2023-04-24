@@ -13,6 +13,8 @@ import { IconContext } from "react-icons";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
+  const [subMenuTitle, setSubMenuTitle] = useState('');
+
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -23,6 +25,7 @@ export const Header: FC = () => {
           <DesktopMenu
             isOpenSubMenu={isOpenSubMenu}
             setIsOpenSubMenu={setIsOpenSubMenu}
+            setSubMenuTitle={setSubMenuTitle}
           />
         </div>
         <div className={styles.buttons}>
@@ -64,7 +67,7 @@ export const Header: FC = () => {
             </IconContext.Provider>
           </div>
         </div>
-        {isOpenSubMenu && <SubMenu />}
+        {isOpenSubMenu && <SubMenu subMenuTitle={subMenuTitle} />}
       </div>
     </header>
   );

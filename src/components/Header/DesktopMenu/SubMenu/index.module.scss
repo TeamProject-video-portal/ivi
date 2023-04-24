@@ -8,11 +8,40 @@
     top: 72px;
     .bg_div {
       height: inherit;
-      background-color: $base-dark-grey;
-      opacity: 0.48;
+      background-color: $base-dark-purple;
       border-radius: 0px 0px 14px 14px;
-      z-index: 0;
+      z-index: 100;
       .content {
+        padding: 20px;
+        @include font-footer;
+        color: $base-grey-topmenu;
+        a:hover {
+          color: $base-white;
+        }
+        h3 {
+          margin: 24px 0 12px;
+          @include font-footer-bold;
+          color: $base-white;
+        }
+        div:nth-of-type(1) ul {
+          display: grid;
+          grid-template-columns: repeat(2, 200px);
+          grid-gap: 5px;
+        }
+        div:nth-of-type(2) ul {
+          display: grid;
+          grid-template-columns: 190px;
+          grid-gap: 5px;
+        }
+        div:nth-of-type(3) {
+          padding: 24px 20px 0;
+          border-left: 1px solid $base-grey-topmenu;
+          ul {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 5px;
+          }
+        }
       }
     }
   }

@@ -1,18 +1,15 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
-
 import Ad from "./Ad/Ad";
 
 type Props = {
   isOpenSubMenu: boolean;
   setIsOpenSubMenu: Dispatch<SetStateAction<boolean>>;
-
 };
 
 const SubMenu: FC<Props> = (props) => {
   return (
-
     <div
       className={styles.container}
       onMouseLeave={() => props.setIsOpenSubMenu(false)}
@@ -34,7 +31,6 @@ const SubMenu: FC<Props> = (props) => {
           </div>
         </div>
       )}
-
     </div>
   );
 };

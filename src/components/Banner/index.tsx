@@ -15,12 +15,13 @@ const Banner: FC = () => {
     }
     return arr.map((item, index) => {
       return (
-        <div key={index}>
-          <Image src={bannerImg} alt="" className={styles.slide}></Image>
+        <div key={index} className={styles.slide}>
+          <Image src={bannerImg} alt="" className={styles.slide_img}></Image>
         </div>
       );
     });
   };
+
   return (
     <div className={styles.container}>
       <Slider {...settings}>{renderSlides()}</Slider>

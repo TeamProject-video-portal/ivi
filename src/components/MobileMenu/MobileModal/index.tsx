@@ -29,13 +29,13 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
         <div className={styles.group}>
           <div className={styles.buttons}>
             <Link href={'/'}>
-              <Button className={`${styles.buttonTop} ${styles.subscribe}`}>
+              <Button className={`${styles.buttonTop} ${styles.subscribe}`} color='purple'>
                 <IoDiamondOutline />
                 Подключить подписку
               </Button>
             </Link>
             <Link href={'https://www.ivi.ru/cert'}>
-              <Button className={styles.buttonTop}>
+              <Button className={styles.buttonTop} color='purple'>
                 <RiAwardLine />
                 Активация сертификата
               </Button>
@@ -116,7 +116,7 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
           </ul>
           <div className={`${styles.buttons} ${styles.buttons_dev}`}>
             <Link href={'https://www.ivi.ru/pages/tvsmart/'}>
-              <Button className={styles.buttonBottom}>
+              <Button className={styles.buttonBottom} color='purple'>
                 <BsTvFill />
                 <div>
                   <span>Смотрите на</span>
@@ -125,7 +125,7 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
               </Button>
             </Link>
             <Link href={'https://www.ivi.ru/devices'}>
-              <Button className={styles.buttonBottom}>
+              <Button className={styles.buttonBottom} color='purple'>
                 <MdDevicesOther />
                 <div>
                   <div>Все устройства</div>
@@ -139,11 +139,15 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
             <p className={styles.help}>Мы всегда готовы вам помочь.<br />Наши операторы онлайн 24/7</p>
             <div className={`${styles.buttons} ${styles.buttons_chat}`}>
               <Link href={'https://www.ivi.ru/profile'}>
-                <Button className={styles.buttonChat}>Написать в чате</Button>
+                <Button className={styles.buttonChat} color='purple'>Написать в чате</Button>
               </Link>
               <div className={styles.buttonsIcon}>
-                <Link href={'mailto:support@ivi.ru'} type="email"><Button className={styles.buttonIcon}><GoMail /></Button></Link>
-                <Link href={'tel:+73832021280'} type='tel'><Button className={styles.buttonIcon}><HiOutlinePhone /></Button></Link>
+                <Link href={'mailto:support@ivi.ru'} type="email">
+                  <Button className={styles.buttonIcon} color='purple'><GoMail /></Button>
+                </Link>
+                <Link href={'tel:+73832021280'} type='tel'>
+                  <Button className={styles.buttonIcon} color='purple'><HiOutlinePhone /></Button>
+                </Link>
               </div>
             </div>
             <Link href={'https://ask.ivi.ru/'} className={styles.ask}>ask.ivi.ru</Link>

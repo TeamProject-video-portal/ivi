@@ -6,14 +6,35 @@
   justify-content: center;
   cursor: pointer;
   background-color: transparent;
-  &_purple {
-    background-color: $base-dark-purple;
-    border-radius: 8px;
-    color: $base-white;
-    &:hover {
-      background-color: $base-light-purple;
-      border: 1px solid $base-light-purple;
-      transition: all 0.4s ease 0s;
-    }
+}
+.purple {
+  background-color: $base-dark-purple;
+  border: 1px solid $base-dark-purple;
+  border-radius: 8px;
+  color: $base-white;
+  &:hover {
+    background-color: $base-light-purple;
+    border: 1px solid $base-light-purple;
+    transition: all 0.4s ease 0s;
+  }
+}
+.darkbluegrey {
+  background-color: $base-dark-grey;
+  border: 1px solid $base-dark-grey;
+  border-radius: 8px;
+  color: $base-white;
+  &:hover {
+    background-color: $base-dark-grey-hover;
+    transition: all 0.4s ease 0s;
+  }
+}
+.pink {
+  background-color: $base-pink;
+  color: $base-white;
+  border-radius: 8px;
+  border: 1px solid $base-pink;
+  &:hover {
+    background-color: $base-pink-hover;
+    transition: all 0.4s ease 0s;
   }
 }

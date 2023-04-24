@@ -1,0 +1,22 @@
+@import "../../../../../styles/color.scss";
+@import "../../../../../styles/mixins.scss";
+
+.container {
+  width: 230px;
+  height: 210px;
+  .slide {
+    width: 30px;
+    height: 70px;
+    object-fit: contain;
+    padding: 0 5px;
+    box-sizing: border-box;
+    img {
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
+    }
+  }
+  .no_active {
+    opacity: 0.4;
+  }
+}

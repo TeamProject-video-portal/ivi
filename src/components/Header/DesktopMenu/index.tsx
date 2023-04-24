@@ -19,7 +19,6 @@ const DesktopMenu: FC<Props> = (props) => {
         <span
           className={styles.link_movies}
           onMouseEnter={() => props.setIsOpenSubMenu(true)}
-          onMouseLeave={() => props.setIsOpenSubMenu(false)}
         >
           Фильмы
         </span>

@@ -1,0 +1,30 @@
+@import "../../../../styles/color.scss";
+@import "../../../../styles/mixins.scss";
+
+.button_search {
+  height: 32px;
+  width: 70px;
+  color: $base-ligth-grey;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .search_icon {
+    width: 20px;
+    height: 20px;
+    color: $base-ligth-grey;
+    margin-top: 3px;
+  }
+  &:hover {
+    .search_icon,
+    span {
+      color: $base-white;
+    }
+  }
+  @include container_920 {
+    display: none;
+  }
+}

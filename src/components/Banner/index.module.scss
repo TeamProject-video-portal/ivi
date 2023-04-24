@@ -2,29 +2,23 @@
 @import "../../styles/mixins.scss";
 
 .container {
-  position: relative;
-  top: 25px;
-  margin: 0 auto;
-
   @include container_1280 {
   }
   @include container_920 {
-  }
-
-  @media screen and (min-width: 600px) and (max-width: 1280px) {
     width: calc(100% - 60px);
   }
 
-  @media screen and (min-width: 380px) and (max-width: 600px) {
+  @include container_380 {
     width: calc(100% - 60px);
   }
 
-  @media screen and (max-width: 380px) {
+  @include mobile {
     width: calc(100% - 60px);
   }
 
   .slide {
     position: relative;
+    margin: 25px 0;
     padding-top: 32%;
 
     @media screen and (min-width: 380px) and (max-width: 600px) {

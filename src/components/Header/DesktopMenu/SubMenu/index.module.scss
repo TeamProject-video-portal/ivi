@@ -1,18 +1,50 @@
 @import "../../../../styles/color.scss";
 @import "../../../../styles/mixins.scss";
+
 .container {
   @include container_1280 {
-    height: 400px;
+    height: 420px;
     position: fixed;
     position: absolute;
     top: 72px;
-    .bg_div {
+    .wrapper {
       height: inherit;
-      background-color: $base-dark-grey;
-      opacity: 0.48;
-      border-radius: 0px 0px 14px 14px;
-      z-index: 0;
+      width: inherit;
+      position: relative;
+      .bg_div {
+        height: inherit;
+        background-color: $base-dark-purple;
+        border-radius: 0px 0px 14px 14px;
+        z-index: 0;
+      }
       .content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 35px 25px 25px 25px;
+        z-index: 100;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .list {
+          h5 {
+            @include font-regular;
+            margin-bottom: 10px;
+            cursor: pointer;
+          }
+
+          p {
+            @include font-for-button;
+            cursor: pointer;
+            color: $base-ligth-grey;
+            margin: 8px 0;
+            &:hover {
+              color: $base-white;
+            }
+          }
+        }
       }
     }
   }

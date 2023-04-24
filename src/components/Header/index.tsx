@@ -11,7 +11,7 @@ import WatchingButton from "./Buttons/WatchForFree";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
-
+  const [subMenuTitle, setSubMenuTitle] = useState("");
 
   return (
     <header className={styles.header}>
@@ -40,8 +40,6 @@ export const Header: FC = () => {
             setIsOpenSubMenu={setIsOpenSubMenu}
           />
         )}
-
-
       </div>
     </header>
   );

@@ -15,10 +15,16 @@ const MobileMenu: FC = () => {
   const [modal, setModal] = useState(false);
   const [activeItem, setActiveItem] = useState('');
 
-  const onClickHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
+  const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
     setModal(false);
-    if (!e.target) return;
-    setActiveItem((e.target as HTMLElement).closest(`.${styles.item}`).dataset.title)
+    const div = (e?.target as HTMLDivElement)?.closest(`.${styles.item}`)?.getAttribute('data-title') || '';
+    setActiveItem(div);
+  }
+
+  const onClickBtn = (e: React.MouseEvent<HTMLDivElement>) => {
+    setModal(!modal);
+    const div = (e?.target as HTMLDivElement)?.closest(`.${styles.item}`)?.getAttribute('data-title') || '';
+    setActiveItem(div);
   }
 
   return (
@@ -82,7 +88,7 @@ const MobileMenu: FC = () => {
             </div>
           </Link >
           <Button>
-            <div className={`${styles.item}  ${modal && styles.item_open}`} data-title="more" onClick={(e) => { setModal(!modal); setActiveItem(e.target.dataset.title) }}>
+            <div className={`${styles.item}  ${modal && styles.item_open}`} data-title="more" onClick={onClickBtn}>
               <IconContext.Provider
                 value={{
                   className: `${styles.icon}`,

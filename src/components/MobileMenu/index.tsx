@@ -15,9 +15,10 @@ const MobileMenu: FC = () => {
   const [modal, setModal] = useState(false);
   const [activeItem, setActiveItem] = useState('');
 
-  const onClickHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onClickHandler = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setModal(false);
-    setActiveItem(e.target.closest(`.${styles.item}`).dataset.title)
+    if (!e.target) return;
+    setActiveItem((e.target as HTMLElement).closest(`.${styles.item}`).dataset.title)
   }
 
   return (

@@ -15,7 +15,7 @@ export const ModalListItem: FC<ModalListItemProps> = ({ icon, text, children }) 
   return (
     <>
       <li className={styles.link} onClick={() => setOpen(!open)}>
-        {icon && <IconItem />}
+        {icon && IconItem && <IconItem />}
         {text}
         <span> {open ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />}</span>
       </li>

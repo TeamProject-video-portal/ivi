@@ -47,39 +47,31 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
             <ul className={styles.list}>
               <li><Link href={'/'} className={styles.link}>Мой Иви</Link></li>
               <li><Link href={'https://www.ivi.ru/new'} className={styles.link}>Что нового</Link></li>
-              <li>
-                <ModalListItem key="Фильмы" icon={BiCameraMovie} text="Фильмы">
-                  <ContextSubMenu className={styles.contextMenu} title="Все фильмы">
-                    <DropDownMenuFilm />
-                  </ContextSubMenu>
-                </ModalListItem>
-              </li>
-              <li>
-                <ModalListItem key="Сериалы" icon={MdOutlineVideoLibrary} text="Сериалы">
-                  <ContextSubMenu className={styles.contextMenu} title="Все сериалы">
-                    <DropDownMenuSerial />
-                  </ContextSubMenu>
-                </ModalListItem>
-              </li>
-              <li>
-                <ModalListItem key="Мультфильмы" icon={WiTrain} text="Мультфильмы">
-                  <ContextSubMenu className={styles.contextMenu} title="Все мультфильмы">
-                    <DropDownMenuAnim />
-                  </ContextSubMenu>
-                </ModalListItem>
-              </li>
-              <li>
-                <ModalListItem key="TV+" icon={BsTv} text="TV+">
-                  <ul className={styles.listTV}>
-                    <li><h3>TB онлайн</h3></li>
-                    <li><Link href={'https://www.ivi.ru/tvplus#'}>ТВ-каналы</Link></li>
-                    <li><Link href={'https://www.ivi.ru/tvplus/razvlekatelnoe'}>Развлекательное</Link></li>
-                    <li><Link href={'https://www.ivi.ru/tvplus/deti'}>Дети</Link></li>
-                    <li><Link href={'https://www.ivi.ru/tvplus/sport'}>Спортивное ТВ</Link></li>
-                    <li><Link href={'https://www.ivi.ru/tvplus/documentalnoe'}>Документальное</Link></li>
-                  </ul>
-                </ModalListItem>
-              </li>
+              <ModalListItem key="Фильмы" icon={BiCameraMovie} text="Фильмы">
+                <ContextSubMenu className={styles.contextMenu} title="Все фильмы">
+                  <DropDownMenuFilm />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="Сериалы" icon={MdOutlineVideoLibrary} text="Сериалы">
+                <ContextSubMenu className={styles.contextMenu} title="Все сериалы">
+                  <DropDownMenuSerial />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="Мультфильмы" icon={WiTrain} text="Мультфильмы">
+                <ContextSubMenu className={styles.contextMenu} title="Все мультфильмы">
+                  <DropDownMenuAnim />
+                </ContextSubMenu>
+              </ModalListItem>
+              <ModalListItem key="TV+" icon={BsTv} text="TV+">
+                <ul className={styles.listTV}>
+                  <li><h3>TB онлайн</h3></li>
+                  <li><Link href={'https://www.ivi.ru/tvplus#'}>ТВ-каналы</Link></li>
+                  <li><Link href={'https://www.ivi.ru/tvplus/razvlekatelnoe'}>Развлекательное</Link></li>
+                  <li><Link href={'https://www.ivi.ru/tvplus/deti'}>Дети</Link></li>
+                  <li><Link href={'https://www.ivi.ru/tvplus/sport'}>Спортивное ТВ</Link></li>
+                  <li><Link href={'https://www.ivi.ru/tvplus/documentalnoe'}>Документальное</Link></li>
+                </ul>
+              </ModalListItem>
               <li><Link href={'https://www.ivi.ru/goodmovies'} className={styles.link}>Что посмотреть</Link></li>
             </ul>
           </nav>
@@ -92,36 +84,34 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
         </div>
         <div className={styles.group}>
           <ul className={styles.list}>
-            <li>
-              <ModalListItem icon={GoInfo} text="О нас">
-                <ul className={styles.listAbout}>
-                  <li key='0'>
-                    <Link href={'https://corp.ivi.ru/'}>О компании</Link>
-                  </li>
-                  <li key='1'>
-                    <Link href={'https://corp.ivi.ru/career/#career-vacancy-block'}>Вакансии</Link>
-                  </li>
-                  <li key='2'>
-                    <Link href={'https://www.ivi.ru/pages/beta/'}>Программа бета-тестирования</Link>
-                  </li>
-                  <li key='3'>
-                    <Link href={'https://www.ivi.ru/info/partners'}>Общая информация для партнёров</Link>
-                  </li>
-                  <li key='4'>
-                    <Link href={'https://corp.ivi.ru/advertisers/'}>Размещение рекламы</Link>
-                  </li>
-                  <li key='5'>
-                    <Link href={'https://www.ivi.ru/info/agreement'}>Пользовательское соглашение</Link>
-                  </li>
-                  <li key='6'>
-                    <Link href={'https://www.ivi.ru/info/confidential'}>Политика конфиденциальности</Link>
-                  </li>
-                  <li key='7'>
-                    <Link href={'https://www.ivi.ru/info/goryachaya-liniya-komplaens'}>Комплаенс</Link>
-                  </li>
-                </ul>
-              </ModalListItem>
-            </li>
+            <ModalListItem icon={GoInfo} text="О нас">
+              <ul className={styles.listAbout}>
+                <li key='0'>
+                  <Link href={'https://corp.ivi.ru/'}>О компании</Link>
+                </li>
+                <li key='1'>
+                  <Link href={'https://corp.ivi.ru/career/#career-vacancy-block'}>Вакансии</Link>
+                </li>
+                <li key='2'>
+                  <Link href={'https://www.ivi.ru/pages/beta/'}>Программа бета-тестирования</Link>
+                </li>
+                <li key='3'>
+                  <Link href={'https://www.ivi.ru/info/partners'}>Общая информация для партнёров</Link>
+                </li>
+                <li key='4'>
+                  <Link href={'https://corp.ivi.ru/advertisers/'}>Размещение рекламы</Link>
+                </li>
+                <li key='5'>
+                  <Link href={'https://www.ivi.ru/info/agreement'}>Пользовательское соглашение</Link>
+                </li>
+                <li key='6'>
+                  <Link href={'https://www.ivi.ru/info/confidential'}>Политика конфиденциальности</Link>
+                </li>
+                <li key='7'>
+                  <Link href={'https://www.ivi.ru/info/goryachaya-liniya-komplaens'}>Комплаенс</Link>
+                </li>
+              </ul>
+            </ModalListItem>
             <li><Link href={'https://www.ivi.ru/code'} className={styles.link}><TbDeviceTv />Вход по коду</Link></li>
           </ul>
           <div className={`${styles.buttons} ${styles.buttons_dev}`}>

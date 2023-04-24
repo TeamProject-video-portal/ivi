@@ -3,13 +3,13 @@
 
 .button {
   display: block;
-  width: 45px !important;
+  width: 45px;
   height: 50px;
   z-index: 100;
   top: 35%;
   position: absolute;
   color: $base-light-blue;
-  left: -40px;
+  left: -30px;
 
   * {
     width: inherit;
@@ -21,7 +21,15 @@
     left: -25px;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (min-width: 380px) and (max-width: 600px) {
     left: -25px;
+    width: 35px;
+    height: 40px;
+  }
+
+  @media screen and (max-width: 380px) {
+    left: -10px;
+    width: 30px;
+    height: 40px;
   }
 }

@@ -32,6 +32,21 @@
   }
 }
 
+@mixin mobile {
+  @media screen and (max-width: 380px) {
+    width: auto;
+    margin: 0 auto;
+    @content;
+  }
+}
+@mixin container_380 {
+  @media screen and (min-width: 380px) and (max-width: 600px) {
+    width: auto;
+    margin: 0 auto;
+    @content;
+  }
+}
+
 @mixin _1160 {
   @media screen and (max-width: 1160px) {
     @content;

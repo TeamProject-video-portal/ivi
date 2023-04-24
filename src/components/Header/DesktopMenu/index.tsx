@@ -19,8 +19,9 @@ const DesktopMenu: FC<Props> = (props) => {
       <Link href="/movies">
         <span
           className={styles.link_movies}
-          onMouseEnter={() => { props.setIsOpenSubMenu(true); props.setSubMenuTitle('film') }}
-          onMouseLeave={() => { props.setIsOpenSubMenu(false); props.setSubMenuTitle('') }}
+
+          onMouseEnter={() => props.setIsOpenSubMenu(true)}
+
         >
           Фильмы
         </span>

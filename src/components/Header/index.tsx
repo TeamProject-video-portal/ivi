@@ -2,18 +2,16 @@ import { FC, useState } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import logo from "../../images/icons/logo.svg";
-import Link from "next/link";
-import MobileMenu from "../MobileMenu";
 import DesktopMenu from "./DesktopMenu";
 import SubMenu from "./DesktopMenu/SubMenu";
-import { RiUser3Line } from "react-icons/ri";
-import { AiOutlineBell } from "react-icons/ai";
-import { MdSearch } from "react-icons/md";
-import { IconContext } from "react-icons";
+import SearchButton from "./Buttons/Search";
+import ProfileButton from "./Buttons/Profile";
+import NotificationButton from "./Buttons/Notification";
+import WatchingButton from "./Buttons/WatchForFree";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
-  const [subMenuTitle, setSubMenuTitle] = useState('');
+
 
   return (
     <header className={styles.header}>
@@ -28,46 +26,22 @@ export const Header: FC = () => {
             setSubMenuTitle={setSubMenuTitle}
           />
         </div>
+
         <div className={styles.buttons}>
-          <button className={styles.button_watch_for_free}>
-            Смотреть 30 дней бесплатно
-          </button>
-          <div className={styles.button_search}>
-            <IconContext.Provider
-              value={{
-                className: `${styles.search_icon}`,
-              }}
-            >
-              <div>
-                <MdSearch />
-              </div>
-            </IconContext.Provider>
-            <span>Поиск</span>
-          </div>
-          <div className={styles.button_notification}>
-            <IconContext.Provider
-              value={{
-                className: `${styles.notification_icon}`,
-              }}
-            >
-              <div>
-                <AiOutlineBell />
-              </div>
-            </IconContext.Provider>
-          </div>
-          <div className={styles.button_profile}>
-            <IconContext.Provider
-              value={{
-                className: `${styles.profile_icon}`,
-              }}
-            >
-              <div>
-                <RiUser3Line />
-              </div>
-            </IconContext.Provider>
-          </div>
+          <WatchingButton />
+          <SearchButton />
+          <NotificationButton />
+          <ProfileButton />
         </div>
-        {isOpenSubMenu && <SubMenu subMenuTitle={subMenuTitle} />}
+
+        {isOpenSubMenu && (
+          <SubMenu
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+          />
+        )}
+
+
       </div>
     </header>
   );

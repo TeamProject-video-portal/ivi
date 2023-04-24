@@ -2,16 +2,40 @@
 @import "../../styles/mixins.scss";
 
 .container {
-  position: relative;
-  top: 23px;
-  height: 413px;
-
   @include container_1280 {
   }
   @include container_920 {
+    width: calc(100% - 60px);
   }
+
+  @include container_380 {
+    width: calc(100% - 60px);
+  }
+
+  @include mobile {
+    width: calc(100% - 60px);
+  }
+
   .slide {
     position: relative;
-    border-radius: 20px;
+    margin: 25px 0;
+    padding-top: 32%;
+
+    @media screen and (min-width: 380px) and (max-width: 600px) {
+      padding-top: 55%;
+    }
+
+    @media screen and (max-width: 380px) {
+      padding-top: 65%;
+    }
+
+    .slide_img {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      object-fit: cover;
+    }
   }
 }

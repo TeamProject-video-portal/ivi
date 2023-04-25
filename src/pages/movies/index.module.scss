@@ -1,0 +1,38 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.container {
+  @include container_1280 {
+  }
+  @include container_600 {
+  }
+  .breadcrumbs {
+    @include font-for-button;
+    color: $base-white;
+    ul {
+      display: flex;
+    }
+    a {
+      text-decoration: underline;
+    }
+    span {
+      opacity: 0.56;
+      text-decoration: none;
+    }
+  }
+  .title {
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.1;
+    color: $base-white;
+  }
+  .description {
+    width: 76%;
+    @include _1160 {
+      width: 85%;
+    }
+    @include _880 {
+      width: 100%;
+    }
+  }
+}

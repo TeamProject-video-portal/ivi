@@ -6,26 +6,23 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { settings } from "./settings";
-
-const Carousel: FC = () => {
-  const renderSlides = () => {
-    let arr = [];
-    for (let i = 0; i < 10; i++) {
-      arr.push(i);
-    }
-    return arr.map((item, index) => {
-      return (
-        <div key={index}>
-          <Poster />
-        </div>
-      );
-    });
+type Props = {
+  elem: any;
+  count: number;
+};
+const Carousel: FC<Props> = ({ elem, count }) => {
+  console.log(count);
+  const newSettings = {
+    ...settings, // текущие настройки слайдера
+    centerMode: count === 1 ? true : false, // дополнительные свойства
+    slidesToShow: count === 1 ? 1 : 7,
   };
-
   return (
     <div>
-      <Slider {...settings} className={styles.container}>
-        {renderSlides()}
+      <Slider {...newSettings} className={styles.container}>
+        {[...new Array(count)].map((_, i) => (
+          <div key={i}>{elem}</div>
+        ))}
       </Slider>
       <></>
     </div>

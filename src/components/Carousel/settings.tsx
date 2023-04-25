@@ -5,7 +5,7 @@ export const settings = {
   dots: false,
   infinite: false,
   speed: 500,
-  slidesToShow: 7,
+
   slidesToScroll: 1,
   arrows: true,
   prevArrow: <PrevButton />,

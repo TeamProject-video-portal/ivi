@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./index.module.scss";
-import Carousel from "../Carousel";
+import Carousel from "./Carousel";
 
 type Props = {
   title: string;

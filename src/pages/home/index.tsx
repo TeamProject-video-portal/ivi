@@ -5,6 +5,7 @@ import Catalog from "@/components/Catalog";
 import Banner from "@/components/Banner";
 import CardMovie from "@/components/CardMovie";
 import Poster from "@/components/Poster";
+import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
 const inter = Inter({ subsets: ["latin"] });
 
 const data = {
@@ -24,7 +25,7 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-
+      <Ad />
       <Catalog
         title={"Продолжить просмотр"}
         elem={

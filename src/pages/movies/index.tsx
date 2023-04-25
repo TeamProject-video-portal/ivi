@@ -1,5 +1,4 @@
 import Head from "next/head";
-import Carousel from "@/components/Carousel";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import styles from "./index.module.scss";

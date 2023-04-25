@@ -1,0 +1,15 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.description {
+  @include font-description;
+  color: $base-ligth-grey;
+  .button {
+    margin-top: 8px;
+    font-family: iviSans;
+    color: $base-white;
+  }
+  p + p {
+    margin-top: 8px;
+  }
+}

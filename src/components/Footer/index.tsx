@@ -50,13 +50,13 @@ export const Footer: FC = () => {
             <h3 className={styles.cols__title}>Разделы</h3>
             <ul className={styles.list}>
               <li key='0'>
-                <Link href={'https://www.ivi.ru/'} className={styles.list__link}>Мой Иви</Link>
+                <Link href={'/'} className={styles.list__link}>Мой Иви</Link>
               </li>
               <li key='1'>
                 <Link href={'https://www.ivi.ru/new'} className={styles.list__link}>Что нового</Link>
               </li>
               <li key='2'>
-                <Link href={'https://www.ivi.ru/movies'} className={styles.list__link}>Фильмы</Link>
+                <Link href={'/movies'} className={styles.list__link}>Фильмы</Link>
               </li>
               <li key='3'>
                 <Link href={'https://www.ivi.ru/series'} className={styles.list__link}>Сериалы</Link>

@@ -4,6 +4,7 @@ import styles from "./Home.module.scss";
 import Catalog from "@/components/Catalog";
 import Banner from "@/components/Banner";
 import CardMovie from "@/components/CardMovie";
+import Poster from "@/components/Poster";
 const inter = Inter({ subsets: ["latin"] });
 
 const data = {
@@ -12,6 +13,7 @@ const data = {
   type: "detailed",
   img: "https://cdn.iz.ru/sites/default/files/styles/900x506/public/news-2019-03/8_0.jpg?itok=52JttP6Z",
 };
+
 const Home = () => {
   return (
     <>
@@ -22,15 +24,20 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <div className={styles.continue_browsing}>
-        <CardMovie
-          title={data.title}
-          type={data.type}
-          text={data.text}
-          img={data.img}
-        />
-      </div>
-      <Catalog />
+
+      <Catalog
+        title={"Продолжить просмотр"}
+        elem={
+          <CardMovie
+            title={data.title}
+            type={data.type}
+            text={data.text}
+            img={data.img}
+          />
+        }
+        count={1}
+      />
+      <Catalog title={"Сериалы-новинки"} elem={<Poster />} count={10} />
     </>
   );
 };

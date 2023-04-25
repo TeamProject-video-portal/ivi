@@ -14,6 +14,7 @@
   }
 }
 
+// tablet_l
 @mixin container_1280 {
   @media screen and (min-width: 1280px) {
     width: 1216px;
@@ -45,8 +46,6 @@
     @content;
   }
 }
-// tablet_s
-// tablet_m
 
 @mixin _1160 {
   @media screen and (max-width: 1160px) {

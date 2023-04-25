@@ -6,20 +6,7 @@
   }
   @include container_600 {
   }
-  .breadcrumbs {
-    @include font-for-button;
-    color: $base-white;
-    ul {
-      display: flex;
-    }
-    a {
-      text-decoration: underline;
-    }
-    span {
-      opacity: 0.56;
-      text-decoration: none;
-    }
-  }
+
   .title {
     font-size: 40px;
     font-weight: bold;

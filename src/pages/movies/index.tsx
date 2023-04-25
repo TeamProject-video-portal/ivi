@@ -52,7 +52,7 @@ const Movies = () => {
       <Head>
         <title>Поиск фильмов</title>
       </Head>
-      <Breadcrumbs breadcrumbs={breadcrumbs} classname={styles.breadcrumbs} del={"/"} />
+      <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
       <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
       <Description truncText={truncText} fullText={fullText} classname={styles.description} />
       <Carousel />

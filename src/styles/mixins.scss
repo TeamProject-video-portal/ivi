@@ -88,6 +88,22 @@
   line-height: 20px;
 }
 
+@mixin font-description {
+  font-family: iviSans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+
+@mixin font-breadcrumbs {
+  font-family: iviSans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px;
+}
+
 @mixin mobil-footer {
   font-family: iviSans;
   font-size: 16px;
@@ -117,14 +133,6 @@
   font-style: normal;
   font-weight: 500;
   line-height: 16px;
-}
-
-@mixin font-description {
-  font-family: iviSans;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 22px;
 }
 
 @mixin pink-button {

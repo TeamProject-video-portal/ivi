@@ -6,17 +6,6 @@
   }
   @include container_600 {
   }
-  .btn {
-    background-color: $base-dark-purple;
-    border-radius: 8px;
-    border: 1px solid $base-dark-purple;
-    color: $base-white;
-    &:hover {
-      background-color: $base-light-purple;
-      border: 1px solid $base-light-purple;
-      transition: all 0.4s ease 0s;
-    }
-  }
   .content {
     display: flex;
     padding-bottom: 48px;
@@ -60,7 +49,6 @@
   .support {
     margin-top: 20px;
     &__chatbtn {
-      @extend .btn;
       height: 40px;
       width: 196px;
     }
@@ -70,7 +58,6 @@
       margin-top: 12px;
     }
     &__iconBtn {
-      @extend .btn;
       width: 40px;
       height: 40px;
       font-size: 18px;
@@ -113,7 +100,6 @@
     column-gap: 12px;
     white-space: nowrap;
     &__btn {
-      @extend .btn;
       @include font-footer;
       padding: 0 12px;
       height: 100%;

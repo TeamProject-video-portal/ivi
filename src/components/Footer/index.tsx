@@ -83,11 +83,15 @@ export const Footer: FC = () => {
             </p>
             <div className={styles.support}>
               <Link href={'https://www.ivi.ru/profile'}>
-                <Button className={styles.support__chatbtn}>Написать в чате</Button>
+                <Button className={styles.support__chatbtn} color='purple'>Написать в чате</Button>
               </Link>
               <div className={styles.support__btns}>
-                <Link href={'mailto:support@ivi.ru'} type="email"><Button className={styles.support__iconBtn}><GoMail /></Button></Link>
-                <Link href={'tel:+73832021280'} type='tel'><Button className={styles.support__iconBtn}><HiOutlinePhone /></Button></Link>
+                <Link href={'mailto:support@ivi.ru'} type="email">
+                  <Button className={styles.support__iconBtn} color='purple'><GoMail /></Button>
+                </Link>
+                <Link href={'tel:+73832021280'} type='tel'>
+                  <Button className={styles.support__iconBtn} color='purple'><HiOutlinePhone /></Button>
+                </Link>
               </div>
               <Link href={'https://ask.ivi.ru/'} className={styles.ask}>ask.ivi.ru</Link>
               <p>Ответы на вопросы</p>
@@ -106,7 +110,7 @@ export const Footer: FC = () => {
           <div className={styles.columns}>
             <div className={styles.stories}>
               <Link href={'https://go.onelink.me/app/devicesiOS'} key='App Store'>
-                <Button className={styles.stories__btn}>
+                <Button className={styles.stories__btn} color='purple'>
                   <FaApple />
                   <div>
                     <span>Загрузить в</span>
@@ -115,7 +119,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://go.onelink.me/app/devicesAndroid'} key='Google Play'>
-                <Button className={styles.stories__btn}>
+                <Button className={styles.stories__btn} color='purple'>
                   <FaGooglePlay />
                   <div>
                     <span>Доступно в</span>
@@ -124,7 +128,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/pages/tvsmart/'} key='Smart TV'>
-                <Button className={styles.stories__btn}>
+                <Button className={styles.stories__btn} color='purple'>
                   <BsTvFill />
                   <div>
                     <span>Смотрите на</span>
@@ -133,7 +137,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/devices'} key='all devices'>
-                <Button className={styles.stories__btn}>
+                <Button className={styles.stories__btn} color='purple'>
                   <MdDevicesOther />
                   <div>
                     <div>Все устройства</div>

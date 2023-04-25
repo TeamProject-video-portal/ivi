@@ -23,6 +23,7 @@ export const Header: FC = () => {
           <DesktopMenu
             isOpenSubMenu={isOpenSubMenu}
             setIsOpenSubMenu={setIsOpenSubMenu}
+            setSubMenuTitle={setSubMenuTitle}
           />
         </div>
 

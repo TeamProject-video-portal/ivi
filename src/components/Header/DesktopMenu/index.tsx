@@ -19,42 +19,28 @@ const DesktopMenu: FC<Props> = (props) => {
       <Link href="/movies">
         <span
           className={styles.link_movies}
-          onMouseEnter={() => props.setIsOpenSubMenu?.(true)}
+          onMouseEnter={() => { props.setIsOpenSubMenu?.(true); props.setSubMenuTitle?.('film') }}
         >
           Фильмы
         </span>
       </Link>
       <Link href="/series">
         <span
-          className={styles.link}
-          onMouseEnter={() => {
-            props.setIsOpenSubMenu?.(true);
-            props.setSubMenuTitle?.("series");
-          }}
-          onMouseLeave={() => {
-            props.setIsOpenSubMenu?.(false);
-            props.setSubMenuTitle?.("");
-          }}
+          className={styles.link_movies}
+          onMouseEnter={() => { props.setIsOpenSubMenu?.(true); props.setSubMenuTitle?.('series') }}
         >
           Сериалы
         </span>
       </Link>
       <Link href="/animation">
         <span
-          className={styles.link}
-          onMouseEnter={() => {
-            props.setIsOpenSubMenu?.(true);
-            props.setSubMenuTitle?.("anim");
-          }}
-          onMouseLeave={() => {
-            props.setIsOpenSubMenu?.(false);
-            props.setSubMenuTitle?.("");
-          }}
+          className={styles.link_movies}
+          onMouseEnter={() => { props.setIsOpenSubMenu?.(true); props.setSubMenuTitle?.('anim') }}
         >
           Мультфильмы
         </span>
       </Link>
-    </div>
+    </div >
   );
 };
 

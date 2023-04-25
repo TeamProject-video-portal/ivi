@@ -3,13 +3,13 @@ import Link from "next/link";
 import styles from './index.module.scss';
 import { RiH2 } from "react-icons/ri";
 
-type ContextSubMenuProps = {
+type ContextSubProps = {
   children?: any;
   className?: string;
   title?: string
 };
 
-export const ContextSubMenu: FC<ContextSubMenuProps> = ({ children, className, title }) => {
+export const ContextSubMenu: FC<ContextSubProps> = ({ children, className, title }) => {
   return (
     <div className={[styles.submenu, className].join(' ')}>
       {title && <h2>{title}</h2>}

@@ -17,6 +17,7 @@ const Carousel: FC<Props> = ({ elem, count }) => {
     centerMode: count === 1 ? true : false, // дополнительные свойства
     slidesToShow: count === 1 ? 1 : 7,
   };
+
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>

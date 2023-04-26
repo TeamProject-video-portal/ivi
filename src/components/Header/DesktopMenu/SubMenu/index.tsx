@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
-import Ad from "./Ad/Ad";
+import Ad from "./Ad";
 import { ContextSubMenu } from "@/components/ContextSubMenu";
 import { DropDownMenuFilm } from "@/components/ContextSubMenu/DropDownMenuFilm";
 import { DropDownMenuSerial } from "@/components/ContextSubMenu/DropDownMenuSerial";

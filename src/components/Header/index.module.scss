@@ -53,34 +53,6 @@
         cursor: pointer;
         margin-right: 20px;
       }
-
-      .button_notification {
-        width: 44px;
-        height: 44px;
-        background-color: transparent;
-        border: 0;
-        cursor: pointer;
-        padding: 10px;
-        margin-left: 12px;
-        .notification_icon {
-          width: 24px;
-          height: 24px;
-          color: $base-ligth-grey;
-          transition: 0.1s;
-        }
-
-        &:hover {
-          padding: 9px;
-          .notification_icon {
-            color: $base-white;
-            width: 26px;
-            height: 26px;
-          }
-        }
-        @media screen and (max-width: 600px) {
-          display: none;
-        }
-      }
     }
   }
 }

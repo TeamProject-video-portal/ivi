@@ -1,8 +1,8 @@
-@import "../../styles/color.scss";
-@import "../../styles/mixins.scss";
+@import "../../../styles/color.scss";
+@import "../../../styles/mixins.scss";
 
 .container {
-  width: 1250px;
+  width: 1238px;
   margin: 0 auto;
   @media screen and (min-width: 600px) and (max-width: 1280px) {
     width: calc(100% - 30px);

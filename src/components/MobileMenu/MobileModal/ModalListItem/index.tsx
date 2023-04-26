@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import { IconType } from 'react-icons';
 import styles from "./index.module.scss"
-import { HiOutlineChevronDown, HiOutlineChevronUp } from "react-icons/hi2";
+import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 
 type ModalListItemProps = {
   icon?: IconType;
@@ -14,10 +14,10 @@ export const ModalListItem: FC<ModalListItemProps> = ({ icon, text, children }) 
   const IconItem = icon ? icon : undefined;
   return (
     <>
-      <li className={styles.link} onClick={() => setOpen(!open)}>
+      <li className={styles.link} onClick={() => setOpen(state => !state)}>
         {icon && IconItem && <IconItem />}
         {text}
-        <span> {open ? <HiOutlineChevronUp /> : <HiOutlineChevronDown />}</span>
+        <span> {open ? <BsChevronCompactUp /> : <BsChevronCompactDown />}</span>
       </li>
       {open && (<div className={styles.subMenu}>{children}</div>)}
     </>

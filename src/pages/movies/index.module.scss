@@ -6,9 +6,6 @@
   }
   @include container_600 {
   }
-  .headerbar {
-    margin: 32px 0 16px;
-  }
   .title {
     margin-top: 24px;
     text-align: left;
@@ -29,4 +26,10 @@
   .suggestionRow {
     margin-top: 20px;
   }
+}
+.headerbar {
+  margin: 32px 0 16px;
+}
+.filtersRow {
+  margin-top: 12px;
 }

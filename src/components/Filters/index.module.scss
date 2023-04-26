@@ -1,0 +1,33 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.filters {
+  padding: 16px;
+  border-radius: 6px;
+  background-color: $base-dark-purple;
+  .filtersRow {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    width: 100%;
+  }
+  .filtersBtn {
+    margin-top: 16px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    @include font-footer;
+    color: $base-white;
+    opacity: 0.32;
+    background-color: transparent;
+    &:not(:disabled) {
+      cursor: pointer;
+      &:hover {
+        color: $base-pink-hover;
+        opacity: 1;
+        transition: color 0.8s easy 0s;
+      }
+    }
+  }
+}

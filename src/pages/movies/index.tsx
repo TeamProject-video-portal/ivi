@@ -4,6 +4,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import styles from "./index.module.scss"
 import Description from "@/components/Description";
+import Suggestion from "@/components/Suggestion";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -52,9 +53,12 @@ const Movies = () => {
       <Head>
         <title>Поиск фильмов</title>
       </Head>
-      <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
-      <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-      <Description truncText={truncText} fullText={fullText} classname={styles.description} />
+      <div className={styles.headerbar}>
+        <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
+        <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
+        <Description truncText={truncText} fullText={fullText} classname={styles.description} />
+        <div className={styles.suggestionRow}><Suggestion /></div>
+      </div>
       <Carousel />
     </div>
   );

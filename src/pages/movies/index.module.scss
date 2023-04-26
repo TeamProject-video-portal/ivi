@@ -6,8 +6,11 @@
   }
   @include container_600 {
   }
-
+  .headerbar {
+    margin: 32px 0 16px;
+  }
   .title {
+    margin-top: 24px;
     font-size: 40px;
     font-weight: bold;
     line-height: 1.1;
@@ -21,5 +24,8 @@
     @include _880 {
       width: 100%;
     }
+  }
+  .suggestionRow {
+    margin-top: 20px;
   }
 }

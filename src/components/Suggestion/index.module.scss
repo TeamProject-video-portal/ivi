@@ -1,0 +1,12 @@
+@import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
+
+.suggestion {
+}
+.button {
+  padding: 6px 16px;
+  @include font-regular;
+  font-family: iviSans;
+  color: $base-ligth-grey;
+  border-radius: 16px;
+}

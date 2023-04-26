@@ -5,16 +5,16 @@ import { Button } from "../Button/Button";
 type DescriptionProps = {
   truncText: ReactNode | ReactNode[];
   fullText?: ReactNode | ReactNode[] | null;
-  classname?: string;
+  className?: string;
 }
 
-const Description: FC<DescriptionProps> = ({ truncText, fullText, classname }) => {
+const Description: FC<DescriptionProps> = ({ truncText, fullText, className }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={[styles.description, classname].join(" ")}>
+    <div className={[styles.description, className].join(" ")}>
       {isOpen ? fullText : truncText}
-      <Button className={styles.button} onClick={() => setIsOpen(!isOpen)}>{isOpen ? 'Свернуть' : 'Развернуть'}</Button>
+      <Button className={styles.button} onClick={() => setIsOpen(state => !state)}>{isOpen ? 'Свернуть' : 'Развернуть'}</Button>
     </div>
   );
 };

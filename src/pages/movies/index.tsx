@@ -5,6 +5,7 @@ import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
 import Catalog from "@/components/Catalog";
 import Poster from "@/components/Poster";
+import Filters from "@/components/Filters";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -63,17 +64,18 @@ const fullText = (
 const Movies = () => {
   return (
     <>
-      <div className={styles.container}>
-        <Head>
-          <title>Поиск фильмов</title>
-        </Head>
-        <div className={styles.headerbar}>
+      <Head>
+        <title>Поиск фильмов</title>
+      </Head>
+      <section className={styles.headerbar}>
+        <div className={styles.container}>
           <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
           <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-          <Description truncText={truncText} fullText={fullText} classname={styles.description} />
+          <Description truncText={truncText} fullText={fullText} className={styles.description} />
           <div className={styles.suggestionRow}><Suggestion /></div>
         </div>
-      </div>
+      </section>
+      <section className={[styles.filtersRow, styles.container].join(' ')}><Filters /></section>
       <Catalog title={"Премьеры фильмов"} elem={<Poster />} count={10} />
     </>
   );

@@ -1,7 +1,6 @@
 import Head from "next/head";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import { Breadcrumb } from "@/components/Breadcrumbs";
 import styles from "./index.module.scss";
+import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
 import Catalog from "@/components/Catalog";
@@ -63,30 +62,20 @@ const fullText = (
 
 const Movies = () => {
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Поиск фильмов</title>
-      </Head>
-      <div className={styles.headerbar}>
-        <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
-        <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-        <Description truncText={truncText} fullText={fullText} classname={styles.description} />
-        <div className={styles.suggestionRow}><Suggestion /></div>
+    <>
+      <div className={styles.container}>
+        <Head>
+          <title>Поиск фильмов</title>
+        </Head>
+        <div className={styles.headerbar}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
+          <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
+          <Description truncText={truncText} fullText={fullText} classname={styles.description} />
+          <div className={styles.suggestionRow}><Suggestion /></div>
+        </div>
       </div>
-      <Carousel />
-      <Breadcrumbs
-        breadcrumbs={breadcrumbs}
-        classname={styles.breadcrumbs}
-        del={"/"}
-      />
-      <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-      <Description
-        truncText={truncText}
-        fullText={fullText}
-        classname={styles.description}
-      />
       <Catalog title={"Премьеры фильмов"} elem={<Poster />} count={10} />
-    </div>
+    </>
   );
 };
 

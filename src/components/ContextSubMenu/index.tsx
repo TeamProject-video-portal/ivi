@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import Link from "next/link";
 import styles from './index.module.scss';
 import { RiH2 } from "react-icons/ri";
 
 type ContextSubProps = {
-  children?: any;
+  children?: ReactNode | ReactNode[];
   className?: string;
   title?: string
 };

@@ -9,6 +9,10 @@ const nextConfig = {
   images: {
     domains: ["cdn.iz.ru"],
   },
+  i18n: {
+    locales: ["en", "ru"],
+    defaultLocale: "ru",
+  },
 };
 
 module.exports = nextConfig;

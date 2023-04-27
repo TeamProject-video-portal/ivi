@@ -1,0 +1,31 @@
+@import "../../../../styles/color.scss";
+@import "../../../../styles/mixins.scss";
+
+.button_lang {
+  width: 44px;
+  height: 44px;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 12px;
+  .text {
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
+    color: $base-ligth-grey;
+    transition: 0.1s;
+  }
+
+  &:hover {
+    padding: 9px;
+    .notification_icon {
+      color: $base-white;
+      width: 26px;
+      height: 26px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+}

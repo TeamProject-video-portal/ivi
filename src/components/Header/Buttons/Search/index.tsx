@@ -2,8 +2,14 @@ import { FC } from "react";
 import styles from "./index.module.scss";
 import { IconContext } from "react-icons";
 import { MdSearch } from "react-icons/md";
+import { useRouter } from "next/router";
+import { en } from "@/locales/en";
+import { ru } from "@/locales/ru";
 
 const SearchButton: FC = () => {
+  const router = useRouter();
+  const t = router.locale === "en" ? en : ru;
+
   return (
     <div className={styles.button_search}>
       <IconContext.Provider
@@ -15,7 +21,7 @@ const SearchButton: FC = () => {
           <MdSearch />
         </div>
       </IconContext.Provider>
-      <span>Поиск</span>
+      <span>{t.buttons.search}</span>
     </div>
   );
 };

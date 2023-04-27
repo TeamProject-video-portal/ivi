@@ -8,11 +8,18 @@ import SearchButton from "./Buttons/Search";
 import ProfileButton from "./Buttons/Profile";
 import NotificationButton from "./Buttons/Notification";
 import WatchingButton from "./Buttons/WatchForFree";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { ru } from "../../locales/ru";
+import { en } from "../../locales/en";
+import LanguageButton from "./Buttons/Language";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const [subMenuTitle, setSubMenuTitle] = useState("");
 
+  const router = useRouter();
+  const t = router.locale === "en" ? en : ru;
   return (
     <header className={styles.header}>
       <div className={styles.container}>
@@ -32,6 +39,7 @@ export const Header: FC = () => {
           <SearchButton />
           <NotificationButton />
           <ProfileButton />
+          <LanguageButton />
         </div>
         {isOpenSubMenu && (
           <SubMenu

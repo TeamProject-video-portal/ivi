@@ -7,7 +7,8 @@ body {
   max-width: 100vw;
   background-color: $base-dark-blue;
   font-size: 15px;
-  font-family: "IviSans-light", Arial, Helvetica, Helvetica Neue, FreeSans, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, Helvetica Neue, FreeSans,
+    sans-serif;
   color: $base-white;
 }
 
@@ -25,7 +26,7 @@ main {
 }
 
 @font-face {
-  font-family: "IviSans-redular";
+  font-family: "IviSans-regular";
   src: url("../fonts/ivi\ Sans\ Regular.ttf") format("truetype");
   font-weight: 500;
 }

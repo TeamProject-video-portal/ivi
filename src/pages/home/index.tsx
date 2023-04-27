@@ -6,6 +6,9 @@ import Banner from "@/components/Banner";
 import CardMovie from "@/components/CardMovie";
 import Poster from "@/components/Poster";
 import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
+import { useRouter } from "next/router";
+import { en } from "@/locales/en";
+import { ru } from "@/locales/ru";
 const inter = Inter({ subsets: ["latin"] });
 
 const data = {
@@ -16,6 +19,9 @@ const data = {
 };
 
 const Home = () => {
+  const router = useRouter();
+  const t = router.locale === "en" ? en : ru;
+
   return (
     <>
       <Head>
@@ -26,7 +32,7 @@ const Home = () => {
       </Head>
       <Banner />
       <Catalog
-        title={"Продолжить просмотр"}
+        title={t.titles.continue_browsing}
         elem={
           <CardMovie
             title={data.title}
@@ -37,7 +43,8 @@ const Home = () => {
         }
         count={1}
       />
-      <Catalog title={"Сериалы-новинки"} elem={<Poster />} count={10} />
+
+      <Catalog title={t.titles.news_series} elem={<Poster />} count={10} />
     </>
   );
 };

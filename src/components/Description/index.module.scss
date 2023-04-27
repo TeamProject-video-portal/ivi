@@ -2,11 +2,12 @@
 @import "../../styles/mixins.scss";
 
 .description {
-  @include font-description;
+  @include font-light-m;
+  line-height: 22px;
   color: $base-ligth-grey;
   .button {
     margin-top: 8px;
-    font-family: iviSans;
+    font-family: "IviSans-light" !important;
     color: $base-white;
   }
   p + p {

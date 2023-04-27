@@ -1,0 +1,12 @@
+@import "../../../styles/color.scss";
+
+.submenu {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 4px;
+  width: 630px;
+  height: 100px;
+  background-color: $base-dark-grey;
+  z-index: 1;
+}

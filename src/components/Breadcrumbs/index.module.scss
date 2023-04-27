@@ -2,7 +2,8 @@
 @import "../../styles/mixins.scss";
 
 .breadcrumbs_pages {
-  @include font-for-button;
+  @include font-regular-s;
+  line-height: 16px;
   color: $base-white;
   ul {
     display: flex;
@@ -36,7 +37,8 @@
 }
 
 .breadcrumbs_films {
-  @include font-description;
+  @include font-light-m;
+  line-height: 22px;
   color: $base-grey-menu;
   ul {
     display: flex;

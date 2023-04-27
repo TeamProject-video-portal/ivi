@@ -1,0 +1,19 @@
+@import "../index.module.scss";
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/color.scss";
+
+.countriesDropdown {
+  @extend .center;
+  .sliderRow {
+    height: 34px;
+    white-space: nowrap;
+  }
+  .content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px;
+    margin-top: 16px;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.32);
+  }
+}

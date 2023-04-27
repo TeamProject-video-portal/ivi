@@ -1,12 +1,31 @@
 @import "../../../styles/color.scss";
 
-.submenu {
+.dropdown {
   position: absolute;
-  left: 0;
   top: 100%;
   margin-top: 4px;
-  width: 630px;
-  height: 100px;
+  padding: 16px;
   background-color: $base-dark-grey;
-  z-index: 1;
+  z-index: 10;
+}
+.left {
+  @extend .dropdown;
+  left: 0;
+  width: 630px;
+}
+.center {
+  @extend .dropdown;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 630px;
+}
+.right {
+  @extend .dropdown;
+  right: 0;
+  width: 630px;
+}
+.narrow {
+  @extend .dropdown;
+  left: 0;
+  width: 100%;
 }

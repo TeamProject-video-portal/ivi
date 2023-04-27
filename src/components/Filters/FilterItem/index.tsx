@@ -24,11 +24,7 @@ const FilterItem: FC<FilterItemProps> = ({ item, isOpen, setIsOpen }) => {
         {item.value}
         {isOpen === item.title ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
       </Button>
-      {isOpen === item.title && (
-        <FilterDropdown>
-
-        </FilterDropdown>
-      )}
+      {isOpen === item.title && <FilterDropdown filter={item.title} />}
     </div>
   );
 };

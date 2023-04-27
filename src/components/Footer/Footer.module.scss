@@ -30,7 +30,8 @@
     flex-direction: column;
     row-gap: 8px;
     &__link {
-      @include font-footer;
+      @include font-light-m;
+      line-height: 20px;
       color: $base-grey;
       cursor: pointer;
       &:hover {
@@ -65,7 +66,8 @@
     }
   }
   .ask {
-    @include font-regular;
+    @include font-regular-m;
+    line-height: 20px;
     display: block;
     margin-top: 8px;
     transition: all 0.4s ease 0s;
@@ -100,7 +102,8 @@
     column-gap: 12px;
     white-space: nowrap;
     &__btn {
-      @include font-footer;
+      @include font-light-m;
+      line-height: 20px;
       padding: 0 12px;
       height: 100%;
       svg {
@@ -109,10 +112,12 @@
         height: 20px;
       }
       span {
-        @include btn-stories;
         display: block;
-        opacity: 0.72;
+        @include font-regular-xxs;
+        line-height: 12px;
         text-align: left;
+        white-space: nowrap;
+        opacity: 0.72;
       }
     }
   }
@@ -124,7 +129,8 @@
     justify-content: flex-end;
   }
   p {
-    @include font-footer;
+    @include font-light-m;
+    line-height: 20px;
     color: $base-grey;
   }
 }

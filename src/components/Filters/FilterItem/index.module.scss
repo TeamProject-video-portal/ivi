@@ -11,7 +11,9 @@
     padding: 8px 16px;
     height: 56px;
     width: 100%;
-    @include mobil-footer;
+    @include font-light-l;
+    font-family: "IviSans-light";
+    line-height: 16px;
     color: $base-white;
     white-space: nowrap;
     background-color: $base-dark-grey;

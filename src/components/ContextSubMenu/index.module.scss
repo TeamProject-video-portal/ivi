@@ -2,7 +2,8 @@
 @import "../../styles/color.scss";
 
 .submenu {
-  @include font-footer;
+  @include font-light-m;
+  line-height: 20px;
   background-color: transparent;
 }
 .content {

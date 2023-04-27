@@ -5,8 +5,8 @@
 }
 .button {
   padding: 6px 16px;
-  @include font-regular;
-  font-family: iviSans;
+  @include font-regular-m;
+  line-height: 20px;
   color: $base-ligth-grey;
   border-radius: 16px;
 }

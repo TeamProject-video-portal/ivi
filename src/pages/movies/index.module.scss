@@ -17,9 +17,6 @@
   .description {
     width: 76%;
     @include _1160 {
-      width: 85%;
-    }
-    @include _880 {
       width: 100%;
     }
   }

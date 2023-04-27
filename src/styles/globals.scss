@@ -27,16 +27,19 @@ main {
 @font-face {
   font-family: "IviSans-redular";
   src: url("../fonts/ivi\ Sans\ Regular.ttf") format("truetype");
+  font-weight: 500;
 }
 
 @font-face {
   font-family: "IviSans-bold";
   src: url("../fonts/IvyStyleSans-Bold.ttf") format("truetype");
+  font-weight: 700;
 }
 
 @font-face {
   font-family: "IviSans-light";
   src: url("../fonts/IvyStyleSans-Light.ttf") format("truetype");
+  font-weight: 400;
 }
 
 h1 {

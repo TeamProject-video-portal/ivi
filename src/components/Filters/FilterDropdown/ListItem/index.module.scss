@@ -1,0 +1,25 @@
+@import "../../../../styles/mixins.scss";
+@import "../../../../styles/color.scss";
+
+.list {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  &:hover svg {
+    display: block;
+  }
+  a {
+    @include font-regular-s;
+    line-height: 16px;
+    color: $base-light-blue;
+    transition: color 0.4s easy 0s;
+    cursor: pointer;
+    &:hover {
+      color: $base-white;
+      transition: color 0.4s easy 0s;
+    }
+  }
+  svg {
+    display: none;
+  }
+}

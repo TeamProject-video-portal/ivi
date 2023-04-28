@@ -11,6 +11,7 @@
     align-items: center;
     width: inherit;
     h5 {
+      @include font-regular-l;
       font-weight: 700;
       color: $base-white;
       margin-right: 0;
@@ -33,9 +34,8 @@
     margin: 8px 0 12px 0;
 
     p {
+      @include font-light-s;
       font-size: 0.8vw;
-      line-height: 16px;
-      font-weight: 400;
       color: $base-ligth-grey;
       margin-bottom: 5px;
     }
@@ -44,6 +44,7 @@
   .info {
     width: 100%;
     p {
+      @include font-regular-s;
       color: $base-light-blue;
       margin-bottom: 5px;
       font-size: 0.7vw;

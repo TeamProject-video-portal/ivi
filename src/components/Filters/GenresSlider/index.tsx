@@ -25,7 +25,7 @@ const GenresSlider: FC = () => {
     infinite: false,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 5,
+    slidesToShow: 4,
     variableWidth: true,
     prevArrow: <PrevButton />,
     nextArrow: <NextButton />,
@@ -33,7 +33,7 @@ const GenresSlider: FC = () => {
       {
         breakpoint: 630,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
         },
       },
       {

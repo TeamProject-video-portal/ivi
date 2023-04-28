@@ -33,13 +33,11 @@
       flex-direction: column;
       margin-top: 8px;
       .name {
-        font-size: 15px;
-        font-weight: 500;
+        @include font-regular-m;
         color: $base-light-blue;
       }
       .tariff {
-        font-size: 13px;
-        font-weight: 400;
+        @include font-light-s;
         color: $base-grey;
       }
     }

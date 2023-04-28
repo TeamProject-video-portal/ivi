@@ -44,42 +44,42 @@
 }
 
 @mixin font-light-xxs {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-xs {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-s {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-m {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-l {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-xl {
-  font-family: "IviSans-light";
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -121,28 +121,28 @@
 }
 
 @mixin font-bold-s {
-  font-family: "IviSans-bold";
+  font-family: "Arial, Helvetica, sans-serif";
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-m {
-  font-family: "IviSans-bold";
+  font-family: "Arial, Helvetica, sans-serif";
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-l {
-  font-family: "IviSans-bold";
+  font-family: "Arial, Helvetica, sans-serif";
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-xl {
-  font-family: "IviSans-bold";
+  font-family: "Arial, Helvetica, sans-serif";
   font-size: 20px;
   font-style: normal;
   font-weight: 700;
@@ -285,6 +285,6 @@
   border-radius: 8px;
   text-align: center;
   box-sizing: border-box;
-  @include font-for-button;
+  @include font-regular-s;
   color: $base-white;
 }

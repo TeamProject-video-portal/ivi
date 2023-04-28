@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { countries } from '../FilterDropdown/CountriesDropdown';
+import { Genres } from '../FilterDropdown/GenresDropdown';
 import { Button } from '@/components/Button/Button';
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import styles from './index.module.scss'
@@ -19,7 +19,7 @@ const NextButton: FC = (props: any) => {
   )
 }
 
-const CountriesSlider: FC = () => {
+const GenresSlider: FC = () => {
   const settings = {
     dots: false,
     infinite: false,
@@ -48,9 +48,9 @@ const CountriesSlider: FC = () => {
 
   return (
     <Slider {...settings} className={styles.container}>
-      {countries.map((item, i) => <Button className={styles.slide} key={i}>{item}</Button>)}
+      {Genres.map((item, i) => <Button className={styles.slide} key={i}>{item.title}</Button>)}
     </Slider>
   );
 };
 
-export default CountriesSlider;
+export default GenresSlider;

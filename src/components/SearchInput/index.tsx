@@ -8,7 +8,7 @@ type SearchInputProps = {
   placeholder?: string
 }
 
-const SearchInput: FC<SearchProps> = ({ className, placeholder }) => {
+const SearchInput: FC<SearchInputProps> = ({ className, placeholder }) => {
   const [search, setSearch] = useState<string>('');
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLInputElement>(null);

@@ -2,10 +2,6 @@
 @import "../../styles/mixins.scss";
 
 .container {
-  @include container_1280 {
-  }
-  @include container_600 {
-  }
   .title {
     margin-top: 24px;
     text-align: left;
@@ -22,6 +18,10 @@
   }
   .suggestionRow {
     margin-top: 20px;
+  }
+  @include container_1280 {
+  }
+  @include container_s {
   }
 }
 .headerbar {

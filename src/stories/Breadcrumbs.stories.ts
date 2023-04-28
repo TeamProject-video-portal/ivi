@@ -24,7 +24,7 @@ export const Pages: Story = {
 export const Films: Story = {
   args: {
     type: 'films',
-    del: '&middot;',
+    del: ' - ',
     breadcrumbs: [
       { item: 'Мой Иви', path: 'https://www.ivi.ru/' },
       { item: 'Фильмы', path: 'https://www.ivi.ru/movies' },

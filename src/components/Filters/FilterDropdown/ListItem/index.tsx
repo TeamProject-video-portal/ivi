@@ -1,4 +1,4 @@
-import { MouseEventHandler, FC } from 'react';
+import { FC } from 'react';
 import Link from 'next/link';
 import { IconType } from 'react-icons';
 import styles from './index.module.scss'
@@ -7,7 +7,7 @@ type ListItemProps = {
   item: string;
   href: string;
   icon?: IconType;
-  onClick?: MouseEventHandler<HTMLLIElement>;
+  onClick?: () => void;
 }
 
 const ListItem: FC<ListItemProps> = ({ item, href, icon, onClick }) => {

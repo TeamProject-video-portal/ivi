@@ -10,7 +10,7 @@ export type Breadcrumb = {
 export type BreadcrumbsProps = {
   breadcrumbs: Breadcrumb[],
   type: 'pages' | 'films';
-  del: '/' | '&middot;';
+  del: string;
 }
 
 const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs, type, del }) => {

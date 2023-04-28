@@ -19,8 +19,26 @@
 }
 
 //tablet_m
-@mixin tablet_m {
+@mixin laptop {
   @media screen and (min-width: 1020px) and (max-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin container_1280 {
+  @media screen and (min-width: 1280px) {
+    width: 1216px;
+    margin: 0 auto;
+    @content;
+  }
+}
+
+@mixin container_s {
+  @media screen and (max-width: 1279.98px) {
+    width: auto;
+    margin: 0 auto;
+    padding-right: 20px;
+    padding-left: 20px;
     @content;
   }
 }
@@ -139,11 +157,6 @@
   }
 }
 
-@mixin tablet_m {
-  @media screen and (min-width: 600px) and (max-width: 1280px) {
-  }
-}
-
 @mixin container_920 {
   @media screen and (min-width: 600px) and (max-width: 1160px) {
     width: 100%;
@@ -152,14 +165,6 @@
   }
 }
 
-// tablet_m
-@mixin container_1280 {
-  @media screen and (min-width: 1280px) {
-    width: 1216px;
-    margin: 0 auto;
-    @content;
-  }
-}
 //tables_s
 @mixin container_600 {
   @media screen and (min-width: 600px) and (max-width: 1279.98px) {
@@ -266,12 +271,6 @@
   line-height: 12px;
 }
 
-// @mixin font-regular-s {
-//   font-size: 13px;
-//   font-style: normal;
-//   line-height: 16px;
-//   font-weight: 400;
-// }
 @mixin font-for-button {
   font-family: "IviSans", sans-serif;
   font-size: 13px;

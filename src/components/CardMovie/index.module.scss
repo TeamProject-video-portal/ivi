@@ -27,7 +27,7 @@
 
     .title {
       color: $base-light-blue;
-      @include font-regular;
+      @include font-regular-l;
     }
 
     .text {
@@ -101,10 +101,6 @@
     }
   }
   .decription {
-    .title {
-      @include font-regular-s;
-    }
-
     .text {
       height: 20px;
       font-size: 12px;

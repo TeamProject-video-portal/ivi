@@ -56,7 +56,3 @@ const CardMovie: FC<CartProps> = (props) => {
 };
 
 export default CardMovie;
-
-// CardMovie.propTypes={
-//   title: PropTypes.string,
-// }

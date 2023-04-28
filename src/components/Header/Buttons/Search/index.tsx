@@ -5,6 +5,7 @@ import { MdSearch } from "react-icons/md";
 import { useRouter } from "next/router";
 import { en } from "@/locales/en";
 import { ru } from "@/locales/ru";
+import { HeaderButton } from "@/components/Buttons/HeaderButton";
 
 const SearchButton: FC = () => {
   const router = useRouter();
@@ -22,6 +23,8 @@ const SearchButton: FC = () => {
         </div>
       </IconContext.Provider>
       <span>{t.buttons.search}</span>
+
+      {/* <HeaderButton type={"search"}></HeaderButton> */}
     </div>
   );
 };

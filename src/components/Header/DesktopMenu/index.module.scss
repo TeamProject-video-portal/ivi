@@ -12,7 +12,7 @@
     width: 460px;
     .link,
     .link_movies {
-      @include font-regular;
+      @include font-regular-m;
       color: $base-grey;
       padding-left: 15px;
     }

@@ -1,11 +1,11 @@
 import { FC } from 'react';
 import styles from "./index.module.scss"
-import SearchInput from '@/components/SearchInput';
+import Search from '@/components/Search';
 
 const ProducersDropdown: FC = () => {
   return (
     <div className={styles.producersDropdown}>
-      <SearchInput placeholder='Режиссёры' />
+      <Search placeholder='Режиссёр' className={styles.search} />
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import SearchInput from '../components/SearchInput';
-import cl from './searchinput.module.scss';
+import SearchInput from '../components/Search/SearchInput';
 
 const meta: Meta<typeof SearchInput> = {
   title: 'SearchInput',
@@ -12,7 +11,6 @@ type Story = StoryObj<typeof SearchInput>;
 
 export const SearchProducers: Story = {
   args: {
-    className: cl.searchinput,
     placeholder: 'Режиссёры',
   },
 };

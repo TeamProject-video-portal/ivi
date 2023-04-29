@@ -1,24 +1,25 @@
-import { FC, useState, useRef, ChangeEvent } from 'react';
+import { FC, useState, useRef, ChangeEvent, Dispatch, SetStateAction } from 'react';
 import styles from './index.module.scss';
 import { MdSearch } from 'react-icons/md';
 import { TfiClose } from 'react-icons/tfi';
 
 type SearchInputProps = {
   className?: string;
-  placeholder?: string
+  placeholder?: string;
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
 }
 
-const SearchInput: FC<SearchInputProps> = ({ className, placeholder }) => {
-  const [search, setSearch] = useState<string>('');
+const SearchInput: FC<SearchInputProps> = ({ className, placeholder, searchValue, setSearchValue }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLInputElement>(null);
 
   const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearch(event.target.value);
+    setSearchValue(event.target.value);
   };
 
   const onClickClear = () => {
-    setSearch('');
+    setSearchValue('');
     inputRef.current?.focus();
   };
 
@@ -33,11 +34,11 @@ const SearchInput: FC<SearchInputProps> = ({ className, placeholder }) => {
       <input
         className={styles.search__input}
         onChange={onChangeInput}
-        value={search}
+        value={searchValue}
         type="text"
         ref={inputRef}
       />
-      {search ? <TfiClose className={styles.search__close} onClick={onClickClear} /> : <MdSearch className={styles.search__icon} />}
+      {searchValue ? <TfiClose className={styles.search__close} onClick={onClickClear} /> : <MdSearch className={styles.search__icon} />}
 
     </div>
   );

@@ -14,7 +14,8 @@ const SearchResults: FC<SearchResultsProps> = ({ className, placeholder, results
     <ul className={[styles.searchResults, className].join(' ')}>
       {results.map((item, i) => (
         <li key={i} className={styles.list}>
-          <RiUser4Line className={styles.icon} />
+          {/* <RiUser4Line className={styles.icon} /> */}
+          <div className={`nbl-icon nbl-icon_person_20 ${styles.icon}`}></div>
           <div>
             <div className={styles.item}>{item}</div>
             <div className={styles.label}>{placeholder}</div>

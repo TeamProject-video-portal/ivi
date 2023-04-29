@@ -1,10 +1,11 @@
-@import "../../styles/color.scss";
-@import "../../styles/mixins.scss";
+@import "../../../styles/color.scss";
+@import "../../../styles/mixins.scss";
 
 .search {
   position: relative;
   margin: auto;
-  width: 75%;
+  min-width: 360px;
+  max-width: 886px;
   height: 40px;
   border-radius: 8px;
   overflow: hidden;

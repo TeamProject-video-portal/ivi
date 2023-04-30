@@ -2,6 +2,8 @@ import { FC, useState } from 'react';
 import styles from './index.module.scss'
 import { TfiClose } from "react-icons/tfi";
 import FilterItem from './FilterItem';
+import RangeRating from '../RangeRating';
+import RangeScore from '../RangeScore';
 
 const Filters: FC = () => {
   const [isFilter, setIsFilter] = useState(false);
@@ -21,6 +23,7 @@ const Filters: FC = () => {
           <div key={item.title}><FilterItem item={item} isOpen={isOpen} setIsOpen={setIsOpen} /></div>)
         }
       </div>
+      <div className={styles.rangeRow}><RangeRating rtl={false} /><RangeScore rtl={false} /></div>
       <button className={styles.filtersBtn} disabled={!isFilter}><TfiClose /> Сбросить фильтры</button>
     </div>
   );

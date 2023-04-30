@@ -9,4 +9,4 @@ const meta: Meta<typeof Sort> = {
 export default meta;
 type Story = StoryObj<typeof Sort>;
 
-export const SearchProducers: Story = {};
+export const SortRating: Story = {};

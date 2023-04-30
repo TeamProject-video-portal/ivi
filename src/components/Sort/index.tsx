@@ -17,6 +17,7 @@ const Sort: FC = () => {
 
   const onClickSort = (value: SortType) => {
     setSort(value);
+    setIsOpen(false);
   }
 
   return (

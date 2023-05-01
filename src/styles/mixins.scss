@@ -44,42 +44,42 @@
 }
 
 @mixin font-light-xxs {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-xs {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-s {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-m {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-l {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
 }
 
 @mixin font-light-xl {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "IviSans-light", Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -121,28 +121,28 @@
 }
 
 @mixin font-bold-s {
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-m {
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
   font-size: 15px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-l {
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
   font-size: 16px;
   font-style: normal;
   font-weight: 700;
 }
 
 @mixin font-bold-xl {
-  font-family: "Arial, Helvetica, sans-serif";
+  font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
   font-size: 20px;
   font-style: normal;
   font-weight: 700;

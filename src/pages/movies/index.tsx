@@ -6,6 +6,7 @@ import Suggestion from "@/components/Suggestion";
 import Catalog from "@/components/Catalog";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
+import Sort from "@/components/Sort";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -67,6 +68,7 @@ const Movies = () => {
       <Head>
         <title>Поиск фильмов</title>
       </Head>
+<<<<<<< HEAD
       <section className={styles.headerbar}>
         <div className={styles.container}>
           <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
@@ -85,6 +87,19 @@ const Movies = () => {
         <Filters />
       </section>
       <Catalog title={"Премьеры фильмов"} elem={<Poster />} count={10} />
+=======
+      <div className={styles.container}>
+        <section className={styles.headerbar}>
+          <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
+          <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
+          <Description truncText={truncText} fullText={fullText} className={styles.description} />
+          <div className={styles.suggestionRow}><Suggestion /></div>
+        </section>
+        <div className={styles.sortRow}><Sort /></div>
+        <section className={styles.filtersRow}><Filters /></section>
+      </div>
+      <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
+>>>>>>> main
     </>
   );
 };

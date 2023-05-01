@@ -19,14 +19,16 @@
   .suggestionRow {
     margin-top: 20px;
   }
+  .headerbar {
+    margin: 32px 0 16px;
+  }
+  .sortRow {
+  }
+  .filtersRow {
+    margin-top: 12px;
+  }
   @include container_1280 {
   }
   @include container_s {
   }
-}
-.headerbar {
-  margin: 32px 0 16px;
-}
-.filtersRow {
-  margin-top: 12px;
 }

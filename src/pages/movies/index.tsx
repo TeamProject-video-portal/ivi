@@ -4,9 +4,11 @@ import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
 import Catalog from "@/components/Catalog";
+import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
+import GenresButton from "@/components/Filters/GenresButton";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -77,6 +79,10 @@ const Movies = () => {
         </section>
         <div className={styles.sortRow}><Sort /></div>
         <section className={styles.filtersRow}><Filters /></section>
+      </div>
+      <div className={styles.genresRow}>
+        <h2 className={styles.genresRow__title}>Жанры</h2>
+        <Carousel elem={<GenresButton size="big" genres="Исторические" id={11} />} count={10} />
       </div>
       <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
     </>

@@ -7,7 +7,7 @@ import Catalog from "@/components/Catalog";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-
+import Carousel from "@/components/Catalog/Carousel";
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
   { item: "Фильмы", path: "/movies" },
@@ -68,9 +68,8 @@ const Movies = () => {
       <Head>
         <title>Поиск фильмов</title>
       </Head>
-<<<<<<< HEAD
-      <section className={styles.headerbar}>
-        <div className={styles.container}>
+      <div className={styles.container}>
+        <section className={styles.headerbar}>
           <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
           <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
           <Description
@@ -81,25 +80,22 @@ const Movies = () => {
           <div className={styles.suggestionRow}>
             <Suggestion />
           </div>
-        </div>
-      </section>
-      <section className={[styles.filtersRow, styles.container].join(" ")}>
-        <Filters />
-      </section>
-      <Catalog title={"Премьеры фильмов"} elem={<Poster />} count={10} />
-=======
-      <div className={styles.container}>
-        <section className={styles.headerbar}>
-          <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
-          <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-          <Description truncText={truncText} fullText={fullText} className={styles.description} />
-          <div className={styles.suggestionRow}><Suggestion /></div>
         </section>
-        <div className={styles.sortRow}><Sort /></div>
-        <section className={styles.filtersRow}><Filters /></section>
+        <div className={styles.sortRow}>
+          <Sort />
+        </div>
+        <section className={styles.filtersRow}>
+          <Filters />
+        </section>
+      </div>
+      <div className={styles.genresRow}>
+        <h2 className={styles.genresRow__title}>Жанры</h2>
+        <Carousel
+          elem={<GenresButton size="big" genres="Исторические" id={11} />}
+          count={10}
+        />
       </div>
       <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
->>>>>>> main
     </>
   );
 };

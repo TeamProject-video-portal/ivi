@@ -15,7 +15,7 @@ const GenresButton: FC<GenresButtonProps> = ({ size, genres, id }) => {
     <div className={styles.container}>
       <Button className={size === 'big' ? styles.bigButton : styles.smallButton}>
         <div className={iconCssClass}></div>
-        <div>{genres}</div>
+        <div className={styles.text}>{genres}</div>
       </Button>
     </div>
   );

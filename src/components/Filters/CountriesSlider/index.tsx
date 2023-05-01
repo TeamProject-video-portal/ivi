@@ -25,25 +25,9 @@ const CountriesSlider: FC = () => {
     infinite: false,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 5,
     variableWidth: true,
     prevArrow: <PrevButton />,
     nextArrow: <NextButton />,
-    responsive: [
-      {
-        breakpoint: 630,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 380,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   return (

@@ -33,7 +33,7 @@ const CountriesSlider: FC = () => {
       {
         breakpoint: 630,
         settings: {
-          slidesToShow: 4,
+          slidesToShow: 2,
         },
       },
       {

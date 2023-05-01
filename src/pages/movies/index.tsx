@@ -8,7 +8,9 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
+
 import GenresButton from "@/components/Filters/GenresButton";
+
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -72,13 +74,30 @@ const Movies = () => {
       </Head>
       <div className={styles.container}>
         <section className={styles.headerbar}>
-          <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
+          <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
           <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-          <Description truncText={truncText} fullText={fullText} className={styles.description} />
-          <div className={styles.suggestionRow}><Suggestion /></div>
+          <Description
+            truncText={truncText}
+            fullText={fullText}
+            className={styles.description}
+          />
+          <div className={styles.suggestionRow}>
+            <Suggestion />
+          </div>
         </section>
-        <div className={styles.sortRow}><Sort /></div>
-        <section className={styles.filtersRow}><Filters /></section>
+        <div className={styles.sortRow}>
+          <Sort />
+        </div>
+        <section className={styles.filtersRow}>
+          <Filters />
+        </section>
+      </div>
+      <div className={styles.genresRow}>
+        <h2 className={styles.genresRow__title}>Жанры</h2>
+        <Carousel
+          elem={<GenresButton size="big" genres="Исторические" id={11} />}
+          count={10}
+        />
       </div>
       <div className={styles.genresRow}>
         <h2 className={styles.genresRow__title}>Жанры</h2>

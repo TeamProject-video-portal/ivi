@@ -26,22 +26,21 @@ const GenresSlider: FC = () => {
     infinite: false,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 4,
-    variableWidth: true,
+    slidesToShow: 5,
+    variableWidth: false,
     prevArrow: <PrevButton />,
     nextArrow: <NextButton />,
     responsive: [
       {
-        breakpoint: 630,
+        breakpoint: 744,
         settings: {
-          slidesToShow: 2,
-        },
+          slidesToShow: 3,
+        }
       },
       {
-        breakpoint: 380,
+        breakpoint: 400,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
     ],
@@ -50,7 +49,7 @@ const GenresSlider: FC = () => {
   return (
     <Slider {...settings} className={styles.container}>
       {genres.map((item, i) =>
-        <GenresButton size="small" genres={item.title} id={item.id} />
+        <GenresButton size="small" genres={item.title} id={item.id} key={item.id} />
       )}
     </Slider>
   );

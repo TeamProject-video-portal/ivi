@@ -2,10 +2,10 @@
 @import "../../../../styles/mixins.scss";
 
 .container {
-  width: calc(100% - 40px);
+  width: calc(100% - 20px);
   height: 100px;
   position: absolute;
-  top: 45%;
+  top: 40%;
   .rating {
     display: flex;
     align-items: center;

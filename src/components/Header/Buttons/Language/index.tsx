@@ -10,15 +10,12 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 type Props = {};
 
 const LanguageButton: FC = () => {
+  const { i18n } = useTranslation();
   const router = useRouter();
   const { t } = useTranslation();
   const [isRus, SetIsRus] = useState(true);
   const [text, SetText] = useState("EN");
 
-  // const handleChangeLanguage = (lang: string) => {
-  //   i18n.changeLanguage(lang);
-  //   router.push(router.pathname, router.asPath, { locale: lang });
-  // };
   return (
     <div>
       {/* <HeaderButton type={"lang"} onClick={() => handleClick()}>

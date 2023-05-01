@@ -6,8 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { settings } from "./settings";
-type Props = {};
-const CarouselSimple: FC<Props> = ({}) => {
+type Props = {
+  title: string;
+};
+const CarouselSimple: FC<Props> = (props) => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
     // centerMode: count === 1 ? true : false, // дополнительные свойства
@@ -15,7 +17,11 @@ const CarouselSimple: FC<Props> = ({}) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
+      <div className={styles.title}>
+        <h4>{props.title}</h4>
+        <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
+      </div>
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(10)].map((_, i) => (
           <Poster />

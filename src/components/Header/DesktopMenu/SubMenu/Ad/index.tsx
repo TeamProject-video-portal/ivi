@@ -8,10 +8,9 @@ import Image from "next/image";
 import icon from "../../../../../images/icons/logo.svg";
 
 const posters = [
-  "https://lifehacker.ru/wp-content/uploads/2018/12/Kak-fotografirovat-kotikov-19-sovetov-ot-professionala_1544744286.jpg",
-  ,
-  "https://lifehacker.ru/wp-content/uploads/2018/12/Kak-fotografirovat-kotikov-19-sovetov-ot-professionala_1544744286.jpg",
-  "https://lifehacker.ru/wp-content/uploads/2018/12/Kak-fotografirovat-kotikov-19-sovetov-ot-professionala_1544744286.jpg",
+  "https://scientificrussia.ru/images/b/teb-full.jpg",
+  "https://scientificrussia.ru/images/b/teb-full.jpg",
+  "https://scientificrussia.ru/images/b/teb-full.jpg",
 ];
 const Ad: FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

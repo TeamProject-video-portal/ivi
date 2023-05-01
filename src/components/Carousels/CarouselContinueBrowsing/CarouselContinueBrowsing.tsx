@@ -1,12 +1,11 @@
 import React, { FC } from "react";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 import Slider from "react-slick";
-import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { settings } from "./settings";
 import CardMovie from "@/components/CardMovie";
+import { settings } from "./settings";
 type Props = {};
 const data = {
   title: "1. Возвращение в Простоквашино. Часть 1",
@@ -18,14 +17,14 @@ const data = {
 const CarouselContinueBrowsing: FC<Props> = ({}) => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
-    // centerMode: count === 1 ? true : false, // дополнительные свойства
+    centerMode: false, // дополнительные свойства
     slidesToShow: 3,
   };
 
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>
-        {[...new Array(4)].map((_, i) => (
+        {[...new Array(5)].map((_, i) => (
           <CardMovie
             title={data.title}
             type={data.type}

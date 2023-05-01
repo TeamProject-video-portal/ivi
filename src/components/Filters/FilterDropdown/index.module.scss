@@ -8,19 +8,21 @@
   background-color: $base-dark-grey;
   z-index: 10;
 }
-.left {
-  @extend .dropdown;
-  left: 0;
-  width: 630px;
-}
-.center {
-  @extend .dropdown;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 630px;
-}
+.left,
 .right {
   @extend .dropdown;
+  width: 630px;
+  @media screen and (max-width: 744px) {
+    width: 416px;
+  }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+  }
+}
+.left {
+  left: 0;
+}
+.right {
   right: 0;
   width: 630px;
 }

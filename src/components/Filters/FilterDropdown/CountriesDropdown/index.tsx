@@ -36,7 +36,8 @@ export const countries = [
   'Швейцария',
   'Швеция',
   'ЮАР',
-  'Южная Корея'
+  'Южная Корея',
+
 ];
 
 const CountriesDropdown: FC = () => {

@@ -5,23 +5,20 @@ import Catalog from "@/components/Catalog";
 import Banner from "@/components/Banner";
 import CardMovie from "@/components/CardMovie";
 import Poster from "@/components/Poster";
-import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
-import { useRouter } from "next/router";
-import { en } from "@/locales/en";
-import { ru } from "@/locales/ru";
+
+import testFoto from "../../images/posterImage.jpeg";
 const inter = Inter({ subsets: ["latin"] });
 
-const data = {
-  title: "1. Возвращение в Простоквашино. Часть 1",
-  text: "В жизни дяди Федора произошли серьезные перемены. У него появилась маленькая сестренка – Вера Павловна. И потому мама и папа уделяют сыну совсем мало внимания. А ему, между тем, требуется поддержка родителей. Дядя Федор получает известие из Простоквашино. На ферме Матроскина завелся таинственный грызун, который вывел из строя систему электроснабжения. Холодильник перестал работать, все молоко скисло. А Шарик вместо того, чтобы охранять дом, стал модным блогером. Дядя Федор спешит на помощь.",
-  type: "detailed",
-  img: "https://cdn.iz.ru/sites/default/files/styles/900x506/public/news-2019-03/8_0.jpg?itok=52JttP6Z",
-};
+import Poster_10 from "@/components/Carts/TopTen";
+import PosterTopTen from "@/components/Carts/TopTen";
+import CarouselTop10 from "@/components/Carousels/Top10/CarouselTopTen";
+import Carousel from "@/components/Catalog/Carousel";
+import CarouselSimple from "@/components/Carousels/Top10/CarouselSimple";
+import CarouselContinueBrowsing from "@/components/Carousels/Top10/CarouselContinueBrowsing";
 
 const Home = () => {
-  const router = useRouter();
-  const t = router.locale === "en" ? en : ru;
-
+  // const router = useRouter();
+  // const t = router.locale === "en" ? en : ru;
   return (
     <>
       <Head>
@@ -31,20 +28,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <Catalog
-        title={t.titles.continue_browsing}
-        elem={
-          <CardMovie
-            title={data.title}
-            type={data.type}
-            text={data.text}
-            img={data.img}
-          />
-        }
-        count={1}
-      />
 
-      <Catalog title={t.titles.news_series} elem={<Poster />} count={10} />
+      <CarouselContinueBrowsing />
+      <CarouselTop10 />
+      <CarouselSimple />
     </>
   );
 };

@@ -69,13 +69,21 @@ const Movies = () => {
       </Head>
       <section className={styles.headerbar}>
         <div className={styles.container}>
-          <Breadcrumbs breadcrumbs={breadcrumbs} type='pages' del="&middot;" />
+          <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
           <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-          <Description truncText={truncText} fullText={fullText} className={styles.description} />
-          <div className={styles.suggestionRow}><Suggestion /></div>
+          <Description
+            truncText={truncText}
+            fullText={fullText}
+            className={styles.description}
+          />
+          <div className={styles.suggestionRow}>
+            <Suggestion />
+          </div>
         </div>
       </section>
-      <section className={[styles.filtersRow, styles.container].join(' ')}><Filters /></section>
+      <section className={[styles.filtersRow, styles.container].join(" ")}>
+        <Filters />
+      </section>
       <Catalog title={"Премьеры фильмов"} elem={<Poster />} count={10} />
     </>
   );

@@ -10,8 +10,7 @@ import NotificationButton from "./Buttons/Notification";
 import WatchingButton from "./Buttons/WatchForFree";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { ru } from "../../locales/ru";
-import { en } from "../../locales/en";
+
 import LanguageButton from "./Buttons/Language";
 
 export const Header: FC = () => {
@@ -19,14 +18,15 @@ export const Header: FC = () => {
   const [subMenuTitle, setSubMenuTitle] = useState("");
 
   const router = useRouter();
-  const t = router.locale === "en" ? en : ru;
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         {isOpenSubMenu && <div className={styles.container_active}></div>}
 
         <div className={styles.main_part}>
+          {/* <Link href="/"> */}
           <Image src={logo} width={66} height={48} alt="logo" />
+          {/* </Link> */}
           <DesktopMenu
             isOpenSubMenu={isOpenSubMenu}
             setIsOpenSubMenu={setIsOpenSubMenu}

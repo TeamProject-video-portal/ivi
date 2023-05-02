@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Link from "next/link";
 import { settings } from "../settings";
 type Props = {
   title: string;
@@ -24,7 +24,9 @@ const SimpleSlider: FC<Props> = (props) => {
       </div>
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(10)].map((_, i) => (
-          <Poster />
+          <Link href="/card">
+            <Poster />
+          </Link>
         ))}
       </Slider>
       <></>

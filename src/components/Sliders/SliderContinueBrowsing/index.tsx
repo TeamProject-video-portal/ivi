@@ -3,9 +3,10 @@ import styles from "../index.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import Link from "next/link";
 import CardMovie from "@/components/CardMovie";
 import { settings } from "./settings";
+
 type Props = {};
 const data = {
   title: "1. Возвращение в Простоквашино. Часть 1",
@@ -25,12 +26,14 @@ const SliderContinueBrowsing: FC<Props> = ({}) => {
     <div>
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(5)].map((_, i) => (
-          <CardMovie
-            title={data.title}
-            type={data.type}
-            text={data.text}
-            img={data.img}
-          />
+          <Link href="/card">
+            <CardMovie
+              title={data.title}
+              type={data.type}
+              text={data.text}
+              img={data.img}
+            />
+          </Link>
         ))}
       </Slider>
       <></>

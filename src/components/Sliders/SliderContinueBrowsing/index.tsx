@@ -14,10 +14,10 @@ const data = {
   img: "https://cdn.iz.ru/sites/default/files/styles/900x506/public/news-2019-03/8_0.jpg?itok=52JttP6Z",
 };
 
-const CarouselContinueBrowsing: FC<Props> = ({}) => {
+const SliderContinueBrowsing: FC<Props> = ({}) => {
   const newSettings = {
-    ...settings, // текущие настройки слайдера
-    centerMode: false, // дополнительные свойства
+    ...settings,
+    centerMode: false,
     slidesToShow: 3,
   };
 
@@ -38,4 +38,4 @@ const CarouselContinueBrowsing: FC<Props> = ({}) => {
   );
 };
 
-export default CarouselContinueBrowsing;
+export default SliderContinueBrowsing;

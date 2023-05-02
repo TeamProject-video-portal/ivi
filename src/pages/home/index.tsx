@@ -1,10 +1,9 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
-import CarouselSimple from "@/components/Carousels/CarouselSimple";
-import CarouselTop10 from "@/components/Carousels/CarouselTopTen/CarouselTopTen";
-import CarouselContinueBrowsing from "@/components/Carousels/CarouselContinueBrowsing/CarouselContinueBrowsing";
-import { useTranslation } from "next-i18next";
+import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
+import SliderTopTen from "@/components/Sliders/SliderTopTen";
+import SimpleSlider from "@/components/Sliders/SimpleSlider";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {
@@ -18,9 +17,9 @@ const Home = () => {
       </Head>
 
       <Banner />
-      <CarouselContinueBrowsing />
-      <CarouselTop10 />
-      <CarouselSimple title={"Добрые мультсериалы"} />
+      <SliderContinueBrowsing />
+      <SliderTopTen />
+      <SimpleSlider title={"Добрые мультсериалы"} />
     </>
   );
 };

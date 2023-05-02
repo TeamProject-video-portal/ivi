@@ -8,7 +8,8 @@ import PosterTopTen from "@/components/Carts/TopTen";
 import logo from "../../../images/icons/top10.svg";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
-const CarouselTop10: FC = () => {
+
+const SliderTopTen: FC = () => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
     centerMode: false, // дополнительные свойства
@@ -35,4 +36,4 @@ const CarouselTop10: FC = () => {
   );
 };
 
-export default CarouselTop10;
+export default SliderTopTen;

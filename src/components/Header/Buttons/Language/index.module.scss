@@ -6,11 +6,13 @@
   background-color: transparent;
   border: 0;
   cursor: pointer;
-  padding: 10px;
-  margin-left: 12px;
+  padding: 12px;
+  margin-left: 5px;
+
   .text {
     width: 24px;
     height: 24px;
+    @include font-regular-m;
     background-color: transparent;
     color: $base-ligth-grey;
     transition: 0.1s;

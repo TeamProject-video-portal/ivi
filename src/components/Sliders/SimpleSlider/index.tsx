@@ -1,15 +1,15 @@
 import React, { FC } from "react";
-import styles from "./index.module.scss";
+import styles from "../index.module.scss";
 import Slider from "react-slick";
 import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-import { settings } from "./settings";
+import { settings } from "../settings";
 type Props = {
   title: string;
 };
-const CarouselSimple: FC<Props> = (props) => {
+const SimpleSlider: FC<Props> = (props) => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
     // centerMode: count === 1 ? true : false, // дополнительные свойства
@@ -32,4 +32,4 @@ const CarouselSimple: FC<Props> = (props) => {
   );
 };
 
-export default CarouselSimple;
+export default SimpleSlider;

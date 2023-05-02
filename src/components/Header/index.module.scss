@@ -2,8 +2,6 @@
 @import "../../styles/mixins.scss";
 
 .header {
-  position: fixed;
-  top: 0;
   background-color: $base-dark-blue;
   z-index: 1000;
   width: 100%;

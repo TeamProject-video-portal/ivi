@@ -5,6 +5,7 @@ import logo from "../../images/icons/logo.svg";
 import Link from "next/link";
 import { Button } from "../Button/Button";
 import { Actors } from "./Actors";
+import { Raiting } from "./Raiting";
 
 type Props = {
   data: {
@@ -46,6 +47,7 @@ export const DescriptionCard: FC<Props> = ({ data }) => {
         </div>
       </div>
       <div className={styles.actors}>
+        <Raiting raiting={data.raiting} />
         {data.actors.map((item) => {
           return <Actors img={item[0]} name={item[1]} />;
         })}

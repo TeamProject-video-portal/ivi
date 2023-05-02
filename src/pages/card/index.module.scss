@@ -1,0 +1,8 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/color.scss";
+
+.container {
+  @include container_1280;
+  padding: 25px 0;
+  box-sizing: border-box;
+}

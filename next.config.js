@@ -22,10 +22,12 @@ const nextConfig = {
     ];
   },
   reactStrictMode: true,
-  exportPathMap: function () {
-    return {
-      "/": { page: "/home" },
-    };
+  output: {
+    exportPathMap: function () {
+      return {
+        "/": { page: "/home" },
+      };
+    },
   },
   images: {
     domains: ["cdn.iz.ru"],

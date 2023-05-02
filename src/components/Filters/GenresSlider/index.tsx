@@ -2,8 +2,9 @@ import { FC } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Genres } from '../FilterDropdown/GenresDropdown';
+import { genres } from '@/data/filters';
 import { Button } from '@/components/Button/Button';
+import GenresButton from '../GenresButton';
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import styles from './index.module.scss'
 
@@ -25,22 +26,21 @@ const GenresSlider: FC = () => {
     infinite: false,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 4,
-    variableWidth: true,
+    slidesToShow: 5,
+    variableWidth: false,
     prevArrow: <PrevButton />,
     nextArrow: <NextButton />,
     responsive: [
       {
-        breakpoint: 630,
+        breakpoint: 744,
         settings: {
-          slidesToShow: 2,
-        },
+          slidesToShow: 3,
+        }
       },
       {
-        breakpoint: 380,
+        breakpoint: 400,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1,
         },
       },
     ],
@@ -48,7 +48,9 @@ const GenresSlider: FC = () => {
 
   return (
     <Slider {...settings} className={styles.container}>
-      {Genres.map((item, i) => <Button className={styles.slide} key={i}>{item.title}</Button>)}
+      {genres.map((item, i) =>
+        <GenresButton size="small" genres={item.title} id={item.id} key={item.id} />
+      )}
     </Slider>
   );
 };

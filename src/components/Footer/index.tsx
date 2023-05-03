@@ -1,7 +1,7 @@
 import { FC } from "react";
 import Link from "next/link";
-import styles from "./Footer.module.scss"
-import { Button } from "../Button/Button";
+import styles from "./index.module.scss"
+import { Button } from "@/components/Button/Button";
 import { IoMailOutline } from 'react-icons/io5';
 import { GoMail } from 'react-icons/go';
 import { MdDevicesOther } from 'react-icons/md';
@@ -10,7 +10,7 @@ import { HiOutlinePhone, HiOutlineSpeakerphone } from "react-icons/hi";
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import Image from "next/image";
 import speakerphone from "../../images/speakerphone.png"
-import { Socials } from "../Socials/Socials";
+import Socials from "@/components/Socials";
 
 export const Footer: FC = () => {
   return (
@@ -83,14 +83,14 @@ export const Footer: FC = () => {
             </p>
             <div className={styles.support}>
               <Link href={'https://www.ivi.ru/profile'}>
-                <Button className={styles.support__chatbtn} color='purple'>Написать в чате</Button>
+                <Button type='chatButton' color='purple'>Написать в чате</Button>
               </Link>
               <div className={styles.support__btns}>
                 <Link href={'mailto:support@ivi.ru'} type="email">
-                  <Button className={styles.support__iconBtn} color='purple'><GoMail /></Button>
+                  <Button color='purple' type='footerIconButton'><GoMail /></Button>
                 </Link>
                 <Link href={'tel:+73832021280'} type='tel'>
-                  <Button className={styles.support__iconBtn} color='purple'><HiOutlinePhone /></Button>
+                  <Button type='footerIconButton' color='purple'><HiOutlinePhone /></Button>
                 </Link>
               </div>
               <Link href={'https://ask.ivi.ru/'} className={styles.ask}>ask.ivi.ru</Link>
@@ -110,7 +110,7 @@ export const Footer: FC = () => {
           <div className={styles.columns}>
             <div className={styles.stories}>
               <Link href={'https://go.onelink.me/app/devicesiOS'} key='App Store'>
-                <Button className={styles.stories__btn} color='purple'>
+                <Button type='footerStoresButton' color='purple'>
                   <FaApple />
                   <div>
                     <span>Загрузить в</span>
@@ -119,7 +119,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://go.onelink.me/app/devicesAndroid'} key='Google Play'>
-                <Button className={styles.stories__btn} color='purple'>
+                <Button type='footerStoresButton' color='purple'>
                   <FaGooglePlay />
                   <div>
                     <span>Доступно в</span>
@@ -128,7 +128,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/pages/tvsmart/'} key='Smart TV'>
-                <Button className={styles.stories__btn} color='purple'>
+                <Button type='footerStoresButton' color='purple'>
                   <BsTvFill />
                   <div>
                     <span>Смотрите на</span>
@@ -137,7 +137,7 @@ export const Footer: FC = () => {
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/devices'} key='all devices'>
-                <Button className={styles.stories__btn} color='purple'>
+                <Button type='footerStoresButton' color='purple'>
                   <MdDevicesOther />
                   <div>
                     <div>Все устройства</div>

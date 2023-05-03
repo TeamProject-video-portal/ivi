@@ -2,7 +2,7 @@ import { FC } from "react";
 import styles from './index.module.scss';
 import Link from "next/link";
 import { Button } from "@/components/Button/Button";
-import { Socials } from "@/components/Socials/Socials";
+import Socials from "@/components/Socials";
 import { IoDiamondOutline } from "react-icons/io5";
 import { RiAwardLine } from "react-icons/ri";
 import { BsTvFill, BsTv } from "react-icons/bs";
@@ -32,13 +32,13 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
           <div className={styles.group}>
             <div className={styles.buttons}>
               <Link href={'/'}>
-                <Button className={`${styles.buttonTop} ${styles.subscribe}`} color='purple'>
+                <Button className={styles.subscribe} type='subscribeButton' color='purple'>
                   <IoDiamondOutline />
                   Подключить подписку
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/cert'}>
-                <Button className={styles.buttonTop} color='purple'>
+                <Button type='subscribeButton' color='purple'>
                   <RiAwardLine />
                   Активация сертификата
                 </Button>
@@ -119,7 +119,7 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
             </ul>
             <div className={`${styles.buttons} ${styles.buttons_dev}`}>
               <Link href={'https://www.ivi.ru/pages/tvsmart/'}>
-                <Button className={styles.buttonBottom} color='purple'>
+                <Button type='deviceButton' color='purple'>
                   <BsTvFill />
                   <div>
                     <span>Смотрите на</span>
@@ -128,7 +128,7 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
                 </Button>
               </Link>
               <Link href={'https://www.ivi.ru/devices'}>
-                <Button className={styles.buttonBottom} color='purple'>
+                <Button type='deviceButton' color='purple'>
                   <MdDevicesOther />
                   <div>
                     <div>Все устройства</div>
@@ -146,10 +146,10 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
                 </Link>
                 <div className={styles.buttonsIcon}>
                   <Link href={'mailto:support@ivi.ru'} type="email">
-                    <Button className={styles.buttonIcon} color='purple'><GoMail /></Button>
+                    <Button type='footerIconButton' color='purple'><GoMail /></Button>
                   </Link>
                   <Link href={'tel:+73832021280'} type='tel'>
-                    <Button className={styles.buttonIcon} color='purple'><HiOutlinePhone /></Button>
+                    <Button type='footerIconButton' color='purple'><HiOutlinePhone /></Button>
                   </Link>
                 </div>
               </div>
@@ -163,6 +163,6 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
           </div>
         </div>
       </div >
-    </div>
+    </div >
   );
 };

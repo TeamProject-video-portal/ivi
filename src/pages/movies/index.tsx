@@ -8,10 +8,8 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-
 import GenresButton from "@/components/Filters/GenresButton";
 import PosterPerson from "@/components/PosterPerson";
-
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },

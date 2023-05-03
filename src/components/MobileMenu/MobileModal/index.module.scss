@@ -56,10 +56,6 @@
     &_chat > a {
       flex: 0 1 67%;
     }
-    svg {
-      height: 20px;
-      width: 20px;
-    }
   }
   .list {
     display: flex;
@@ -97,21 +93,6 @@
   .listAbout {
     row-gap: 12px;
   }
-  .buttonTop,
-  .buttonBottom {
-    @include font-light-l;
-    line-height: 16px;
-    column-gap: 12px;
-    padding: 6px 16px;
-    width: 100%;
-  }
-  .buttonTop {
-    justify-content: flex-start;
-    height: 48px;
-    svg {
-      color: #7e798f;
-    }
-  }
   .subscribe {
     position: relative;
     &:before {
@@ -127,15 +108,7 @@
       border-radius: 5px;
     }
   }
-  .buttonBottom {
-    height: 40px;
-    span {
-      display: block;
-      @include font-regular-xxs;
-      line-height: 12px;
-      text-align: left;
-    }
-  }
+
   .buttonChat {
     @include font-light-l;
     line-height: 16px;
@@ -146,10 +119,10 @@
     display: flex;
     column-gap: 12px;
   }
-  .buttonIcon {
-    padding: 0 12px;
-    height: 100%;
-  }
+  // .buttonIcon {
+  //   padding: 0 12px;
+  //   height: 100%;
+  // }
   .help {
     margin: 20px 0;
   }

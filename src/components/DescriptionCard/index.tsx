@@ -12,6 +12,7 @@ type Props = {
     title: string;
     raiting: number;
     actors: string[][];
+    description: string;
   };
 };
 export const DescriptionCard: FC<Props> = ({ data }) => {
@@ -51,6 +52,9 @@ export const DescriptionCard: FC<Props> = ({ data }) => {
         {data.actors.map((item) => {
           return <Actors img={item[0]} name={item[1]} />;
         })}
+      </div>
+      <div className={styles.description}>
+        <p>{data.description}</p>
       </div>
     </div>
   );

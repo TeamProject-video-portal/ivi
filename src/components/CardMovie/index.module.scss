@@ -52,9 +52,9 @@
 }
 
 .container_summary {
-  width: 224px;
-  height: 176px;
-
+  // width: 224px;
+  // height: 176px;
+  aspect-ratio: 3/4;
   .banner {
     position: relative;
 

@@ -8,6 +8,7 @@ import PosterTopTen from "@/components/Carts/TopTen";
 import logo from "../../../images/icons/top10.svg";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 const SliderTopTen: FC = () => {
   const newSettings = {
@@ -15,8 +16,6 @@ const SliderTopTen: FC = () => {
     centerMode: false, // дополнительные свойства
     slidesToShow: 5,
   };
-  const { t } = useTranslation();
-  console.log(t);
   return (
     <div className={styles.container}>
       {/* <p>{t("my_ivi")}</p> */}
@@ -28,7 +27,9 @@ const SliderTopTen: FC = () => {
 
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(10)].map((item, i) => (
-          <PosterTopTen num={i + 1} key={`${item}- ${i}`} />
+          <Link href="/card">
+            <PosterTopTen num={i + 1} key={`${item}- ${i}`} />
+          </Link>
         ))}
       </Slider>
       <></>

@@ -1,4 +1,4 @@
-import NextButton from "..//NextButton";
+import NextButton from "../NextButton";
 import PrevButton from "../PrevButton";
 
 export const settings = {

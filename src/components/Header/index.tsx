@@ -23,7 +23,7 @@ export const Header: FC = () => {
         {isOpenSubMenu && <div className={styles.container_active}></div>}
 
         <div className={styles.main_part}>
-          <Link href="/card">
+          <Link href="/">
             <Image src={logo} width={66} height={48} alt="logo" />
           </Link>
           <DesktopMenu

@@ -74,4 +74,10 @@
     align-items: center;
     margin: 20px 0;
   }
+
+  .description {
+    width: 100%;
+    @include font-light-s;
+    color: $base-grey;
+  }
 }

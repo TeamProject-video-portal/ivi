@@ -23,13 +23,7 @@ const nextConfig = {
     ];
   },
   reactStrictMode: true,
-  output: {
-    exportPathMap: function () {
-      return {
-        "/": { page: "/home" },
-      };
-    },
-  },
+
   images: {
     domains: ["cdn.iz.ru"],
   },

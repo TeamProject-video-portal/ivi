@@ -1,6 +1,20 @@
 @import "../../../styles/color.scss";
 @import "../../../styles/mixins.scss";
 
+.modalHeader {
+  display: none;
+  &_open {
+    @include _1160 {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 72px;
+      overflow: hidden;
+      z-index: 2000;
+    }
+  }
+}
 .mobileModal {
   display: none;
   &_open {

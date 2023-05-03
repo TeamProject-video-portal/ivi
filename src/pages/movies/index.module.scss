@@ -32,7 +32,8 @@
   @include container_s {
   }
 }
-.genresRow {
+.genresRow,
+.personRow {
   width: 100%;
   max-width: 1280px;
   margin: 12px auto 0;

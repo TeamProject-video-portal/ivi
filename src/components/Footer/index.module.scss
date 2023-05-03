@@ -45,20 +45,10 @@
   }
   .support {
     margin-top: 20px;
-    &__chatbtn {
-      height: 40px;
-      width: 196px;
-    }
     &__btns {
       display: flex;
       column-gap: 12px;
       margin-top: 12px;
-    }
-    &__iconBtn {
-      width: 40px;
-      height: 40px;
-      font-size: 18px;
-      line-height: 1;
     }
   }
   .ask {
@@ -97,25 +87,6 @@
     display: flex;
     column-gap: 12px;
     white-space: nowrap;
-    &__btn {
-      @include font-light-m;
-      line-height: 20px;
-      padding: 0 12px;
-      height: 100%;
-      svg {
-        margin-right: 8px;
-        width: 20px;
-        height: 20px;
-      }
-      span {
-        display: block;
-        @include font-regular-xxs;
-        line-height: 12px;
-        text-align: left;
-        white-space: nowrap;
-        opacity: 0.72;
-      }
-    }
   }
   .copyrights {
     margin-top: 32px;

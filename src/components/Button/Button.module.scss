@@ -1,4 +1,5 @@
 @import "../../styles/color.scss";
+@import "../../styles/mixins.scss";
 
 .button {
   display: inline-flex;
@@ -36,5 +37,81 @@
   &:hover {
     background-color: $base-pink-hover;
     transition: all 0.4s ease 0s;
+  }
+}
+.chatButton {
+  height: 40px;
+  width: 196px;
+}
+.footerIconButton {
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  line-height: 1;
+}
+.footerStoresButton {
+  @include font-light-m;
+  line-height: 20px;
+  padding: 0 12px;
+  height: 100%;
+  svg {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+  }
+  span {
+    display: block;
+    @include font-regular-xxs;
+    line-height: 12px;
+    text-align: left;
+    white-space: nowrap;
+    opacity: 0.72;
+  }
+}
+.socialButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px !important;
+  color: $base-white;
+  &:hover {
+    transition: all 0.4s ease 0s;
+  }
+  svg {
+    height: 16px;
+    width: 16px;
+  }
+}
+.subscribeButton {
+  padding: 6px 16px;
+  width: 100%;
+  height: 48px;
+  justify-content: flex-start;
+  column-gap: 12px;
+  @include font-light-l;
+  line-height: 16px;
+  svg {
+    color: #7e798f;
+    height: 20px;
+    width: 20px;
+  }
+}
+.deviceButton {
+  padding: 6px 16px;
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  column-gap: 12px;
+  @include font-light-l;
+  line-height: 16px;
+  span {
+    display: block;
+    @include font-regular-xxs;
+    line-height: 12px;
+    text-align: left;
+  }
+  svg {
+    color: $base-white;
+    height: 20px;
+    width: 20px;
   }
 }

@@ -8,9 +8,8 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-
 import GenresButton from "@/components/Filters/GenresButton";
-
+import PosterPerson from "@/components/PosterPerson";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -99,11 +98,14 @@ const Movies = () => {
           count={10}
         />
       </div>
-      <div className={styles.genresRow}>
-        <h2 className={styles.genresRow__title}>Жанры</h2>
-        <Carousel elem={<GenresButton size="big" genres="Исторические" id={11} />} count={10} />
-      </div>
       <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
+      <div className={styles.personRow}>
+        <h2 className={styles.personRow__title}>Персоны </h2>
+        <Carousel
+          elem={<PosterPerson />}
+          count={10}
+        />
+      </div>
     </>
   );
 };

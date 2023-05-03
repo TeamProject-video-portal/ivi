@@ -16,6 +16,9 @@
   color: $base-ligth-grey;
   background-color: $base-dark-grey;
   border-radius: 16px;
+  &:hover {
+    background-color: $base-dark-grey-hover;
+  }
 }
 .next,
 .prev {

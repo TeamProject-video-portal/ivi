@@ -6,11 +6,9 @@ import type { AppProps } from "next/app";
 
 function App({ Component, pageProps, router }: AppProps) {
   return (
-    <LanguageProvider>
-      <Layout>
-        <Component {...pageProps} key={router.route} />
-      </Layout>
-    </LanguageProvider>
+    <Layout>
+      <Component {...pageProps} key={router.route} />
+    </Layout>
   );
 }
 

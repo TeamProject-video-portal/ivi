@@ -10,7 +10,6 @@ type Props = {
 };
 const DesktopMenu: FC<Props> = (props) => {
   const { t } = useTranslation();
-  const [query] = useLanguageQuery();
   return (
     <div className={styles.navigation}>
       <Link href="/home">

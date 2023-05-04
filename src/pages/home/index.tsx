@@ -5,13 +5,8 @@ import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing"
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 const inter = Inter({ subsets: ["latin"] });
-import { useTranslation } from "next-i18next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { GetStaticProps } from "next";
 
 const Home = () => {
-  const { t } = useTranslation();
-  console.log(t("title"));
   return (
     <>
       <Head>
@@ -21,24 +16,10 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <SliderContinueBrowsing />
+      <SliderContinueBrowsing title={""} type={"summary"} />
       <SliderTopTen />
       <SimpleSlider title={"Добрые мультсериалы"} />
     </>
   );
 };
 export default Home;
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  const translationsProps = await serverSideTranslations(locale ?? "en", [
-    "default",
-  ]);
-
-  return {
-    props: {
-      // These props are used by `appWithTranslation` in `_app.tsx`
-      // to set up a React context which holds translations
-      ...translationsProps,
-    },
-  };
-};

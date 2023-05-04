@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
-const { i18n } = require("./next-i18next.config");
 const nextConfig = {
   i18n: {
-    locales: i18n.locales,
-    defaultLocale: i18n.defaultLocale,
+    locales: ["en", "ru"],
+    defaultLocale: "ru",
+    localeDetection: false,
   },
+  trailingSlash: true,
   async redirects() {
     return [
       {
@@ -22,13 +23,7 @@ const nextConfig = {
     ];
   },
   reactStrictMode: true,
-  output: {
-    exportPathMap: function () {
-      return {
-        "/": { page: "/home" },
-      };
-    },
-  },
+
   images: {
     domains: ["cdn.iz.ru"],
   },

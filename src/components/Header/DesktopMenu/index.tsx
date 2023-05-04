@@ -17,7 +17,7 @@ const DesktopMenu: FC<Props> = (props) => {
 
   return (
     <div className={styles.navigation}>
-      <Link href="/">
+      <Link href="/home">
         <span className={styles.link}> {t.header.my_ivi}</span>
       </Link>
       <Link href="/new">

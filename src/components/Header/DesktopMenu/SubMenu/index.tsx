@@ -28,7 +28,7 @@ const SubMenu: FC<Props> = (props) => {
               {props.subMenuTitle === "film" && <DropDownMenuFilm />}
               {props.subMenuTitle === "series" && <DropDownMenuSerial />}
               {props.subMenuTitle === "anim" && <DropDownMenuAnim />}
-              <Ad />
+              <Ad type={"summary"} />
             </ContextSubMenu>
           ) : (
             <DropDownMenuButton />

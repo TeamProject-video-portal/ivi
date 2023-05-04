@@ -1,13 +1,13 @@
-let en = require("./en.json");
-let ru = require("./ru.json");
+let en = require("./translations.en.json");
+let ru = require("./translations.ru.json");
 
 const i18n = {
   translations: {
-    en: en.i18n,
-    ru: ru.i18n,
+    en: en,
+    ru: ru,
   },
   defaultLang: "ru",
-  useBrowserDefault: true,
+  useBrowserDefault: false,
 };
 
 module.exports = i18n;

@@ -10,6 +10,8 @@ import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
 import GenresButton from "@/components/Filters/GenresButton";
 import PosterPerson from "@/components/PosterPerson";
+import { FiltersState } from "@/data/filters";
+import MovieResults from "@/components/MovieResults";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -65,6 +67,16 @@ const fullText = (
   </>
 );
 
+const filtersChoice: FiltersState = {
+  genres: [''],
+  countries: [''],
+  years: [''],
+  ratingMin: 4.0,
+  ratingMax: 9.0,
+  scoreMin: 10000,
+  scoreMax: 100000
+}
+
 const Movies = () => {
   return (
     <>
@@ -84,11 +96,11 @@ const Movies = () => {
             <Suggestion />
           </div>
         </section>
-        <div className={styles.sortRow}>
+        {/* <div className={styles.sortRow}>
           <Sort />
-        </div>
+        </div> */}
         <section className={styles.filtersRow}>
-          <Filters />
+          <Filters filtersChoice={filtersChoice} />
         </section>
       </div>
       <div className={styles.genresRow}>
@@ -106,6 +118,11 @@ const Movies = () => {
           count={10}
         />
       </div>
+      <section className={styles.container}>
+        <div className={styles.resultsRow}>
+          <MovieResults />
+        </div>
+      </section>
     </>
   );
 };

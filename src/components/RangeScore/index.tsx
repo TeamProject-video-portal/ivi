@@ -46,9 +46,15 @@ const ThumbLabel = ({
   );
 };
 
-const RangeScore: FC<{ rtl: boolean }> = ({ rtl }) => {
-  const [values, setValues] = useState([10000, 100000]);
-  const [finalValues, setFinalValues] = useState([10000, 100000]);
+type RangeScoreProps = {
+  rtl: boolean,
+  scoreMin: number;
+  scoreMax: number;
+}
+
+const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
+  const [values, setValues] = useState([scoreMin, scoreMax]);
+  const [finalValues, setFinalValues] = useState([scoreMin, scoreMax]);
   const rangeRef: any = useRef<Range>();
 
   return (

@@ -13,14 +13,12 @@ import { useTranslation } from "next-export-i18n";
 const SliderTopTen: FC = () => {
   const { t } = useTranslation();
   const newSettings = {
-    ...settings, // текущие настройки слайдера
-    centerMode: false, // дополнительные свойства
+    ...settings,
+    centerMode: false,
     slidesToShow: 5,
   };
   return (
     <div className={styles.container}>
-      {/* <p>{t("my_ivi")}</p> */}
-
       <div className={styles.title}>
         <Image src={logo} alt=""></Image>
         <h4>{t("sliders_title.during_the_week")}</h4>

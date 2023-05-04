@@ -9,7 +9,8 @@
   },
   "buttons": {
     "watch": "Watch 30 days for free",
-    "search": "Search"
+    "search": "Search",
+    "turn_off": "You can turn it off at any time"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",

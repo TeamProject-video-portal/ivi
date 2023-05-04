@@ -18,21 +18,9 @@ const LanguageButton: FC = () => {
   };
 
   return (
-    <div>
+    <div className={styles.buttons_lang}>
       <LanguageSwitcher lang="en">en</LanguageSwitcher> |{" "}
       <LanguageSwitcher lang="ru">ru</LanguageSwitcher>
-      {/* <button
-        className={styles.button_lang}
-        onClick={() => handleChangeLocale("ru")}
-      >
-        <p className={styles.text}>RUjherbf</p>
-      </button> */}
-      {/* <button
-        className={styles.button_lang}
-        onClick={() => handleChangeLocale("en")}
-      >
-        <p className={styles.text}>EN</p>
-      </button> */}
     </div>
   );
 };

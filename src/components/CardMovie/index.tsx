@@ -1,13 +1,13 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
 import PropTypes from "prop-types";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 
 export type CartProps = {
   title: string;
   text: string;
   type: string;
-  img: string;
+  img: StaticImageData;
 };
 
 const progress = 80;

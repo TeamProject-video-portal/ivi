@@ -1,27 +1,20 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
-import { GetStaticProps } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useRouter } from "next/router";
-import { en } from "../../../locales/en";
-import { ru } from "../../../locales/ru";
+
 type Props = {
   isOpenSubMenu?: boolean;
   setIsOpenSubMenu?: Dispatch<SetStateAction<boolean>>;
   setSubMenuTitle?: Dispatch<SetStateAction<string>>;
 };
 const DesktopMenu: FC<Props> = (props) => {
-  const router = useRouter();
-  const t = router.locale === "en" ? en : ru;
-
   return (
     <div className={styles.navigation}>
       <Link href="/home">
-        <span className={styles.link}> {t.header.my_ivi}</span>
+        <span className={styles.link}>Мой Иви</span>
       </Link>
       <Link href="/new">
-        <span className={styles.link}>{t.header.whats_new}</span>
+        <span className={styles.link}>Что нового</span>
       </Link>
       <Link href="/movies">
         <span
@@ -31,7 +24,7 @@ const DesktopMenu: FC<Props> = (props) => {
             props.setSubMenuTitle?.("film");
           }}
         >
-          {t.header.movies}
+          Фильмы
         </span>
       </Link>
       <Link href="/series">
@@ -42,7 +35,7 @@ const DesktopMenu: FC<Props> = (props) => {
             props.setSubMenuTitle?.("series");
           }}
         >
-          {t.header.series}
+          Сериалы
         </span>
       </Link>
       <Link href="/animation">
@@ -53,7 +46,7 @@ const DesktopMenu: FC<Props> = (props) => {
             props.setSubMenuTitle?.("anim");
           }}
         >
-          {t.header.animations}
+          Мультфильмы
         </span>
       </Link>
     </div>

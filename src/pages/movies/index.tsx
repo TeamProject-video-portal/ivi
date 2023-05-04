@@ -1,5 +1,6 @@
 import Head from "next/head";
 import styles from "./index.module.scss";
+import { useState } from 'react';
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
@@ -12,6 +13,7 @@ import GenresButton from "@/components/Filters/GenresButton";
 import PosterPerson from "@/components/PosterPerson";
 import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
+import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Мой Иви", path: "/" },
@@ -68,16 +70,18 @@ const fullText = (
 );
 
 const filtersChoice: FiltersState = {
-  genres: [''],
+  genres: ['Детские', 'Аниме'],
   countries: [''],
-  years: [''],
+  years: [0],
   ratingMin: 4.0,
   ratingMax: 9.0,
   scoreMin: 10000,
-  scoreMax: 100000
+  scoreMax: 200000
 }
 
 const Movies = () => {
+  const [isFilter, setIsFilter] = useState(true);
+
   return (
     <>
       <Head>
@@ -86,43 +90,63 @@ const Movies = () => {
       <div className={styles.container}>
         <section className={styles.headerbar}>
           <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
-          <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
-          <Description
-            truncText={truncText}
-            fullText={fullText}
-            className={styles.description}
-          />
+          {!isFilter && (
+            <>
+              <h1 className={styles.title}>Фильмы смотреть онлайн</h1>
+              <Description
+                truncText={truncText}
+                fullText={fullText}
+                className={styles.description}
+              />
+            </>
+          )}
+          {isFilter && (
+            <>
+              <h1 className={styles.title}>Фильмы</h1>
+              <FiltersTitleRow filtersChoice={filtersChoice} />
+            </>
+          )}
+        </section>
+        {!isFilter && (
           <div className={styles.suggestionRow}>
             <Suggestion />
           </div>
-        </section>
-        {/* <div className={styles.sortRow}>
-          <Sort />
-        </div> */}
+        )}
+        {isFilter && (
+          <div className={styles.sortRow}>
+            <Sort />
+          </div>
+        )}
         <section className={styles.filtersRow}>
-          <Filters filtersChoice={filtersChoice} />
+          <Filters filtersChoice={filtersChoice} isFilter={isFilter} setIsFilter={setIsFilter} />
         </section>
       </div>
-      <div className={styles.genresRow}>
-        <h2 className={styles.genresRow__title}>Жанры</h2>
-        <Carousel
-          elem={<GenresButton size="big" genres="Исторические" id={11} />}
-          count={10}
-        />
-      </div>
-      <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
-      <div className={styles.personRow}>
-        <h2 className={styles.personRow__title}>Персоны </h2>
-        <Carousel
-          elem={<PosterPerson />}
-          count={10}
-        />
-      </div>
-      <section className={styles.container}>
-        <div className={styles.resultsRow}>
-          <MovieResults />
-        </div>
-      </section>
+      {!isFilter && (
+        <section>
+          <div className={styles.genresRow}>
+            <h2 className={styles.genresRow__title}>Жанры</h2>
+            <Carousel
+              elem={<GenresButton size="big" genres="Исторические" id={11} />}
+              count={10}
+            />
+          </div>
+          <Catalog title={"Лучшие фильмы"} elem={<Poster />} count={10} />
+          <div className={styles.personRow}>
+            <h2 className={styles.personRow__title}>Персоны </h2>
+            <Carousel
+              elem={<PosterPerson />}
+              count={10}
+            />
+          </div>
+        </section>
+      )}
+      {isFilter && (
+        <section className={styles.container}>
+          <div className={styles.resultsRow}>
+            <MovieResults />
+          </div>
+        </section>
+      )}
     </>
   );
 };

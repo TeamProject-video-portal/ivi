@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, Dispatch, SetStateAction } from 'react';
 import styles from './index.module.scss'
 import { TfiClose } from "react-icons/tfi";
 import FilterItem from './FilterItem';
@@ -10,11 +10,12 @@ import { IoFilter } from 'react-icons/io5';
 import { FiltersState } from "@/data/filters";
 
 type FiltersProps = {
-  filtersChoice: FiltersState
+  filtersChoice: FiltersState;
+  isFilter: boolean;
+  setIsFilter: Dispatch<SetStateAction<boolean>>;
 }
 
-const Filters: FC<FiltersProps> = ({ filtersChoice }) => {
-  const [isFilter, setIsFilter] = useState(false);
+const Filters: FC<FiltersProps> = ({ filtersChoice, isFilter, setIsFilter }) => {
   const [isOpen, setIsOpen] = useState('');
 
   return (
@@ -28,7 +29,10 @@ const Filters: FC<FiltersProps> = ({ filtersChoice }) => {
         <RangeRating rtl={false} ratingMin={filtersChoice.ratingMin} ratingMax={filtersChoice.ratingMax} />
         <RangeScore rtl={false} scoreMin={filtersChoice.scoreMin} scoreMax={filtersChoice.scoreMax} />
       </div>
-      <button className={styles.filtersBtn} disabled={!isFilter}><TfiClose /> Сбросить фильтры</button>
+      <button className={`${styles.filtersBtn} ${isFilter && styles.filtersBtn_active}`} disabled={!isFilter} onClick={() => setIsFilter(false)}>
+        <TfiClose />
+        Сбросить фильтры
+      </button>
     </div>
   );
 };

@@ -40,7 +40,7 @@ export const filtersTitle = [
   { title: 'actors', value: 'Актёры' },
 ];
 
-export interface FilterState {
+export interface FiltersState {
   genres: string[];
   countries: string[];
   years: number[];

@@ -11,8 +11,11 @@
     "watch": "Смотреть 30 дней бесплатно",
     "search": "Поиск"
   },
-  "titles": {
-    "news_series": "Сериалы-новинки",
-    "continue_browsing": "Продолжить просмотр"
+
+  "sliders_title": {
+    "continue_browsing": "Продолжить просмотр",
+    "modern_cartoons": "Современные мультфильмы",
+    "drama": "Драмы",
+    "during_the_week": "за неделю"
   }
 }

@@ -3,8 +3,8 @@
 
 .header {
   background-color: $base-dark-blue;
-  z-index: 1000;
   width: 100%;
+  z-index: 100;
 
   .container {
     height: 72px;
@@ -14,18 +14,27 @@
     justify-content: space-between;
     position: relative;
     border-bottom: 1px solid rgb(255, 255, 255, 0.2);
-
-    @include container_1280 {
+    padding: 0 20px;
+    box-sizing: border-box;
+    @include desktop {
+      margin: 0 auto;
+      max-width: 1216px;
     }
 
-    @include container_920 {
+    @include laptop {
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1216px;
     }
+
     .container_active {
       height: inherit;
-      @include container_1280 {
+      @include laptop {
+      }
+      @include desktop {
       }
       position: absolute;
-      background-color: $base-dark-grey;
+      // background-color: $base-dark-grey;
       opacity: 0.48;
       border-radius: 14px 14px 0px 0px;
       z-index: 0;

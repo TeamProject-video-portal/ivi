@@ -17,9 +17,8 @@
     @content;
   }
 }
-
-@mixin _1160 {
-  @media screen and (max-width: 1160px) {
+@mixin tablet_m {
+  @media screen and (min-width: 1020px) and (max-width: 1160px) {
     @content;
   }
 }
@@ -43,6 +42,11 @@
   }
 }
 
+@mixin desktop {
+  @media screen and (min-width: 1280px) {
+    @content;
+  }
+}
 @mixin container_1280 {
   @media screen and (min-width: 1280px) {
     width: 1216px;

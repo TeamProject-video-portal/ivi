@@ -43,5 +43,11 @@
         transition: color 0.8s ease 0s;
       }
     }
+    &_active {
+      opacity: 1;
+      svg {
+        stroke-width: 1px;
+      }
+    }
   }
 }

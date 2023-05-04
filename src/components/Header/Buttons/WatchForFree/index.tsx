@@ -1,14 +1,14 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
-import { useRouter } from "next/router";
+import { useTranslation } from "next-export-i18n";
 
 const WatchingButton: FC = () => {
-  const router = useRouter();
+  const { t } = useTranslation();
 
   return (
     <div>
       <button className={styles.button_watch_for_free}>
-        Смотреть 30 дней бесплатно
+        {t("buttons.watch")}
       </button>
     </div>
   );

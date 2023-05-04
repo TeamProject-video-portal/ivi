@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  i18n: {
-    locales: ["en", "ru"],
-    defaultLocale: "ru",
-    localeDetection: false,
-  },
-  trailingSlash: true,
+  locales: ["en", "ru"],
+  defaultLocale: "en",
+
   async redirects() {
     return [
       {
@@ -25,7 +22,14 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ["cdn.iz.ru"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "assets.example.com",
+        port: "",
+        pathname: "/account123/**",
+      },
+    ],
   },
 };
 

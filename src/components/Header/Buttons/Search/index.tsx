@@ -1,8 +1,6 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
-import { IconContext } from "react-icons";
-import { MdSearch } from "react-icons/md";
-import { useRouter } from "next/router";
+
 import { useTranslation } from "next-export-i18n";
 
 const SearchButton: FC = () => {

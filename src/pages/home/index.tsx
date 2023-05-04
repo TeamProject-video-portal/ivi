@@ -4,9 +4,11 @@ import Banner from "@/components/Banner";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
+import { useTranslation } from "next-export-i18n";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Head>
@@ -16,9 +18,12 @@ const Home = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Banner />
-      <SliderContinueBrowsing title={""} type={"summary"} />
+      <SliderContinueBrowsing
+        title={t("sliders_title.continue_browsing")}
+        type={"summary"}
+      />
       <SliderTopTen />
-      <SimpleSlider title={"Добрые мультсериалы"} />
+      <SimpleSlider title={t("sliders_title.modern_cartoons")} />
     </>
   );
 };

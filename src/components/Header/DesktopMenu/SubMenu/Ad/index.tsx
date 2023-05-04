@@ -12,7 +12,11 @@ const posters = [
   "https://scientificrussia.ru/images/b/teb-full.jpg",
   "https://scientificrussia.ru/images/b/teb-full.jpg",
 ];
-const Ad: FC = () => {
+
+type Props = {
+  type: string;
+};
+const Ad: FC<Props> = ({ type }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const renderSlides = () => {
@@ -24,8 +28,9 @@ const Ad: FC = () => {
       );
     });
   };
+
   return (
-    <div className={styles.container}>
+    <div className={styles[type]}>
       <div className={styles.sliders}>
         <div className={styles.container_slider}>
           <Slider {...settings1} className={styles.no_active}>

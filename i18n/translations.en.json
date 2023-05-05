@@ -10,9 +10,12 @@
   "buttons": {
     "watch": "Watch 30 days for free",
     "search": "Search",
-    "titles": {
-      "news_series": "New series",
-      "continue_browsing": "Continue browsing"
-    }
+    "turn_off": "You can turn it off at any time"
+  },
+  "sliders_title": {
+    "continue_browsing": "Continue browsing",
+    "modern_cartoons": "Modern cartoons",
+    "drama": "Drama",
+    "during_the_week": "during the week"
   }
 }

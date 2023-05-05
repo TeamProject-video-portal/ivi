@@ -34,7 +34,11 @@ export const Header: FC = () => {
         </div>
 
         <div className={styles.buttons}>
-          <WatchingButton />
+          <WatchingButton
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+            setSubMenuTitle={setSubMenuTitle}
+          />
           <SearchButton />
           <NotificationButton />
           <ProfileButton />

@@ -6,6 +6,7 @@ import { ContextSubMenu } from "@/components/ContextSubMenu";
 import { DropDownMenuFilm } from "@/components/ContextSubMenu/DropDownMenuFilm";
 import { DropDownMenuSerial } from "@/components/ContextSubMenu/DropDownMenuSerial";
 import { DropDownMenuAnim } from "@/components/ContextSubMenu/DropDownMenuAnim";
+import { DropDownMenuButton } from "@/components/ContextSubMenu/DropDownMenuButton";
 
 type Props = {
   isOpenSubMenu?: boolean;
@@ -22,13 +23,16 @@ const SubMenu: FC<Props> = (props) => {
       {props.isOpenSubMenu && (
         <div className={styles.wrapper}>
           <div className={styles.bg_div}></div>
-          <ContextSubMenu className={styles.content}>
-            {props.subMenuTitle === "film" && <DropDownMenuFilm />}
-            {props.subMenuTitle === "series" && <DropDownMenuSerial />}
-            {props.subMenuTitle === "anim" && <DropDownMenuAnim />}
-          </ContextSubMenu>
-
-          <Ad />
+          {props.subMenuTitle !== "button" ? (
+            <ContextSubMenu className={styles.content}>
+              {props.subMenuTitle === "film" && <DropDownMenuFilm />}
+              {props.subMenuTitle === "series" && <DropDownMenuSerial />}
+              {props.subMenuTitle === "anim" && <DropDownMenuAnim />}
+              <Ad type={"summary"} />
+            </ContextSubMenu>
+          ) : (
+            <DropDownMenuButton />
+          )}
         </div>
       )}
     </div>

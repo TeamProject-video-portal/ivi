@@ -8,4 +8,8 @@
   padding: 7px 11px;
   cursor: pointer;
   margin-right: 20px;
+
+  &:hover {
+    background-color: $base-bright-pink;
+  }
 }

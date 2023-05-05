@@ -4,7 +4,7 @@
 .button_search {
   @include font-regular-m;
   height: 32px;
-  width: 70px;
+  width: 75px;
   color: $base-ligth-grey;
   cursor: pointer;
   display: flex;
@@ -12,16 +12,16 @@
   align-items: center;
   justify-content: space-between;
 
-  .search_icon {
+  .icon {
     width: 20px;
     height: 20px;
     color: $base-ligth-grey;
-    margin-top: 3px;
-    margin-right: 5px;
+    margin-top: 4px;
   }
   &:hover {
-    .search_icon,
-    span {
+    .icon,
+    p {
+      transition-duration: 0.3s;
       color: $base-white;
     }
   }

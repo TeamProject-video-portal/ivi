@@ -12,7 +12,7 @@
   }
   .description {
     width: 76%;
-    @include _1160 {
+    @include tablet_m {
       width: 100%;
     }
   }

@@ -89,7 +89,7 @@ const Movies = () => {
       </Head>
       <div className={styles.container}>
         <section className={styles.headerbar}>
-          <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="&middot;" />
+          <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
           {!isFilter && (
             <>
               <h1 className={styles.title}>Фильмы смотреть онлайн</h1>

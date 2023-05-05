@@ -23,7 +23,7 @@ body {
 
 main {
   flex: 1 1 auto;
-  @include tablet_m {
+  @include mobile_screen {
     margin-bottom: 48px;
   }
 }

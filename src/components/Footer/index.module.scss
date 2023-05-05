@@ -7,7 +7,7 @@
     padding-bottom: 48px;
     padding-top: 48px;
     border-top: 1px solid $base-light-grey;
-    @include tablet_m {
+    @include mobile_screen {
       display: none;
     }
   }
@@ -71,11 +71,7 @@
       align-items: center;
       height: 104px;
       width: 104px;
-      background: linear-gradient(
-        180deg,
-        $base-light-lilac 0,
-        $base-dark-lilac
-      );
+      background: linear-gradient(180deg, $base-light-lilac 0, $base-dark-lilac);
       border-radius: 20px;
       box-shadow: 0 0 104px $base-light-lilac;
     }

@@ -4,7 +4,7 @@
 .modalHeader {
   display: none;
   &_open {
-    @include _1160 {
+    @include mobile_screen {
       position: fixed !important;
       top: 0;
       left: 0;
@@ -18,7 +18,7 @@
 .mobileModal {
   display: none;
   &_open {
-    @include _1160 {
+    @include mobile_screen {
       position: fixed;
       right: 0;
       left: 0;

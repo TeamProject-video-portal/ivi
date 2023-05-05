@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from "./index.module.scss"
 import FilmographyItem from './FilmographyItem'
 
-const filmographyArray = [...new Array(15)];
+const filmographyArray = [...new Array(10)];
 
 const Filmography: FC = () => {
 

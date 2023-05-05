@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from "next/image";
+import Link from 'next/link';
 import styles from "./index.module.scss";
 import Description from "@/components/Description";
 import Carousel from "@/components/Catalog/Carousel";
@@ -36,10 +37,12 @@ const Person = () => {
         <title>Страница актера или режиссера</title>
       </Head>
       <div className={styles.container}>
-        <Button className={styles.backBtn}>
-          <div className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}></div>
-          <div>Назад</div>
-        </Button>
+        <Link href={'/'}>
+          <Button className={styles.backBtn}>
+            <div className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}></div>
+            <div>Назад</div>
+          </Button>
+        </Link>
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
             <Image src={personImage} alt="person" className={styles.img} fill></Image>

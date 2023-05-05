@@ -7,7 +7,7 @@
     padding-bottom: 48px;
     padding-top: 48px;
     border-top: 1px solid $base-light-grey;
-    @include _1160 {
+    @include mobile_screen {
       display: none;
     }
   }

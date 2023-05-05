@@ -10,10 +10,10 @@
     grid-template-columns: repeat(5, 1fr);
     gap: 12px;
     width: 100%;
-    @include _880 {
+    @include screen_880 {
       grid-template-columns: repeat(2, 1fr);
     }
-    @include _600 {
+    @include mobile_600 {
       grid-template-columns: 1fr;
     }
   }

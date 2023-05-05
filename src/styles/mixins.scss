@@ -23,19 +23,19 @@
   }
 }
 
-@mixin _1160 {
+@mixin mobile_screen {
   @media screen and (max-width: 1160px) {
     @content;
   }
 }
 
-@mixin _880 {
+@mixin screen_880 {
   @media screen and (max-width: 880px) {
     @content;
   }
 }
 
-@mixin _600 {
+@mixin mobile_600 {
   @media screen and (max-width: 600px) {
     @content;
   }

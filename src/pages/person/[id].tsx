@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from "next/image";
 import Link from 'next/link';
+import { GetServerSideProps } from "next";
 import styles from "./index.module.scss";
 import Description from "@/components/Description";
 import Carousel from "@/components/Catalog/Carousel";
@@ -10,8 +11,9 @@ import { Button } from '@/components/Button/Button';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import { Breadcrumb } from '@/components/Breadcrumbs';
 import Filmography from '@/components/Filmography';
+import { IPerson } from '@/types/types';
 
-const personImage = require("../../images/personImage2.jpeg");
+const personImage = require("../../images/diKaprio.webp");
 const truncText = (
   <p>
     Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной роли в картине братьев...
@@ -22,14 +24,32 @@ const fullText = (
     Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной роли в картине братьев Коэн «Внутри Льюина Дэвиса».
   </p>
 );
-const breadcrumbs: Breadcrumb[] = [
-  { item: `${47} фильмов`, path: "#filmography" },
-  { item: "Биография", path: "#" },
-];
 
-const Person = () => {
-  const router = useRouter();
-  //console.log('router: ', router);
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.params?.id || 1;
+  const response = await fetch(`http://localhost:8000/persons/${id}`);
+  const data = await response.json();
+  console.log(data);
+
+  if (!data) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { person: data as IPerson },
+  }
+};
+
+const Person = ({ person }) => {
+
+  console.log(person);
+
+  const breadcrumbs: Breadcrumb[] = [
+    { item: `${person.films.length} фильмов`, path: "#filmography" },
+    { item: "Биография", path: "#" },
+  ];
 
   return (
     <>
@@ -47,14 +67,14 @@ const Person = () => {
           <div className={styles.imgContainer}>
             <Image src={personImage} alt="person" className={styles.img} fill></Image>
           </div>
-          <h1 className={styles.title}>Оскар Айзек</h1>
-          <div className={styles.title_en}>Oscar Isaak</div>
+          <h1 className={styles.title}>{person.actorLang[0].actorName}</h1>
+          <div className={styles.title_en}>{person.actorLang[0].actorName}</div>
           <Description truncText={truncText} fullText={fullText} className={styles.description} />
           <div className={styles.breadcrumbsRow}>
             <Breadcrumbs breadcrumbs={breadcrumbs} type="films" del="&middot;" />
           </div>
           <div className={styles.filmographyRow}>
-            <Filmography />
+            <Filmography person={person} />
           </div>
         </section>
       </div>

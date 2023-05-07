@@ -4,13 +4,14 @@ import Image from "next/image";
 import Link from 'next/link';
 import { Button } from '@/components/Button/Button';
 import { ActorFilmsType } from '@/types/types';
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
 
 type PhilmographyItemProps = {
   film: ActorFilmsType;
 }
 
 const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
-  console.log(film);
+  const { t } = useTranslation();
   const filmImage = require("../../../images/film1.jpeg");
 
   return (
@@ -25,7 +26,7 @@ const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
             <div>{film.name}</div>
             <div className={styles.philmographyItem__rating}>Рейтинг Иви: 7.1</div>
           </div>
-          <Button color='purple' className={styles.philmographyItem__btn}>Подробнее</Button>
+          <Button color='purple' className={styles.philmographyItem__btn}>{t('buttons.read_more')}</Button>
         </div>
       </div>
     </Link>

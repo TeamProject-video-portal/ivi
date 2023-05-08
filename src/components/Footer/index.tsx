@@ -1,5 +1,6 @@
 import { FC } from "react";
 import Link from "next/link";
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Button/Button";
 import { IoMailOutline } from "react-icons/io5";
@@ -13,19 +14,21 @@ import speakerphone from "../../images/speakerphone.png";
 import Socials from "@/components/Socials";
 
 export const Footer: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <footer>
       <div className={styles.container}>
         <div className={styles.content}>
           <nav className={styles.cols}>
-            <h3 className={styles.cols__title}>О нас</h3>
-            <ul className={styles.list}>
+            <h3 className={styles.cols__title}>{t("footer.about_us")}</h3>
+            <ul className={styles.list} >
               <li key="0">
                 <Link
                   href={"https://corp.ivi.ru/"}
                   className={styles.list__link}
                 >
-                  О компании
+                  {t("footer.about_company")}
                 </Link>
               </li>
               <li key="1">
@@ -33,7 +36,7 @@ export const Footer: FC = () => {
                   href={"https://corp.ivi.ru/career/#career-vacancy-block"}
                   className={styles.list__link}
                 >
-                  Вакансии
+                  {t("footer.vacancies")}
                 </Link>
               </li>
               <li key="2">
@@ -41,7 +44,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/pages/beta/"}
                   className={styles.list__link}
                 >
-                  Программа бета-тестирования
+                  {t("footer.program_beta_test")}
                 </Link>
               </li>
               <li key="3">
@@ -49,7 +52,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/info/partners"}
                   className={styles.list__link}
                 >
-                  Информация для партнёров
+                  {t("footer.inform_partners")}
                 </Link>
               </li>
               <li key="4">
@@ -57,7 +60,7 @@ export const Footer: FC = () => {
                   href={"https://corp.ivi.ru/advertisers/"}
                   className={styles.list__link}
                 >
-                  Размещение рекламы
+                  {t("footer.advertising")}
                 </Link>
               </li>
               <li key="5">
@@ -65,7 +68,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/info/agreement"}
                   className={styles.list__link}
                 >
-                  Пользовательское соглашение
+                  {t("footer.agreement")}
                 </Link>
               </li>
               <li key="6">
@@ -73,7 +76,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/info/confidential"}
                   className={styles.list__link}
                 >
-                  Политика конфиденциальности
+                  {t("footer.confidential")}
                 </Link>
               </li>
               <li key="7">
@@ -81,17 +84,17 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/info/goryachaya-liniya-komplaens"}
                   className={styles.list__link}
                 >
-                  Комплаенс
+                  {t("footer.compliance")}
                 </Link>
               </li>
             </ul>
           </nav>
           <nav className={styles.cols}>
-            <h3 className={styles.cols__title}>Разделы</h3>
+            <h3 className={styles.cols__title}>{t("footer.sections")}</h3>
             <ul className={styles.list}>
               <li key="0">
                 <Link href={"/"} className={styles.list__link}>
-                  Мой Иви
+                  {t("header.my_ivi")}
                 </Link>
               </li>
               <li key="1">
@@ -99,12 +102,12 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/new"}
                   className={styles.list__link}
                 >
-                  Что нового
+                  {t("header.whats_new")}
                 </Link>
               </li>
               <li key="2">
                 <Link href={"/movies"} className={styles.list__link}>
-                  Фильмы
+                  {t("header.movies")}
                 </Link>
               </li>
               <li key="3">
@@ -112,7 +115,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/series"}
                   className={styles.list__link}
                 >
-                  Сериалы
+                  {t("header.series")}
                 </Link>
               </li>
               <li key="4">
@@ -120,7 +123,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/animation"}
                   className={styles.list__link}
                 >
-                  Мультфильмы
+                  {t("header.animations")}
                 </Link>
               </li>
               <li key="5">
@@ -136,7 +139,7 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/goodmovies"}
                   className={styles.list__link}
                 >
-                  Что посмотреть
+                  {t("footer.what_to_see")}
                 </Link>
               </li>
               <li className={styles.list__sert} key="7">
@@ -144,22 +147,22 @@ export const Footer: FC = () => {
                   href={"https://www.ivi.ru/cert"}
                   className={styles.list__link}
                 >
-                  Активация сертификата
+                  {t("footer.certificate")}
                 </Link>
               </li>
             </ul>
           </nav>
           <div className={styles.cols}>
-            <h3 className={styles.cols__title}>Служба поддержки</h3>
+            <h3 className={styles.cols__title}>{t("footer.support")}</h3>
             <p>
-              Мы всегда готовы вам помочь.
+              {t("footer.ready_helps")}
               <br />
-              Наши операторы онлайн 24/7
+              {t("footer.operators_online")}
             </p>
             <div className={styles.support}>
               <Link href={"https://www.ivi.ru/profile"}>
                 <Button type="chatButton" color="purple">
-                  Написать в чате
+                  {t("footer.write_chat")}
                 </Button>
               </Link>
               <div className={styles.support__btns}>
@@ -177,7 +180,7 @@ export const Footer: FC = () => {
               <Link href={"https://ask.ivi.ru/"} className={styles.ask}>
                 ask.ivi.ru
               </Link>
-              <p>Ответы на вопросы</p>
+              <p>{t("footer.answers")}</p>
             </div>
           </div>
           <div className={styles.cols}>
@@ -189,7 +192,7 @@ export const Footer: FC = () => {
                 <Image src={speakerphone} alt="speakerphone" priority></Image>
               </div>
               <p className={styles.widget__text}>
-                Смотрите фильмы, сериалы и мультфильмы без рекламы
+                {t("footer.watch_movies")}
               </p>
             </Link>
           </div>
@@ -204,7 +207,7 @@ export const Footer: FC = () => {
                 <Button type="footerStoresButton" color="purple">
                   <FaApple />
                   <div>
-                    <span>Загрузить в</span>
+                    <span>{t("footer.download_to")}</span>
                     <div>App Store</div>
                   </div>
                 </Button>
@@ -216,7 +219,7 @@ export const Footer: FC = () => {
                 <Button type="footerStoresButton" color="purple">
                   <FaGooglePlay />
                   <div>
-                    <span>Доступно в</span>
+                    <span>{t("footer.available_in")}</span>
                     <div>Google Play</div>
                   </div>
                 </Button>
@@ -225,7 +228,7 @@ export const Footer: FC = () => {
                 <Button type="footerStoresButton" color="purple">
                   <BsTvFill />
                   <div>
-                    <span>Смотрите на</span>
+                    <span>{t("footer.watch_on")}</span>
                     <div>Smart TV</div>
                   </div>
                 </Button>
@@ -234,7 +237,7 @@ export const Footer: FC = () => {
                 <Button type="footerStoresButton" color="purple">
                   <MdDevicesOther />
                   <div>
-                    <div>Все устройства</div>
+                    <div>{t("footer.all_devices")}</div>
                   </div>
                 </Button>
               </Link>

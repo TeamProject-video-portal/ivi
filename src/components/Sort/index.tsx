@@ -1,17 +1,20 @@
 import { FC, useState } from 'react';
 import styles from './index.module.scss'
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
+import { useLanguageQuery, useTranslation } from 'next-export-i18n';
 
 type SortType = 'SCORE' | 'RATING' | 'DATE' | 'TITLE';
 
-const SortList = {
-  'SCORE': 'по количеству оценок',
-  'RATING': 'по рейтингу',
-  'DATE': 'по дате выхода',
-  'TITLE': 'по алфавиту',
-}
-
 const Sort: FC = () => {
+  const { t } = useTranslation();
+
+  const SortList = {
+    'SCORE': `${t('filters.score')}`,
+    'RATING': `${t('filters.by_rating')}`,
+    'DATE': `${t('filters.by_score')}`,
+    'TITLE': `${t('filters.by_title')}`,
+  }
+
   const [isOpen, setIsOpen] = useState(false);
   const [sort, setSort] = useState<SortType>('RATING');
 
@@ -29,7 +32,7 @@ const Sort: FC = () => {
       </div>
       {isOpen && sort && (
         <div className={styles.sort__popup}>
-          <div className={styles.label}>Сортировать</div>
+          <div className={styles.label}>{t('filters.sort')}</div>
           <div className={styles.sortItem} onClick={(e) => onClickSort('SCORE')}>
             <div className={sort == 'SCORE' ? styles.borderActive : ''}></div>
             {SortList['SCORE']}

@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
 import Link from "next/link";
+import { useLanguageQuery, useTranslation } from 'next-export-i18n';
 import styles from "./index.module.scss";
 import { RiH2 } from "react-icons/ri";
 import { MovieGenres } from "@/data/filters";
@@ -15,12 +16,14 @@ export const ContextSubMenu: FC<ContextSubProps> = ({
   className,
   title,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={[styles.submenu, className].join(" ")}>
       {title && <h2>{title}</h2>}
       <div className={styles.content}>
         <div>
-          <h3>Жанры</h3>
+          <h3>{t('contextSubMenu.genres')}</h3>
           <ul>
             {MovieGenres.map((item, index) => (
               <li key={`${item.length}- ${index}`}>
@@ -30,7 +33,7 @@ export const ContextSubMenu: FC<ContextSubProps> = ({
           </ul>
         </div>
         <div>
-          <h3>Страны</h3>
+          <h3>{t('contextSubMenu.countries')}</h3>
           <ul>
             {[...new Array(3)].map((_, i) => (
               <li key={i}>
@@ -38,7 +41,7 @@ export const ContextSubMenu: FC<ContextSubProps> = ({
               </li>
             ))}
           </ul>
-          <h3>Годы</h3>
+          <h3>{t('contextSubMenu.years')}</h3>
           <ul>
             {[...new Array(4)].map((_, i) => (
               <li key={i}>

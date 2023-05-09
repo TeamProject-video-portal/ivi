@@ -1,20 +1,27 @@
 import { FC } from 'react';
 import styles from "./index.module.scss"
 import FilmographyItem from './FilmographyItem'
+import { ActorFilmsType, IPerson } from '@/types/types';
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
 
-const filmographyArray = [...new Array(10)];
+//const filmographyArray = [...new Array(10)];
+type FilmographyProps = {
+  person: IPerson;
+}
 
-const Filmography: FC = () => {
+const Filmography: FC<FilmographyProps> = ({ person }) => {
+  const { t } = useTranslation();
+  const filmographyArray = person.films
 
   return (
     <div className={styles.filmography}>
       <div className={styles.titleRow}>
-        <h2 id="filmography" className={styles.title}>Полная фильмография</h2>
-        <div className={styles.count}>47 фильмов</div>
+        <h2 id="filmography" className={styles.title}>{t('person.filmography')}</h2>
+        <div className={styles.count}>{person.films.length} {t('person.count_movies')}</div>
       </div>
       <div className={styles.filmographyContent}>
         {filmographyArray.map((item, i) =>
-          <FilmographyItem key={i} />
+          <FilmographyItem key={i} film={item} />
         )}
       </div>
     </div>

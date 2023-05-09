@@ -1,4 +1,5 @@
 import { FC, useState } from "react";
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import { IconContext } from "react-icons";
@@ -12,6 +13,7 @@ import { Button } from "../Button/Button";
 import { MobileModal } from "./MobileModal";
 
 const MobileMenu: FC = () => {
+  const { t } = useTranslation();
   const [modal, setModal] = useState(false);
   const [activeItem, setActiveItem] = useState('');
 
@@ -42,7 +44,7 @@ const MobileMenu: FC = () => {
                   <RiHome6Line />
                 </div>
               </IconContext.Provider>
-              <span>Мой Иви</span>
+              <span>{t("header.my_ivi")}</span>
             </div>
           </Link>
           <Link href="/movies">
@@ -56,7 +58,7 @@ const MobileMenu: FC = () => {
                   <BsCollectionPlayFill />
                 </div>
               </IconContext.Provider>
-              <span>Каталог</span>
+              <span>{t("buttons.catalog")}</span>
             </div>
           </Link>
           <Link href="https://www.ivi.ru/profile?ivi_search" >
@@ -70,7 +72,7 @@ const MobileMenu: FC = () => {
                   <MdSearch />
                 </div>
               </IconContext.Provider>
-              <span>Поиск</span>
+              <span>{t("buttons.search")}</span>
             </div>
           </Link >
           <Link href="/">
@@ -84,7 +86,7 @@ const MobileMenu: FC = () => {
                   <RiUser3Line />
                 </div>
               </IconContext.Provider>
-              <span>Профиль</span>
+              <span>{t("buttons.profile")}</span>
             </div>
           </Link >
           <Button>
@@ -98,7 +100,7 @@ const MobileMenu: FC = () => {
                   {modal ? <CgClose /> : <BsThreeDots />}
                 </div>
               </IconContext.Provider>
-              <span>{modal ? 'Закрыть' : 'Ещё'}</span>
+              <span>{modal ? t("buttons.close_btn") : t("buttons.more_btn")}</span>
             </div>
           </Button>
         </div >

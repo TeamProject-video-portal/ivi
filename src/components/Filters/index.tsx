@@ -8,6 +8,7 @@ import { filtersTitle } from '@/data/filters';
 import { genres } from '@/data/filters';
 import { IoFilter } from 'react-icons/io5';
 import { FiltersState } from "@/data/filters";
+import { useLanguageQuery, useTranslation } from 'next-export-i18n';
 
 type FiltersProps = {
   filtersChoice: FiltersState;
@@ -16,6 +17,7 @@ type FiltersProps = {
 }
 
 const Filters: FC<FiltersProps> = ({ filtersChoice, isFilter, setIsFilter }) => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState('');
 
   return (
@@ -31,7 +33,7 @@ const Filters: FC<FiltersProps> = ({ filtersChoice, isFilter, setIsFilter }) => 
       </div>
       <button className={`${styles.filtersBtn} ${isFilter && styles.filtersBtn_active}`} disabled={!isFilter} onClick={() => setIsFilter(false)}>
         <TfiClose />
-        Сбросить фильтры
+        {t('filters.reset_filters')}
       </button>
     </div>
   );

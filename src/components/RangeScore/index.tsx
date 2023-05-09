@@ -1,6 +1,7 @@
 import { FC, useState, useRef } from 'react';
 import styles from './index.module.scss'
 import { Range, getTrackBackground, useThumbOverlap } from 'react-range';
+import { useLanguageQuery, useTranslation } from 'next-export-i18n';
 
 const STEP = 1000;
 const MIN = 0;
@@ -53,13 +54,14 @@ type RangeScoreProps = {
 }
 
 const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
+  const { t } = useTranslation();
   const [values, setValues] = useState([scoreMin, scoreMax]);
   const [finalValues, setFinalValues] = useState([scoreMin, scoreMax]);
   const rangeRef: any = useRef<Range>();
 
   return (
     <div className={styles.rangeContainer}>
-      <h3 className={styles.title}>Количество оценок</h3>
+      <h3 className={styles.title}>{t('filters.score')}</h3>
       <Range
         ref={rangeRef}
         step={STEP}

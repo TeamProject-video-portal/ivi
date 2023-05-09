@@ -14,16 +14,26 @@ type Props = {
     actors: string[][];
     description: string;
   };
+  filmGrade: string;
+  filmAge: string;
+  filmDate: string;
+  filmLang: { filmName: string; filmTime: string }[];
 };
-export const DescriptionCard: FC<Props> = ({ data }) => {
+export const DescriptionCard: FC<Props> = ({
+  data,
+  filmGrade,
+  filmAge,
+  filmDate,
+  filmLang,
+}) => {
   return (
     <div className={styles.container}>
-      <h1>{data.title}</h1>
+      <h1>{filmLang[0].filmName} смотреть онлайн</h1>
       <div className={styles.data}>
         <div className={styles.row_time}>
-          <span>2023</span>
+          <span>{filmDate}</span>
           <span>1 ч. 26 мин.</span>
-          <span>18+</span>
+          <span>{filmAge}</span>
         </div>
         <div className={styles.row_theme}>
           <span> Россия</span>
@@ -48,7 +58,7 @@ export const DescriptionCard: FC<Props> = ({ data }) => {
         </div>
       </div>
       <div className={styles.actors}>
-        <Raiting raiting={data.raiting} />
+        <Raiting filmGrade={filmGrade} />
         {data.actors.map((item) => {
           return <Actors img={item[0]} name={item[1]} />;
         })}

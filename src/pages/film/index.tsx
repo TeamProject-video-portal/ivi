@@ -1,6 +1,5 @@
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import styles from "./index.module.scss";
-import { TrailerCard } from "@/components/TrailerCard";
 import { DescriptionCard } from "@/components/DescriptionCard";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
@@ -32,13 +31,26 @@ const data = {
   description:
     "Культовая драма Дэвида Финчера с Брэдом Питтом, Эдвардом Нортоном и Хеленой Бонэм Картер. Экранизация одноименного романа Чака Паланика, которая значительно повысила популярность писателя в мире и стала одним из главных фильмов 90-х. Рассказ ведётся от лица человека без имени. Это типичный «белый воротничок», страдающий от бессонницы, сомнений на тему выбора посуды («Какой сервиз лучше выразит меня как личность?») и собственной никчемности. Однажды в самолёте он знакомится с харизматичным бунтарём Тайлером Дерденом, который живёт по совсем другим установкам: «Всё, что имеешь ты, в конце концов имеет тебя». Рассказчик попадает под влияние опасного, дерзкого и загадочного Тайлера. Вместе они организуют закрытый бойцовский клуб, о котором нельзя говорить. Смотреть легендарный «Бойцовский клуб» можно онлайн. Приглашаем посмотреть фильм «Бойцовский клуб» в нашем онлайн-кинотеатре в хорошем HD качестве. Приятного просмотра!",
 };
+
+import dataJSON from "../../data/One_film_response.json";
+import { TrailerCard } from "./TrailerCard";
+import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
+
 const Card = () => {
+  console.log(dataJSON);
   return (
     <div className={styles.container}>
+      <Ad type={"summary"} />
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
-        <TrailerCard />
-        <DescriptionCard data={data} />
+        <TrailerCard filmPicture={dataJSON.filmPicture} />
+        <DescriptionCard
+          data={data}
+          filmGrade={dataJSON.filmGrade}
+          filmAge={dataJSON.filmAge}
+          filmDate={dataJSON.filmDate}
+          filmLang={dataJSON.filmLang}
+        />
       </div>
       <SimpleSlider title={"С фильмом смотрят"} />
       <SliderContinueBrowsing

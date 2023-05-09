@@ -24,7 +24,7 @@ const SimpleSlider: FC<Props> = (props) => {
       </div>
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(10)].map((_, i) => (
-          <Link href="/card">
+          <Link href="/film">
             <Poster />
           </Link>
         ))}

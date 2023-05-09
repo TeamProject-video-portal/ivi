@@ -4,7 +4,7 @@ export const settings1 = {
   infinite: true,
   slidesToShow: 1,
   slidesToScroll: 2,
-  centerMode: true,
+  centerMode: false,
   autoplay: true,
   speed: 7000,
   autoplaySpeed: 0,

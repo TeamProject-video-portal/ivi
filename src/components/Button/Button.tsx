@@ -5,7 +5,9 @@ export type ButtonProps = {
   children?: ReactNode | ReactNode[];
   className?: string;
   color?: 'pink' | 'darkbluegrey' | 'purple';
-  type?: 'chatButton' | 'footerIconButton' | 'footerStoresButton' | 'socialButton' | 'subscribeButton' | 'deviceButton';
+  type?: 'chatButton' | 'footerIconButton' | 'footerStoresButton' | 'socialButton'
+  | 'subscribeButton' | 'deviceButton' | 'loginButton' | 'profileSertButton'
+  | 'profilePresentButton' | 'profileInviteButton' | 'profileMenuButton';
   width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
@@ -21,6 +23,11 @@ export const Button: FC<ButtonProps> = ({ children, className, color, type, widt
   if (type === 'socialButton') { cssClass.push(styles.socialButton) };
   if (type === 'subscribeButton') { cssClass.push(styles.subscribeButton) };
   if (type === 'deviceButton') { cssClass.push(styles.deviceButton) };
+  if (type === 'loginButton') { cssClass.push(styles.loginButton) };
+  if (type === 'profileSertButton') { cssClass.push(styles.profileSertButton) };
+  if (type === 'profilePresentButton') { cssClass.push(styles.profilePresentButton) };
+  if (type === 'profileInviteButton') { cssClass.push(styles.profileInviteButton) };
+  if (type === 'profileMenuButton') { cssClass.push(styles.profileMenuButton) };
 
   return (
     <button className={cssClass.join(" ")} style={{ width: `${width}` }} onClick={onClick}>

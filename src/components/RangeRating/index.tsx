@@ -5,7 +5,7 @@ import { useLanguageQuery, useTranslation } from 'next-export-i18n';
 
 const STEP = 0.1;
 const MIN = 0;
-const MAX = 9;
+const MAX = 10.0;
 
 const ThumbLabel = ({
   rangeRef,

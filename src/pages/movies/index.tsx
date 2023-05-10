@@ -21,7 +21,7 @@ const filtersChoice: FiltersState = {
   countries: [''],
   years: [0],
   ratingMin: 4.0,
-  ratingMax: 9.0,
+  ratingMax: 10.0,
   scoreMin: 10000,
   scoreMax: 200000
 }

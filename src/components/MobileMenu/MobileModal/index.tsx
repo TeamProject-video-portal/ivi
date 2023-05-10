@@ -188,7 +188,7 @@ export const MobileModal: FC<MobileModalProps> = ({ modal }) => {
               </p>
               <div className={`${styles.buttons} ${styles.buttons_chat}`}>
                 <Link href={'https://www.ivi.ru/profile'}>
-                  <Button className={styles.buttonChat} color="purple">
+                  <Button className={styles.buttonChat} type="chatButton" color="purple">
                     {t('footer.write_chat')}
                   </Button>
                 </Link>

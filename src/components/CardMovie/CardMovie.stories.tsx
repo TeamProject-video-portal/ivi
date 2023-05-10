@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import CardMovie, { CartProps } from "./index";
-import img from "../../../images/banner__foto.jpeg";
+import img from "../../images/banner__foto.jpeg";
 export default {
   title: "CardMovie",
   component: CardMovie,

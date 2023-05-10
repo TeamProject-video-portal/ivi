@@ -53,7 +53,8 @@
     "expand": "Expand",
     "collapse": "Collapse",
     "read_more": "Read more",
-    "show_more": "Show more"
+    "show_more": "Show more",
+    "enter_register": "Enter or register"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",
@@ -113,5 +114,22 @@
     "by_date": "by date",
     "alphabetically": "by title",
     "reset_filters": "Reset filters"
+  },
+  "profile": {
+    "subscribes": "Subscriptions",
+    "go_connection": "Go to connection",
+    "certificates": "Certificates and promo codes",
+    "activate": "Activate",
+    "account": "Ivi account",
+    "give_subscription": "Give a subscription to your loved ones",
+    "invite": "Invite friends",
+    "notifications": "Notifications and promotions",
+    "purchases": "Purchases",
+    "watch_later": "Watch later",
+    "views": "Views",
+    "payment": "Payment Methods",
+    "login_by_code": "Login by code",
+    "settings": "Settings",
+    "help": "Help"
   }
 }

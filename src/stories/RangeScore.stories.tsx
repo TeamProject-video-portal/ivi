@@ -9,4 +9,4 @@ const meta: Meta<typeof RangeScore> = {
 export default meta;
 type Story = StoryObj<typeof RangeScore>;
 
-export const Score: Story = {};
+export const ScoreRating: Story = {};

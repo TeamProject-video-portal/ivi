@@ -53,7 +53,8 @@
     "expand": "Развернуть",
     "collapse": "Свернуть",
     "read_more": "Подробнее",
-    "show_more": "Показать еще"
+    "show_more": "Показать еще",
+    "enter_register": "Войти или зарегистрироваться"
   },
   "sliders_title": {
     "continue_browsing": "Продолжить просмотр",
@@ -113,5 +114,22 @@
     "by_date": "по дате выхода",
     "by_title": "по алфавиту",
     "reset_filters": "Сбросить фильтры"
+  },
+  "profile": {
+    "subscribes": "Подписки",
+    "go_connection": "Перейти к подключению",
+    "certificates": "Сертификаты и промокоды",
+    "activate": "Активировать",
+    "account": "Счёт Иви",
+    "give_subscription": "Подарите подписку близким",
+    "invite": "Пригласить друзей",
+    "notifications": "Уведомления и акции",
+    "purchases": "Покупки",
+    "watch_later": "Смотреть позже",
+    "views": "Просмотры",
+    "payment": "Способы оплаты",
+    "login_by_code": "Вход по коду",
+    "settings": "Настройки",
+    "help": "Помощь"
   }
 }

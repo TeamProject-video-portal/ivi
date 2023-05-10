@@ -12,8 +12,11 @@ import codeImage from "../../images/profileImages/code.svg"
 import settingsImage from "../../images/profileImages/settings.svg"
 import supportImage from "../../images/profileImages/support.svg"
 import { TbVectorTriangle, TbBellRinging } from "react-icons/tb";
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
 
 const Profile = () => {
+  const { t } = useTranslation();
+  { t('buttons.back_btn') }
 
   return (
     <>
@@ -24,24 +27,24 @@ const Profile = () => {
         <Link href={'/'}>
           <Button type="loginButton" color="pink" className={styles.loginBtn}>
             <div className="nbl-icon nbl-icon_avatar_16 nbl-button__nbl-icon"></div>
-            Войти или зарегистрироваться
+            {t('buttons.enter_register')}
           </Button>
         </Link>
         <div className={styles.topBtnRow}>
           <Link href={'https://www.ivi.ru/profile/subscriptions'} className={styles.subscribeBtn}>
             <Button color="purple" type="profileSertButton">
-              <div>Подписки</div>
-              <div>Перейти к подключению</div>
+              <div>{t('profile.subscribes')}</div>
+              <div>{t('profile.go_connection')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile'} className={styles.sertBtn}>
             <Button color="purple" type="profileSertButton">
-              <div>Сертификаты и промокоды</div>
-              <div>Активировать</div>
+              <div>{t('profile.certificates')}</div>
+              <div>{t('profile.activate')}</div>
             </Button>
           </Link>
           <Button color="purple" type="profileSertButton" className={styles.accountBtn}>
-            <div>Счёт Иви</div>
+            <div>{t('profile.account')}</div>
             <div>0 ₽</div>
           </Button>
         </div>
@@ -49,7 +52,7 @@ const Profile = () => {
           <Link href={'https://widget.mgc-loyalty.ru/iviru/landing'}>
             <Button type="profilePresentButton">
               <Image src={presentImage} alt="presentButton"></Image>
-              <div>Подарите подписку близким</div>
+              <div>{t('profile.give_subscription')}</div>
             </Button>
           </Link>
         </div>
@@ -57,13 +60,13 @@ const Profile = () => {
           <Link href={'https://www.ivi.ru/profile/referral'}>
             <Button type="profileInviteButton" color="purple">
               <div><TbVectorTriangle /></div>
-              <div>Пригласить друзей</div>
+              <div>{t('profile.invite')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile/pull_notifications'} >
             <Button type="profileInviteButton" color="purple">
               <div><TbBellRinging /></div>
-              <div>Уведомления и акции</div>
+              <div>{t('profile.notifications')}</div>
             </Button>
           </Link>
         </div>
@@ -71,43 +74,43 @@ const Profile = () => {
           <Link href={'https://www.ivi.ru/profile/purchases'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={paymentImage} alt="payment"></Image>
-              <div>Покупки</div>
+              <div>{t('profile.purchases')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile/favorites'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={favoriteImage} alt="favorite"></Image>
-              <div>Смотреть позже</div>
+              <div>{t('profile.watch_later')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile/watched'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={historyImage} alt="history"></Image>
-              <div>Просмотры</div>
+              <div>{t('profile.views')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile/cards'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={cardImage} alt="card"></Image>
-              <div>Способы оплаты</div>
+              <div>{t('profile.payment')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={codeImage} alt="code"></Image>
-              <div>Вход по коду</div>
+              <div>{t('profile.login_by_code')}</div>
             </Button>
           </Link>
           <Link href={'https://www.ivi.ru/profile/settings'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={settingsImage} alt="settings"></Image>
-              <div>Настройки</div>
+              <div>{t('profile.settings')}</div>
             </Button>
           </Link>
           <Link href={'https://ask.ivi.ru/?_gl=1*1gchsbl*_ga*MjcwMjg3NzUzLjE2ODM1MjkwODI.*_ga_GETQ4387MJ*MTY4MzY4OTYyMC4zLjEuMTY4MzcxMzk5OS4xMC4wLjA.'}>
             <Button color="purple" type="profileMenuButton">
               <Image src={supportImage} alt="support"></Image>
-              <div>Помощь</div>
+              <div>{t('profile.help')}</div>
             </Button>
           </Link>
         </div>

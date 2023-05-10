@@ -3,6 +3,7 @@
 
 .container {
   .title {
+    font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
     margin-top: 24px;
     text-align: left;
     font-size: 40px;
@@ -43,6 +44,7 @@
   margin: 12px auto 0;
   padding: 30px 0;
   &__title {
+    font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
     margin: 0 30px 15px;
     font-size: 24px;
     font-weight: 700;

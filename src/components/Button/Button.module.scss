@@ -42,6 +42,8 @@
 .chatButton {
   height: 40px;
   width: 196px;
+  @include font-regular-m;
+  line-height: 20px;
 }
 .footerIconButton {
   width: 40px;
@@ -113,5 +115,85 @@
     color: $base-white;
     height: 20px;
     width: 20px;
+  }
+}
+.loginButton {
+  column-gap: 6px;
+  @include font-regular-m;
+  line-height: 20px;
+  padding: 9px 15px;
+}
+.profileSertButton {
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 120px;
+  padding: 12px 16px;
+  color: $base-white;
+  @include font-regular-m;
+  line-height: 20px;
+  white-space: nowrap;
+  & > div:first-child {
+    font-family: "IviSans-bold", Arial, Helvetica, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+  }
+}
+.profilePresentButton {
+  min-width: 300px;
+  height: 56px;
+  column-gap: 8px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $base-white;
+  @include font-regular-m;
+  line-height: 20px;
+  background-image: radial-gradient(circle at 50% 50%, rgba(126, 121, 143, 0.56), rgba(49, 43, 69, 0) 100%);
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $base-dark-grey;
+  &:hover {
+    background-color: $base-dark-grey-hover;
+  }
+  img {
+    height: 32px;
+    width: 55px;
+  }
+}
+.profileInviteButton {
+  column-gap: 8px;
+  min-width: 200px;
+  height: 56px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: $base-white;
+  @include font-regular-m;
+  line-height: 20px;
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $base-pink-hover;
+  }
+}
+.profileMenuButton {
+  flex-direction: column;
+  padding: 24px 8px 16px;
+  min-width: 100px;
+  @include font-regular-m;
+  line-height: 20px;
+  & > div {
+    overflow: hidden;
+    line-clamp: 2;
+    text-overflow: ellipsis;
+    height: 40px;
+  }
+  img {
+    width: 32px;
+    height: 32px;
+    margin-bottom: 8px;
   }
 }

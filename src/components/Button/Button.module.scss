@@ -35,7 +35,7 @@
   border-radius: 8px;
   border: 1px solid $base-pink;
   &:hover {
-    background-color: $base-pink-hover;
+    background-color: $base-bright-pink;
     transition: all 0.4s ease 0s;
   }
 }
@@ -176,7 +176,7 @@
   svg {
     width: 20px;
     height: 20px;
-    color: $base-pink-hover;
+    color: $base-bright-pink;
   }
 }
 .profileMenuButton {

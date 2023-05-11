@@ -38,7 +38,7 @@
     &:not(:disabled) {
       cursor: pointer;
       &:hover {
-        color: $base-pink-hover;
+        color: $base-bright-pink;
         opacity: 1;
         transition: color 0.8s ease 0s;
       }

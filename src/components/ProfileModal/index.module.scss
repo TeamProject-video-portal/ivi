@@ -15,7 +15,6 @@
   &_open {
     display: flex;
     flex-direction: column;
-    align-items: center;
     background-color: $base-dark-blue;
   }
   .headerRow {
@@ -29,9 +28,13 @@
     width: 100%;
   }
   .content {
-    padding-top: 16px;
-    padding-bottom: 48px;
+    padding: 16px 12px 48px;
     width: 100%;
+    max-width: 1240px;
+    @media screen and (min-width: 599px) {
+      margin-left: 24px;
+      margin-right: 24px;
+    }
   }
   .title {
     margin-top: 0;
@@ -75,15 +78,16 @@
     height: 2px;
     background-color: $base-dark-grey;
     z-index: 10;
-    &__progress {
-      width: 5%;
+    &__line {
+      //width: 33%;
       height: 2px;
       background-color: $base-pink;
     }
   }
   .message {
-    margin-left: 25%;
+    align-self: flex-end;
     padding: 16px;
+    margin-left: 25%;
     width: 37.5%;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -94,6 +98,18 @@
     word-wrap: break-word;
     line-height: 16px;
     color: $base-ligth-grey;
+    @media screen and (min-width: 880px) and (max-width: 1159px) {
+      width: 50%;
+      margin-left: 16.66666667%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 879px) {
+      width: 75%;
+      margin-left: 0;
+    }
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+      width: auto;
+      margin-left: 0;
+    }
     &__subtitle {
       margin-bottom: 4px;
       @include font-bold-m;
@@ -106,9 +122,21 @@
     margin-top: 24px;
     margin-left: 37.5%;
     width: 25%;
-    height: 40px;
+    max-height: 40px;
     overflow: hidden;
     border-radius: 8px;
+    @media screen and (min-width: 880px) and (max-width: 1159px) {
+      width: 33.33333333%;
+      margin-left: 33.33333333%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 879px) {
+      width: 50%;
+      margin-left: 25%;
+    }
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+      width: auto;
+      margin-left: 0;
+    }
     &__input {
       padding: 18px 12px 2px 36px;
       width: 100%;
@@ -143,7 +171,6 @@
       text-overflow: ellipsis;
       color: $base-ligth-grey;
       will-change: transform;
-      transition: all 0.6s ease 0s;
     }
     .active {
       transform: translate3d(0, -8px, 0) scale(0.9) perspective(1px);
@@ -154,11 +181,24 @@
     margin-top: 12px;
     width: 25%;
     margin-left: 37.5%;
+    @media screen and (min-width: 880px) and (max-width: 1159px) {
+      width: 33.33333333%;
+      margin-left: 33.33333333%;
+    }
+    @media screen and (min-width: 600px) and (max-width: 879px) {
+      width: 50%;
+      margin-left: 25%;
+    }
+    @media screen and (min-width: 272px) and (max-width: 599px) {
+      width: auto;
+      margin-left: 0;
+    }
     &__btn {
       padding: 9px 15px;
       width: 100%;
       border-width: 1px;
       opacity: 0.32;
+      outline: 0;
       &.activeContinue {
         opacity: 1;
       }

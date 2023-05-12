@@ -10,6 +10,7 @@ export type ButtonProps = {
   | 'profilePresentButton' | 'profileInviteButton' | 'profileMenuButton';
   width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 };
 
 export const Button: FC<ButtonProps> = ({ children, className, color, type, width, onClick }) => {

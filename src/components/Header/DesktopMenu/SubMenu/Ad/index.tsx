@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { settings1, settings2, settings3 } from "./settings";
 import Image from "next/image";
 import icon from "../../../../../images/icons/logo.svg";
-
+import img from "../../../../../images/banner__foto.jpeg";
 const posters = [
   "https://scientificrussia.ru/images/b/teb-full.jpg",
   "https://scientificrussia.ru/images/b/teb-full.jpg",
@@ -23,7 +23,7 @@ const Ad: FC<Props> = ({ type }) => {
     return posters.map((poster, index) => {
       return (
         <div key={index} className={styles.slide}>
-          <img src={poster} alt={`Poster ${index}`} />
+          <Image src={img} alt={`Poster ${index}`}></Image>
         </div>
       );
     });

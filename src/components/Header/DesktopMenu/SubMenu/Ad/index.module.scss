@@ -1,7 +1,7 @@
 @import "../../../../../styles/color.scss";
 @import "../../../../../styles/mixins.scss";
 
-.summary {
+.ad_small {
   position: absolute;
   right: 30px;
   top: 30px;
@@ -64,7 +64,7 @@
   }
 }
 
-.detailed {
+.ad_big {
   width: 500px;
   height: 350px;
   position: absolute;

@@ -25,7 +25,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.example.com",
+        hostname: "www.kinopoisk.ru",
         port: "",
         pathname: "/account123/**",
       },

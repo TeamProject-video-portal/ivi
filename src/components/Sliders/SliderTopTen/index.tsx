@@ -26,8 +26,8 @@ const SliderTopTen: FC = () => {
 
       <Slider {...newSettings} className={styles.container}>
         {[...new Array(10)].map((item, i) => (
-          <Link href="/card">
-            <PosterTopTen num={i + 1} key={`${item}- ${i}`} />
+          <Link href="/film">
+            <PosterTopTen num={i + 1} key={i} />
           </Link>
         ))}
       </Slider>

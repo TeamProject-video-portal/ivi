@@ -15,7 +15,7 @@ const Banner: FC = () => {
     }
     return arr.map((item, index) => {
       return (
-        <div key={index} className={styles.slide}>
+        <div key={`${item}-${index}`} className={styles.slide}>
           <Image src={bannerImg} alt="" className={styles.slide_img}></Image>
         </div>
       );

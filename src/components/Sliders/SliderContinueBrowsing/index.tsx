@@ -32,8 +32,8 @@ const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
         <h4>{title}</h4>
       </div>
       <Slider {...newSettings} className={styles.container}>
-        {[...new Array(5)].map((_, i) => (
-          <Link href="/card">
+        {[...new Array(5)].map((item, index) => (
+          <Link href="/film" key={`${item}-${index}`}>
             <CardMovie
               title={data.title}
               type={type}

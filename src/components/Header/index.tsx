@@ -11,12 +11,15 @@ import WatchingButton from "./Buttons/WatchForFree";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import LanguageButton from "./Buttons/Language";
+import { useTranslation } from "next-export-i18n";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const [subMenuTitle, setSubMenuTitle] = useState("");
 
   const router = useRouter();
+
+  const { t } = useTranslation();
   return (
     <header className={styles.header}>
       <div className={styles.container}>

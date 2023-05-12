@@ -1,14 +1,19 @@
-import { FC, useState } from "react";
+import { DetailedHTMLProps, FC, useState } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import Image from "next/image";
-import img from "../../images/banner__foto.jpeg";
-import { Button } from "../Button/Button";
-export const TrailerCard: FC = () => {
+import img from "../../../images/banner__foto.jpeg";
+import { Button } from "../../../components/Button/Button";
+
+type Props = {
+  filmPicture: string;
+};
+
+export const TrailerCard: FC<Props> = ({ filmPicture }) => {
   return (
     <div className={styles.container}>
       <div className={styles.player_block}>
-        <Image src={img} alt=""></Image>
+        <img src={filmPicture} alt="" />
         <div className={styles.buttons}>
           <button className={styles.watch}>
             <p>Смотреть</p>

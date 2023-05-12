@@ -59,8 +59,14 @@ export const DescriptionCard: FC<Props> = ({
       </div>
       <div className={styles.actors}>
         <Raiting filmGrade={filmGrade} />
-        {data.actors.map((item) => {
-          return <Actors img={item[0]} name={item[1]} />;
+        {data.actors.map((item, index) => {
+          return (
+            <Actors
+              img={item[0]}
+              name={item[1]}
+              key={`${item.length}-${index}`}
+            />
+          );
         })}
       </div>
       <div className={styles.description}>

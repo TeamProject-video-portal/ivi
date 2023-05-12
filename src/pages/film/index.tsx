@@ -35,12 +35,12 @@ const data = {
 import dataJSON from "../../data/One_film_response.json";
 import { TrailerCard } from "./TrailerCard";
 import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
+import { Comments } from "@/components/Comments";
 
 const Card = () => {
   console.log(dataJSON);
   return (
     <div className={styles.container}>
-      <Ad type={"summary"} />
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
         <TrailerCard filmPicture={dataJSON.filmPicture} />
@@ -52,6 +52,7 @@ const Card = () => {
           filmLang={dataJSON.filmLang}
         />
       </div>
+      <Comments />
       <SimpleSlider title={"С фильмом смотрят"} />
       <SliderContinueBrowsing
         title={"Трейлеры и доп. материалы"}

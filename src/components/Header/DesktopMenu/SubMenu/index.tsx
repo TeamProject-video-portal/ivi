@@ -24,12 +24,14 @@ const SubMenu: FC<Props> = (props) => {
         <div className={styles.wrapper}>
           <div className={styles.bg_div}></div>
           {props.subMenuTitle !== "button" ? (
-            <ContextSubMenu className={styles.content}>
-              {props.subMenuTitle === "film" && <DropDownMenuFilm />}
-              {props.subMenuTitle === "series" && <DropDownMenuSerial />}
-              {props.subMenuTitle === "anim" && <DropDownMenuAnim />}
-              <Ad type={"summary"} />
-            </ContextSubMenu>
+            <div>
+              <ContextSubMenu className={styles.content}>
+                {props.subMenuTitle === "film" && <DropDownMenuFilm />}
+                {props.subMenuTitle === "series" && <DropDownMenuSerial />}
+                {props.subMenuTitle === "anim" && <DropDownMenuAnim />}
+              </ContextSubMenu>
+              <Ad type={"ad_small"} />
+            </div>
           ) : (
             <DropDownMenuButton />
           )}

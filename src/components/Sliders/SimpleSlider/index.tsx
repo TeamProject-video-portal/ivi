@@ -23,8 +23,8 @@ const SimpleSlider: FC<Props> = (props) => {
         <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
       </div>
       <Slider {...newSettings} className={styles.container}>
-        {[...new Array(10)].map((_, i) => (
-          <Link href="/film">
+        {[...new Array(10)].map((item, index) => (
+          <Link href="/film" key={`${item}-${index}`}>
             <Poster />
           </Link>
         ))}

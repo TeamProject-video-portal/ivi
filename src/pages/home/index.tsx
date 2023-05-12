@@ -5,6 +5,7 @@ import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing"
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import { useTranslation } from "next-export-i18n";
+import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home = () => {

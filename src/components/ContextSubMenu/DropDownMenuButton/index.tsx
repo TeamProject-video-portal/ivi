@@ -15,7 +15,7 @@ export const DropDownMenuButton: FC = () => {
         <BlocksMenu />
         <DownButtons />
       </div>
-      <Ad type={"detailed"} />
+      <Ad type={"ad_big"} />
     </div>
   );
 };

@@ -11,10 +11,34 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
+import { GetServerSideProps } from "next";
+import data1 from '../../data/Actor_response.json'
 
 const personImage = require("../../images/diKaprio.webp");
 
-const Person = () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.params?.id || 0;
+  const response = await fetch(`http://localhost:3000/api/persons`);
+  const data = await response.json() as IPerson[];
+  const findPerson = data.find(item => item.id == id)
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { person: findPerson },
+  };
+};
+
+type PersonProps = {
+  person: IPerson;
+};
+
+const Person: FC<PersonProps> = ({ person }) => {
+  console.log("person", person);
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
@@ -56,12 +80,11 @@ const Person = () => {
         </Link>
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
-            <Image
-              src={personImage}
+            <img
+              src={person.actorPicture}
               alt="person"
               className={styles.img}
-              fill
-            ></Image>
+            ></img>
           </div>
           <h1 className={styles.title}>Оскар Айзек</h1>
           <div className={styles.title_en}>Oscar Isaak</div>

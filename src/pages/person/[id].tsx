@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-import { GetServerSideProps } from "next";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import styles from "./index.module.scss";
 import Description from "@/components/Description";
@@ -15,32 +14,13 @@ import { IPerson } from "@/types/types";
 
 const personImage = require("../../images/diKaprio.webp");
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.params?.id || 1;
-  const response = await fetch(`http://localhost:8000/persons/${id}`);
-  const data = await response.json();
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { person: data as IPerson },
-  };
-};
-
-type PersonProps = {
-  person: IPerson;
-};
-
-const Person: FC<PersonProps> = ({ person }) => {
+const Person = () => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      item: `${person.films.length} ${t("person.count_movies")}`,
+      // item: `${person.films.length} ${t("person.count_movies")}`,
+      item: `47 ${t("person.count_movies")}`,
       path: "#filmography",
     },
     { item: `${t("person.biography")}`, path: "#" },
@@ -83,8 +63,8 @@ const Person: FC<PersonProps> = ({ person }) => {
               fill
             ></Image>
           </div>
-          <h1 className={styles.title}>{person.actorLang[0].actorName}</h1>
-          <div className={styles.title_en}>{person.actorLang[0].actorName}</div>
+          <h1 className={styles.title}>Оскар Айзек</h1>
+          <div className={styles.title_en}>Oscar Isaak</div>
           <Description
             truncText={truncText}
             fullText={fullText}
@@ -98,7 +78,8 @@ const Person: FC<PersonProps> = ({ person }) => {
             />
           </div>
           <div className={styles.filmographyRow}>
-            <Filmography person={person} />
+            {/* <Filmography person={person} /> */}
+            <Filmography />
           </div>
         </section>
       </div>

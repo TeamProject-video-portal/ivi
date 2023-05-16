@@ -11,14 +11,13 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
-import { GetServerSideProps } from "next";
-import data1 from '../../data/Actor_response.json'
+import { GetServerSideProps, NextPage } from "next";
 
-const personImage = require("../../images/diKaprio.webp");
+//const personImage = require("../../images/diKaprio.webp");
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id || 0;
-  const response = await fetch(`http://localhost:3000/api/persons`);
+  const response = await fetch(`${process.env.API_HOST}/persons`);
   const data = await response.json() as IPerson[];
   const findPerson = data.find(item => item.id == id)
 
@@ -37,14 +36,13 @@ type PersonProps = {
   person: IPerson;
 };
 
-const Person: FC<PersonProps> = ({ person }) => {
-  console.log("person", person);
+const Person: NextPage<PersonProps> = ({ person }) => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      // item: `${person.films.length} ${t("person.count_movies")}`,
-      item: `47 ${t("person.count_movies")}`,
+      item: `${person.films.length} ${t("person.count_movies")}`,
+      //item: `47 ${t("person.count_movies")}`,
       path: "#filmography",
     },
     { item: `${t("person.biography")}`, path: "#" },
@@ -67,7 +65,7 @@ const Person: FC<PersonProps> = ({ person }) => {
   return (
     <>
       <Head>
-        <title>Страница актера или режиссера</title>
+        <title>{t('person.page_title')}</title>
       </Head>
       <div className={styles.container}>
         <Link href={"/"}>
@@ -80,14 +78,20 @@ const Person: FC<PersonProps> = ({ person }) => {
         </Link>
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
-            <img
+            <Image
+              // src={personImage}
               src={person.actorPicture}
               alt="person"
               className={styles.img}
-            ></img>
+              width={150}
+              height={225}
+              priority
+            ></Image>
           </div>
-          <h1 className={styles.title}>Оскар Айзек</h1>
-          <div className={styles.title_en}>Oscar Isaak</div>
+          {/* <h1 className={styles.title}>Оскар Айзек</h1>
+          <div className={styles.title_en}>Oscar Isaak</div> */}
+          <h1 className={styles.title}>{person.actorLang[0].actorName}</h1>
+          <div className={styles.title_en}>{person.actorLang[0].actorName}</div>
           <Description
             truncText={truncText}
             fullText={fullText}
@@ -101,8 +105,8 @@ const Person: FC<PersonProps> = ({ person }) => {
             />
           </div>
           <div className={styles.filmographyRow}>
-            {/* <Filmography person={person} /> */}
-            <Filmography />
+            <Filmography person={person} />
+            {/* <Filmography /> */}
           </div>
         </section>
       </div>

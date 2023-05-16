@@ -15,6 +15,7 @@ import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from 'next-export-i18n';
+import { NextPage } from "next";
 
 const filtersChoice: FiltersState = {
   genres: ['Детские', 'Аниме'],
@@ -26,7 +27,7 @@ const filtersChoice: FiltersState = {
   scoreMax: 200000
 }
 
-const Movies = () => {
+const Movies: NextPage = () => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [

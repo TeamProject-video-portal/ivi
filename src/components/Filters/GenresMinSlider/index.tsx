@@ -20,7 +20,7 @@ const NextButton: FC = (props: any) => {
   )
 }
 
-const GenresSlider: FC = () => {
+const GenresMinSlider: FC = () => {
   const settings = {
     dots: false,
     infinite: false,
@@ -55,4 +55,4 @@ const GenresSlider: FC = () => {
   );
 };
 
-export default GenresSlider;
+export default GenresMinSlider;

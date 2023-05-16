@@ -9,13 +9,16 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-import GenresButton from "@/components/Filters/GenresButton";
-import PosterPerson from "@/components/PosterPerson";
 import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from 'next-export-i18n';
-import { NextPage } from "next";
+import { GetServerSideProps, NextPage } from "next";
+import GenresSlider from "@/components/Sliders/GenresSlider";
+import { IPerson } from "@/types/types";
+import SimpleSlider from "@/components/Sliders/SimpleSlider";
+import PersonsSlider from "@/components/Sliders/PersonsSlider";
+import dataPerson from "../../data/persons.json"
 
 const filtersChoice: FiltersState = {
   genres: ['Детские', 'Аниме'],
@@ -27,7 +30,11 @@ const filtersChoice: FiltersState = {
   scoreMax: 200000
 }
 
-const Movies: NextPage = () => {
+type MoviesProps = {
+  persons: IPerson[];
+};
+
+const Movies: NextPage<MoviesProps> = ({ persons }) => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
@@ -129,18 +136,12 @@ const Movies: NextPage = () => {
         <section>
           <div className={styles.genresRow}>
             <h2 className={styles.genresRow__title}>{t('contextSubMenu.genres')}</h2>
-            <Carousel
-              elem={<GenresButton size="big" genres="Исторические" id={11} />}
-              count={10}
-            />
+            <GenresSlider />
           </div>
-          <Catalog title={t('sliders_title.top_movies')} elem={<Poster />} count={10} />
+          <SimpleSlider title={t('sliders_title.top_movies')} />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t('sliders_title.persons')} </h2>
-            <Carousel
-              elem={<PosterPerson />}
-              count={10}
-            />
+            <PersonsSlider persons={dataPerson.persons} />
           </div>
         </section>
       )}
@@ -153,6 +154,21 @@ const Movies: NextPage = () => {
       )}
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const response = await fetch(`${process.env.API_HOST}/persons`);
+  const data = await response.json() as IPerson[];
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { persons: data },
+  };
 };
 
 export default Movies;

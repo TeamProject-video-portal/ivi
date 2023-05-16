@@ -15,23 +15,6 @@ import { GetServerSideProps, NextPage } from "next";
 
 //const personImage = require("../../images/diKaprio.webp");
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.params?.id || 0;
-  const response = await fetch(`${process.env.API_HOST}/persons`);
-  const data = await response.json() as IPerson[];
-  const findPerson = data.find(item => item.id == id)
-
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { person: findPerson },
-  };
-};
-
 type PersonProps = {
   person: IPerson;
 };
@@ -112,6 +95,23 @@ const Person: NextPage<PersonProps> = ({ person }) => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const id = context.params?.id || 0;
+  const response = await fetch(`${process.env.API_HOST}/persons`);
+  const data = await response.json() as IPerson[];
+  const findPerson = data.find(item => item.id == id)
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { person: findPerson },
+  };
 };
 
 export default Person;

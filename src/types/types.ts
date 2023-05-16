@@ -49,9 +49,9 @@ export type ActorFilmsType = {
 export type ActorLangType = {
   id: number;
   actorId: number;
-  lang: 'ru' | 'en';
+  lang: string;
   actorName: string;
-  career?: string[];
+  career?: string;
   birthPlace?: string;
   birthDate?: string;
   height?: string;

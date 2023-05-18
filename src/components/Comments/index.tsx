@@ -1,19 +1,44 @@
 import dayjs from "dayjs";
+import { GetServerSideProps } from "next";
 import { FC, ReactNode, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { NewComments } from "./NewComments";
 import { PrevComments } from "./PrevComments";
 
-type commentsT = { name: string; comment: string; date: string };
+type commentsT = {
+  id: number;
+  name: string;
+  comment: string;
+  date: string;
+  children?: any;
+};
 type dataCommentsT = commentsT[];
 const dataComments: dataCommentsT = [
   {
+    id: 0,
     name: "Анастасия",
     comment:
       "Не имею привычки пересматривать фильмы,но этот смотрела раз 6. Самый любимый!",
     date: "1 февраля 2019",
+    children: [
+      {
+        id: 2,
+        name: "123",
+        comment: "Seryoga Самый любимый!",
+        date: "56 2019",
+        children: [
+          {
+            id: 3.12,
+            name: "123",
+            comment: "Seryoga Самый любимый!",
+            date: "56 2019",
+          },
+        ],
+      },
+    ],
   },
   {
+    id: 1,
     name: "Paladin",
     comment:
       'Фильм "настоящий" и очень душевный, из цикла тех фильмов, которые интересно смотреть даже повторно',
@@ -21,21 +46,28 @@ const dataComments: dataCommentsT = [
   },
 ];
 
-export const Comments: FC = ({}) => {
+export const Comments: FC = () => {
   const [newComment, setNewComment] = useState("");
+  const [idComment, setIdComment] = useState<number>();
+  const [isClickCommentButton, setIsClickCommentButton] = useState(false);
   let now = dayjs().format("DD MMMM YYYY");
+  const [data, setData] = useState(dataComments);
 
   useEffect(() => {
-    dataComments.push({
-      name: "user",
-      comment: newComment,
-      date: now,
-    });
+    if (newComment.trim() !== "") {
+      setData([
+        ...data,
+        { id: data.length + 1, name: "user", comment: newComment, date: now },
+      ]);
+    }
   }, [newComment]);
+
   return (
     <div className={styles.container}>
       <h2>Отзывы</h2>
-      <PrevComments dataComments={dataComments} />
+      <div></div>
+      <PrevComments dataComments={data} setData={setData} />
+
       <NewComments newComment={newComment} setNewComment={setNewComment} />
     </div>
   );

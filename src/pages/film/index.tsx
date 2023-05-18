@@ -38,7 +38,6 @@ import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
 import { Comments } from "@/components/Comments";
 
 const Card = () => {
-  console.log(dataJSON);
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />

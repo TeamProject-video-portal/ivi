@@ -23,15 +23,15 @@ const dataComments: dataCommentsT = [
     children: [
       {
         id: 2,
-        name: "123",
-        comment: "Seryoga Самый любимый!",
-        date: "56 2019",
+        name: "user",
+        comment: "Good film!",
+        date: "13 февраля 2019",
         children: [
           {
             id: 3.12,
-            name: "123",
-            comment: "Seryoga Самый любимый!",
-            date: "56 2019",
+            name: "user",
+            comment: "любимый фильм!",
+            date: "28 февраля 2022",
           },
         ],
       },

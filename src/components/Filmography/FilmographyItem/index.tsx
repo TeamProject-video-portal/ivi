@@ -19,7 +19,7 @@ const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
     <Link href={'/'}>
       <div className={styles.philmographyItem}>
         <div color='purple' className={styles.philmographyItem__imgContainer}>
-          <Image src={filmImage} alt="person" className={styles.img} fill></Image>
+          <Image src={filmImage} alt="person" className={styles.img} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></Image>
         </div>
         <div className={styles.philmographyItem__body}>
           <div className={styles.philmographyItem__content}>

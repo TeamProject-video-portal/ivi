@@ -13,12 +13,13 @@ import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from 'next-export-i18n';
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IPerson } from "@/types/types";
+import { IMovie, IPerson } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
-import dataPerson from "../../data/persons.json"
+//import { persons } from '@/data/persons.json';
+//import { movies } from '@/data/movies.json';
 
 const filtersChoice: FiltersState = {
   genres: ['Детские', 'Аниме'],
@@ -32,9 +33,10 @@ const filtersChoice: FiltersState = {
 
 type MoviesProps = {
   persons: IPerson[];
+  movies: IMovie[];
 };
 
-const Movies: NextPage<MoviesProps> = ({ persons }) => {
+const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
@@ -141,14 +143,14 @@ const Movies: NextPage<MoviesProps> = ({ persons }) => {
           <SimpleSlider title={t('sliders_title.top_movies')} />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t('sliders_title.persons')} </h2>
-            <PersonsSlider persons={dataPerson.persons} />
+            <PersonsSlider persons={persons} />
           </div>
         </section>
       )}
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults />
+            <MovieResults movies={movies} />
           </div>
         </section>
       )}
@@ -156,18 +158,21 @@ const Movies: NextPage<MoviesProps> = ({ persons }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const response = await fetch(`${process.env.API_HOST}/persons`);
-  const data = await response.json() as IPerson[];
+export const getStaticProps: GetStaticProps = async (context) => {
+  const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  const persons = await responsePersons.json() as IPerson[];
+  const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+  const movies = await responseMovies.json() as IMovie[];
 
-  if (!data) {
+  if (!persons || !movies) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { persons: data },
+    props: { persons, movies },
+    revalidate: 10
   };
 };
 

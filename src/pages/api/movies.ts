@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import data from '../../data/persons.json';
+import data from '@/data/movies.json';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
-  res.status(200).json(data.persons);
+  res.status(200).json(data.movies);
 }

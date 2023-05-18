@@ -64,5 +64,10 @@ export interface IPerson {
   actorLang: ActorLangType[];
   films: ActorFilmsType[];
 }
+
+export type ResponseError = {
+  message: string;
+};
+
 export interface IMovies {}
 export interface IFilters {}

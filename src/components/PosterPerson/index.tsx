@@ -16,9 +16,15 @@ const PosterPerson: FC<Props> = ({ person }) => {
   const surname = personName.slice(name[0].length);
 
   return (
-    <Link href={'/'} className={styles.container}>
+    <Link href={`/person/${person.id}`} className={styles.container}>
       <div className={styles.poster}>
-        <Image src={person.actorPicture} alt="" className={styles.img} fill></Image>
+        <Image
+          src={person.actorPicture}
+          alt=""
+          className={styles.img}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        ></Image>
         <div className={styles.label}>{person.films.length}</div>
       </div>
       <div className={styles.description}>

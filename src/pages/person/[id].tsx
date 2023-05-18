@@ -11,7 +11,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
-import { GetServerSideProps, NextPage } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 
 //const personImage = require("../../images/diKaprio.webp");
 
@@ -21,6 +21,7 @@ type PersonProps = {
 
 const Person: NextPage<PersonProps> = ({ person }) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const breadcrumbs: Breadcrumb[] = [
     {
@@ -51,14 +52,12 @@ const Person: NextPage<PersonProps> = ({ person }) => {
         <title>{t('person.page_title')}</title>
       </Head>
       <div className={styles.container}>
-        <Link href={"/"}>
-          <Button className={styles.backBtn}>
-            <div
-              className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}
-            ></div>
-            <div>{t("buttons.back_btn")}</div>
-          </Button>
-        </Link>
+        <Button className={styles.backBtn} onClick={() => router.back()}>
+          <div
+            className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}
+          ></div>
+          <div>{t("buttons.back_btn")}</div>
+        </Button>
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
             <Image
@@ -97,21 +96,35 @@ const Person: NextPage<PersonProps> = ({ person }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
-  const response = await fetch(`${process.env.API_HOST}/persons`);
-  const data = await response.json() as IPerson[];
-  const findPerson = data.find(item => item.id == id)
+  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
+  const person = await response.json() as IPerson;
 
-  if (!data) {
+  if (!person) {
     return {
       notFound: true,
     };
   }
 
   return {
-    props: { person: findPerson },
+    props: { person },
+    revalidate: 10
   };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  const data = await response.json() as IPerson[];
+
+  const paths = data.map((item) => ({
+    params: { id: item.id.toString() }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
 };
 
 export default Person;

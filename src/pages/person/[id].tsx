@@ -12,6 +12,7 @@ import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
+import personsData from '@/data/persons.json';
 
 //const personImage = require("../../images/diKaprio.webp");
 
@@ -98,8 +99,11 @@ const Person: NextPage<PersonProps> = ({ person }) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
-  const person = await response.json() as IPerson;
+  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
+  // const person = await response.json() as IPerson;
+
+  const data = personsData.persons as IPerson[];
+  const person = data.find(item => String(item.id) == id)
 
   if (!person) {
     return {
@@ -114,8 +118,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  const data = await response.json() as IPerson[];
+  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  // const data = await response.json() as IPerson[];
+
+  const data = personsData.persons as IPerson[];
 
   const paths = data.map((item) => ({
     params: { id: item.id.toString() }

@@ -18,8 +18,8 @@ import GenresSlider from "@/components/Sliders/GenresSlider";
 import { IMovie, IPerson } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
-//import { persons } from '@/data/persons.json';
-//import { movies } from '@/data/movies.json';
+import personsData from '@/data/persons.json';
+import moviesData from '@/data/movies.json';
 
 const filtersChoice: FiltersState = {
   genres: ['Детские', 'Аниме'],
@@ -159,10 +159,13 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  const persons = await responsePersons.json() as IPerson[];
-  const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-  const movies = await responseMovies.json() as IMovie[];
+  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  // const persons = await responsePersons.json() as IPerson[];
+  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+  // const movies = await responseMovies.json() as IMovie[];
+
+  const persons = personsData.persons;
+  const movies = moviesData.movies;
 
   if (!persons || !movies) {
     return {

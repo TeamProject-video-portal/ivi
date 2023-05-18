@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
 import styles from "./index.module.scss";
 
@@ -10,27 +11,17 @@ export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
   const [isWarning, setIsWarning] = useState(false);
 
   const addComment = () => {
-    if (comment.length === 0) {
+    if (comment?.length === 0) {
       setIsWarning(true);
     } else {
-      setIsWarning(false);
       setNewComment(comment);
+      setIsWarning(false);
       setComment("");
     }
   };
 
   return (
     <div className={styles.container}>
-      {/* <input
-        type="text"
-        name=""
-        id=""
-        value={name}
-        placeholder="Введите имя"
-        onChange={(event) => {
-          setName(event.target.value);
-        }}
-      /> */}
       <textarea
         placeholder="Введите комментарий"
         value={comment}
@@ -41,7 +32,7 @@ export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
       {isWarning && (
         <span className={styles.warning}>Напишите комментарий</span>
       )}
-      <button onClick={addComment}>Добавить</button>
+      <button onClick={() => addComment()}>Добавить</button>
     </div>
   );
 };

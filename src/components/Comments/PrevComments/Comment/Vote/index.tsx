@@ -1,6 +1,6 @@
+import { Button } from "@/components/Button/Button";
 import { FC, ReactNode, useState } from "react";
 import styles from "./index.module.scss";
-import { Button } from "../../../Button/Button";
 type commentsT = { name: string; comment: string; date: string };
 type dataCommentsT = commentsT[];
 

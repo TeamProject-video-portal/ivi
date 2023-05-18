@@ -9,12 +9,17 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-import GenresButton from "@/components/Filters/GenresButton";
-import PosterPerson from "@/components/PosterPerson";
 import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from 'next-export-i18n';
+import { GetStaticProps, NextPage } from "next";
+import GenresSlider from "@/components/Sliders/GenresSlider";
+import { IMovie, IPerson } from "@/types/types";
+import SimpleSlider from "@/components/Sliders/SimpleSlider";
+import PersonsSlider from "@/components/Sliders/PersonsSlider";
+import personsData from '@/data/persons.json';
+import moviesData from '@/data/movies.json';
 
 const filtersChoice: FiltersState = {
   genres: ['Детские', 'Аниме'],
@@ -26,7 +31,12 @@ const filtersChoice: FiltersState = {
   scoreMax: 200000
 }
 
-const Movies = () => {
+type MoviesProps = {
+  persons: IPerson[];
+  movies: IMovie[];
+};
+
+const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
@@ -128,30 +138,45 @@ const Movies = () => {
         <section>
           <div className={styles.genresRow}>
             <h2 className={styles.genresRow__title}>{t('contextSubMenu.genres')}</h2>
-            <Carousel
-              elem={<GenresButton size="big" genres="Исторические" id={11} />}
-              count={10}
-            />
+            <GenresSlider />
           </div>
-          <Catalog title={t('sliders_title.top_movies')} elem={<Poster />} count={10} />
+          <SimpleSlider title={t('sliders_title.top_movies')} />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t('sliders_title.persons')} </h2>
-            <Carousel
-              elem={<PosterPerson />}
-              count={10}
-            />
+            <PersonsSlider persons={persons} />
           </div>
         </section>
       )}
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults />
+            <MovieResults movies={movies} />
           </div>
         </section>
       )}
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  // const persons = await responsePersons.json() as IPerson[];
+  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+  // const movies = await responseMovies.json() as IMovie[];
+
+  const persons = personsData.persons;
+  const movies = moviesData.movies;
+
+  if (!persons || !movies) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { persons, movies },
+    revalidate: 10
+  };
 };
 
 export default Movies;

@@ -49,9 +49,9 @@ export type ActorFilmsType = {
 export type ActorLangType = {
   id: number;
   actorId: number;
-  lang: 'ru' | 'en';
+  lang: string;
   actorName: string;
-  career?: string[];
+  career?: string;
   birthPlace?: string;
   birthDate?: string;
   height?: string;
@@ -64,5 +64,10 @@ export interface IPerson {
   actorLang: ActorLangType[];
   films: ActorFilmsType[];
 }
+
+export type ResponseError = {
+  message: string;
+};
+
 export interface IMovies {}
 export interface IFilters {}

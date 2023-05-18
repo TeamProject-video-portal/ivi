@@ -15,8 +15,9 @@ import supportImage from "../../images/profileImages/support.svg"
 import { TbVectorTriangle, TbBellRinging } from "react-icons/tb";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import ProfileModal from "@/components/ProfileModal";
+import { NextPage } from 'next';
 
-const Profile: FC = () => {
+const Profile: NextPage = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
 

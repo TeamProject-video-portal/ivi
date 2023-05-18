@@ -48,3 +48,5 @@ export const TrailerCard: FC<Props> = ({ filmPicture }) => {
     </div>
   );
 };
+
+export default TrailerCard;

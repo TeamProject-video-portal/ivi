@@ -94,9 +94,10 @@
     "login_by_code": "Вход по коду"
   },
   "person": {
+    "page_title": "Страница актера или режиссера",
     "biography": "Биография",
     "filmography": "Полная фильмография",
-    "count_movies": "фильмов"
+    "count_movies": "фильма"
   },
   "filters": {
     "movies_online": "Фильмы смотреть онлайн",

@@ -189,7 +189,7 @@ export const Footer: FC = () => {
               className={styles.widget}
             >
               <div className={styles.widget__img}>
-                <Image src={speakerphone} alt="speakerphone" priority></Image>
+                <Image src={speakerphone} alt="speakerphone" priority width="72" height="72"></Image>
               </div>
               <p className={styles.widget__text}>
                 {t("footer.watch_movies")}

@@ -60,7 +60,6 @@
     "continue_browsing": "Continue browsing",
     "modern_cartoons": "Modern cartoons",
     "drama": "Drama",
-
     "during_the_week": "during the week",
     "top_movies": "Top Movies",
     "persons": "Persons"
@@ -95,6 +94,7 @@
     "login_by_code": "Login by code"
   },
   "person": {
+    "page_title": "Actor or director page",
     "biography": "biography",
     "filmography": "Complete filmography",
     "count_movies": "movies"

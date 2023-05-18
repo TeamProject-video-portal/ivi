@@ -11,16 +11,23 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
+import { GetStaticProps, GetStaticPaths, NextPage } from "next";
+import personsData from '@/data/persons.json';
 
-const personImage = require("../../images/diKaprio.webp");
+//const personImage = require("../../images/diKaprio.webp");
 
-const Person = () => {
+type PersonProps = {
+  person: IPerson;
+};
+
+const Person: NextPage<PersonProps> = ({ person }) => {
   const { t } = useTranslation();
+  const router = useRouter();
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      // item: `${person.films.length} ${t("person.count_movies")}`,
-      item: `47 ${t("person.count_movies")}`,
+      item: `${person.films.length} ${t("person.count_movies")}`,
+      //item: `47 ${t("person.count_movies")}`,
       path: "#filmography",
     },
     { item: `${t("person.biography")}`, path: "#" },
@@ -43,28 +50,31 @@ const Person = () => {
   return (
     <>
       <Head>
-        <title>Страница актера или режиссера</title>
+        <title>{t('person.page_title')}</title>
       </Head>
       <div className={styles.container}>
-        <Link href={"/"}>
-          <Button className={styles.backBtn}>
-            <div
-              className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}
-            ></div>
-            <div>{t("buttons.back_btn")}</div>
-          </Button>
-        </Link>
+        <Button className={styles.backBtn} onClick={() => router.back()}>
+          <div
+            className={`nbl-icon nbl-icon_arrowLeft_8x20 nbl-simpleControlButton__nbl-icon ${styles.backBtn__icon}`}
+          ></div>
+          <div>{t("buttons.back_btn")}</div>
+        </Button>
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
             <Image
-              src={personImage}
+              // src={personImage}
+              src={person.actorPicture}
               alt="person"
               className={styles.img}
-              fill
+              width={150}
+              height={225}
+              priority
             ></Image>
           </div>
-          <h1 className={styles.title}>Оскар Айзек</h1>
-          <div className={styles.title_en}>Oscar Isaak</div>
+          {/* <h1 className={styles.title}>Оскар Айзек</h1>
+          <div className={styles.title_en}>Oscar Isaak</div> */}
+          <h1 className={styles.title}>{person.actorLang[0].actorName}</h1>
+          <div className={styles.title_en}>{person.actorLang[0].actorName}</div>
           <Description
             truncText={truncText}
             fullText={fullText}
@@ -78,13 +88,49 @@ const Person = () => {
             />
           </div>
           <div className={styles.filmographyRow}>
-            {/* <Filmography person={person} /> */}
-            <Filmography />
+            <Filmography person={person} />
+            {/* <Filmography /> */}
           </div>
         </section>
       </div>
     </>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const id = context.params?.id || 0;
+  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
+  // const person = await response.json() as IPerson;
+
+  const data = personsData.persons as IPerson[];
+  const person = data.find(item => String(item.id) == id)
+
+  if (!person) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: { person },
+    revalidate: 10
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  // const data = await response.json() as IPerson[];
+
+  const data = personsData.persons as IPerson[];
+
+  const paths = data.map((item) => ({
+    params: { id: item.id.toString() }
+  }));
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
 };
 
 export default Person;

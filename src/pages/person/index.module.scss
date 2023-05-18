@@ -43,14 +43,20 @@
   }
   .imgContainer {
     position: relative;
-    width: 120px;
-    height: 200px;
+    width: 150px;
+    height: 225px;
     margin-bottom: 16px;
     border-radius: 16px;
     overflow: hidden;
     .img {
-      width: 100%;
+      position: absolute;
       height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      color: transparent;
       object-fit: cover;
       object-position: center;
     }

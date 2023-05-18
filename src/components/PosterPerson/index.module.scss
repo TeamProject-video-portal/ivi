@@ -4,11 +4,11 @@
 .container {
   position: relative;
   display: block;
-  max-width: 210px;
+  max-width: 150px;
   padding: 0 12px;
   .poster {
     position: relative;
-    padding-bottom: 100%;
+    padding-bottom: 150%;
     transition: all 0.3s ease 0s;
     &:hover {
       transform: scale(1.04);
@@ -20,7 +20,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      border-radius: 50%;
+      border-radius: 40%;
     }
     .label {
       position: absolute;

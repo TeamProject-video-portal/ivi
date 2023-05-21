@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Image from "next/image";

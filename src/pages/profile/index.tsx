@@ -16,10 +16,15 @@ import { TbVectorTriangle, TbBellRinging } from "react-icons/tb";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import ProfileModal from "@/components/ProfileModal";
 import { NextPage } from 'next';
+import { useSession, signIn, signOut } from 'next-auth/react';
+import { TiPencil } from "react-icons/ti";
+import { MdOutlineLogout } from "react-icons/md";
+import { FaExchangeAlt } from "react-icons/fa";
 
 const Profile: NextPage = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
+  const { data: session, status } = useSession();
 
   return (
     <>
@@ -28,10 +33,26 @@ const Profile: NextPage = () => {
       </Head>
       {!openModal ? (
         <div className={styles.profile}>
-          <Button type="loginButton" color="pink" className={styles.loginBtn} onClick={() => setOpenModal(true)}>
-            <div className="nbl-icon nbl-icon_avatar_16 nbl-button__nbl-icon"></div>
-            {t('buttons.enter_register')}
-          </Button>
+          {status === "authenticated" ? (
+            <div className={styles.loginRow}>
+              <div>
+                <div className={styles.userName}>qwerty</div>
+                <div className={styles.userEmail}>
+                  <div className="nbl-icon nbl-icon_email_16"></div>
+                  <div>qwerty@gmail.com</div>
+                </div>
+              </div>
+              <Button type="editLoginButton" color="purple" >
+                <TiPencil />
+                {t('buttons.edit_profile')}
+              </Button>
+            </div>
+          ) : (
+            <Button type="loginButton" color="pink" className={styles.loginBtn} onClick={() => setOpenModal(true)}>
+              <div className="nbl-icon nbl-icon_avatar_16 nbl-button__nbl-icon"></div>
+              {t('buttons.enter_register')}
+            </Button>
+          )}
           <div className={styles.topBtnRow}>
             <Link href={'https://www.ivi.ru/profile/subscriptions'} className={styles.subscribeBtn}>
               <Button color="purple" type="profileSertButton">
@@ -53,7 +74,7 @@ const Profile: NextPage = () => {
           <div className={styles.subscribePresentBtn}>
             <Link href={'https://widget.mgc-loyalty.ru/iviru/landing'}>
               <Button type="profilePresentButton">
-                <Image src={presentImage} alt="presentButton"></Image>
+                <Image src={presentImage} alt="presentButton" priority ></Image>
                 <div>{t('profile.give_subscription')}</div>
               </Button>
             </Link>
@@ -116,11 +137,22 @@ const Profile: NextPage = () => {
               </Button>
             </Link>
           </div>
-        </div>
+          {status === "authenticated" && (
+            <div className={styles.logOutRow}>
+              <button>
+                <FaExchangeAlt />
+                <div>Сменить пароль</div>
+              </button>
+              <button onClick={() => signOut()}>
+                <MdOutlineLogout />
+                <div>Выйти</div>
+              </button>
+            </div>
+          )}
+        </div >
       ) : (
         <ProfileModal openModal={openModal} setOpenModal={setOpenModal} />
       )}
-
     </>
   )
 }

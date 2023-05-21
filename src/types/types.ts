@@ -69,5 +69,12 @@ export type ResponseError = {
   message: string;
 };
 
+export interface IUser {
+  userId: number;
+  name?: string;
+  email?: string;
+  userRole?: string;
+}
+
 export interface IMovies {}
 export interface IFilters {}

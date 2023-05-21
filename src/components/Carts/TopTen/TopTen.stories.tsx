@@ -8,13 +8,46 @@ export default {
   argTypes: {},
 } as Meta<PosterStoryProps>;
 
-type PosterStoryProps = Pick<PosterProps, "num">;
+type PosterStoryProps = Pick<PosterProps, "num" | "film">;
 
 export const Default: Story<PosterStoryProps> = ({ ...args }) => (
   <PosterTopTen {...args} />
 );
 Default.args = {
-  // img: "https://thumbs.dfs.ivi.ru/storage29/contents/c/4/f3b4f712ab844ed3349bc9dede0e40.jpg",
   num: 5,
+  film: {
+    id: 361,
+    filmPoster: "https://kinopoiskapiunofficial.tech/images/posters/kp/361.jpg",
+    filmGrade: 8.7,
+    filmYear: 1999,
+    filmTime: 139,
+    filmAge: "18",
+    filmLang: [
+      {
+        lang: "ru",
+        filmName: "Бойцовский клуб",
+      },
+      {
+        lang: "en",
+        filmName: "Fight Club",
+      },
+    ],
+    genres: [
+      {
+        id: 1,
+        name: "триллер",
+      },
+    ],
+    countries: [
+      {
+        id: 1,
+        name: "США",
+      },
+      {
+        id: 4,
+        name: "Германия",
+      },
+    ],
+  },
 };
 Default.storyName = "poster";

@@ -17,6 +17,8 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { IMovie } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
+import GenresSlider from "@/components/Sliders/GenresSlider";
+import { t } from "i18next";
 
 type Props = {
   movie: IMovie;
@@ -24,12 +26,12 @@ type Props = {
 
 const CardId: NextPage<Props> = ({ movie }) => {
   const router = useRouter();
-
+  const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
-        <TrailerCard filmPicture={movie.filmPoster} />
+        <TrailerCard filmPicture={movie.filmPoster} filmLink={movie.filmLink} />
         <DescriptionCard
           filmGrade={movie.filmGrade}
           filmAge={movie.filmAge}
@@ -41,7 +43,10 @@ const CardId: NextPage<Props> = ({ movie }) => {
         />
       </div>
       <Comments />
-      <SimpleSlider title={"С фильмом смотрят"} films={movie.similarFilms} />
+      <SimpleSlider
+        title={t("sliders_title.watching_with_a_movie")}
+        films={movie.similarFilms}
+      />
       <SliderContinueBrowsing
         title={"Трейлеры и доп. материалы"}
         type={"summary"}

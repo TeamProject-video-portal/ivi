@@ -9,6 +9,9 @@ import { Raiting } from "./Raiting";
 import { ActorsType, CountriesType, FilmLangType } from "@/types/types";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-export-i18n";
+import GenresSlider from "../Sliders/GenresSlider";
+import SimpleSlider from "../Sliders/SimpleSlider";
+import ActorsSlider from "../Sliders/ActorsSlider";
 
 type Props = {
   filmGrade: number;
@@ -35,11 +38,13 @@ export const DescriptionCard: FC<Props> = ({
   const langFilm = filmLang.find((item) => {
     return item.lang === lang;
   });
+
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <h1>
-        {langFilm?.filmName} {t("movie.watch_online")}
+        {langFilm?.filmName ? langFilm?.filmName : filmLang[0].filmName}{" "}
+        {t("movie.watch_online")}
       </h1>
       <div className={styles.data}>
         <div className={styles.row_time}>
@@ -71,8 +76,10 @@ export const DescriptionCard: FC<Props> = ({
           </div>
         </div>
       </div>
+
       <div className={styles.actors}>
         <Raiting filmGrade={filmGrade} />
+        {/* <ActorsSlider actors={actors} /> */}
         {actors.slice(0, 4).map((item, index) => {
           return (
             <Actors img={item.photo} name={item.name} key={`${item.id}`} />
@@ -80,7 +87,11 @@ export const DescriptionCard: FC<Props> = ({
         })}
       </div>
       <div className={styles.description}>
-        <p>{langFilm?.filmDescription}</p>
+        <p>
+          {langFilm?.filmDescription
+            ? langFilm?.filmDescription
+            : filmLang[0].filmDescription}
+        </p>
       </div>
     </div>
   );

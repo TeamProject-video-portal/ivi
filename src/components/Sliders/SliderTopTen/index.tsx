@@ -31,7 +31,7 @@ const SliderTopTen: FC<Props> = ({ films }) => {
 
       <Slider {...newSettings} className={styles.container}>
         {films.map((item: SearchFilmsType, i: any) => (
-          <Link href="/film">
+          <Link href="/film/309" key={item.id}>
             <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
           </Link>
         ))}

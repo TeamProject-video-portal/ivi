@@ -89,10 +89,14 @@
     .free_movies {
       display: flex;
       justify-content: space-around;
-      width: 200px;
+      min-width: 140px;
+      max-width: 210px;
       color: $base-grey-menu;
       padding: 5px 10px;
       @include font-regular-m;
+      p {
+        margin-left: 10px;
+      }
     }
   }
 }

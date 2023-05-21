@@ -11,9 +11,12 @@ import movieData from "@/data/One_film_response_v2.json";
 import { GetStaticProps } from "next";
 import { IMovie } from "@/types/types";
 import { FC } from "react";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home: FC = () => {
+  const router = useRouter();
+  console.log(router);
   const { t } = useTranslation();
   return (
     <>

@@ -1,36 +1,36 @@
 import React, { FC } from "react";
-import styles from "../index.module.scss";
+import styles from "./index.module.scss";
 import Slider from "react-slick";
 import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { settings } from "../settings";
-import { SearchFilmsType, SimilarFilm } from "@/types/types";
+import { ActorsType, SearchFilmsType, SimilarFilm } from "@/types/types";
+import { Actors } from "@/components/DescriptionCard/Actors";
 
 type Props = {
-  title: string;
-  films: any[];
+  actors: ActorsType[] | any;
 };
-const SimpleSlider: FC<Props> = ({ title, films }) => {
+
+const ActorsSlider: FC<Props> = ({ actors }) => {
   const newSettings = {
     ...settings,
-    slidesToShow: 7,
+    slidesToShow: 4,
   };
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>
-        <h4>{title}</h4>
+      {/* <div className={styles.title}>
         <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
-      </div>
+      </div> */}
       <Slider {...newSettings} className={styles.container}>
-        {films.map((item, index) => (
+        {actors.map((item: any) => (
           <Link
-            href={{ pathname: "/film/[id]", query: { id: "309" } }}
+            href={{ pathname: "/actor/[id]", query: { id: "309" } }}
             key={`${item.id}`}
           >
-            <Poster film={item} />
+            <Actors img={item.photo} name={item.name} key={`${item.id}`} />
           </Link>
         ))}
       </Slider>
@@ -39,4 +39,4 @@ const SimpleSlider: FC<Props> = ({ title, films }) => {
   );
 };
 
-export default SimpleSlider;
+export default ActorsSlider;

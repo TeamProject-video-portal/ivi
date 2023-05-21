@@ -3,18 +3,13 @@ const nextConfig = {
   locales: ["en", "ru"],
   defaultLocale: "ru",
   mode: "development",
+  useBrowserDefault: true,
+
   async redirects() {
     return [
       {
-        source: "/", // automatically handles all locales
-        destination: "/home", // automatically passes the locale on
-        permanent: false,
-      },
-      {
-        // this matches '/' since `en` is the defaultLocale
-        source: "/en",
-        destination: "/en/home",
-        locale: false,
+        source: "/",
+        destination: "/home",
         permanent: false,
       },
     ];

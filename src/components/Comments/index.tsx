@@ -6,49 +6,51 @@ import { NewComments } from "./NewComments";
 import { PrevComments } from "./PrevComments";
 
 type commentsT = {
-  id: number;
+  id: string;
   name: string;
   comment: string;
   date: string;
-  children?: any;
+  children: commentsT[];
 };
 type dataCommentsT = commentsT[];
 const dataComments: dataCommentsT = [
   {
-    id: 0,
+    id: "0",
     name: "Анастасия",
     comment:
       "Не имею привычки пересматривать фильмы,но этот смотрела раз 6. Самый любимый!",
     date: "1 февраля 2019",
     children: [
       {
-        id: 2,
+        id: "1.1",
         name: "user",
         comment: "Good film!",
         date: "13 февраля 2019",
         children: [
           {
-            id: 3.12,
+            id: "1.1.1",
             name: "user",
             comment: "любимый фильм!",
             date: "28 февраля 2022",
+            children: [],
           },
         ],
       },
     ],
   },
   {
-    id: 1,
+    id: "1",
     name: "Paladin",
     comment:
       'Фильм "настоящий" и очень душевный, из цикла тех фильмов, которые интересно смотреть даже повторно',
     date: "1 февраля 2019",
+    children: [],
   },
 ];
 
 export const Comments: FC = () => {
   const [newComment, setNewComment] = useState("");
-  const [idComment, setIdComment] = useState<number>();
+  const [idComment, setIdComment] = useState<dataCommentsT[]>();
   const [isClickCommentButton, setIsClickCommentButton] = useState(false);
   let now = dayjs().format("DD MMMM YYYY");
   const [data, setData] = useState(dataComments);
@@ -57,7 +59,13 @@ export const Comments: FC = () => {
     if (newComment.trim() !== "") {
       setData([
         ...data,
-        { id: data.length + 1, name: "user", comment: newComment, date: now },
+        {
+          id: `${data.length + 1}`,
+          name: "user",
+          comment: newComment,
+          date: now,
+          children: [],
+        },
       ]);
     }
   }, [newComment]);

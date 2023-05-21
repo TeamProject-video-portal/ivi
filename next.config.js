@@ -2,7 +2,7 @@
 const nextConfig = {
   locales: ["en", "ru"],
   defaultLocale: "en",
-
+  mode: "development",
   async redirects() {
     return [
       {
@@ -22,7 +22,7 @@ const nextConfig = {
   reactStrictMode: true,
 
   images: {
-    domains: ['avatars.mds.yandex.net', 'www.kinopoisk.ru'],
+    domains: ["avatars.mds.yandex.net", "www.kinopoisk.ru"],
     remotePatterns: [
       {
         protocol: "https",

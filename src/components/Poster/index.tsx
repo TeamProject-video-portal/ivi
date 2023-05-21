@@ -3,9 +3,13 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import Icons from "./Info/Icons";
 import Info from "./Info";
+import { SearchFilmsType, SimilarFilm } from "@/types/types";
 const posterImage = require("../../images/posterImage.jpeg");
 
-const Poster: FC = () => {
+type Props = {
+  film: SimilarFilm | SearchFilmsType;
+};
+const Poster: FC<Props> = ({ film }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,11 +20,16 @@ const Poster: FC = () => {
         onMouseLeave={() => setIsOpen(false)}
       >
         <div className={styles.poster}>
-          <Image src={posterImage} alt="" className={styles.img} fill></Image>
+          <Image
+            src={film?.filmPoster}
+            alt=""
+            className={styles.img}
+            fill
+          ></Image>
           {isOpen && <Info />}
         </div>
         <div className={styles.description}>
-          <span className={styles.name}>Маша и Медведь</span>
+          <span className={styles.name}>{film?.filmLang[0].filmName}</span>
           <span className={styles.tariff}>Бесплатно</span>
         </div>
       </div>

@@ -13,7 +13,7 @@ export const TrailerCard: FC<Props> = ({ filmPicture }) => {
   return (
     <div className={styles.container}>
       <div className={styles.player_block}>
-        <img src={filmPicture} alt="" />
+        <Image src={filmPicture} alt="movie picture" fill></Image>
         <div className={styles.buttons}>
           <button className={styles.watch}>
             <p>Смотреть</p>

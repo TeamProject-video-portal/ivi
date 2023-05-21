@@ -11,7 +11,9 @@ export const Actors: FC<Props> = (props) => {
       <div className={styles.image}>
         <img src={props.img} alt="" />
       </div>
-      <p className={styles.name}>{props.name}</p>
+      <div className={styles.name}>
+        <p>{props.name}</p>
+      </div>
     </div>
   );
 };

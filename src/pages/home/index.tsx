@@ -38,19 +38,4 @@ const Home: FC = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const movie = movieData as IMovie;
-
-  if (!movie) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: { movie },
-    revalidate: 10,
-  };
-};
-
 export default Home;

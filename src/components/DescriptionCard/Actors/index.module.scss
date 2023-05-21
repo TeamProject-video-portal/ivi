@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
   .image {
     width: 56px;
     height: 56px;
@@ -24,10 +25,16 @@
     }
   }
   .name {
-    width: inherit;
+    width: 100%;
+    min-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    @include font-light-s;
-    color: $base-grey;
-    text-align: center;
+    p {
+      @include font-light-s;
+      color: $base-grey;
+      text-align: center;
+    }
   }
 }

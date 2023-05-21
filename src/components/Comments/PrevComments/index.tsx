@@ -13,12 +13,13 @@ import styles from "./index.module.scss";
 import { Comment } from "./Comment";
 import { NewComments } from "../NewComments";
 import dayjs from "dayjs";
+
 type commentsT = {
-  id: number;
+  id: string;
   name: string;
   comment: string;
   date: string;
-  children?: any;
+  children: commentsT[];
 };
 type dataCommentsT = commentsT[];
 
@@ -26,30 +27,37 @@ type Props = {
   dataComments: dataCommentsT;
   setData: Dispatch<SetStateAction<dataCommentsT>>;
 };
+
 export const PrevComments: FC<Props> = ({ dataComments, setData }) => {
   const [newComment, setNewComment] = useState("");
-  const [idComment, setIdComment] = useState<number>();
-  const [id, setId] = useState<number>();
-  const [clonedElem, setClonedElem] = useState<any>(); // Хранение клонированного элемента
+  const [idComment, setIdComment] = useState<string>();
   let now = dayjs().format("DD MMMM YYYY");
 
-  const containerRef = useRef<any>(null);
-
-  useEffect(() => {}, [idComment]);
-
-  const filterItems = (data: commentsT[], idComment: any) => {
-    data?.filter((item) => {
-      return item.id === idComment
-        ? item
-        : filterItems(item?.children, idComment);
-    });
+  //поиск выбранного комментария
+  const filterItems = (data: commentsT[], idComment: string) => {
+    return data?.reduce((acc: commentsT[], item: commentsT) => {
+      if (item.id === idComment) {
+        item.children.push({
+          id: `${item?.id}.${item?.children?.length + 1}`,
+          name: "user",
+          comment: newComment,
+          date: now,
+          children: [],
+        });
+      } else {
+        filterItems(item.children, idComment);
+      }
+      acc.push(item);
+      return acc;
+    }, []);
   };
 
-  console.log(filterItems(dataComments, 0));
-  useEffect(() => {}, [newComment]);
+  useEffect(() => {
+    setData(filterItems(dataComments, `${idComment}`));
+  }, [newComment]);
 
   const renderChildren = (data: commentsT[]) => {
-    return data.map((item, index) => {
+    return data?.map((item, index) => {
       return (
         <div key={`${item.id}`}>
           <Comment
@@ -58,10 +66,12 @@ export const PrevComments: FC<Props> = ({ dataComments, setData }) => {
             setIdComment={setIdComment}
           />
           {idComment === item.id && (
-            <NewComments
-              newComment={newComment}
-              setNewComment={setNewComment}
-            />
+            <div className={styles.children}>
+              <NewComments
+                newComment={newComment}
+                setNewComment={setNewComment}
+              />
+            </div>
           )}
           {item.children && (
             <div className={styles.children}>

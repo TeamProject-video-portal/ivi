@@ -6,37 +6,51 @@ import Link from "next/link";
 import { Button } from "../Button/Button";
 import { Actors } from "./Actors";
 import { Raiting } from "./Raiting";
+import { ActorsType, CountriesType, FilmLangType } from "@/types/types";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-export-i18n";
 
 type Props = {
-  data: {
-    title: string;
-    raiting: number;
-    actors: string[][];
-    description: string;
-  };
-  filmGrade: string;
+  filmGrade: number;
   filmAge: string;
-  filmDate: string;
-  filmLang: { filmName: string; filmTime: string }[];
+  filmYear: number;
+  filmLang: FilmLangType[];
+  actors: ActorsType[];
+  filmTime: number;
+  countries: CountriesType[];
 };
+
 export const DescriptionCard: FC<Props> = ({
-  data,
   filmGrade,
   filmAge,
-  filmDate,
+  filmYear,
   filmLang,
+  actors,
+  filmTime,
+  countries,
 }) => {
+  const router = useRouter();
+  const lang = router.query?.lang;
+
+  const langFilm = filmLang.find((item) => {
+    return item.lang === lang;
+  });
+  const { t } = useTranslation();
   return (
     <div className={styles.container}>
-      <h1>{filmLang[0].filmName} смотреть онлайн</h1>
+      <h1>
+        {langFilm?.filmName} {t("movie.watch_online")}
+      </h1>
       <div className={styles.data}>
         <div className={styles.row_time}>
-          <span>{filmDate}</span>
-          <span>1 ч. 26 мин.</span>
-          <span>{filmAge}</span>
+          <span>{filmYear}</span>
+          <span>{filmTime} мин.</span>
+          <span>{filmAge}+</span>
         </div>
         <div className={styles.row_theme}>
-          <span> Россия</span>
+          {countries.map((item) => {
+            return <span> {item.name}</span>;
+          })}
           <span>Комедии</span>
           <span>Русские</span>
         </div>
@@ -59,18 +73,14 @@ export const DescriptionCard: FC<Props> = ({
       </div>
       <div className={styles.actors}>
         <Raiting filmGrade={filmGrade} />
-        {data.actors.map((item, index) => {
+        {actors.slice(0, 4).map((item, index) => {
           return (
-            <Actors
-              img={item[0]}
-              name={item[1]}
-              key={`${item.length}-${index}`}
-            />
+            <Actors img={item.photo} name={item.name} key={`${item.id}`} />
           );
         })}
       </div>
       <div className={styles.description}>
-        <p>{data.description}</p>
+        <p>{langFilm?.filmDescription}</p>
       </div>
     </div>
   );

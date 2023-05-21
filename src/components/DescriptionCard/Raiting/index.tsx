@@ -2,7 +2,7 @@ import { FC } from "react";
 import styles from "./index.module.scss";
 
 type Props = {
-  filmGrade: string;
+  filmGrade: number;
 };
 export const Raiting: FC<Props> = ({ filmGrade }) => {
   return (

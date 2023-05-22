@@ -35,7 +35,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
           filmAge={movie.filmAge}
           filmYear={movie.filmYear}
           filmLang={movie.filmLang}
-          actors={movie.actors}
+          actors={movie.actors || []}
           filmTime={movie.filmTime}
           countries={movie.countries}
         />

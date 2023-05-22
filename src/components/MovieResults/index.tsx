@@ -2,14 +2,14 @@ import { FC, useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import Poster from "../Poster";
 import Link from "next/link";
-import { IMovie, SearchFilmsType } from "@/types/types";
+import { ISimpleMovie } from "@/types/types";
 import { Button } from "../Button/Button";
 
 const filterResultArray = [...new Array(60)];
 const SHOW_SIZE = 14;
 
 type Props = {
-  movies: SearchFilmsType[] | any;
+  movies: ISimpleMovie[];
 };
 
 const MovieResults: FC<Props> = ({ movies }) => {

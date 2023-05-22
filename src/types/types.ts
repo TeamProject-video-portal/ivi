@@ -14,65 +14,40 @@ export type DirectorsType = {
   photo?: string;
 };
 
-export type FilmLangType = {
-  lang: 'ru' | 'en';
-  filmName: string;
-  filmDescription?: string | null;
-};
-
 export type ActorsType = {
   id: number;
   name: string;
   photo?: string;
 };
 
-export interface IMovie {
+export type FilmLangType = {
+  lang: 'ru' | 'en';
+  filmName: string;
+  filmDescription?: string | null;
+};
+
+export interface ISimpleMovie {
   id: number;
+  filmPoster: string;
+  filmGrade: number;
+  filmYear: number;
+  filmTime: number;
+  filmAge: string;
+  filmLang: FilmLangType[];
+  genres: GenresType[];
+  countries: CountriesType[];
+  actors?: ActorsType[];
+  directors?: DirectorsType[];
+}
+export interface IMovie extends ISimpleMovie {
   filmType: string;
   filmLink: string;
   filmTrailer: string;
-  filmYear: number;
-  filmTime: number;
   filmGrade: number;
   filmTotalGrade: number;
   filmR: string;
-  filmAge: string;
-  filmPoster: string;
-  filmLang: FilmLangType[];
-  genres: GenresType[];
-  countries: CountriesType[];
-  directors: DirectorsType[];
-  actors: ActorsType[];
-  similarFilms: SimilarFilm[];
+  similarFilms: ISimpleMovie[];
 }
-
-export type SimilarFilm = {
-  id: number;
-  filmPoster: string;
-  filmGrade: number;
-  filmYear: number;
-  filmTime: number;
-  filmAge: string;
-  filmLang: FilmLangType[];
-  genres: GenresType[];
-  countries: CountriesType[];
-  actors?: ActorsType[];
-  directors?: DirectorsType[];
-};
-
-export type SearchFilmsType = {
-  id: number;
-  filmPoster: string;
-  filmGrade: number;
-  filmYear: number;
-  filmTime: number;
-  filmAge: string;
-  filmLang: FilmLangType[];
-  genres: GenresType[];
-  countries: CountriesType[];
-  actors?: ActorsType[];
-  directors?: DirectorsType[];
-};
 
 export type PersonLangType = {
   lang: 'ru' | 'en';

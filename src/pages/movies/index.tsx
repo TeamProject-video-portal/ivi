@@ -15,7 +15,7 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { GetStaticProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, SearchFilmsType } from "@/types/types";
+import { IPerson, ISimpleMovie } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -34,7 +34,7 @@ const filtersChoice: FiltersState = {
 
 type MoviesProps = {
   persons: IPerson[];
-  movies: SearchFilmsType[];
+  movies: ISimpleMovie[];
 };
 
 const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
@@ -149,7 +149,7 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
           </div>
           <SimpleSlider
             title={t("sliders_title.top_movies")}
-            films={dataFilms}
+            films={dataFilms as ISimpleMovie[]}
           />
 
           <div className={styles.personRow}>
@@ -163,7 +163,7 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults movies={dataFilms} />
+            <MovieResults movies={dataFilms as ISimpleMovie[]} />
           </div>
         </section>
       )}
@@ -178,7 +178,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // const movies = await responseMovies.json() as IMovie[];
 
   const persons = personsData.persons;
-  const movies = dataFilms as SearchFilmsType[];
+  const movies = dataFilms as ISimpleMovie[];
 
   if (!persons || !movies) {
     return {

@@ -9,10 +9,10 @@ import logo from "../../../images/icons/top10.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-export-i18n";
-import { SearchFilmsType } from "@/types/types";
+import { ISimpleMovie } from "@/types/types";
 
 type Props = {
-  films: SearchFilmsType[] | any;
+  films: ISimpleMovie[];
 };
 
 const SliderTopTen: FC<Props> = ({ films }) => {
@@ -30,7 +30,7 @@ const SliderTopTen: FC<Props> = ({ films }) => {
       </div>
 
       <Slider {...newSettings} className={styles.container}>
-        {films.map((item: SearchFilmsType, i: any) => (
+        {films.map((item: ISimpleMovie, i: any) => (
           <Link href="/film">
             <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
           </Link>

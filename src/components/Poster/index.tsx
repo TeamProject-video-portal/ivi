@@ -3,11 +3,11 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import Icons from "./Info/Icons";
 import Info from "./Info";
-import { SearchFilmsType, SimilarFilm } from "@/types/types";
+import { ISimpleMovie } from "@/types/types";
 const posterImage = require("../../images/posterImage.jpeg");
 
 type Props = {
-  film: SimilarFilm | SearchFilmsType;
+  film: ISimpleMovie;
 };
 const Poster: FC<Props> = ({ film }) => {
   const [isOpen, setIsOpen] = useState(false);

@@ -42,7 +42,8 @@
     "animations_СТС_Kids": "Animations СТС Kids"
   },
   "buttons": {
-    "watch": "Watch 30 days for free",
+    "watch": "Watch",
+    "watch_30_days": "Watch 30 days for free",
     "catalog": "Catalog",
     "search": "Search",
     "profile": "Profile",
@@ -54,7 +55,13 @@
     "collapse": "Collapse",
     "read_more": "Read more",
     "show_more": "Show more",
-    "enter_register": "Enter or register"
+    "enter_register": "Enter or register",
+    "watch_by_subscription": "by subscription Ivy",
+    "watch_first_30_days": "The first 30 days of subscription is free",
+    "trailer": "Trailer",
+    "free_movies": "Free movies",
+    "comment": "Comment",
+    "add": "Add"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",
@@ -62,7 +69,9 @@
     "drama": "Drama",
     "during_the_week": "during the week",
     "top_movies": "Top Movies",
-    "persons": "Persons"
+    "persons": "Persons",
+    "reviews": "Reviews",
+    "watching_with_a_movie": "Watching with a movie"
   },
   "footer": {
     "about_us": "About us",

@@ -147,10 +147,10 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
             </h2>
             <GenresSlider />
           </div>
-          <SimpleSlider
+          {/* <SimpleSlider
             title={t("sliders_title.modern_cartoons")}
             films={dataFilms}
-          />
+          /> */}
 
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>

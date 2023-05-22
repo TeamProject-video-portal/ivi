@@ -4,6 +4,7 @@
 .container {
   width: 1200px;
   margin: 0 auto;
+
   @include tablet_s {
   }
   @include laptop {

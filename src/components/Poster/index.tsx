@@ -25,6 +25,7 @@ const Poster: FC<Props> = ({ film }) => {
             alt=""
             className={styles.img}
             fill
+            sizes="100%"
           ></Image>
           {isOpen && <Info />}
         </div>

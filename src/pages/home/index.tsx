@@ -2,18 +2,18 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
+import { useTranslation } from "next-export-i18n";
+import { FC } from "react";
+import { useRouter } from "next/router";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
-import { useTranslation } from "next-export-i18n";
-import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
-import dataFilms from "@/data/Search_films_v2.json";
-import movieData from "@/data/One_film_response_v2.json";
-import { GetStaticProps } from "next";
-import { IMovie } from "@/types/types";
-import { FC } from "react";
+import dataFilms from "@/data/One_film_response_v2.json";
+import { GetServerSideProps } from "next";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home: FC = () => {
+  const router = useRouter();
+  console.log(router);
   const { t } = useTranslation();
   return (
     <>
@@ -28,11 +28,11 @@ const Home: FC = () => {
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
       />
-      <SliderTopTen films={dataFilms} />
+      <SliderTopTen films={dataFilms.similarFilms} />
 
       <SimpleSlider
         title={t("sliders_title.modern_cartoons")}
-        films={dataFilms}
+        films={dataFilms.similarFilms}
       />
     </>
   );

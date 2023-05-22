@@ -2,6 +2,7 @@ import { Button } from "@/components/Button/Button";
 import { Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
 import { Vote } from "./Vote";
 import styles from "./index.module.scss";
+import { useTranslation } from "next-export-i18n";
 
 type commentsT = {
   id: string | undefined;
@@ -18,6 +19,7 @@ type Props = {
   setIdComment: Dispatch<SetStateAction<string | undefined>>;
 };
 export const Comment: FC<Props> = ({ comment, idComment, setIdComment }) => {
+  const { t } = useTranslation();
   const handleClick = () => {
     setIdComment(idComment);
   };
@@ -36,7 +38,7 @@ export const Comment: FC<Props> = ({ comment, idComment, setIdComment }) => {
               handleClick();
             }}
           >
-            Комментировать
+            <p>{t("buttons.comment")}</p>
           </Button>
           <Vote />
         </div>

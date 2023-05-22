@@ -21,12 +21,12 @@ const LanguageButton: FC = () => {
   return (
     <div className={styles.buttons_lang}>
       {/* {t.buttons.watch} */}
-      <button onClick={() => handleChangeLocale("en")}>
+      {/* <button onClick={() => handleChangeLocale("en")}>
         <span>en</span>{" "}
       </button>
       <button onClick={() => handleChangeLocale("ru")}>
         <span>ru</span>
-      </button>
+      </button> */}
       {/* <LanguageSwitcher lang="en">en</LanguageSwitcher> |{" "}
       <LanguageSwitcher lang="ru">ru</LanguageSwitcher> */}
     </div>

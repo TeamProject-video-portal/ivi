@@ -55,18 +55,18 @@ const CardId: NextPage<Props> = ({ movie }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const movie = moviesData as IMovie;
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const movie = moviesData as IMovie;
 
-  if (!movie) {
-    return {
-      notFound: true,
-    };
-  }
-  const isFilmPage = context.resolvedUrl === `/film/${context.query.id}`;
-  return {
-    props: { movie: movie, id: !isFilmPage ? null : context.query.id },
-  };
-};
+//   if (!movie) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   const isFilmPage = context.resolvedUrl === `/film/${context.query.id}`;
+//   return {
+//     props: { movie: movie, id: !isFilmPage ? null : context.query.id },
+//   };
+// };
 
 export default CardId;

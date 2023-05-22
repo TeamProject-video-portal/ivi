@@ -151,7 +151,6 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
             title={t("sliders_title.top_movies")}
             films={dataFilms as ISimpleMovie[]}
           />
-
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>
               {t("sliders_title.persons")}{" "}

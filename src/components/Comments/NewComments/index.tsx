@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { useTranslation } from "next-export-i18n";
 import { Dispatch, FC, ReactNode, SetStateAction, useState } from "react";
 import styles from "./index.module.scss";
 
@@ -9,7 +10,7 @@ type Props = {
 export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
   const [comment, setComment] = useState("");
   const [isWarning, setIsWarning] = useState(false);
-
+  const { t } = useTranslation();
   const addComment = () => {
     if (comment?.length === 0) {
       setIsWarning(true);
@@ -32,7 +33,7 @@ export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
       {isWarning && (
         <span className={styles.warning}>Напишите комментарий</span>
       )}
-      <button onClick={() => addComment()}>Добавить</button>
+      <button onClick={() => addComment()}>{t("buttons.add")}</button>
     </div>
   );
 };

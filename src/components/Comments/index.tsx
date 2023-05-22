@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
+import { useTranslation } from "next-export-i18n";
 import { FC, ReactNode, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { NewComments } from "./NewComments";
@@ -54,6 +55,7 @@ export const Comments: FC = () => {
   const [isClickCommentButton, setIsClickCommentButton] = useState(false);
   let now = dayjs().format("DD MMMM YYYY");
   const [data, setData] = useState(dataComments);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (newComment.trim() !== "") {
@@ -72,7 +74,7 @@ export const Comments: FC = () => {
 
   return (
     <div className={styles.container}>
-      <h2>Отзывы</h2>
+      <h2>{t("sliders_title.reviews")}</h2>
       <div></div>
       <PrevComments dataComments={data} setData={setData} />
 

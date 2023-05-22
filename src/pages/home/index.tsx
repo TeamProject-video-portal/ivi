@@ -2,6 +2,9 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
+import { useTranslation } from "next-export-i18n";
+import { FC } from "react";
+import { useRouter } from "next/router";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import { useTranslation } from "next-export-i18n";
@@ -14,7 +17,10 @@ import { FC } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 const Home: FC = () => {
+  const router = useRouter();
+  console.log(router);
   const { t } = useTranslation();
+  console.log(router);
   return (
     <>
       <Head>
@@ -28,11 +34,11 @@ const Home: FC = () => {
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
       />
-      <SliderTopTen films={dataFilms as ISimpleMovie[]} />
+      <SliderTopTen films={dataFilms} />
 
       <SimpleSlider
         title={t("sliders_title.modern_cartoons")}
-        films={dataFilms as ISimpleMovie[]}
+        films={dataFilms}
       />
     </>
   );

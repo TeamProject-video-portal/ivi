@@ -42,7 +42,8 @@
     "animations_СТС_Kids": "Animations СТС Kids"
   },
   "buttons": {
-    "watch": "Watch 30 days for free",
+    "watch": "Watch",
+    "watch_30_days": "Watch 30 days for free",
     "catalog": "Catalog",
     "search": "Search",
     "profile": "Profile",
@@ -63,7 +64,9 @@
     "drama": "Drama",
     "during_the_week": "during the week",
     "top_movies": "Top Movies",
-    "persons": "Persons"
+    "persons": "Persons",
+    "reviews": "Reviews",
+    "watching_with_a_movie": "Watching with a movie"
   },
   "footer": {
     "about_us": "About us",

@@ -41,7 +41,8 @@
     "animations_СТС_Kids": "Мультфильмы СТС Kids"
   },
   "buttons": {
-    "watch": "Смотреть 30 дней бесплатно",
+    "watch": "Смотреть",
+    "watch_30_days": "Смотреть 30 дней бесплатно",
     "catalog": "Каталог",
     "search": "Поиск",
     "profile": "Профиль",
@@ -62,7 +63,9 @@
     "drama": "Драмы",
     "during_the_week": "за неделю",
     "top_movies": "Лучшие фильмы",
-    "persons": "Персоны"
+    "persons": "Персоны",
+    "reviews": "Отзывы",
+    "watching_with_a_movie": "С фильмом смотрят"
   },
   "footer": {
     "about_us": "О нас",

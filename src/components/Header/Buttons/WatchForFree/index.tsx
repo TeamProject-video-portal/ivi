@@ -19,7 +19,7 @@ const WatchingButton: FC<Props> = (props) => {
       }}
     >
       <button className={styles.button_watch_for_free}>
-        {t("buttons.watch")}
+        {t("buttons.watch_30_days")}
       </button>
     </div>
   );

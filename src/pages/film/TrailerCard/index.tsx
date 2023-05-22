@@ -18,12 +18,12 @@ export const TrailerCard: FC<Props> = ({ filmPicture, filmLink }) => {
       <div className={styles.player_block}>
         <Image src={filmPicture} alt="movie picture" fill></Image>
         <div className={styles.buttons}>
-          <Link href={filmLink}>
-            <button className={styles.watch}>
-              <p>{t("buttons.watch")}</p>
-              <span>{t("buttons.watch_by_subscription")}</span>
-            </button>
-          </Link>
+          {/* <Link href={filmLink}> */}
+          <button className={styles.watch}>
+            <p>{t("buttons.watch")}</p>
+            <span>{t("buttons.watch_by_subscription")}</span>
+          </button>
+          {/* </Link> */}
 
           <div className={styles.note}>
             <p>{t("buttons.watch_first_30_days")}</p>

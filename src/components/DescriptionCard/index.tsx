@@ -33,17 +33,12 @@ export const DescriptionCard: FC<Props> = ({
   countries,
 }) => {
   const router = useRouter();
-  const lang = router.query?.lang;
-
-  const langFilm = filmLang.find((item) => {
-    return item.lang === lang;
-  });
 
   const { t } = useTranslation();
   return (
     <div className={styles.container}>
       <h1>
-        {langFilm?.filmName ? langFilm?.filmName : filmLang[0].filmName}{" "}
+        {router.locale === "ru" ? filmLang[0].filmName : filmLang[1].filmName}{" "}
         {t("movie.watch_online")}
       </h1>
       <div className={styles.data}>
@@ -88,9 +83,9 @@ export const DescriptionCard: FC<Props> = ({
       </div>
       <div className={styles.description}>
         <p>
-          {langFilm?.filmDescription
-            ? langFilm?.filmDescription
-            : filmLang[0].filmDescription}
+          {router.locale === "ru"
+            ? filmLang[0]?.filmDescription
+            : filmLang[1].filmDescription}
         </p>
       </div>
     </div>

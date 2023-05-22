@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // i18n: {
+  //   locales: ["ru", "en"],
+  //   defaultLocale: "ru",
+  // },
   locales: ["en", "ru"],
   defaultLocale: "ru",
   mode: "development",
@@ -12,6 +16,12 @@ const nextConfig = {
         destination: "/home",
         permanent: false,
       },
+      // {
+      //   source: "/ru",
+      //   destination: "/home",
+      //   locale: false,
+      //   permanent: false,
+      // },
     ];
   },
   reactStrictMode: true,

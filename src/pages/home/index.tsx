@@ -15,6 +15,7 @@ const Home: FC = () => {
   const router = useRouter();
   console.log(router);
   const { t } = useTranslation();
+  console.log(router);
   return (
     <>
       <Head>

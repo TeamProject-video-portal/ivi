@@ -27,8 +27,8 @@ const LanguageButton: FC = () => {
       <button onClick={() => handleChangeLocale("ru")}>
         <span>ru</span>
       </button> */}
-      {/* <LanguageSwitcher lang="en">en</LanguageSwitcher> |{" "}
-      <LanguageSwitcher lang="ru">ru</LanguageSwitcher> */}
+      <LanguageSwitcher lang="en">en</LanguageSwitcher> |{" "}
+      <LanguageSwitcher lang="ru">ru</LanguageSwitcher>
     </div>
   );
 };

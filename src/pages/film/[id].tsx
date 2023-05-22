@@ -27,6 +27,8 @@ type Props = {
 
 const CardId: NextPage<Props> = ({ movie }) => {
   const { t } = useTranslation();
+  const router = useRouter();
+  console.log(router);
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
@@ -37,7 +39,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
           filmAge={movie.filmAge}
           filmYear={movie.filmYear}
           filmLang={movie.filmLang}
-          actors={movie.actors}
+          actors={movie.actors || []}
           filmTime={movie.filmTime}
           countries={movie.countries}
         />
@@ -55,18 +57,18 @@ const CardId: NextPage<Props> = ({ movie }) => {
   );
 };
 
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const movie = moviesData as IMovie;
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const movie = moviesData as IMovie;
 
-//   if (!movie) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-//   const isFilmPage = context.resolvedUrl === `/film/${context.query.id}`;
-//   return {
-//     props: { movie: movie, id: !isFilmPage ? null : context.query.id },
-//   };
-// };
+  if (!movie) {
+    return {
+      notFound: true,
+    };
+  }
+  const isFilmPage = context.resolvedUrl === `/film/${context.query.id}`;
+  return {
+    props: { movie: movie, id: !isFilmPage ? null : context.query.id },
+  };
+};
 
 export default CardId;

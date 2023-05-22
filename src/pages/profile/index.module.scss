@@ -3,6 +3,29 @@
 
 .profile {
   padding: 64px 0;
+  .loginRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .userName {
+    font-size: 32px;
+    line-height: 36px;
+    font-family: "IviSans-bold";
+    font-weight: 700;
+    color: $base-white;
+  }
+  .userEmail {
+    display: flex;
+    column-gap: 8px;
+    white-space: nowrap;
+    @include font-light-m;
+    line-height: 20px;
+    color: $base-ligth-grey;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
   .loginBtn {
     margin-bottom: 64px;
   }
@@ -73,6 +96,32 @@
     gap: 24px;
     button {
       width: 100%;
+    }
+  }
+  .logOutRow {
+    display: flex;
+    column-gap: 24px;
+    margin: 32px 0;
+    button {
+      display: inline-flex;
+      align-items: center;
+      column-gap: 8px;
+      @include font-regular-m;
+      line-height: 20px;
+      color: $base-white;
+      background-color: transparent;
+      cursor: pointer;
+      transition: color 0.3s ease 0s;
+      &:hover {
+        color: $base-pink;
+        transition: color 0.3s ease 0s;
+      }
+      svg {
+        fill: $base-pink;
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
+      }
     }
   }
   @include container_1280 {

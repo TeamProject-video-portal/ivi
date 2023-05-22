@@ -6,7 +6,7 @@ export type ButtonProps = {
   className?: string;
   color?: 'pink' | 'darkbluegrey' | 'purple';
   type?: 'chatButton' | 'footerIconButton' | 'footerStoresButton' | 'socialButton'
-  | 'subscribeButton' | 'deviceButton' | 'loginButton' | 'profileSertButton'
+  | 'subscribeButton' | 'deviceButton' | 'loginButton' | 'editLoginButton' | 'profileSertButton'
   | 'profilePresentButton' | 'profileInviteButton' | 'profileMenuButton';
   width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
@@ -25,6 +25,7 @@ export const Button: FC<ButtonProps> = ({ children, className, color, type, widt
   if (type === 'subscribeButton') { cssClass.push(styles.subscribeButton) };
   if (type === 'deviceButton') { cssClass.push(styles.deviceButton) };
   if (type === 'loginButton') { cssClass.push(styles.loginButton) };
+  if (type === 'editLoginButton') { cssClass.push(styles.editLoginButton) };
   if (type === 'profileSertButton') { cssClass.push(styles.profileSertButton) };
   if (type === 'profilePresentButton') { cssClass.push(styles.profilePresentButton) };
   if (type === 'profileInviteButton') { cssClass.push(styles.profileInviteButton) };

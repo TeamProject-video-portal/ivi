@@ -14,8 +14,6 @@ import { IPerson } from "@/types/types";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import personsData from "@/data/persons.json";
 
-//const personImage = require("../../images/diKaprio.webp");
-
 type PersonProps = {
   person: IPerson;
 };
@@ -27,7 +25,6 @@ const Person: NextPage<PersonProps> = ({ person }) => {
   const breadcrumbs: Breadcrumb[] = [
     {
       item: `${person.films.length} ${t("person.count_movies")}`,
-      //item: `47 ${t("person.count_movies")}`,
       path: "#filmography",
     },
     { item: `${t("person.biography")}`, path: "#" },
@@ -62,8 +59,7 @@ const Person: NextPage<PersonProps> = ({ person }) => {
         <section className={styles.personContainer}>
           <div className={styles.imgContainer}>
             <Image
-              // src={personImage}
-              src={person.actorPicture}
+              src={person.personPicture}
               alt="person"
               className={styles.img}
               width={150}
@@ -71,10 +67,8 @@ const Person: NextPage<PersonProps> = ({ person }) => {
               priority
             ></Image>
           </div>
-          {/* <h1 className={styles.title}>Оскар Айзек</h1>
-          <div className={styles.title_en}>Oscar Isaak</div> */}
-          <h1 className={styles.title}>{person.actorLang[0].actorName}</h1>
-          <div className={styles.title_en}>{person.actorLang[0].actorName}</div>
+          <h1 className={styles.title}>{person.personLang[0].personName}</h1>
+          <div className={styles.title_en}>{person.personLang[1].personName}</div>
           <Description
             truncText={truncText}
             fullText={fullText}
@@ -89,7 +83,6 @@ const Person: NextPage<PersonProps> = ({ person }) => {
           </div>
           <div className={styles.filmographyRow}>
             <Filmography person={person} />
-            {/* <Filmography /> */}
           </div>
         </section>
       </div>

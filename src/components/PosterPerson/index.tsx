@@ -4,22 +4,21 @@ import Image from "next/image";
 import Link from 'next/link';
 import { IPerson } from '@/types/types';
 
-//const personImage = require("../../images/personImage.jpeg");
-
 type Props = {
   person: IPerson;
 };
 
 const PosterPerson: FC<Props> = ({ person }) => {
-  const personName = person.actorLang[0].actorName;
-  const name = personName.match(/.*\s/i) || personName;
-  const surname = personName.slice(name[0].length);
+  console.log('person', person);
+  const personNameLang = person.personLang[0].personName;
+  const name = personNameLang.match(/.*\s/i) || personNameLang;
+  const surname = personNameLang.slice(name[0].length);
 
   return (
     <Link href={`/person/${person.id}`} className={styles.container}>
       <div className={styles.poster}>
         <Image
-          src={person.actorPicture}
+          src={person.personPicture}
           alt=""
           className={styles.img}
           fill

@@ -11,19 +11,19 @@ export type CountriesType = {
 export type DirectorsType = {
   id: number;
   name: string;
-  photo: string;
+  photo?: string;
 };
 
 export type FilmLangType = {
-  lang?: "ru" | "en";
+  lang: 'ru' | 'en';
   filmName: string;
-  filmDescription: string;
+  filmDescription?: string | null;
 };
 
 export type ActorsType = {
   id: number;
   name: string;
-  photo: string;
+  photo?: string;
 };
 
 export interface IMovie {
@@ -56,13 +56,8 @@ export type SimilarFilm = {
   filmLang: FilmLangType[];
   genres: GenresType[];
   countries: CountriesType[];
-  actors: ActorsType[];
-  directors: DirectorsType[];
-};
-
-export type ActorFilmsType = {
-  id: number;
-  name: string;
+  actors?: ActorsType[];
+  directors?: DirectorsType[];
 };
 
 export type SearchFilmsType = {
@@ -75,25 +70,34 @@ export type SearchFilmsType = {
   filmLang: FilmLangType[];
   genres: GenresType[];
   countries: CountriesType[];
+  actors?: ActorsType[];
+  directors?: DirectorsType[];
 };
 
-export type ActorLangType = {
+export type PersonLangType = {
+  lang: 'ru' | 'en';
+  personName: string;
+  career?: string | null;
+  birthPlace?: string | null;
+};
+
+export type PersonFilmsType = {
   id: number;
-  actorId: number;
-  lang: string;
-  actorName: string;
-  career?: string;
-  birthPlace?: string;
-  birthDate?: string;
-  height?: string;
+  name: string;
+  year: number;
+  rating: number;
+  poster: string;
 };
-
 export interface IPerson {
   id: number;
-  actorLink: string;
-  actorPicture: string;
-  actorLang: ActorLangType[];
-  films: ActorFilmsType[];
+  personLink: string;
+  personPicture: string;
+  personGender?: string;
+  personLang: PersonLangType[];
+  height?: number;
+  age?: number;
+  birthDate?: string;
+  films: PersonFilmsType[];
 }
 
 export type ResponseError = {
@@ -107,5 +111,4 @@ export interface IUser {
   userRole?: string;
 }
 
-export interface IMovies {}
 export interface IFilters {}

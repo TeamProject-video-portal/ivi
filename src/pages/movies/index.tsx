@@ -34,7 +34,7 @@ const filtersChoice: FiltersState = {
 
 type MoviesProps = {
   persons: IPerson[];
-  movies: IMovie[];
+  movies: SearchFilmsType[];
 };
 
 const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
@@ -148,7 +148,7 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
             <GenresSlider />
           </div>
           <SimpleSlider
-            title={t("sliders_title.modern_cartoons")}
+            title={t("sliders_title.top_movies")}
             films={dataFilms}
           />
 
@@ -178,7 +178,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // const movies = await responseMovies.json() as IMovie[];
 
   const persons = personsData.persons;
-  const movies = dataFilms;
+  const movies = dataFilms as SearchFilmsType[];
 
   if (!persons || !movies) {
     return {

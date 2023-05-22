@@ -17,8 +17,7 @@ const LanguageButton: FC = () => {
     router.push(router.pathname, router.asPath, { locale: lang });
   };
   const t = router.locale === "ru" ? ru : en;
-
-  console.log(t);
+  console.log(router);
   return (
     <div className={styles.buttons_lang}>
       {/* {t.buttons.watch} */}

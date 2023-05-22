@@ -2,33 +2,37 @@ import { FC } from 'react';
 import styles from "./index.module.scss"
 import Image from "next/image";
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { Button } from '@/components/Button/Button';
-import { ActorFilmsType } from '@/types/types';
+import { PersonFilmsType } from '@/types/types';
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 
 type PhilmographyItemProps = {
-  film: ActorFilmsType;
+  film: PersonFilmsType;
 }
 
 const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
-  // const PhilmographyItem: FC = () => {
+  console.log('film', film);
   const { t } = useTranslation();
-  const filmImage = require("../../../images/film1.jpeg");
+  const router = useRouter();
 
   return (
     <Link href={'/'}>
       <div className={styles.philmographyItem}>
         <div color='purple' className={styles.philmographyItem__imgContainer}>
-          <Image src={filmImage} alt="person" className={styles.img} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></Image>
+          <Image src={film.poster} alt="person" className={styles.img} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></Image>
         </div>
         <div className={styles.philmographyItem__body}>
           <div className={styles.philmographyItem__content}>
-            <div>2022</div>
-            {/* <div>Человек-Паук: Через вселенные 2</div> */}
+            <div>{film.year}</div>
             <div>{film.name}</div>
-            <div className={styles.philmographyItem__rating}>Рейтинг Иви: 7.1</div>
+            <div className={styles.philmographyItem__rating}>Рейтинг Иви: {film.rating}</div>
           </div>
-          <Button color='purple' className={styles.philmographyItem__btn}>{t('buttons.read_more')}</Button>
+          <Button
+            color='purple'
+            className={styles.philmographyItem__btn}
+            onClick={() => router.push(`/film/${film.id}`)}
+          >{t('buttons.read_more')}</Button>
         </div>
       </div>
     </Link>

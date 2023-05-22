@@ -123,6 +123,25 @@
   line-height: 20px;
   padding: 9px 15px;
 }
+.editLoginButton {
+  column-gap: 6px;
+  @include font-regular-m;
+  line-height: 20px;
+  padding: 18px 61px;
+  svg {
+    font-size: 20px;
+  }
+  @media screen and (max-width: 743px) {
+    column-gap: 0;
+    font-size: 0;
+    padding: 0;
+    width: 56px;
+    height: 56px;
+    svg {
+      font-size: 20px;
+    }
+  }
+}
 .profileSertButton {
   flex-direction: column;
   justify-content: space-between;

@@ -4,11 +4,11 @@ import Image, { StaticImageData } from "next/image";
 
 // const posterImage = require("../../../images/posterImage.jpeg");
 import img from "../../../images/posterImage.jpeg";
-import { SearchFilmsType, SimilarFilm } from "@/types/types";
+import { ISimpleMovie } from "@/types/types";
 
 export type PosterProps = {
   num: number;
-  film: SimilarFilm | any;
+  film: ISimpleMovie;
 };
 
 const PosterTopTen: FC<PosterProps> = ({ num, film }) => {

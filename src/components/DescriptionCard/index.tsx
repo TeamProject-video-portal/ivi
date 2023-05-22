@@ -77,7 +77,7 @@ export const DescriptionCard: FC<Props> = ({
         {/* <ActorsSlider actors={actors} /> */}
         {actors.slice(0, 4).map((item, index) => {
           return (
-            <Actors img={item.photo} name={item.name} key={`${item.id}`} />
+            <Actors img={item.photo || ''} name={item.name} key={`${item.id}`} />
           );
         })}
       </div>

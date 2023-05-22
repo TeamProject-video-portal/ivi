@@ -6,11 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { settings } from "../settings";
-import { SearchFilmsType, SimilarFilm } from "@/types/types";
+import { ISimpleMovie } from "@/types/types";
 
 type Props = {
   title: string;
-  films: any[];
+  films: ISimpleMovie[];
 };
 const SimpleSlider: FC<Props> = ({ title, films }) => {
   const newSettings = {

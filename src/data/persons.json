@@ -2,18 +2,20 @@
   "persons": [
     {
       "id": 117,
-      "actorLink": "https://www.kinopoisk.ru//name/37859/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
-      "actorLang": [
+      "personLink": "https://www.kinopoisk.ru//name/37859/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
+      "personLang": [
         {
-          "id": 117,
-          "actorId": 117,
           "lang": "ru",
-          "actorName": "Леонардо ДиКаприо",
+          "personName": "Леонардо ДиКаприо",
           "career": "Актер,  Продюсер,  Сценарист",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Leonardo DiCaprio",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -28,19 +30,53 @@
       ]
     },
     {
-      "id": 40779,
-      "actorLink": "https://www.kinopoisk.ru//name/40779/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
-      "actorLang": [
+      "id": 21495,
+      "personLink": "https://www.kinopoisk.ru/name/21495/",
+      "personPicture": "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/21495.jpg",
+      "personGender": "MALE",
+      "height": 183,
+      "age": 48,
+      "birthDate": "1974-01-30",
+      "personLang": [
         {
-          "id": 40779,
-          "actorId": 40779,
           "lang": "ru",
-          "actorName": "Эмма Уотсон",
+          "personName": "Кристиан Бэйл",
+          "career": "Актер, Продюсер",
+          "birthPlace": "Хаверфордвест, Пембрукшир, Уэльс, Великобритания"
+        },
+        {
+          "lang": "en",
+          "personName": "Christian Bale",
+          "career": null,
+          "birthPlace": null
+        }
+      ],
+      "films": [
+        {
+          "id": 309,
+          "name": "Эквилибриум",
+          "year": 2002,
+          "rating": 7.9,
+          "poster": "https://kinopoiskapiunofficial.tech/images/posters/kp/309.jpg"
+        }
+      ]
+    },
+    {
+      "id": 40779,
+      "personLink": "https://www.kinopoisk.ru//name/40779/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
+      "personLang": [
+        {
+          "lang": "ru",
+          "personName": "Эмма Уотсон",
           "career": "Актриса,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Emma Watson",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -56,18 +92,20 @@
     },
     {
       "id": 43284,
-      "actorLink": "https://api.kinopoisk.dev/v1/person/43284",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
-      "actorLang": [
+      "personLink": "https://api.kinopoisk.dev/v1/person/43284",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
+      "personLang": [
         {
-          "id": 43284,
-          "actorId": 43284,
           "lang": "ru",
-          "actorName": "Оскар Айзек",
+          "personName": "Оскар Айзек",
           "career": "Актер,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Oscar Isaac",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -87,18 +125,20 @@
     },
     {
       "id": 117,
-      "actorLink": "https://www.kinopoisk.ru//name/37859/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
-      "actorLang": [
+      "personLink": "https://www.kinopoisk.ru//name/37859/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
+      "personLang": [
         {
-          "id": 117,
-          "actorId": 117,
           "lang": "ru",
-          "actorName": "Леонардо ДиКаприо",
+          "personName": "Леонардо ДиКаприо",
           "career": "Актер,  Продюсер,  Сценарист",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Leonardo DiCaprio",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -114,18 +154,20 @@
     },
     {
       "id": 40779,
-      "actorLink": "https://www.kinopoisk.ru//name/40779/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
-      "actorLang": [
+      "personLink": "https://www.kinopoisk.ru//name/40779/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
+      "personLang": [
         {
-          "id": 40779,
-          "actorId": 40779,
           "lang": "ru",
-          "actorName": "Эмма Уотсон",
+          "personName": "Эмма Уотсон",
           "career": "Актриса,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Emma Watson",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -141,18 +183,20 @@
     },
     {
       "id": 43284,
-      "actorLink": "https://api.kinopoisk.dev/v1/person/43284",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
-      "actorLang": [
+      "personLink": "https://api.kinopoisk.dev/v1/person/43284",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
+      "personLang": [
         {
-          "id": 43284,
-          "actorId": 43284,
           "lang": "ru",
-          "actorName": "Оскар Айзек",
+          "personName": "Оскар Айзек",
           "career": "Актер,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Oscar Isaac",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -172,18 +216,20 @@
     },
     {
       "id": 117,
-      "actorLink": "https://www.kinopoisk.ru//name/37859/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
-      "actorLang": [
+      "personLink": "https://www.kinopoisk.ru//name/37859/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1600647/9c33caef-be28-4257-b7ed-a407698f1a32/280x420",
+      "personLang": [
         {
-          "id": 117,
-          "actorId": 117,
           "lang": "ru",
-          "actorName": "Леонардо ДиКаприо",
+          "personName": "Леонардо ДиКаприо",
           "career": "Актер,  Продюсер,  Сценарист",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Leonardo DiCaprio",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -199,18 +245,20 @@
     },
     {
       "id": 40779,
-      "actorLink": "https://www.kinopoisk.ru//name/40779/",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
-      "actorLang": [
+      "personLink": "https://www.kinopoisk.ru//name/40779/",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/6201401/37e0b0c1-1e0d-4c1a-9971-6360c52e994f/orig",
+      "personLang": [
         {
-          "id": 40779,
-          "actorId": 40779,
           "lang": "ru",
-          "actorName": "Эмма Уотсон",
+          "personName": "Эмма Уотсон",
           "career": "Актриса,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Emma Watson",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [
@@ -226,18 +274,20 @@
     },
     {
       "id": 43284,
-      "actorLink": "https://api.kinopoisk.dev/v1/person/43284",
-      "actorPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
-      "actorLang": [
+      "personLink": "https://api.kinopoisk.dev/v1/person/43284",
+      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
+      "personLang": [
         {
-          "id": 43284,
-          "actorId": 43284,
           "lang": "ru",
-          "actorName": "Оскар Айзек",
+          "personName": "Оскар Айзек",
           "career": "Актер,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США",
-          "birthDate": "11 ноября, 1974 Скорпион 48 лет",
-          "height": "1.83 м"
+          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
+        },
+        {
+          "lang": "en",
+          "personName": "Christian Bale",
+          "career": null,
+          "birthPlace": null
         }
       ],
       "films": [

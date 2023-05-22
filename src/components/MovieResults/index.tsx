@@ -1,14 +1,15 @@
 import { FC, useState, useEffect } from "react";
 import styles from "./index.module.scss";
 import Poster from "../Poster";
-import { IMovie, SearchFilmsType } from "@/types/types";
+import Link from "next/link";
+import { ISimpleMovie } from "@/types/types";
 import { Button } from "../Button/Button";
 
 const filterResultArray = [...new Array(60)];
 const SHOW_SIZE = 14;
 
 type Props = {
-  movies: SearchFilmsType[] | any;
+  movies: ISimpleMovie[];
 };
 
 const MovieResults: FC<Props> = ({ movies }) => {
@@ -30,7 +31,9 @@ const MovieResults: FC<Props> = ({ movies }) => {
     <div className={styles.results}>
       <div className={styles.results__list}>
         {itemsToShow.map((item, i) => (
-          <Poster key={i} film={item} />
+          <Link href={`/film/${item.id}`} key={`${item.id}`}>
+            <Poster film={item} />
+          </Link>
         ))}
       </div>
       <Button className={styles.results__moreBtn} onClick={clickHandler}>

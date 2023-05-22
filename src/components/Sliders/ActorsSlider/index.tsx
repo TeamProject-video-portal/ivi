@@ -6,11 +6,11 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { settings } from "../settings";
-import { ActorsType, SearchFilmsType, SimilarFilm } from "@/types/types";
+import { ActorsType } from "@/types/types";
 import { Actors } from "@/components/DescriptionCard/Actors";
 
 type Props = {
-  actors: ActorsType[] | any;
+  actors: ActorsType[];
 };
 
 const ActorsSlider: FC<Props> = ({ actors }) => {

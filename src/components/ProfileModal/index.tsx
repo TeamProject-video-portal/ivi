@@ -2,6 +2,9 @@ import { FC, Dispatch, SetStateAction, useRef, useState } from 'react';
 import Link from 'next/link';
 import styles from "./index.module.scss"
 import { Button } from '../Button/Button';
+import { BsGoogle } from "react-icons/bs";
+import { SlSocialVkontakte } from "react-icons/sl";
+import { signIn } from "next-auth/react"
 
 type ProfileModalProps = {
   openModal: boolean;
@@ -14,7 +17,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [step, setStep] = useState<number>(1);
-  const [auth, setAuth] = useState<boolean>(false);
+  const [auth, setAuth] = useState<boolean>(true);
 
   const onFocusHandler = () => {
     inputRef.current?.focus();
@@ -45,6 +48,15 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
     }
   }
 
+  const googleInputHandler = () => {
+    setOpenModal(false);
+    signIn("google");
+  }
+
+  const vkInputHandler = () => {
+    setOpenModal(false)
+  }
+
   return (
     <div className={`${styles.profileModal} ${openModal && styles.profileModal_open
       }`} >
@@ -69,10 +81,26 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
             {step === 2 && 'не менее 6 символов'}
           </div>
         </div>
+        {step === 1 && (
+          <div className={styles.socialsRow}>
+            <Button
+              className={styles.googleInput}
+              color="purple"
+              onClick={googleInputHandler}
+            >
+              <BsGoogle />
+              <div>Войти через Google</div>
+            </Button>
+            <Button className={styles.vkInput} color="purple" onClick={vkInputHandler}>
+              <SlSocialVkontakte />
+              <div>Войти через Вконтакте</div>
+            </Button>
+          </div>
+        )}
         <div className={styles.loginInput} onFocus={onFocusHandler} onBlur={onBlurHandler}>
           <div className={`nbl - icon nbl - icon_avatar_16 ${styles.loginInput__icon} `}></div>
           <div className={`${styles.loginInput__label} `} ref={labelRef} onClick={onFocusHandler}>
-            {step === 1 && 'Через email или телефон'}
+            {step === 1 && 'Через email'}
             {step === 2 && 'пароль'}
           </div>
           {step === 1 && (

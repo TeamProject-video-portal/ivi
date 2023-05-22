@@ -1,12 +1,15 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
+import { SessionProvider, useSession } from 'next-auth/react';
 
-function App({ Component, pageProps, router }: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps }, router }: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} key={router.route} />
-    </Layout>
+    <SessionProvider session={session}>
+      <Layout>
+        <Component {...pageProps} key={router.route} />
+      </Layout>
+    </SessionProvider>
   );
 }
 

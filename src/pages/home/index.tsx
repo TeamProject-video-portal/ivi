@@ -7,13 +7,12 @@ import { FC } from "react";
 import { useRouter } from "next/router";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
-import { useTranslation } from "next-export-i18n";
 import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
 import dataFilms from "@/data/Search_films_v2.json";
 import movieData from "@/data/One_film_response_v2.json";
 import { GetStaticProps } from "next";
 import { ISimpleMovie, IMovie } from "@/types/types";
-import { FC } from "react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 const Home: FC = () => {
@@ -34,11 +33,11 @@ const Home: FC = () => {
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
       />
-      <SliderTopTen films={dataFilms} />
+      <SliderTopTen films={dataFilms as ISimpleMovie[]} />
 
       <SimpleSlider
         title={t("sliders_title.modern_cartoons")}
-        films={dataFilms}
+        films={dataFilms as ISimpleMovie[]}
       />
     </>
   );

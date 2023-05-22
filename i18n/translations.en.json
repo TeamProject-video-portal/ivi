@@ -1,5 +1,5 @@
 {
-  "test": "qwer",
+  "my_ivi": "My Ivi",
   "header": {
     "my_ivi": "My Ivi",
     "whats_new": "Whats new",
@@ -133,5 +133,8 @@
     "login_by_code": "Login by code",
     "settings": "Settings",
     "help": "Help"
+  },
+  "movie": {
+    "watch_online": "watch online"
   }
 }

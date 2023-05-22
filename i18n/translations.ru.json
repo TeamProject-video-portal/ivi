@@ -1,5 +1,4 @@
 {
-  "my_ivi": "Moй Иви",
   "header": {
     "my_ivi": "Moй Иви",
     "whats_new": "Что нового",
@@ -133,5 +132,8 @@
     "login_by_code": "Вход по коду",
     "settings": "Настройки",
     "help": "Помощь"
+  },
+  "movie": {
+    "watch_online": "смотреть онлайн"
   }
 }

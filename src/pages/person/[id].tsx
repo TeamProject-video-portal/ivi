@@ -12,7 +12,7 @@ import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
-import personsData from '@/data/persons.json';
+import personsData from "@/data/persons.json";
 
 //const personImage = require("../../images/diKaprio.webp");
 
@@ -50,7 +50,7 @@ const Person: NextPage<PersonProps> = ({ person }) => {
   return (
     <>
       <Head>
-        <title>{t('person.page_title')}</title>
+        <title>{t("person.page_title")}</title>
       </Head>
       <div className={styles.container}>
         <Button className={styles.backBtn} onClick={() => router.back()}>
@@ -103,7 +103,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   // const person = await response.json() as IPerson;
 
   const data = personsData.persons as IPerson[];
-  const person = data.find(item => String(item.id) == id)
+  const person = data.find((item) => String(item.id) == id);
 
   if (!person) {
     return {
@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: { person },
-    revalidate: 10
+    revalidate: 10,
   };
 };
 
@@ -124,13 +124,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = personsData.persons as IPerson[];
 
   const paths = data.map((item) => ({
-    params: { id: item.id.toString() }
+    params: { id: item.id.toString() },
   }));
 
   return {
     paths,
-    fallback: 'blocking',
-  }
+    fallback: "blocking",
+  };
 };
 
 export default Person;

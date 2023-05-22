@@ -10,40 +10,71 @@ export type CountriesType = {
 
 export type DirectorsType = {
   id: number;
-  fullName: string;
+  name: string;
+  photo: string;
 };
 
 export type FilmLangType = {
+  lang?: "ru" | "en";
   filmName: string;
-  filmTime: string;
-  lang?: 'ru' | 'en';
+  filmDescription: string;
 };
 
 export type ActorsType = {
   id: number;
   name: string;
+  photo: string;
 };
 
 export interface IMovie {
   id: number;
+  filmType: string;
   filmLink: string;
   filmTrailer: string;
-  filmDate: string;
-  filmGrade: string; // rating
-  filmTotalGrade: string; // score
-  filmPicture: string;
+  filmYear: number;
+  filmTime: number;
+  filmGrade: number;
+  filmTotalGrade: number;
+  filmR: string;
+  filmAge: string;
+  filmPoster: string;
   filmLang: FilmLangType[];
-  filmName: string;
-  filmTime: string;
   genres: GenresType[];
   countries: CountriesType[];
   directors: DirectorsType[];
   actors: ActorsType[];
+  similarFilms: SimilarFilm[];
 }
+
+export type SimilarFilm = {
+  id: number;
+  filmPoster: string;
+  filmGrade: number;
+  filmYear: number;
+  filmTime: number;
+  filmAge: string;
+  filmLang: FilmLangType[];
+  genres: GenresType[];
+  countries: CountriesType[];
+  actors: ActorsType[];
+  directors: DirectorsType[];
+};
 
 export type ActorFilmsType = {
   id: number;
   name: string;
+};
+
+export type SearchFilmsType = {
+  id: number;
+  filmPoster: string;
+  filmGrade: number;
+  filmYear: number;
+  filmTime: number;
+  filmAge: string;
+  filmLang: FilmLangType[];
+  genres: GenresType[];
+  countries: CountriesType[];
 };
 
 export type ActorLangType = {

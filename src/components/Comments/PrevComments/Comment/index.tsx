@@ -4,7 +4,7 @@ import { Vote } from "./Vote";
 import styles from "./index.module.scss";
 
 type commentsT = {
-  id: number | undefined;
+  id: string | undefined;
   name: string;
   comment: string;
   date: string;
@@ -14,8 +14,8 @@ type dataCommentsT = commentsT[];
 
 type Props = {
   comment: commentsT;
-  idComment?: number;
-  setIdComment: Dispatch<SetStateAction<number | undefined>>;
+  idComment?: string;
+  setIdComment: Dispatch<SetStateAction<string | undefined>>;
 };
 export const Comment: FC<Props> = ({ comment, idComment, setIdComment }) => {
   const handleClick = () => {

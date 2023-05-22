@@ -6,9 +6,14 @@ import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import { useTranslation } from "next-export-i18n";
 import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
+import dataFilms from "@/data/Search_films_v2.json";
+import movieData from "@/data/One_film_response_v2.json";
+import { GetStaticProps } from "next";
+import { IMovie } from "@/types/types";
+import { FC } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
-const Home = () => {
+const Home: FC = () => {
   const { t } = useTranslation();
   return (
     <>
@@ -23,9 +28,14 @@ const Home = () => {
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
       />
-      <SliderTopTen />
-      <SimpleSlider title={t("sliders_title.modern_cartoons")} />
+      <SliderTopTen films={dataFilms} />
+
+      <SimpleSlider
+        title={t("sliders_title.modern_cartoons")}
+        films={dataFilms}
+      />
     </>
   );
 };
+
 export default Home;

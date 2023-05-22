@@ -9,8 +9,13 @@ import logo from "../../../images/icons/top10.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-export-i18n";
+import { SearchFilmsType } from "@/types/types";
 
-const SliderTopTen: FC = () => {
+type Props = {
+  films: SearchFilmsType[] | any;
+};
+
+const SliderTopTen: FC<Props> = ({ films }) => {
   const { t } = useTranslation();
   const newSettings = {
     ...settings,
@@ -25,9 +30,9 @@ const SliderTopTen: FC = () => {
       </div>
 
       <Slider {...newSettings} className={styles.container}>
-        {[...new Array(10)].map((item, i) => (
+        {films.map((item: SearchFilmsType, i: any) => (
           <Link href="/film">
-            <PosterTopTen num={i + 1} key={i} />
+            <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
           </Link>
         ))}
       </Slider>

@@ -9,21 +9,21 @@ const nextConfig = {
   experimental: {
     appDir: true,
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/",
-  //       destination: "/home",
-  //       permanent: false,
-  //     },
-  //     {
-  //       source: "/ru",
-  //       destination: "/home",
-  //       locale: false,
-  //       permanent: false,
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: "/",
+        destination: "/home",
+        permanent: false,
+      },
+      {
+        source: "/ru",
+        destination: "/home",
+        locale: false,
+        permanent: false,
+      },
+    ];
+  },
   reactStrictMode: true,
 
   images: {

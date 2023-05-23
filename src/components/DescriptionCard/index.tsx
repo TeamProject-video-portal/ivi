@@ -6,7 +6,12 @@ import Link from "next/link";
 import { Button } from "../Button/Button";
 import { Actors } from "./Actors";
 import { Raiting } from "./Raiting";
-import { ActorsType, CountriesType, FilmLangType } from "@/types/types";
+import {
+  ActorsType,
+  CountriesType,
+  FilmLangType,
+  GenresType,
+} from "@/types/types";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-export-i18n";
 import GenresSlider from "../Sliders/GenresSlider";
@@ -21,6 +26,7 @@ type Props = {
   actors: ActorsType[];
   filmTime: number;
   countries: CountriesType[];
+  genres: GenresType[];
 };
 
 export const DescriptionCard: FC<Props> = ({
@@ -31,6 +37,7 @@ export const DescriptionCard: FC<Props> = ({
   actors,
   filmTime,
   countries,
+  genres,
 }) => {
   const router = useRouter();
 
@@ -51,8 +58,13 @@ export const DescriptionCard: FC<Props> = ({
           {countries.map((item) => {
             return <span> {item.name}</span>;
           })}
-          <span>Комедии</span>
-          <span>Русские</span>
+          {genres.slice(0, 2).map((item) => {
+            return (
+              <div className={styles.genres}>
+                <span>{item.name}</span>
+              </div>
+            );
+          })}
         </div>
         <div className={styles.row_buttons}>
           <div>
@@ -60,24 +72,26 @@ export const DescriptionCard: FC<Props> = ({
               FullHD
             </Button>
           </div>
-          <div className={styles.watch_params}>
-            <div className="nbl-icon nbl-icon_player_volumeMidRegular_16 watchParams__nbl-icon"></div>
-            <span>Рус</span>
-          </div>
-
-          <div className={styles.watch_params}>
-            <div className="nbl-icon nbl-icon_player_subtitlesRegular_16 watchParams__nbl-icon"></div>
-            <span>Рус</span>
-          </div>
+          {filmLang.map((item) => {
+            return (
+              <div className={styles.watch_params}>
+                <div className="nbl-icon nbl-icon_player_volumeMidRegular_16 watchParams__nbl-icon"></div>
+                <span>{item.lang}</span>
+              </div>
+            );
+          })}
         </div>
       </div>
 
       <div className={styles.actors}>
         <Raiting filmGrade={filmGrade} />
-        {/* <ActorsSlider actors={actors} /> */}
         {actors.slice(0, 4).map((item, index) => {
           return (
-            <Actors img={item.photo || ''} name={item.name} key={`${item.id}`} />
+            <Actors
+              img={item.photo || ""}
+              name={item.name}
+              key={`${item.id}`}
+            />
           );
         })}
       </div>

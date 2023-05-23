@@ -61,7 +61,9 @@
     "trailer": "Trailer",
     "free_movies": "Free movies",
     "comment": "Comment",
-    "add": "Add"
+    "add": "Add",
+    "ru": "Rus",
+    "en": "Eng"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",

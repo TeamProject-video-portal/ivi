@@ -5,26 +5,25 @@ const nextConfig = {
   //   defaultLocale: "ru",
   // },
 
-  locales: ["en", "ru"],
-  defaultLocale: "ru",
   mode: "development",
-  useBrowserDefault: true,
-
-  async redirects() {
-    return [
-      {
-        source: "/",
-        destination: "/home",
-        permanent: false,
-      },
-      {
-        source: "/ru",
-        destination: "/home",
-        locale: false,
-        permanent: false,
-      },
-    ];
+  experimental: {
+    appDir: true,
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       destination: "/home",
+  //       permanent: false,
+  //     },
+  //     {
+  //       source: "/ru",
+  //       destination: "/home",
+  //       locale: false,
+  //       permanent: false,
+  //     },
+  //   ];
+  // },
   reactStrictMode: true,
 
   images: {

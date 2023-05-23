@@ -14,12 +14,13 @@ import { GetStaticProps } from "next";
 import { ISimpleMovie, IMovie } from "@/types/types";
 
 const inter = Inter({ subsets: ["latin"] });
-
+// {params: {lang}}:{
+// params: { lang: Locale }
+// }
 const Home: FC = () => {
   const router = useRouter();
-  console.log(router);
+
   const { t } = useTranslation();
-  console.log(router);
   return (
     <>
       <Head>

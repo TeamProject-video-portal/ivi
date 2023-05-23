@@ -7,6 +7,7 @@ import MobileMenu from "./MobileMenu";
 type Props = {
   children?: ReactNode;
 };
+
 const Layout: FC<Props> = ({ children }) => {
   return (
     <div className="wrapper">

@@ -16,7 +16,7 @@ export const TrailerCard: FC<Props> = ({ filmPicture, filmLink }) => {
   return (
     <div className={styles.container}>
       <div className={styles.player_block}>
-        <Image src={filmPicture} alt="movie picture" fill></Image>
+        <Image src={filmPicture} alt=" " fill></Image>
         <div className={styles.buttons}>
           {/* <Link href={filmLink}> */}
           <button className={styles.watch}>
@@ -29,27 +29,6 @@ export const TrailerCard: FC<Props> = ({ filmPicture, filmLink }) => {
             <p>{t("buttons.watch_first_30_days")}</p>
           </div>
         </div>
-      </div>
-
-      <div className={styles.bottom_buttons}>
-        <div className={styles.left_side}>
-          <Button color={"darkbluegrey"} className={styles.trailer}>
-            <div className="nbl-icon nbl-icon_playOutline_20 nbl-button__nbl-icon"></div>
-            {t("buttons.trailer")}
-          </Button>
-
-          <Button color={"darkbluegrey"} className={styles.favorite}>
-            <div className="nbl-icon nbl-icon_favoriteAdd_20 nbl-button__nbl-icon"></div>
-          </Button>
-
-          <Button color={"darkbluegrey"} className={styles.share}>
-            <div className="nbl-icon nbl-icon_share_20 nbl-button__nbl-icon"></div>
-          </Button>
-        </div>
-        <Button color={"darkbluegrey"} className={styles.free_movies}>
-          <div className="nbl-icon nbl-icon_catalog_16 nbl-button__nbl-icon"></div>
-          <p>{t("buttons.free_movies")}</p>
-        </Button>
       </div>
     </div>
   );

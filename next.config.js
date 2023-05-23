@@ -5,11 +5,10 @@ const nextConfig = {
   //   defaultLocale: "ru",
   // },
 
-  locales: ["en", "ru"],
-  defaultLocale: "ru",
   mode: "development",
-  useBrowserDefault: true,
-
+  experimental: {
+    appDir: true,
+  },
   // async redirects() {
   //   return [
   //     {
@@ -17,13 +16,13 @@ const nextConfig = {
   //       destination: "/home",
   //       permanent: false,
   //     },
-  // {
-  //   source: "/ru",
-  //   destination: "/home",
-  //   locale: false,
-  //   permanent: false,
-  // },
-  // ];
+  //     {
+  //       source: "/ru",
+  //       destination: "/home",
+  //       locale: false,
+  //       permanent: false,
+  //     },
+  //   ];
   // },
   reactStrictMode: true,
 

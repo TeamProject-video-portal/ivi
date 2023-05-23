@@ -56,7 +56,14 @@
     "read_more": "Read more",
     "show_more": "Show more",
     "enter_register": "Enter or register",
-    "edit_profile": "Edit profile"
+    "watch_by_subscription": "by subscription Ivy",
+    "watch_first_30_days": "The first 30 days of subscription is free",
+    "trailer": "Trailer",
+    "free_movies": "Free movies",
+    "comment": "Comment",
+    "add": "Add",
+    "ru": "Rus",
+    "en": "Eng"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",

@@ -21,7 +21,7 @@ export type ActorsType = {
 };
 
 export type FilmLangType = {
-  lang: 'ru' | 'en';
+  lang: "ru" | "en";
   filmName: string;
   filmDescription?: string | null;
 };
@@ -49,7 +49,7 @@ export interface IMovie extends ISimpleMovie {
 }
 
 export type PersonLangType = {
-  lang: 'ru' | 'en';
+  lang: "ru" | "en";
   personName: string;
   career?: string | null;
   birthPlace?: string | null;
@@ -86,3 +86,11 @@ export interface IUser {
 }
 
 export interface IFilters {}
+
+export type BannerType = {
+  id: number;
+  logo: string;
+  poster: string;
+  trailer: string;
+  name: string;
+};

@@ -4,6 +4,7 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
+import Image from "next/image";
 import {
   GetServerSideProps,
   GetStaticPaths,
@@ -16,6 +17,10 @@ import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
 import FilmButtons from "./FilmButtons";
+import Script from "next/script";
+import Head from "next/head";
+
+import React from "react";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -29,9 +34,10 @@ type Props = {
 const CardId: NextPage<Props> = ({ movie }) => {
   const { t } = useTranslation();
   const router = useRouter();
-  console.log(movie);
+
   return (
     <div className={styles.container}>
+      <iframe src={movie.filmTrailer} frameBorder="0"></iframe>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
         <TrailerCard filmPicture={movie.filmPoster} filmLink={movie.filmLink} />
@@ -84,11 +90,6 @@ const CardId: NextPage<Props> = ({ movie }) => {
 // };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  // const id = context.params?.id || 0;
-
-  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
-  // const person = await response.json() as IPerson;
-
   const movie = moviesData;
   if (!movie) {
     return {
@@ -103,9 +104,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const data = await response.json() as IPerson[];
-
   const paths = [Array(3)].map((item) => ({
     params: { id: moviesData.id.toString() },
   }));

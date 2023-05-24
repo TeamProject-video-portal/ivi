@@ -2,12 +2,7 @@ import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 import { SessionProvider, useSession } from "next-auth/react";
-import {
-  LanguageSwitcher,
-  useLanguageQuery,
-  useLanguageSwitcherIsActive,
-  useSelectedLanguage,
-} from "next-export-i18n";
+import { wrapper } from "@/Redux/store";
 
 function App({
   Component,
@@ -22,4 +17,4 @@ function App({
     </SessionProvider>
   );
 }
-export default App;
+export default wrapper.withRedux(App);

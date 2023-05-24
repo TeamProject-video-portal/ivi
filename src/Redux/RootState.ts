@@ -1,4 +1,6 @@
-export type RootState = {
+import { BannerType } from "@/types/types";
+import { BannerReducerT } from "./banner/reducer";
 
-  // products: ProductsReducerType;
+export type RootState = {
+  banner: BannerReducerT;
 };

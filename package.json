@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "0.2.32",
-    "server-only": "0.0.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
@@ -34,6 +33,7 @@
     "react-redux": "^8.0.5",
     "react-slick": "^0.29.0",
     "sass": "^1.62.0",
+    "server-only": "0.0.1",
     "slick-carousel": "^1.8.1",
     "typescript": "5.0.4"
   },
@@ -47,6 +47,7 @@
     "@storybook/react": "^7.0.7",
     "@storybook/testing-library": "^0.0.14-next.2",
     "@types/negotiator": "^0.6.1",
+    "eslint-config-prettier": "^8.8.0",
     "react-range": "^1.8.14",
     "storybook": "^7.0.7"
   }

@@ -43,7 +43,6 @@ export interface IMovie extends ISimpleMovie {
   filmType: string;
   filmLink: string;
   filmTrailer: string;
-  filmGrade: number;
   filmTotalGrade: number;
   filmR: string;
   similarFilms: ISimpleMovie[];

@@ -32,15 +32,14 @@ const Person: NextPage<PersonProps> = ({ person }) => {
 
   const truncText = (
     <p>
-      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший
-      известным благодаря главной роли в картине братьев...
+      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной
+      роли в картине братьев...
     </p>
   );
   const fullText = (
     <p>
-      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший
-      известным благодаря главной роли в картине братьев Коэн «Внутри Льюина
-      Дэвиса».
+      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной
+      роли в картине братьев Коэн «Внутри Льюина Дэвиса».
     </p>
   );
 
@@ -69,17 +68,9 @@ const Person: NextPage<PersonProps> = ({ person }) => {
           </div>
           <h1 className={styles.title}>{person.personLang[0].personName}</h1>
           <div className={styles.title_en}>{person.personLang[1].personName}</div>
-          <Description
-            truncText={truncText}
-            fullText={fullText}
-            className={styles.description}
-          />
+          <Description truncText={truncText} fullText={fullText} className={styles.description} />
           <div className={styles.breadcrumbsRow}>
-            <Breadcrumbs
-              breadcrumbs={breadcrumbs}
-              type="films"
-              del="&middot;"
-            />
+            <Breadcrumbs breadcrumbs={breadcrumbs} type="films" del="&middot;" />
           </div>
           <div className={styles.filmographyRow}>
             <Filmography person={person} />

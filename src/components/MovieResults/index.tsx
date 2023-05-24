@@ -5,7 +5,6 @@ import Link from "next/link";
 import { ISimpleMovie } from "@/types/types";
 import { Button } from "../Button/Button";
 
-const filterResultArray = [...new Array(60)];
 const SHOW_SIZE = 14;
 
 type Props = {
@@ -13,20 +12,18 @@ type Props = {
 };
 
 const MovieResults: FC<Props> = ({ movies }) => {
-  let resultArray = [...movies.slice(0, SHOW_SIZE)];
-  const [itemsToShow, setItemsToShow] = useState(resultArray);
+  const [itemsToShow, setItemsToShow] = useState([...movies.slice(0, SHOW_SIZE)]);
   const [next, setNext] = useState(SHOW_SIZE);
 
   const sliceArray = (start: number, end: number): void => {
-    resultArray = [...resultArray, ...movies.slice(start, end)];
-    setItemsToShow(resultArray);
+    setItemsToShow(state => [...state, ...movies.slice(start, end)]);
   };
 
   const clickHandler = () => {
     sliceArray(next, next + SHOW_SIZE);
     setNext(next + SHOW_SIZE);
   };
-  console.log(itemsToShow);
+
   return (
     <div className={styles.results}>
       <div className={styles.results__list}>

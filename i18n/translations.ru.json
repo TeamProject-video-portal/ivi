@@ -55,7 +55,14 @@
     "read_more": "Подробнее",
     "show_more": "Показать еще",
     "enter_register": "Войти или зарегистрироваться",
-    "edit_profile": "Редактировать профиль"
+    "watch_by_subscription": "по подписке Иви",
+    "watch_first_30_days": "Первые 30 дней подписки бесплатно",
+    "trailer": "Трейлер",
+    "free_movies": "Бесплатные фильмы",
+    "comment": "Комментировать",
+    "add": "Добавить",
+    "ru": "Рус",
+    "en": "Англ"
   },
   "sliders_title": {
     "continue_browsing": "Продолжить просмотр",

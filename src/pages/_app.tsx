@@ -1,9 +1,19 @@
 import Layout from "@/components/Layout";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
-import { SessionProvider, useSession } from 'next-auth/react';
+import { SessionProvider, useSession } from "next-auth/react";
+import {
+  LanguageSwitcher,
+  useLanguageQuery,
+  useLanguageSwitcherIsActive,
+  useSelectedLanguage,
+} from "next-export-i18n";
 
-function App({ Component, pageProps: { session, ...pageProps }, router }: AppProps) {
+function App({
+  Component,
+  pageProps: { session, ...pageProps },
+  router,
+}: AppProps) {
   return (
     <SessionProvider session={session}>
       <Layout>
@@ -12,5 +22,4 @@ function App({ Component, pageProps: { session, ...pageProps }, router }: AppPro
     </SessionProvider>
   );
 }
-
 export default App;

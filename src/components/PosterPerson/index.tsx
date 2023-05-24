@@ -9,7 +9,6 @@ type Props = {
 };
 
 const PosterPerson: FC<Props> = ({ person }) => {
-  console.log('person', person);
   const personNameLang = person.personLang[0].personName;
   const name = personNameLang.match(/.*\s/i) || personNameLang;
   const surname = personNameLang.slice(name[0].length);

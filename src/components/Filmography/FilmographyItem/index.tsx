@@ -12,12 +12,11 @@ type PhilmographyItemProps = {
 }
 
 const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
-  console.log('film', film);
   const { t } = useTranslation();
   const router = useRouter();
 
   return (
-    <Link href={'/'}>
+    <Link href={`/film/${film.id}`}>
       <div className={styles.philmographyItem}>
         <div color='purple' className={styles.philmographyItem__imgContainer}>
           <Image src={film.poster} alt="person" className={styles.img} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"></Image>
@@ -31,7 +30,6 @@ const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
           <Button
             color='purple'
             className={styles.philmographyItem__btn}
-            onClick={() => router.push(`/film/${film.id}`)}
           >{t('buttons.read_more')}</Button>
         </div>
       </div>

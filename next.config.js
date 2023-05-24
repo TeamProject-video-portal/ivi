@@ -1,10 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // i18n: {
-  //   locales: ["ru", "en"],
-  //   defaultLocale: "ru",
-  // },
-
   mode: "development",
   experimental: {
     appDir: true,
@@ -32,6 +27,8 @@ const nextConfig = {
       "www.kinopoisk.ru",
       "st.kp.yandex.net",
       "kinopoiskapiunofficial.tech",
+      "widgets.kinopoisk.ru",
+      "www.themoviedb.org",
     ],
     remotePatterns: [
       {

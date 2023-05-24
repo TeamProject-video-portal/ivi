@@ -56,11 +56,11 @@ export const DescriptionCard: FC<Props> = ({
         </div>
         <div className={styles.row_theme}>
           {countries.map((item) => {
-            return <span> {item.name}</span>;
+            return <span key={item.id}> {item.name}</span>;
           })}
           {genres.slice(0, 2).map((item) => {
             return (
-              <div className={styles.genres}>
+              <div className={styles.genres} key={item.id}>
                 <span>{item.name}</span>
               </div>
             );
@@ -72,9 +72,9 @@ export const DescriptionCard: FC<Props> = ({
               FullHD
             </Button>
           </div>
-          {filmLang.map((item) => {
+          {filmLang.map((item, index) => {
             return (
-              <div className={styles.watch_params}>
+              <div className={styles.watch_params} key={`${index}`}>
                 <div className="nbl-icon nbl-icon_player_volumeMidRegular_16 watchParams__nbl-icon"></div>
                 <span>{item.lang}</span>
               </div>

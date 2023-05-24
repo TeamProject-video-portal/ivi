@@ -1,8 +1,34 @@
-import { createStore } from "redux";
-import combineReducer from "./reducers";
+import {
+  Action,
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from "@reduxjs/toolkit";
+import { createWrapper } from "next-redux-wrapper";
+import { bannerReducer } from "./banner/reducer";
+import createSagaMiddleware from "redux-saga";
+import { rootSaga } from "@/sagas/RootSaga";
 
-export const store = createStore(
-  combineReducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ &&
-    (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-);
+const sagaMiddleware = createSagaMiddleware();
+const makeStore = () => {
+  const Store = configureStore({
+    reducer: {
+      banner: bannerReducer,
+    },
+    middleware: [...getDefaultMiddleware(), sagaMiddleware],
+  });
+  sagaMiddleware.run(rootSaga);
+
+  return Store;
+};
+
+export type RootStore = ReturnType<typeof makeStore>;
+export type RootState = ReturnType<RootStore["getState"]>;
+export type AppDispatch = RootStore["dispatch"];
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
+export const wrapper = createWrapper<RootStore>(makeStore);

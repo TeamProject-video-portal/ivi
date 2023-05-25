@@ -37,7 +37,6 @@ const CardId: NextPage<Props> = ({ movie }) => {
 
   return (
     <div className={styles.container}>
-      <iframe src={movie.filmTrailer} frameBorder="0"></iframe>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
         <TrailerCard filmPicture={movie.filmPoster} filmLink={movie.filmLink} />

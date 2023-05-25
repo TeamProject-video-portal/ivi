@@ -94,3 +94,25 @@ export type BannerType = {
   trailer: string;
   name: string;
 };
+
+export type nameType = {
+  name: string;
+};
+
+export type PosterKPType = {
+  previewUrl: string;
+  url: string;
+};
+
+export type RaitingKPType = {
+  await: null | number;
+  filmCritics: number;
+  imdb: number;
+  kp: number;
+  russianFilmCritics: number;
+};
+
+export type ResponseTopMovieKPType = {
+  id: number;
+  poster: PosterKPType;
+};

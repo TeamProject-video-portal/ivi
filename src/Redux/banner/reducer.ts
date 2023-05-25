@@ -1,6 +1,4 @@
 import { BannerType } from "@/types/types";
-import { createStore } from "@reduxjs/toolkit";
-import { Context, HYDRATE } from "next-redux-wrapper";
 import { DATA_BANNER } from "./action-types";
 
 export type BannerReducerT = {

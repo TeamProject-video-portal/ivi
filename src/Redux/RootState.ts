@@ -1,8 +1,7 @@
-import { BannerType } from "@/types/types";
 import { BannerReducerT } from "./banner/reducer";
-import { IMoviesState } from "./movies/reducer";
+import { TopMovieReducerT } from "./topTenMovies/reducer";
 
 export type RootState = {
   banner: BannerReducerT;
-  movies: IMoviesState;
+  topMovies: TopMovieReducerT;
 };

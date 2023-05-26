@@ -4,13 +4,13 @@ import { bannerReducer } from "./banner/reducer";
 import { moviesReducer } from "./movies/reducer";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "@/sagas/RootSaga";
+import { topMovieReducer } from "./topTenMovies/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
   const Store = configureStore({
     reducer: {
       banner: bannerReducer,
-      movies: moviesReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

@@ -4,11 +4,11 @@ import Image, { StaticImageData } from "next/image";
 
 // const posterImage = require("../../../images/posterImage.jpeg");
 import img from "../../../images/posterImage.jpeg";
-import { ISimpleMovie } from "@/types/types";
+import { ISimpleMovie, ResponseTopMovieKPType } from "@/types/types";
 
 export type PosterProps = {
   num: number;
-  film: ISimpleMovie;
+  film: ResponseTopMovieKPType;
 };
 
 const PosterTopTen: FC<PosterProps> = ({ num, film }) => {
@@ -16,7 +16,7 @@ const PosterTopTen: FC<PosterProps> = ({ num, film }) => {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <Image
-          src={film.filmPoster}
+          src={film.poster.url}
           alt=""
           className={styles.img}
           width={500}

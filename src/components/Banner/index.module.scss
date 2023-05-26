@@ -3,6 +3,7 @@
 
 .container {
   @include container_1280 {
+    height: 400px;
   }
   @include container_920 {
     width: calc(100% - 60px);

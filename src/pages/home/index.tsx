@@ -14,6 +14,8 @@ import { connect, useDispatch, useSelector } from "react-redux";
 import { wrapper } from "@/Redux/store";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
+import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
+import { selectTopMovies } from "@/Redux/topTenMovies/selectors";
 
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
@@ -24,6 +26,7 @@ type Props = {
 const Home: FC<Props> = () => {
   // const [data, setData] = useState(startMovies);
   const dataBanner = useSelector(selectBanner);
+
   const { t } = useTranslation();
   return (
     <>
@@ -35,11 +38,12 @@ const Home: FC<Props> = () => {
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
       <Banner movies={dataBanner.data} />
-      <SliderContinueBrowsing
+      {/* <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
-      />
-      <SliderTopTen films={dataFilms as ISimpleMovie[]} />
+      /> */}
+
+      <SliderTopTen />
 
       <SimpleSlider
         title={t("sliders_title.modern_cartoons")}

@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
 import PosterTopTen, { PosterProps } from "./index";
-
+import dataOneMovie from "@/data/One_film_response_v2.json";
 export default {
   title: "Poster",
   component: PosterTopTen,
@@ -16,38 +16,11 @@ export const Default: Story<PosterStoryProps> = ({ ...args }) => (
 Default.args = {
   num: 5,
   film: {
-    id: 361,
-    filmPoster: "https://kinopoiskapiunofficial.tech/images/posters/kp/361.jpg",
-    filmGrade: 8.7,
-    filmYear: 1999,
-    filmTime: 139,
-    filmAge: "18",
-    filmLang: [
-      {
-        lang: "ru",
-        filmName: "Бойцовский клуб",
-      },
-      {
-        lang: "en",
-        filmName: "Fight Club",
-      },
-    ],
-    genres: [
-      {
-        id: 1,
-        name: "триллер",
-      },
-    ],
-    countries: [
-      {
-        id: 1,
-        name: "США",
-      },
-      {
-        id: 4,
-        name: "Германия",
-      },
-    ],
+    id: 123,
+    poster: {
+      previewUrl: dataOneMovie.filmPoster,
+      url: dataOneMovie.filmPoster,
+    },
   },
 };
 Default.storyName = "poster";

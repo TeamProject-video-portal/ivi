@@ -89,6 +89,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
 // };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  console.log(context);
   const movie = moviesData;
   if (!movie) {
     return {

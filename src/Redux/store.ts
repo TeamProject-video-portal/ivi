@@ -1,11 +1,7 @@
-import {
-  Action,
-  configureStore,
-  getDefaultMiddleware,
-  ThunkAction,
-} from "@reduxjs/toolkit";
+import { Action, configureStore, getDefaultMiddleware, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { bannerReducer } from "./banner/reducer";
+import { moviesReducer } from "./movies/reducer";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "@/sagas/RootSaga";
 
@@ -14,6 +10,7 @@ const makeStore = () => {
   const Store = configureStore({
     reducer: {
       banner: bannerReducer,
+      movies: moviesReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

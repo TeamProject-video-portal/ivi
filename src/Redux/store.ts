@@ -1,16 +1,18 @@
 import { Action, configureStore, getDefaultMiddleware, ThunkAction } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { bannerReducer } from "./banner/reducer";
-import { moviesReducer } from "./movies/reducer";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "@/sagas/RootSaga";
 import { topMovieReducer } from "./topTenMovies/reducer";
+import { moviesReducer } from "./movies/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
   const Store = configureStore({
     reducer: {
       banner: bannerReducer,
+      topMovies: topMovieReducer,
+      movies: moviesReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

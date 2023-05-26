@@ -45,9 +45,9 @@ const SliderTopTen: FC = () => {
             <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
           </Link>
         ))}
-        <Link href="/film/">
+        {/* <Link href="/film/">
           <PosterTopTen num={10} film={oneMovie} />
-        </Link>
+        </Link> */}
       </Slider>
       <></>
     </div>

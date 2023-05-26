@@ -3,12 +3,11 @@ import { bannerReducer } from "@/Redux/banner/reducer";
 import { all, fork, takeEvery } from "redux-saga/effects";
 import { getDataBannerSaga } from "./banner-saga";
 import { getDataTopMoviesSaga } from "./top-movies-saga";
-export type InferValueTypes<T> = T extends { [key: string]: infer U }
-  ? U
-  : never;
+import { getMoviesSaga } from "./movies-saga";
+export type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 export function* rootSaga() {
   try {
-    yield all([fork(getDataBannerSaga), fork(getDataTopMoviesSaga)]);
+    yield all([fork(getDataBannerSaga), fork(getDataTopMoviesSaga), fork(getMoviesSaga)]);
   } catch (e) {}
 }

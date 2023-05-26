@@ -9,22 +9,22 @@ import { settings } from "./../settings";
 import { genres } from "@/data/filters";
 import { IPerson } from "@/types/types";
 import PosterPerson from "@/components/PosterPerson";
+import { useAppSelector } from "@/hooks/hooks";
+import { selectPersons } from "@/Redux/persons/selectors";
 
-type Props = {
-  persons: IPerson[];
-};
-
-const PersonsSlider: FC<Props> = ({ persons }) => {
+const PersonsSlider: FC = () => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
     centerMode: false, // дополнительные свойства
     slidesToShow: 7,
   };
 
+  const dataPersons = useAppSelector(selectPersons);
+
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>
-        {persons.map((item, i) => (
+        {dataPersons.persons.map((item, i) => (
           <PosterPerson key={i} person={item} />
         ))}
       </Slider>

@@ -5,6 +5,7 @@ import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "@/sagas/RootSaga";
 import { topMovieReducer } from "./topTenMovies/reducer";
 import { moviesReducer } from "./movies/reducer";
+import { personsReducer } from "./persons/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -13,6 +14,7 @@ const makeStore = () => {
       banner: bannerReducer,
       topMovies: topMovieReducer,
       movies: moviesReducer,
+      persons: personsReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

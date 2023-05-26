@@ -1,7 +1,6 @@
 import { IMovie } from "@/types/types";
-import { Context, HYDRATE } from "next-redux-wrapper";
-import { MoviesActionTypes } from "./action-types";
 import { AnyAction } from "@reduxjs/toolkit";
+import { MoviesActionTypes } from "./action-types";
 
 export interface IMoviesState {
   movies: IMovie[];

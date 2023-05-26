@@ -13,15 +13,18 @@ import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
-import { GetStaticProps, NextPage } from "next";
+import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
 import { IPerson, ISimpleMovie } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
 import dataFilms from "@/data/Search_films_v2.json";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { connect } from "react-redux";
+import { useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
+import { wrapper } from "@/Redux/store";
+import { MoviesActionTypes } from "@/Redux/movies/action-types";
 
 const filtersChoice: FiltersState = {
   genres: ["Детские", "Аниме"],
@@ -33,12 +36,13 @@ const filtersChoice: FiltersState = {
   scoreMax: 200000,
 };
 
-type MoviesProps = {
-  persons: IPerson[];
-  movies: ISimpleMovie[];
-};
+// type MoviesProps = {
+//   persons: IPerson[];
+//   movies: ISimpleMovie[];
+// };
 
-const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
+//const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
+const Movies: NextPage = () => {
   const { t } = useTranslation();
 
   const breadcrumbs: Breadcrumb[] = [
@@ -88,9 +92,9 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
     </>
   );
 
-  const [isFilter, setIsFilter] = useState(true);
-  const dataMovies = useSelector(selectMovies);
-  console.log("dataMovies from movies", dataMovies);
+  const [isFilter, setIsFilter] = useState(false);
+  const dataMovies = useAppSelector(selectMovies);
+  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade);
 
   return (
     <>
@@ -137,17 +141,20 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
             <h2 className={styles.genresRow__title}>{t("contextSubMenu.genres")}</h2>
             <GenresSlider />
           </div>
-          <SimpleSlider title={t("sliders_title.top_movies")} films={movies} />
+          <SimpleSlider
+            title={t("sliders_title.top_movies")}
+            films={bestMovies as ISimpleMovie[]}
+          />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
-            <PersonsSlider persons={persons} />
+            <PersonsSlider />
           </div>
         </section>
       )}
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults movies={movies} />
+            <MovieResults movies={dataMovies.movies} />
           </div>
         </section>
       )}
@@ -155,14 +162,19 @@ const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
   // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
   // const persons = await responsePersons.json() as IPerson[];
   // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
   // const movies = await responseMovies.json() as IMovie[];
 
-  const persons = personsData.persons;
   const movies = dataFilms as ISimpleMovie[];
+  const persons = personsData.persons;
+
+  store.dispatch({
+    type: MoviesActionTypes.SET_MOVIES,
+    payload: movies,
+  });
 
   if (!persons || !movies) {
     return {
@@ -171,9 +183,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   return {
-    props: { persons, movies },
+    //props: { persons, movies },
+    props: {},
     revalidate: 10,
   };
-};
+});
 
-export default Movies;
+export default connect((state) => state)(Movies);

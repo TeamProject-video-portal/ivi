@@ -2,19 +2,32 @@
 @import "../../../styles/color.scss";
 
 .container {
-  width: 450px;
-  background-color: red;
-  margin: 20px 0;
+  padding-right: 30px;
+  aspect-ratio: 3/4;
+  box-sizing: border-box;
+  @include desktop {
+  }
 
+  @include laptop {
+  }
+
+  @include tablet_s {
+  }
+
+  @include mobile_m {
+    padding-right: 0;
+  }
+
+  @include mobile_s {
+    padding-right: 0;
+  }
   .player_block {
     aspect-ratio: 3/4;
     position: relative;
-
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background-color: red;
     }
 
     .buttons {
@@ -32,7 +45,7 @@
 
       .watch {
         @include pink-button;
-        width: 320px;
+        width: 80%;
         height: 48px;
         margin: 0 auto;
         position: relative;

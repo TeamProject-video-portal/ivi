@@ -4,23 +4,17 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
-import Image from "next/image";
-import {
-  GetServerSideProps,
-  GetStaticPaths,
-  GetStaticProps,
-  NextPage,
-} from "next";
+import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { IMovie } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
-import FilmButtons from "./FilmButtons";
-import Script from "next/script";
-import Head from "next/head";
-
-import React from "react";
+import React, { useState } from "react";
+import ActorsSlider from "@/components/Sliders/ActorsSlider";
+import { Modal } from "@/components/Modal";
+import InfoMovie from "./InfoMovie";
+import WatchOnAllDevices from "./WatchOnAllDevices";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -34,27 +28,35 @@ type Props = {
 const CardId: NextPage<Props> = ({ movie }) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
       <div className={styles.wrapper}>
-        <TrailerCard filmPicture={movie.filmPoster} filmLink={movie.filmLink} />
-        <div className={styles.info}>
-          <DescriptionCard
-            filmGrade={movie.filmGrade}
-            filmAge={movie.filmAge}
-            filmYear={movie.filmYear}
-            filmLang={movie.filmLang}
-            actors={movie.actors || []}
-            filmTime={movie.filmTime}
-            countries={movie.countries}
-            genres={movie.genres}
-          />
-          <FilmButtons filmLink={movie.filmLink} />
-        </div>
+        <TrailerCard
+          filmPicture={movie.filmPoster}
+          filmLink={movie.filmLink}
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+          className={styles.trailer}
+        />
+        <DescriptionCard
+          filmAge={movie.filmAge}
+          filmYear={movie.filmYear}
+          filmLang={movie.filmLang}
+          filmTime={movie.filmTime}
+          countries={movie.countries}
+          genres={movie.genres}
+          className={styles.discription}
+        />
+        <ActorsSlider
+          filmGrade={movie.filmGrade}
+          actors={movie.actors || []}
+          className={styles.slider_actors}
+        />
+        <InfoMovie className={styles.info} filmLang={movie.filmLang} />
       </div>
-
       <Comments />
       <SimpleSlider
         title={t("sliders_title.watching_with_a_movie")}
@@ -63,6 +65,17 @@ const CardId: NextPage<Props> = ({ movie }) => {
       <SliderContinueBrowsing
         title={"Трейлеры и доп. материалы"}
         type={"summary"}
+      />
+      {isOpenModal && (
+        <Modal
+          isOpenModal={isOpenModal}
+          setIsOpenModal={setIsOpenModal}
+          trailer={movie.filmTrailer}
+        />
+      )}
+      <WatchOnAllDevices
+        filmLang={movie.filmLang}
+        filmPicture={movie.filmPoster}
       />
     </div>
   );

@@ -55,7 +55,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
           actors={movie.actors || []}
           className={styles.slider_actors}
         />
-        <InfoMovie className={styles.info} filmLang={movie.filmLang} />
+        {/* <InfoMovie className={styles.info} filmLang={movie.filmLang} /> */}
       </div>
       <Comments />
       <SimpleSlider

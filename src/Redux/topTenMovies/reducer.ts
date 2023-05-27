@@ -1,12 +1,13 @@
 import { BannerType, ResponseTopMovieKPType } from "@/types/types";
 import { DATA_TOP_MOVIES } from "./action-types";
+import topMovie from "@/data/top_movie.json";
 
 export type TopMovieReducerT = {
   data: ResponseTopMovieKPType[];
 };
 
 const initialState: TopMovieReducerT = {
-  data: [],
+  data: topMovie.data,
 };
 
 export const topMovieReducer = (state = initialState, action: any) => {

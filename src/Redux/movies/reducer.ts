@@ -22,7 +22,9 @@ export const moviesReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case MoviesActionTypes.SET_MOVIES:
       const actionPayload = action.payload as IMovie[];
-      const years = Array.from(new Set(actionPayload.map((item) => item.filmYear)));
+      const years = Array.from(
+        new Set(actionPayload.map((item) => item.filmYear))
+      );
       const genresSet = new Set<string>();
       actionPayload.map((item) => {
         item.genres.map((elem) => genresSet.add(elem.name));
@@ -31,7 +33,7 @@ export const moviesReducer = (state = initialState, action: AnyAction) => {
       actionPayload.map((item) => {
         item.countries.map((elem) => countriesSet.add(elem.name));
       });
-      return {
+      filter: return {
         movies: actionPayload,
         years,
         genres: Array.from(genresSet),

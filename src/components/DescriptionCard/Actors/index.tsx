@@ -5,7 +5,7 @@ type Props = {
   img: string;
   name: string;
 };
-export const Actors: FC<Props> = (props) => {
+export const Actor: FC<Props> = (props) => {
   return (
     <div className={styles.actor_cart}>
       <div className={styles.image}>

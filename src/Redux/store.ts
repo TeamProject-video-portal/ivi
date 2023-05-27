@@ -6,6 +6,7 @@ import { rootSaga } from "@/sagas/RootSaga";
 import { topMovieReducer } from "./topTenMovies/reducer";
 import { moviesReducer } from "./movies/reducer";
 import { personsReducer } from "./persons/reducer";
+import { filterReducer } from "./filter/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -15,6 +16,7 @@ const makeStore = () => {
       topMovies: topMovieReducer,
       movies: moviesReducer,
       persons: personsReducer,
+      filters: filterReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

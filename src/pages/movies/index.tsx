@@ -25,6 +25,7 @@ import { useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
+import { END } from "redux-saga";
 
 const filtersChoice: FiltersState = {
   genres: ["Детские", "Аниме"],
@@ -169,6 +170,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   // const movies = await responseMovies.json() as IMovie[];
   // const persons = personsData.persons;
   const movies = dataFilms as ISimpleMovie[];
+  console.log("store", store);
 
   store.dispatch({
     type: MoviesActionTypes.SET_MOVIES,
@@ -189,3 +191,4 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
 });
 
 export default connect((state) => state)(Movies);
+//export default Movies;

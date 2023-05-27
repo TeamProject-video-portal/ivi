@@ -16,6 +16,7 @@ export const personsReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case PersonsActionTypes.SET_PERSONS:
       return {
+        ...state,
         persons: action.payload,
         error: "",
       };

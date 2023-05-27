@@ -94,7 +94,7 @@ const Movies: NextPage = () => {
 
   const [isFilter, setIsFilter] = useState(false);
   const dataMovies = useAppSelector(selectMovies);
-  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade);
+  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
   return (
     <>
@@ -167,20 +167,19 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   // const persons = await responsePersons.json() as IPerson[];
   // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
   // const movies = await responseMovies.json() as IMovie[];
-
+  // const persons = personsData.persons;
   const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
 
   store.dispatch({
     type: MoviesActionTypes.SET_MOVIES,
     payload: movies,
   });
 
-  if (!persons || !movies) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!persons || !movies) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
   return {
     //props: { persons, movies },

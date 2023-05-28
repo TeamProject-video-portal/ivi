@@ -1,10 +1,17 @@
 import { IPerson } from "@/types/types";
 import { PersonsActionTypes } from "./action-types";
 
-export const getPersons = (persons: IPerson[]) => {
+export const getActors = (actors: IPerson[]) => {
   return {
-    type: PersonsActionTypes.SET_PERSONS,
-    payload: persons,
+    type: PersonsActionTypes.SET_ACTORS,
+    payload: actors,
+  };
+};
+
+export const getDirectors = (directors: IPerson[]) => {
+  return {
+    type: PersonsActionTypes.SET_DIRECTORS,
+    payload: directors,
   };
 };
 

@@ -18,8 +18,8 @@ const PersonsSlider: FC = () => {
     slidesToShow: 7,
   };
 
-  const dataPersons = useAppSelector(selectPersons);
-  const persons = dataPersons.persons.slice(0, 8);
+  const { actors } = useAppSelector(selectPersons);
+  const persons = actors.slice(0, 8);
 
   return (
     <div>

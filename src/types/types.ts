@@ -116,3 +116,5 @@ export type ResponseTopMovieKPType = {
   id: number;
   poster: PosterKPType;
 };
+
+export type FilterRangeType = [number, number];

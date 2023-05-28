@@ -25,6 +25,8 @@ import { useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
+import { END } from "redux-saga";
+import { selectFilters } from "@/Redux/filter/selectors";
 
 const filtersChoice: FiltersState = {
   genres: ["Детские", "Аниме"],
@@ -92,9 +94,9 @@ const Movies: NextPage = () => {
     </>
   );
 
-  const [isFilter, setIsFilter] = useState(false);
+  const { isFilter } = useAppSelector(selectFilters);
   const dataMovies = useAppSelector(selectMovies);
-  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade);
+  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
   return (
     <>
@@ -132,7 +134,7 @@ const Movies: NextPage = () => {
           </div>
         )}
         <section className={styles.filtersRow}>
-          <Filters filtersChoice={filtersChoice} isFilter={isFilter} setIsFilter={setIsFilter} />
+          <Filters filtersChoice={filtersChoice} isFilter={isFilter} />
         </section>
       </div>
       {!isFilter && (
@@ -167,20 +169,20 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   // const persons = await responsePersons.json() as IPerson[];
   // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
   // const movies = await responseMovies.json() as IMovie[];
-
+  // const persons = personsData.persons;
   const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
+  console.log("store", store);
 
   store.dispatch({
     type: MoviesActionTypes.SET_MOVIES,
     payload: movies,
   });
 
-  if (!persons || !movies) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!persons || !movies) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
   return {
     //props: { persons, movies },
@@ -190,3 +192,4 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
 });
 
 export default connect((state) => state)(Movies);
+//export default Movies;

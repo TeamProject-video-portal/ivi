@@ -6,7 +6,10 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GenresButton from "@/components/Filters/GenresButton";
 import { settings } from "./../settings";
-import { genres } from "@/data/filters";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { selectMovies } from "@/Redux/movies/selectors";
+import { genresIcons } from "@/data/filters";
+import { setGenres } from "@/Redux/filter/actions";
 
 const GenresSlider: FC = () => {
   const newSettings = {
@@ -15,12 +18,25 @@ const GenresSlider: FC = () => {
     slidesToShow: 7,
   };
 
+  const { genres } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>
-        {genres.map((item, i) => (
-          <GenresButton key={i} size="big" genres={item.title} id={item.id} />
-        ))}
+        {genres.map((item, i) => {
+          const findItem = genresIcons.find((elem) => elem.title === item);
+          //console.log(findItem?.title, item);
+          return (
+            <GenresButton
+              key={item}
+              size="big"
+              genres={item}
+              id={findItem?.id || 1}
+              onClick={() => dispatch(setGenres(item))}
+            />
+          );
+        })}
       </Slider>
     </div>
   );

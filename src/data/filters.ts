@@ -39,13 +39,3 @@ export const filtersTitle = [
   { title: "producers", value: "Режиссёры" },
   { title: "actors", value: "Актёры" },
 ];
-
-export interface FiltersState {
-  genres: string[];
-  countries: string[];
-  years: number[];
-  ratingMin: number;
-  ratingMax: number;
-  scoreMin: number;
-  scoreMax: number;
-}

@@ -9,7 +9,6 @@ import Carousel from "@/components/Catalog/Carousel";
 import Poster from "@/components/Poster";
 import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
-import { FiltersState } from "@/data/filters";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
@@ -27,16 +26,6 @@ import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
-
-const filtersChoice: FiltersState = {
-  genres: ["Детские", "Аниме"],
-  countries: [""],
-  years: [0],
-  ratingMin: 4.0,
-  ratingMax: 10.0,
-  scoreMin: 10000,
-  scoreMax: 200000,
-};
 
 // type MoviesProps = {
 //   persons: IPerson[];
@@ -119,7 +108,7 @@ const Movies: NextPage = () => {
           {isFilter && (
             <>
               <h1 className={styles.title}>{t("header.movies")}</h1>
-              <FiltersTitleRow filtersChoice={filtersChoice} />
+              <FiltersTitleRow />
             </>
           )}
         </section>

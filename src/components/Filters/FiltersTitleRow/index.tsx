@@ -1,14 +1,9 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
-import { FiltersState } from "@/data/filters";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectFilters } from "@/Redux/filter/selectors";
 
-type FiltersTitleRowProps = {
-  filtersChoice: FiltersState;
-};
-
-const FiltersTitleRow: FC<FiltersTitleRowProps> = ({ filtersChoice }) => {
+const FiltersTitleRow: FC = () => {
   const filters = useAppSelector(selectFilters);
 
   const createRow = (): string => {

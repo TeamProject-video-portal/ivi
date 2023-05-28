@@ -18,7 +18,7 @@ const YearsDropdown: FC = () => {
           <TbCircleDot />
         </div>
         {years.map((item, i) => (
-          <ListItem href="/" item={item} key={i} icon={BiCircle} />
+          <ListItem item={item} key={i} icon={BiCircle} />
         ))}
       </ul>
     </div>

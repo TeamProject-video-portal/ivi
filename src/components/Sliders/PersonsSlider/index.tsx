@@ -6,7 +6,6 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import GenresButton from "@/components/Filters/GenresButton";
 import { settings } from "./../settings";
-import { genres } from "@/data/filters";
 import { IPerson } from "@/types/types";
 import PosterPerson from "@/components/PosterPerson";
 import { useAppSelector } from "@/hooks/hooks";
@@ -20,11 +19,12 @@ const PersonsSlider: FC = () => {
   };
 
   const dataPersons = useAppSelector(selectPersons);
+  const persons = dataPersons.persons.slice(0, 8);
 
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>
-        {dataPersons.persons.map((item, i) => (
+        {persons.map((item, i) => (
           <PosterPerson key={i} person={item} />
         ))}
       </Slider>

@@ -26,6 +26,7 @@ import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
+import { selectFilters } from "@/Redux/filter/selectors";
 
 const filtersChoice: FiltersState = {
   genres: ["Детские", "Аниме"],
@@ -93,7 +94,7 @@ const Movies: NextPage = () => {
     </>
   );
 
-  const [isFilter, setIsFilter] = useState(false);
+  const { isFilter } = useAppSelector(selectFilters);
   const dataMovies = useAppSelector(selectMovies);
   const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
@@ -133,7 +134,7 @@ const Movies: NextPage = () => {
           </div>
         )}
         <section className={styles.filtersRow}>
-          <Filters filtersChoice={filtersChoice} isFilter={isFilter} setIsFilter={setIsFilter} />
+          <Filters filtersChoice={filtersChoice} isFilter={isFilter} />
         </section>
       </div>
       {!isFilter && (

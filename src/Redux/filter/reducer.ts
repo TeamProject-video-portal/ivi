@@ -14,8 +14,8 @@ export interface IFilterState {
 
 const initialState: IFilterState = {
   isFilter: false,
-  genres: [""],
-  countries: [""],
+  genres: [],
+  countries: [],
   yearsMin: 1940,
   yearsMax: 2023,
   ratingMin: 4.0,
@@ -27,12 +27,15 @@ const initialState: IFilterState = {
 export const filterReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case FilterActionTypes.RESET_FILTERS:
-      return { ...state, initialState };
+      return {
+        ...state,
+        ...initialState,
+      };
 
     case FilterActionTypes.SET_GENRES:
       let genresCopy = [...state.genres];
       if (genresCopy.includes(action.payload)) {
-        genresCopy.filter((item) => item !== action.payload);
+        genresCopy = genresCopy.filter((item) => item !== action.payload);
       } else {
         genresCopy.push(action.payload);
       }
@@ -41,7 +44,7 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
     case FilterActionTypes.SET_COUNTRIES:
       let countriesCopy = [...state.countries];
       if (countriesCopy.includes(action.payload)) {
-        countriesCopy.filter((item) => item !== action.payload);
+        countriesCopy = countriesCopy.filter((item) => item !== action.payload);
       } else {
         countriesCopy.push(action.payload);
       }

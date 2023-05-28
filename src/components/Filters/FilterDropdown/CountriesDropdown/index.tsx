@@ -15,7 +15,7 @@ const CountriesDropdown: FC = () => {
       </div>
       <ul className={styles.content}>
         {countries.map((item, i) => (
-          <ListItem href="/" item={item} key={i} icon={BsCheckLg} />
+          <ListItem item={item} key={i} icon={BsCheckLg} />
         ))}
       </ul>
     </div>

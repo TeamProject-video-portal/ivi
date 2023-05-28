@@ -21,6 +21,13 @@ export const setCountries = (countries: string) => {
   };
 };
 
+export const setYears = (years: FilterRangeType) => {
+  return {
+    type: FilterActionTypes.SET_YEARS,
+    payload: years,
+  };
+};
+
 export const setRating = (rating: FilterRangeType) => {
   return {
     type: FilterActionTypes.SET_RATING,

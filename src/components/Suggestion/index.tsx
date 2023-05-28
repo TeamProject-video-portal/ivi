@@ -4,35 +4,32 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 import { Button } from "../Button/Button";
-
-const filters = [
-  '2022 год',
-  '2021 год',
-  '2020 год',
-  '2019 год',
-  '2018 год',
-  'Бесплатные',
-  'Русские фильмы',
-  'Советские фильмы',
-  'Американские фильмы',
-  'Индийские фильмы',
-  'Комедии',
-  'Ужасы',
-]
+import { useAppDispatch } from "@/hooks/hooks";
+import { setCountries, setGenres, setYears } from "@/Redux/filter/actions";
 
 const PrevButton: FC = (props: any) => {
   return (
-    <Button className={`${styles.prev} ${props.className.includes('slick-disabled') && styles.disabled}`} onClick={props.onClick}> <BsChevronCompactLeft /></Button >
-  )
-}
+    <Button
+      className={`${styles.prev} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      onClick={props.onClick}
+    >
+      <BsChevronCompactLeft />
+    </Button>
+  );
+};
 
 const NextButton: FC = (props: any) => {
   return (
-    <Button className={`${styles.next} ${props.className.includes('slick-disabled') && styles.disabled}`} onClick={props.onClick}><BsChevronCompactRight /></Button>
-  )
-}
+    <Button
+      className={`${styles.next} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      onClick={props.onClick}
+    >
+      <BsChevronCompactRight />
+    </Button>
+  );
+};
 
 const Suggestion: FC = () => {
   const settings = {
@@ -46,9 +43,52 @@ const Suggestion: FC = () => {
     nextArrow: <NextButton />,
   };
 
+  const dispatch = useAppDispatch();
+
   return (
     <Slider {...settings} className={styles.container}>
-      {filters.map((item, i) => <Button className={styles.slide} key={i}>{item}</Button>)}
+      <Button className={styles.slide} key={0} onClick={() => dispatch(setYears([2022, 2022]))}>
+        {"2022 год"}
+      </Button>
+      <Button className={styles.slide} key={1} onClick={() => dispatch(setYears([2021, 2021]))}>
+        {"2021 год"}
+      </Button>
+      <Button className={styles.slide} key={2} onClick={() => dispatch(setYears([2020, 2020]))}>
+        {"2020 год"}
+      </Button>
+      <Button className={styles.slide} key={3} onClick={() => dispatch(setYears([2019, 2019]))}>
+        {"2019 год"}
+      </Button>
+      <Button className={styles.slide} key={4} onClick={() => dispatch(setYears([2018, 2018]))}>
+        {"2018 год"}
+      </Button>
+      <Button className={styles.slide} key={5} onClick={() => dispatch(setCountries("Россия"))}>
+        {"Русские фильмы"}
+      </Button>
+      <Button className={styles.slide} key={6} onClick={() => dispatch(setCountries("СССР"))}>
+        {"Советские фильмы"}
+      </Button>
+      <Button className={styles.slide} key={7} onClick={() => dispatch(setCountries("США"))}>
+        {"Американские фильмы"}
+      </Button>
+      <Button className={styles.slide} key={8} onClick={() => dispatch(setGenres("комедия"))}>
+        {"Комедии"}
+      </Button>
+      <Button className={styles.slide} key={9} onClick={() => dispatch(setGenres("триллер"))}>
+        {"Триллеры"}
+      </Button>
+      <Button className={styles.slide} key={10} onClick={() => dispatch(setGenres("детектив"))}>
+        {"Детективы"}
+      </Button>
+      <Button className={styles.slide} key={11} onClick={() => dispatch(setGenres("приключения"))}>
+        {"Приключения"}
+      </Button>
+      <Button className={styles.slide} key={12} onClick={() => dispatch(setGenres("фантастика"))}>
+        {"Фантастические"}
+      </Button>
+      <Button className={styles.slide} key={13} onClick={() => dispatch(setGenres("драма"))}>
+        {"Драмы"}
+      </Button>
     </Slider>
   );
 };

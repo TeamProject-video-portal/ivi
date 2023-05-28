@@ -1,24 +1,38 @@
-import { FC } from 'react';
+import { FC } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { genres } from '@/data/filters';
-import { Button } from '@/components/Button/Button';
-import GenresButton from '../GenresButton';
+import { Button } from "@/components/Button/Button";
+import GenresButton from "../GenresButton";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
-import styles from './index.module.scss'
+import styles from "./index.module.scss";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { selectMovies } from "@/Redux/movies/selectors";
+import { genresIcons } from "@/data/filters";
+import { setGenres } from "@/Redux/filter/actions";
 
 const PrevButton: FC = (props: any) => {
   return (
-    <Button className={`${styles.prev} ${props.className.includes('slick-disabled') && styles.disabled}`} onClick={props.onClick}> <BsChevronCompactLeft /></Button >
-  )
-}
+    <Button
+      className={`${styles.prev} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      onClick={props.onClick}
+    >
+      {" "}
+      <BsChevronCompactLeft />
+    </Button>
+  );
+};
 
 const NextButton: FC = (props: any) => {
   return (
-    <Button className={`${styles.next} ${props.className.includes('slick-disabled') && styles.disabled}`} onClick={props.onClick}><BsChevronCompactRight /></Button>
-  )
-}
+    <Button
+      className={`${styles.next} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      onClick={props.onClick}
+    >
+      <BsChevronCompactRight />
+    </Button>
+  );
+};
 
 const GenresMinSlider: FC = () => {
   const settings = {
@@ -35,7 +49,7 @@ const GenresMinSlider: FC = () => {
         breakpoint: 744,
         settings: {
           slidesToShow: 3,
-        }
+        },
       },
       {
         breakpoint: 400,
@@ -46,11 +60,23 @@ const GenresMinSlider: FC = () => {
     ],
   };
 
+  const { genres } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+
   return (
     <Slider {...settings} className={styles.container}>
-      {genres.map((item, i) =>
-        <GenresButton size="small" genres={item.title} id={item.id} key={item.id} />
-      )}
+      {genres.map((item, i) => {
+        const findItem = genresIcons.find((elem) => elem.title === item);
+        return (
+          <GenresButton
+            size="small"
+            genres={item}
+            id={findItem?.id || 1}
+            key={item}
+            onClick={() => dispatch(setGenres(item))}
+          />
+        );
+      })}
     </Slider>
   );
 };

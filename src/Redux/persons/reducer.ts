@@ -16,21 +16,21 @@ const initialState: IPersonsState = {
 
 export const personsReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case PersonsActionTypes.SET_ACTORS:
+    case PersonsActionTypes.GET_ACTORS:
       return {
         ...state,
         actors: action.payload,
         error: "",
       };
 
-    case PersonsActionTypes.SET_DIRECTORS:
+    case PersonsActionTypes.GET_DIRECTORS:
       return {
         ...state,
         directors: action.payload,
         error: "",
       };
 
-    case PersonsActionTypes.SET_PERSONS_ERROR:
+    case PersonsActionTypes.GET_PERSONS_ERROR:
       return { ...state, error: action.payload };
 
     default:

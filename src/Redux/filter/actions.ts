@@ -41,3 +41,17 @@ export const setScore = (score: FilterRangeType) => {
     payload: score,
   };
 };
+
+export const setActorsFilter = (actor: string) => {
+  return {
+    type: FilterActionTypes.SET_ACTORS,
+    payload: actor,
+  };
+};
+
+export const setDirectorsFilter = (director: string) => {
+  return {
+    type: FilterActionTypes.SET_DIRECTORS,
+    payload: director,
+  };
+};

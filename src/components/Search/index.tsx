@@ -9,35 +9,20 @@ import { IPerson } from "@/types/types";
 type SearchProps = {
   className?: string;
   placeholder?: string;
+  type: string;
 };
 
-const resultsItem = [
-  "Михалков",
-  "Тарковский",
-  "Бондарчук",
-  "Кончаловский",
-  "Данелия",
-  "Соколов",
-  "Васильев",
-  "Михалков",
-  "Тарковский",
-  "Бондарчук",
-  "Кончаловский",
-  "Данелия",
-  "Соколов",
-  "Васильев",
-];
-
-const Search: FC<SearchProps> = ({ className, placeholder }) => {
+const Search: FC<SearchProps> = ({ className, placeholder, type }) => {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<IPerson[]>([]);
 
-  const { actors } = useAppSelector(selectPersons);
+  const { actors, directors } = useAppSelector(selectPersons);
+  const persons = type == "actors" ? actors : directors;
 
   useEffect(() => {
-    if (searchValue) {
+    if (searchValue.trim()) {
       setResults((state) =>
-        actors.filter((item) =>
+        persons.filter((item) =>
           item.personLang[0].personName.toLowerCase().includes(searchValue.toLowerCase()),
         ),
       );
@@ -54,7 +39,12 @@ const Search: FC<SearchProps> = ({ className, placeholder }) => {
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
-      <SearchResults placeholder={placeholder} className={styles.search} results={results} />
+      <SearchResults
+        placeholder={placeholder}
+        className={styles.search}
+        results={results}
+        type={type}
+      />
     </div>
   );
 };

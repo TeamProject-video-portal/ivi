@@ -163,7 +163,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   console.log("store", store);
 
   store.dispatch({
-    type: MoviesActionTypes.SET_MOVIES,
+    type: MoviesActionTypes.GET_MOVIES,
     payload: movies,
   });
 

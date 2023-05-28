@@ -5,4 +5,6 @@ export enum FilterActionTypes {
   SET_YEARS = "SET_YEARS",
   SET_RATING = "SET_RATING",
   SET_SCORE = "SET_SCORE",
+  SET_ACTORS = "SET_ACTORS",
+  SET_DIRECTORS = "SET_DIRECTORS",
 }

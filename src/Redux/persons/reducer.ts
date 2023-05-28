@@ -3,21 +3,30 @@ import { AnyAction } from "@reduxjs/toolkit";
 import { PersonsActionTypes } from "./action-types";
 
 export interface IPersonsState {
-  persons: IPerson[];
+  actors: IPerson[];
+  directors: IPerson[];
   error: string;
 }
 
 const initialState: IPersonsState = {
-  persons: [],
+  actors: [],
+  directors: [],
   error: "",
 };
 
 export const personsReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case PersonsActionTypes.SET_PERSONS:
+    case PersonsActionTypes.SET_ACTORS:
       return {
         ...state,
-        persons: action.payload,
+        actors: action.payload,
+        error: "",
+      };
+
+    case PersonsActionTypes.SET_DIRECTORS:
+      return {
+        ...state,
+        directors: action.payload,
         error: "",
       };
 

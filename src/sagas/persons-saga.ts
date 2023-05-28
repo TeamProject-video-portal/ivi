@@ -1,12 +1,14 @@
 import { call, put } from "redux-saga/effects";
-import { getPersons, getPersonsError } from "@/Redux/persons/actions";
+import { getActors, getDirectors, getPersonsError } from "@/Redux/persons/actions";
 import { IPerson } from "@/types/types";
-import { personsApi } from "@/Redux/persons/worker";
+import { actorsApi, directorsApi } from "@/Redux/persons/worker";
 
 export function* getPersonsSaga() {
   try {
-    const response: IPerson[] = yield call(personsApi);
-    yield put(getPersons(response));
+    const resActors: IPerson[] = yield call(actorsApi);
+    yield put(getActors(resActors));
+    const resDirectors: IPerson[] = yield call(directorsApi);
+    yield put(getDirectors(resDirectors));
   } catch (error) {
     console.log("error in personsSaga", error);
     yield put(getPersonsError(String(error)));

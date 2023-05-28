@@ -9,7 +9,6 @@ import { setGenres } from "@/Redux/filter/actions";
 
 const GenresDropdown: FC = () => {
   const { genres } = useAppSelector(selectMovies);
-  console.log("genres", genres);
   const dispatch = useAppDispatch();
 
   return (

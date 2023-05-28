@@ -5,7 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import { Button } from "@/components/Button/Button";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import styles from "./index.module.scss";
-import { countries } from "@/data/filters";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
+import { selectMovies } from "@/Redux/movies/selectors";
+import { setCountries } from "@/Redux/filter/actions";
 
 const PrevButton: FC = (props: any) => {
   return (
@@ -40,10 +42,13 @@ const CountriesSlider: FC = () => {
     nextArrow: <NextButton />,
   };
 
+  const { countries } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+
   return (
     <Slider {...settings} className={styles.container}>
       {countries.map((item, i) => (
-        <Button className={styles.slide} key={i}>
+        <Button className={styles.slide} key={item} onClick={() => dispatch(setCountries(item))}>
           {item}
         </Button>
       ))}

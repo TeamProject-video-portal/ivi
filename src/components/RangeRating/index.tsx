@@ -1,7 +1,9 @@
-import { FC, useState, useRef, ReactNode } from 'react';
-import styles from './index.module.scss'
-import { Range, getTrackBackground, useThumbOverlap } from 'react-range';
-import { useLanguageQuery, useTranslation } from 'next-export-i18n';
+import { FC, useState, useRef, ReactNode, useEffect } from "react";
+import styles from "./index.module.scss";
+import { Range, getTrackBackground, useThumbOverlap } from "react-range";
+import { useLanguageQuery, useTranslation } from "next-export-i18n";
+import { useAppDispatch } from "@/hooks/hooks";
+import { setRating } from "@/Redux/filter/actions";
 
 const STEP = 0.1;
 const MIN = 0;
@@ -10,7 +12,7 @@ const MAX = 10.0;
 const ThumbLabel = ({
   rangeRef,
   values,
-  index
+  index,
 }: {
   rangeRef: Range | null;
   values: number[];
@@ -21,17 +23,17 @@ const ThumbLabel = ({
     <div
       data-label={index}
       style={{
-        display: 'block',
-        position: 'absolute',
-        top: '-30px',
-        color: '#fff',
-        fontSize: '14px',
-        fontFamily: 'IviSans-light,Arial,Helvetica Neue,Helvetica,sans-serif',
-        padding: '6px',
-        borderRadius: '5px',
-        backgroundColor: '#2e2844',
-        whiteSpace: 'nowrap',
-        ...(style as React.CSSProperties)
+        display: "block",
+        position: "absolute",
+        top: "-30px",
+        color: "#fff",
+        fontSize: "14px",
+        fontFamily: "IviSans-light,Arial,Helvetica Neue,Helvetica,sans-serif",
+        padding: "6px",
+        borderRadius: "5px",
+        backgroundColor: "#2e2844",
+        whiteSpace: "nowrap",
+        ...(style as React.CSSProperties),
       }}
     >
       {labelValue as ReactNode}
@@ -40,21 +42,31 @@ const ThumbLabel = ({
 };
 
 type RangeRatingProps = {
-  rtl: boolean,
+  rtl: boolean;
   ratingMin: number;
   ratingMax: number;
-}
+};
 
 const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
   const { t } = useTranslation();
   const [values, setValues] = useState([ratingMin, ratingMax]);
   const [finalValues, setFinalValues] = useState([ratingMin, ratingMax]);
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setRating([finalValues[0], finalValues[1]]));
+  }, [finalValues]);
+
+  useEffect(() => {
+    setValues([ratingMin, ratingMax]);
+  }, [ratingMin, ratingMax]);
+
   const rangeRef: any = useRef<Range>();
 
   return (
     <div className={styles.rangeContainer}>
-      <h3 className={styles.title}>{t('filters.rating')}</h3>
+      <h3 className={styles.title}>{t("filters.rating")}</h3>
       <Range
         ref={rangeRef}
         step={STEP}
@@ -70,25 +82,25 @@ const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
             onTouchStart={props.onTouchStart}
             style={{
               ...props.style,
-              height: '40px',
-              display: 'flex',
-              width: '90%'
+              height: "40px",
+              display: "flex",
+              width: "90%",
             }}
           >
             <div
               ref={props.ref}
               style={{
-                height: '6px',
-                width: '100%',
-                borderRadius: '4px',
+                height: "6px",
+                width: "100%",
+                borderRadius: "4px",
                 background: getTrackBackground({
                   values,
-                  colors: ['#a5a1b2', '#ea003d', '#a5a1b2'],
+                  colors: ["#a5a1b2", "#ea003d", "#a5a1b2"],
                   min: MIN,
                   max: MAX,
-                  rtl
+                  rtl,
                 }),
-                alignSelf: 'center'
+                alignSelf: "center",
               }}
             >
               {children}
@@ -100,25 +112,21 @@ const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
             {...props}
             style={{
               ...props.style,
-              height: '25px',
-              width: '10px',
-              borderRadius: '4px',
-              backgroundColor: '#a5a1b2',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              height: "25px",
+              width: "10px",
+              borderRadius: "4px",
+              backgroundColor: "#a5a1b2",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
           >
-            <ThumbLabel
-              rangeRef={rangeRef.current}
-              values={values}
-              index={index}
-            />
+            <ThumbLabel rangeRef={rangeRef.current} values={values} index={index} />
             <div
               style={{
-                height: '16px',
-                width: '5px',
-                backgroundColor: isDragged ? '#ea003d' : '#a5a1b2'
+                height: "16px",
+                width: "5px",
+                backgroundColor: isDragged ? "#ea003d" : "#a5a1b2",
               }}
             />
           </div>

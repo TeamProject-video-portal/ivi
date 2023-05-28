@@ -1,47 +1,41 @@
-import { FC } from 'react';
-import styles from "./index.module.scss"
-import { FiltersState } from '@/data/filters';
+import { FC } from "react";
+import styles from "./index.module.scss";
+import { useAppSelector } from "@/hooks/hooks";
+import { selectFilters } from "@/Redux/filter/selectors";
 
-type FiltersTitleRowProps = {
-  filtersChoice: FiltersState;
-}
-
-const FiltersTitleRow: FC<FiltersTitleRowProps> = ({ filtersChoice }) => {
+const FiltersTitleRow: FC = () => {
+  const filters = useAppSelector(selectFilters);
 
   const createRow = (): string => {
-    let row = '';
-    if (filtersChoice.genres[0] !== '') {
-      row += filtersChoice.genres.join(', ')
+    let row = "";
+    if (filters.genres.length) {
+      row += filters.genres.join(", ");
     } else {
-      row += 'Все жанры, '
+      row += "Все жанры, ";
     }
-    row += ' / ';
-    if (filtersChoice.countries[0] !== '') {
-      row += filtersChoice.countries.join(', ')
+    row += " / ";
+    if (filters.countries.length) {
+      row += filters.countries.join(", ");
     } else {
-      row += 'Все страны '
+      row += "Все страны ";
     }
-    row += ' / ';
-    if (filtersChoice.years[0] !== 0) {
-      row += filtersChoice.years.join(', ')
-    } else {
-      row += 'Все годы '
+    row += ` / ${filters.yearsMin} год`;
+
+    if (filters.yearsMin !== filters.yearsMax) {
+      row += ` - ${filters.yearsMax} год`;
     }
-    row += ` / Рейтинг: от ${filtersChoice.ratingMin} до ${filtersChoice.ratingMax}`;
-    row += ` / Количество оценок: от ${filtersChoice.scoreMin}`;
-    if (filtersChoice.scoreMax < 200000) {
-      row += ` до ${filtersChoice.scoreMax}`
+
+    row += ` / Рейтинг: от ${filters.ratingMin} до ${filters.ratingMax}`;
+    row += ` / Количество оценок: от ${filters.scoreMin}`;
+    if (filters.scoreMax < 200000) {
+      row += ` до ${filters.scoreMax}`;
     }
     return row;
-  }
+  };
 
   const row = createRow();
 
-  return (
-    <div className={styles.filtersTitleRow}>
-      {row}
-    </div>
-  );
+  return <div className={styles.filtersTitleRow}>{row}</div>;
 };
 
 export default FiltersTitleRow;

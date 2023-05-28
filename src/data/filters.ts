@@ -32,53 +32,6 @@ export const genresIcons = [
   { id: 31, title: "церемония", icon: "genres-icon_31" },
 ];
 
-export const countries = [
-  "Бразилия",
-  "Великобритания",
-  "Венгрия",
-  "Германия",
-  "Гонконг",
-  "Дания",
-  "Индия",
-  "Ирландия",
-  "Испания",
-  "Италия",
-  "Казахстан",
-  "Канада",
-  "Китай",
-  "Колумбия",
-  "Мексика",
-  "Нидерланды",
-  "Новая Зеландия",
-  "Норвегия",
-  "Польша",
-  "Россия",
-  "СССР",
-  "США",
-  "Таиланд",
-  "Турция",
-  "Финляндия",
-  "Франция",
-  "Швейцария",
-  "Швеция",
-  "ЮАР",
-  "Южная Корея",
-];
-
-export const years = [
-  "2023 год",
-  "2022 год",
-  "2021 год",
-  "2020 год",
-  "2019 год",
-  "2018 год",
-  "2017 год",
-  "2016 год",
-  "2022-2023",
-  "1980-1990",
-  "до 1980",
-];
-
 export const filtersTitle = [
   { title: "genres", value: "Жанры" },
   { title: "countries", value: "Страны" },
@@ -86,13 +39,3 @@ export const filtersTitle = [
   { title: "producers", value: "Режиссёры" },
   { title: "actors", value: "Актёры" },
 ];
-
-export interface FiltersState {
-  genres: string[];
-  countries: string[];
-  years: number[];
-  ratingMin: number;
-  ratingMax: number;
-  scoreMin: number;
-  scoreMax: number;
-}

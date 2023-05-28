@@ -1,7 +1,9 @@
-import { FC, useState, useRef } from "react";
+import { FC, useState, useRef, useEffect } from "react";
 import styles from "./index.module.scss";
 import { Range, getTrackBackground, useThumbOverlap } from "react-range";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
+import { useAppDispatch } from "@/hooks/hooks";
+import { setScore } from "@/Redux/filter/actions";
 
 const STEP = 1000;
 const MIN = 0;
@@ -59,7 +61,15 @@ const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
   const [finalValues, setFinalValues] = useState([scoreMin, scoreMax]);
   const rangeRef: any = useRef<Range>();
 
-  //console.log("finalValues", finalValues);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setScore([finalValues[0], finalValues[1]]));
+  }, [finalValues]);
+
+  useEffect(() => {
+    setValues([scoreMin, scoreMax]);
+  }, [scoreMin, scoreMax]);
 
   return (
     <div className={styles.rangeContainer}>

@@ -134,7 +134,7 @@ const Movies: NextPage = () => {
           </div>
         )}
         <section className={styles.filtersRow}>
-          <Filters filtersChoice={filtersChoice} isFilter={isFilter} />
+          <Filters />
         </section>
       </div>
       {!isFilter && (

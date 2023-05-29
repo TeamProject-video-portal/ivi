@@ -1,25 +1,17 @@
 import { FC } from "react";
-import styles from "./index.module.scss";
-import { IconContext } from "react-icons";
-import { RiUser3Line } from "react-icons/ri";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
+import { AuthProfile } from "./AuthProfile";
+import { NotAuthProfile } from "./NotAuthProfile";
 
 const ProfileButton: FC = () => {
   const router = useRouter();
+  const { data: session } = useSession();
 
-  return (
-    <div className={styles.button_profile} onClick={() => router.push('/profile')}>
-      <IconContext.Provider
-        value={{
-          className: `${styles.profile_icon}`,
-        }}
-      >
-        <div>
-          <RiUser3Line />
-        </div>
-      </IconContext.Provider>
-    </div>
-  );
+  if (session) return <AuthProfile />;
+  else {
+    return <NotAuthProfile />;
+  }
 };
 
 export default ProfileButton;

@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { useState, FC, useEffect } from "react";
 import Head from "next/head";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Button/Button";
@@ -19,6 +19,12 @@ const Profile = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(true);
   const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (session) {
+      setOpenModal(false);
+    }
+  }, []);
 
   return (
     <>

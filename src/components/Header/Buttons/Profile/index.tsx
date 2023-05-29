@@ -1,17 +1,28 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { AuthProfile } from "./AuthProfile";
 import { NotAuthProfile } from "./NotAuthProfile";
+import Link from "next/link";
 
 const ProfileButton: FC = () => {
-  const router = useRouter();
   const { data: session } = useSession();
+  const router = useRouter();
 
-  if (session) return <AuthProfile />;
-  else {
-    return <NotAuthProfile />;
-  }
+  const [locale, setLocale] = useState<any>("ru");
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
+
+  return (
+    <Link href={`/profile?lang=${locale}`}>
+      {session ? <AuthProfile /> : <NotAuthProfile />}
+    </Link>
+  );
 };
 
 export default ProfileButton;

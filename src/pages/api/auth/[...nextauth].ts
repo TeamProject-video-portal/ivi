@@ -76,6 +76,7 @@ export default NextAuth({
   },
   pages: {
     signIn: "/animation",
+    signOut: "/home",
     error: "/profile",
     //   signIn: '/auth/signin',
     // signOut: '/auth/signout',

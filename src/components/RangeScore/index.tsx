@@ -60,11 +60,15 @@ const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
   const [values, setValues] = useState([scoreMin, scoreMax]);
   const [finalValues, setFinalValues] = useState([scoreMin, scoreMax]);
   const rangeRef: any = useRef<Range>();
+  const isMounted = useRef(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setScore([finalValues[0], finalValues[1]]));
+    if (isMounted.current) {
+      dispatch(setScore([finalValues[0], finalValues[1]]));
+    }
+    isMounted.current = true;
   }, [finalValues]);
 
   useEffect(() => {

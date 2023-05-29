@@ -3,6 +3,7 @@ import { getDataBannerSaga } from "./banner-saga";
 import { getDataTopMoviesSaga } from "./top-movies-saga";
 import { getMoviesSaga } from "./movies-saga";
 import { getPersonsSaga } from "./persons-saga";
+import { watchFiltersSaga } from "./filter-saga";
 export type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 export function* rootSaga() {
@@ -12,6 +13,7 @@ export function* rootSaga() {
       fork(getDataTopMoviesSaga),
       fork(getMoviesSaga),
       fork(getPersonsSaga),
+      fork(watchFiltersSaga),
     ]);
   } catch (e) {}
 }

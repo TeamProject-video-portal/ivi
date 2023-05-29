@@ -1,4 +1,4 @@
-import { FilterRangeType } from "@/types/types";
+import { FilterRangeType, IMovie } from "@/types/types";
 import { FilterActionTypes } from "./action-types";
 
 export const resetFilters = () => {
@@ -53,5 +53,19 @@ export const setDirectorsFilter = (director: string) => {
   return {
     type: FilterActionTypes.SET_DIRECTORS,
     payload: director,
+  };
+};
+
+export const setResultsFilter = (results: IMovie[]) => {
+  return {
+    type: FilterActionTypes.SET_FILTERS_RESULTS,
+    payload: results,
+  };
+};
+
+export const getErrorFilter = (error: string) => {
+  return {
+    type: FilterActionTypes.GET_FILTERS_ERROR,
+    payload: error,
   };
 };

@@ -8,7 +8,7 @@ export function* getMoviesSaga() {
     const response: IMovie[] = yield call(movieApi);
     yield put(getMovies(response));
   } catch (error) {
-    console.log("error in moviesSaga", error);
+    console.log("error in getMoviesSaga", error);
     yield put(getMoviesError(String(error)));
   }
 }

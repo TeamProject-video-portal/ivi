@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "./index.module.scss";
-import { useState } from "react";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
@@ -83,7 +83,19 @@ const Movies: NextPage = () => {
     </>
   );
 
-  const { isFilter } = useAppSelector(selectFilters);
+  const {
+    isFilter,
+    genres,
+    countries,
+    yearsMax,
+    ratingMin,
+    ratingMax,
+    scoreMin,
+    scoreMax,
+    actors,
+    directors,
+    results,
+  } = useAppSelector(selectFilters);
   const dataMovies = useAppSelector(selectMovies);
   const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
@@ -145,7 +157,7 @@ const Movies: NextPage = () => {
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults movies={dataMovies.movies} />
+            <MovieResults movies={results} />
           </div>
         </section>
       )}
@@ -153,32 +165,34 @@ const Movies: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const persons = await responsePersons.json() as IPerson[];
-  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-  // const movies = await responseMovies.json() as IMovie[];
-  // const persons = personsData.persons;
-  const movies = dataFilms as ISimpleMovie[];
-  console.log("store", store);
+export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+    // const persons = await responsePersons.json() as IPerson[];
+    // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+    // const movies = await responseMovies.json() as IMovie[];
+    // const persons = personsData.persons;
+    const movies = dataFilms as ISimpleMovie[];
+    console.log("store", store);
 
-  store.dispatch({
-    type: MoviesActionTypes.GET_MOVIES,
-    payload: movies,
-  });
+    store.dispatch({
+      type: MoviesActionTypes.GET_MOVIES,
+      payload: movies,
+    });
 
-  // if (!persons || !movies) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+    // if (!persons || !movies) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
 
-  return {
-    //props: { persons, movies },
-    props: {},
-    revalidate: 10,
-  };
-});
+    return {
+      //props: { persons, movies },
+      props: {},
+      revalidate: 10,
+    };
+  },
+);
 
 export default connect((state) => state)(Movies);
 //export default Movies;

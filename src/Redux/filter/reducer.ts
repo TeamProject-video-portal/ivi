@@ -1,5 +1,6 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { FilterActionTypes } from "./action-types";
+import { IMovie } from "@/types/types";
 export interface IFilterState {
   isFilter: boolean;
   genres: string[];
@@ -12,6 +13,8 @@ export interface IFilterState {
   scoreMax: number;
   actors: string[];
   directors: string[];
+  results: IMovie[];
+  error: string;
 }
 
 const initialState: IFilterState = {
@@ -26,6 +29,8 @@ const initialState: IFilterState = {
   scoreMax: 200000,
   actors: [],
   directors: [],
+  results: [],
+  error: "",
 };
 
 export const filterReducer = (state = initialState, action: AnyAction) => {
@@ -81,6 +86,12 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
         directorsCopy.push(action.payload);
       }
       return { ...state, directors: directorsCopy, isFilter: true };
+
+    case FilterActionTypes.SET_FILTERS_RESULTS:
+      return { ...state, results: action.payload, error: "" };
+
+    case FilterActionTypes.GET_FILTERS_ERROR:
+      return { ...state, error: action.payload };
 
     default:
       return state;

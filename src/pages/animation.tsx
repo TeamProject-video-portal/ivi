@@ -19,11 +19,11 @@ export const Cartoons = () => {
 
   const handleClick = async () => {
     // const { data: session } = useSession();
-    const payload = { username: "Maggie", password: "password" };
-    const res = await signIn("credentials", {
-      ...payload,
-      redirect: false,
-    });
+    // const payload = { username: "Maggie", password: "password" };
+    // const res = await signIn("credentials", {
+    //   ...payload,
+    //   redirect: false,
+    // });
     // console.log(session);
   };
   return (

@@ -18,10 +18,20 @@ const ProfileButton: FC = () => {
     }
   }, [router]);
 
+  const handleClick = () => {
+    router.push({ pathname: "/profile", query: { lang: locale } });
+  };
+
   return (
-    <Link href={`/profile?lang=${locale}`}>
-      {session ? <AuthProfile /> : <NotAuthProfile />}
-    </Link>
+    <div
+      onClick={() => {
+        handleClick();
+      }}
+    >
+      {/* // <Link href={`/profile?lang=${locale}`}> */}
+      {session?.user ? <AuthProfile /> : <NotAuthProfile />}
+      {/* // </Link> */}
+    </div>
   );
 };
 

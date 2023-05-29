@@ -2,6 +2,7 @@ import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import VkProvider from "next-auth/providers/vk";
+import { userAgent } from "next/server";
 interface CustomUser extends User {
   role: string;
 }
@@ -22,17 +23,7 @@ export default NextAuth({
         };
         return user;
       },
-      // authorize: async (credentials, req) => {
-      //   if (
-      //     credentials?.username === "Maggie" &&
-      //     credentials?.password === "password"
-      //   ) {
-      //     // Учетные данные верны, возвращаем объект с данными пользователя
-      //     return Promise.resolve({ username: "Maggie" }) as PromiseLike<any>;
-      //   } else {
-      //     // Учетные данные неверны, возвращаем null
-      //     return Promise.resolve(null);
-      //   }
+
       // const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {
       //   method: 'POST',
       //   headers: {
@@ -66,6 +57,7 @@ export default NextAuth({
         session.user = {
           userId: 123,
           name: token.name,
+          userRole: "admin",
         };
       }
       return session;
@@ -84,6 +76,7 @@ export default NextAuth({
   },
   pages: {
     signIn: "/animation",
+    signOut: "/home",
     error: "/profile",
     //   signIn: '/auth/signin',
     // signOut: '/auth/signout',

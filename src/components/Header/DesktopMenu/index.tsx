@@ -12,6 +12,7 @@ type Props = {
 const DesktopMenu: FC<Props> = (props) => {
   const { t } = useTranslation();
   const router = useRouter();
+
   const [locale, setLocale] = useState<any>("ru");
   useEffect(() => {
     if (router.query?.lang) {
@@ -40,6 +41,7 @@ const DesktopMenu: FC<Props> = (props) => {
           {t("header.movies")}
         </span>
       </Link>
+      {/* <Link href="/series"> */}
       <Link href="https://www.ivi.tv/series">
         <span
           className={styles.link_movies}
@@ -51,16 +53,14 @@ const DesktopMenu: FC<Props> = (props) => {
           {t("header.series")}
         </span>
       </Link>
-      <Link href={`/animation?lang=${locale}`}>
+      {/* <Link href={`/animation?lang=${locale}`}> */}
+      <Link href="https://www.ivi.tv/animation">
         <span
           className={styles.link_movies}
           onMouseEnter={() => {
             props.setIsOpenSubMenu?.(true);
             props.setSubMenuTitle?.("anim");
           }}
-          // onClick={() => {
-          //   test();
-          // }}
         >
           {t("header.animations")}
         </span>

@@ -1,0 +1,33 @@
+@import "../../../../../styles/color.scss";
+@import "../../../../../styles/mixins.scss";
+
+.container {
+  max-width: 150px;
+  height: 48px;
+  margin-left: 12px;
+  margin-top: 2px;
+  cursor: pointer;
+  padding: 12px;
+  box-sizing: border-box;
+
+  .name {
+    @include font-regular-l;
+    color: $base-grey-menu;
+  }
+
+  .role {
+    @include font-light-xs;
+    color: $base-ligth-grey;
+  }
+
+  @media screen and (max-width: 600px) {
+    display: none;
+  }
+  &:hover {
+    .name,
+    .role {
+      transition-duration: 0.2s;
+      color: $base-white;
+    }
+  }
+}

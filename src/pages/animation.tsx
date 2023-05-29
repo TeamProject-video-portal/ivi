@@ -17,22 +17,21 @@ export const Cartoons = () => {
   // console.log(session);
   // const router = useRouter();
 
-  // const handleClick = async () => {
-  //   // const { data: session } = useSession();
-  //   const payload = { username: "Maggie", password: "password" };
-  //   const res = await signIn("credentials", {
-  //     ...payload,
-  //     redirect: false,
-  //   });
-  //   if (res?.status === 200) {
-  //     router.push({ pathname: "/profile" });
-  //   }
-  // };
-  // return (
-  <div>
-    {/* <button onClick={() => handleClick()}>sing in</button> */}
-    {/* {session && <div><div/>} */}
-  </div>;
+  const handleClick = async () => {
+    // const { data: session } = useSession();
+    // const payload = { username: "Maggie", password: "password" };
+    // const res = await signIn("credentials", {
+    //   ...payload,
+    //   redirect: false,
+    // });
+    // console.log(session);
+  };
+  return (
+    <div>
+      <button onClick={() => handleClick()}>sing in</button>
+      {/* {session && <div><div/>} */}
+    </div>
+  );
 };
 
 export default Cartoons;

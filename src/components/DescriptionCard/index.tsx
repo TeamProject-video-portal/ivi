@@ -1,9 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import { Button } from "../Button/Button";
 import { CountriesType, FilmLangType, GenresType } from "@/types/types";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-export-i18n";
+import { EditTitle } from "./EditTitle";
+import { useSession } from "next-auth/react";
 
 type Props = {
   filmAge: string;
@@ -25,16 +27,22 @@ export const DescriptionCard: FC<Props> = ({
   className,
 }) => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const { t } = useTranslation();
+  const [title, setTitle] = useState<string>();
+
+  useEffect(() => {
+    router.asPath.includes("?lang=en")
+      ? setTitle(filmLang[1].filmName)
+      : setTitle(filmLang[0].filmName);
+  }, [router]);
+
   return (
     <div className={[styles.container, className].join(" ")}>
-      <h1>
-        {router.asPath.includes("=en")
-          ? filmLang[1].filmName
-          : filmLang[0].filmName}{" "}
-        {t("movie.watch_online")}
-      </h1>
+      {session ? <EditTitle title={title} /> : <h1>{title}</h1>}
+
+      <h1>{t("movie.watch_online")}</h1>
       <div className={styles.data}>
         <div className={styles.row_time}>
           <span>{filmYear}</span>

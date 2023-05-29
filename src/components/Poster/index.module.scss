@@ -2,9 +2,10 @@
 @import "../../styles/mixins.scss";
 
 .wrapper {
-  width: 100%;
-  padding-top: 180%;
+  max-height: 350px;
+  aspect-ratio: 3/6;
   position: relative;
+
   .container {
     position: absolute;
     top: 0;
@@ -18,7 +19,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: calc(100% - 40px);
+      height: calc(100% - 60px);
       position: relative;
       .img {
         width: inherit;

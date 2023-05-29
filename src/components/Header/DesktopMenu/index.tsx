@@ -53,8 +53,8 @@ const DesktopMenu: FC<Props> = (props) => {
           {t("header.series")}
         </span>
       </Link>
-      {/* <Link href={`/animation?lang=${locale}`}> */}
-      <Link href="https://www.ivi.tv/animation">
+      <Link href={`/animation?lang=${locale}`}>
+        {/* <Link href="https://www.ivi.tv/animation"> */}
         <span
           className={styles.link_movies}
           onMouseEnter={() => {

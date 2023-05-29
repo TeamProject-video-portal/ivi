@@ -4,7 +4,7 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
-import { GetStaticProps, NextPage } from "next";
+import { GetServerSidePropsContext, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { IMovie } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
@@ -15,6 +15,7 @@ import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { Modal } from "@/components/Modal";
 import InfoMovie from "./InfoMovie";
 import WatchOnAllDevices from "./WatchOnAllDevices";
+import { getCsrfToken } from "next-auth/react";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -125,4 +126,5 @@ export const getStaticPaths = async () => {
     fallback: "blocking",
   };
 };
+
 export default CardId;

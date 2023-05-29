@@ -16,6 +16,7 @@ import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
 import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
 import { selectTopMovies } from "@/Redux/topTenMovies/selectors";
+import { useRouter } from "next/router";
 
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
@@ -23,10 +24,11 @@ type Props = {
   error: any;
 };
 
-const Home: FC<Props> = () => {
+const Home: FC<Props> = (context) => {
   // const [data, setData] = useState(startMovies);
   const dataBanner = useSelector(selectBanner);
 
+  // console.log("context", context);
   const { t } = useTranslation();
   return (
     <>
@@ -91,10 +93,13 @@ const Home: FC<Props> = () => {
 export const gerServerSideProps: GetServerSideProps =
   wrapper.getServerSideProps((store) => async (context) => {
     const res = main_banner;
+
     store.dispatch({
       type: DATA_BANNER.GET_DATA_BANNER,
       payload: res,
     });
-    return { props: {} };
+    return {
+      props: {},
+    };
   });
 export default connect((state) => state)(Home);

@@ -1,8 +1,10 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import VkProvider from "next-auth/providers/vk";
-
+interface CustomUser extends User {
+  role: string;
+}
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -12,12 +14,13 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        // Add logic here to look up the user from the credentials supplied
-        return {
+        const user = {
           id: "1",
           name: `${credentials?.username}`,
           password: "jsmith@example.com",
+          role: "admin",
         };
+        return user;
       },
       // authorize: async (credentials, req) => {
       //   if (
@@ -54,6 +57,7 @@ export default NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.name = user.name;
+        // token.role = user.role;
       }
       return token;
     },
@@ -62,7 +66,6 @@ export default NextAuth({
         session.user = {
           userId: 123,
           name: token.name,
-          userRole: "admin",
         };
       }
       return session;

@@ -2,8 +2,8 @@ import { FC, useState, useRef, ReactNode, useEffect } from "react";
 import styles from "./index.module.scss";
 import { Range, getTrackBackground, useThumbOverlap } from "react-range";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
-import { useAppDispatch } from "@/hooks/hooks";
-import { setRating } from "@/Redux/filter/actions";
+import { useAppDispatch } from "../../hooks/hooks";
+import { setRating } from "../../Redux/filter/actions";
 
 const STEP = 0.1;
 const MIN = 0;
@@ -121,7 +121,11 @@ const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
               alignItems: "center",
             }}
           >
-            <ThumbLabel rangeRef={rangeRef.current} values={values} index={index} />
+            <ThumbLabel
+              rangeRef={rangeRef.current}
+              values={values}
+              index={index}
+            />
             <div
               style={{
                 height: "16px",

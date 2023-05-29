@@ -3,8 +3,7 @@ import styles from "./index.module.scss";
 import Image, { StaticImageData } from "next/image";
 
 // const posterImage = require("../../../images/posterImage.jpeg");
-import img from "../../../images/posterImage.jpeg";
-import { ISimpleMovie, ResponseTopMovieKPType } from "@/types/types";
+import { ResponseTopMovieKPType } from "@/types/types";
 
 export type PosterProps = {
   num: number;

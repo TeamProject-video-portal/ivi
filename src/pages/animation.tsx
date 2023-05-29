@@ -1,4 +1,5 @@
 import ProfileButton from "@/components/Header/Buttons/Profile";
+import Poster from "@/components/Poster";
 import {
   GetServerSideProps,
   GetServerSidePropsContext,
@@ -10,7 +11,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
 import authOptions from "./api/auth/[...nextauth]";
-
+import dataMovies from "@/data/Search_films_v2.json";
 export const Cartoons = () => {
   const [content, setContent] = useState();
   // const { data: session, status } = useSession();
@@ -26,12 +27,8 @@ export const Cartoons = () => {
     // });
     // console.log(session);
   };
-  return (
-    <div>
-      <button onClick={() => handleClick()}>sing in</button>
-      {/* {session && <div><div/>} */}
-    </div>
-  );
+
+  return <div>{/* {session && <div><div/>} */}</div>;
 };
 
 export default Cartoons;

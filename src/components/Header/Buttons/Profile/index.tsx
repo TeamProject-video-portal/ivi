@@ -1,11 +1,17 @@
-import { FC, useEffect, useState } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react";
 import { AuthProfile } from "./AuthProfile";
 import { NotAuthProfile } from "./NotAuthProfile";
 import Link from "next/link";
 
-const ProfileButton: FC = () => {
+type Props = {
+  isOpenSubMenu?: boolean;
+  setIsOpenSubMenu?: Dispatch<SetStateAction<boolean>>;
+  setSubMenuTitle?: Dispatch<SetStateAction<string>>;
+};
+
+const ProfileButton: FC<Props> = (props) => {
   const { data: session } = useSession();
   const router = useRouter();
 
@@ -27,10 +33,15 @@ const ProfileButton: FC = () => {
       onClick={() => {
         handleClick();
       }}
+      onMouseEnter={() => {
+        props.setIsOpenSubMenu?.(true);
+        props.setSubMenuTitle?.("profile");
+      }}
+      // onMouseLeave={() => {
+      //   props.setIsOpenSubMenu?.(false);
+      // }}
     >
-      {/* // <Link href={`/profile?lang=${locale}`}> */}
       {session?.user ? <AuthProfile /> : <NotAuthProfile />}
-      {/* // </Link> */}
     </div>
   );
 };

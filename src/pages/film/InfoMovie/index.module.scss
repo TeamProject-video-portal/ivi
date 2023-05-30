@@ -15,4 +15,11 @@
       }
     }
   }
+
+  .details {
+    @include font-light-m;
+    color: $base-grey;
+    margin-top: 10px;
+    cursor: pointer;
+  }
 }

@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,28 +10,32 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-export-i18n";
 import { ISimpleMovie, ResponseTopMovieKPType } from "@/types/types";
-import { GetServerSideProps } from "next";
+import { GetServerSideProps, GetStaticPaths } from "next";
 import { wrapper } from "@/Redux/store";
 import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
 import { useSelector } from "react-redux";
 import { selectTopMovies } from "@/Redux/topTenMovies/selectors";
-import dataOneMovie from "@/data/One_film_response_v2.json";
-type Props = {
-  data: ResponseTopMovieKPType[];
-};
+import { useRouter } from "next/router";
 
-const oneMovie = {
-  id: dataOneMovie.id,
-  poster: { previewUrl: dataOneMovie.filmPoster, url: dataOneMovie.filmPoster },
-};
 const SliderTopTen: FC = () => {
   const { t } = useTranslation();
   const dataTopMovie = useSelector(selectTopMovies);
+  const router = useRouter();
   const newSettings = {
     ...settings,
     centerMode: false,
     slidesToShow: 5,
   };
+
+  const [locale, setLocale] = useState<any>("ru");
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -41,13 +45,10 @@ const SliderTopTen: FC = () => {
 
       <Slider {...newSettings} className={styles.container}>
         {dataTopMovie.data?.map((item, i) => (
-          <Link href={`/film/${item.id}`} key={item.id}>
+          <Link href={`/film/${item.id}/?lang=${locale}`} key={item.id}>
             <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
           </Link>
         ))}
-        {/* <Link href="/film/">
-          <PosterTopTen num={10} film={oneMovie} />
-        </Link> */}
       </Slider>
       <></>
     </div>

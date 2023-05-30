@@ -5,7 +5,14 @@
     "whats_new": "Whats new",
     "movies": "Movies",
     "series": "Series",
-    "animations": "Animations"
+    "animations": "Animations",
+    "subscription": "Ivi subscription",
+    "subtitle_cost": "Cost $4.99 per month, auto-renewal",
+    "new": "New series and films",
+    "catalog_description": "Weekly replenishment of the catalog with films and series from around the world",
+    "without_ad": "Movies and series without ads",
+    "family_acconut": "Family account on 5 devices",
+    "download_to_mobile": "Download to mobile devices"
   },
   "contextSubMenu": {
     "all_films": "All films",
@@ -63,7 +70,10 @@
     "comment": "Comment",
     "add": "Add",
     "ru": "Rus",
-    "en": "Eng"
+    "en": "Eng",
+    "enter_or_regist": "Enter or register",
+    "edit_profile": "Edit profile",
+    "save": "Save"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",
@@ -142,7 +152,10 @@
     "payment": "Payment Methods",
     "login_by_code": "Login by code",
     "settings": "Settings",
-    "help": "Help"
+    "help": "Help",
+    "browsing_history": "Browsing history",
+    "certificate_activation": "Certificate activation",
+    "entrance_by_code": "Entrance by code"
   },
   "movie": {
     "watch_online": "watch online"

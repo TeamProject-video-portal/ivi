@@ -28,7 +28,14 @@ const DesktopMenu: FC<Props> = (props) => {
         <span className={styles.link}>{t("header.my_ivi")}</span>
       </Link>
       <Link href="https://www.ivi.tv/new">
-        <span className={styles.link}>{t("header.whats_new")}</span>
+        <span
+          className={styles.link}
+          onMouseEnter={() => {
+            props.setIsOpenSubMenu?.(false);
+          }}
+        >
+          {t("header.whats_new")}
+        </span>
       </Link>
       <Link href={`/movies?lang=${locale}`}>
         <span

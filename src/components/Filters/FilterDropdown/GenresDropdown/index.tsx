@@ -6,9 +6,11 @@ import GenresMinSlider from "../../GenresMinSlider";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { setGenres } from "@/Redux/filter/actions";
+import { selectFilters } from "@/Redux/filter/selectors";
 
 const GenresDropdown: FC = () => {
   const { genres } = useAppSelector(selectMovies);
+  const { genres: genresFilter } = useAppSelector(selectFilters);
   const dispatch = useAppDispatch();
 
   return (
@@ -23,6 +25,7 @@ const GenresDropdown: FC = () => {
             key={item}
             icon={BsCheckLg}
             onClick={() => dispatch(setGenres(item))}
+            activeFilter={genresFilter.includes(item)}
           />
         ))}
       </ul>

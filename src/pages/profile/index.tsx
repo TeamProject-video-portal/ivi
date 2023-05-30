@@ -12,6 +12,8 @@ import { FaExchangeAlt } from "react-icons/fa";
 import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]";
 import { ButtonsProfile } from "@/components/ButtonsProfile";
+import UserName from "./UserName";
+
 const Profile = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(true);
@@ -30,21 +32,8 @@ const Profile = () => {
       </Head>
       {!openModal ? (
         <div className={styles.profile}>
-          {status === "authenticated" ? (
-            <div className={styles.loginRow}>
-              <div>
-                <div className={styles.userName}>{session.user.name}</div>
-                <p>{session.user.email}</p>
-                <div className={styles.userEmail}>
-                  <div className="nbl-icon nbl-icon_email_16"></div>
-                  <div>qwerty@gmail.com</div>
-                </div>
-              </div>
-              <Button type="editLoginButton" color="purple">
-                <TiPencil />
-                {t("buttons.edit_profile")}
-              </Button>
-            </div>
+          {session ? (
+            <UserName name={session.user.name} email={session.user.email} />
           ) : (
             <Button
               type="loginButton"
@@ -56,6 +45,7 @@ const Profile = () => {
               {t("buttons.enter_register")}
             </Button>
           )}
+
           <ButtonsProfile />
 
           {status === "authenticated" && (

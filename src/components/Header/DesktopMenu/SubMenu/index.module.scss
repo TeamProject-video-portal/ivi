@@ -2,7 +2,7 @@
 @import "../../../../styles/mixins.scss";
 
 .container {
-  height: 500px;
+  height: 376px;
   position: absolute;
   top: 72px;
   left: 0;
@@ -48,12 +48,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      padding: 35px 25px 25px 25px;
       z-index: 100;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       color: $base-grey-menu;
+      padding: 32px;
+      box-sizing: border-box;
 
       a:hover {
         color: $base-white;

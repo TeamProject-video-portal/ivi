@@ -1,6 +1,7 @@
 import { Meta, Story } from "@storybook/react";
 import { ResponseTopMovieKPType } from "@/types/types";
 import PosterTopTen, { PosterProps } from "../components/Carts/TopTen";
+
 export default {
   title: "Poster",
   component: PosterTopTen,
@@ -13,6 +14,7 @@ type PosterStoryProps = Pick<PosterProps, "num" | "film">;
 export const Default: Story<PosterStoryProps> = ({ ...args }) => (
   <PosterTopTen {...args} />
 );
+
 Default.args = {
   num: 5,
   film: {

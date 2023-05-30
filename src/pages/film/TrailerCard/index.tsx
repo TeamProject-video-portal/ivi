@@ -22,12 +22,7 @@ export const TrailerCard: FC<Props> = (props) => {
       <div className={styles.player_block}>
         <Image src={props.filmPicture} alt=" " fill></Image>
         <div className={styles.buttons}>
-          <button
-            className={styles.watch}
-            onClick={() => {
-              props.setIsOpenModal(true);
-            }}
-          >
+          <button className={styles.watch}>
             <p>{t("buttons.watch")}</p>
             <span>{t("buttons.watch_by_subscription")}</span>
           </button>
@@ -37,7 +32,11 @@ export const TrailerCard: FC<Props> = (props) => {
           </div>
         </div>
       </div>
-      <FilmButtons filmLink={props.filmLink} />
+      <FilmButtons
+        filmLink={props.filmLink}
+        isOpenModal={props.isOpenModal}
+        setIsOpenModal={props.setIsOpenModal}
+      />
     </div>
   );
 };

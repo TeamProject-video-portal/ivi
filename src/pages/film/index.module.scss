@@ -19,7 +19,7 @@
 
     @include desktop {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: minmax(100px, 180px) minmax(100px, 150px) 1fr;
+      grid-template-rows: minmax(100px, 200px) 110px 1fr;
       grid-template-areas:
         "trailer discription"
         "trailer slider_actors"
@@ -28,7 +28,7 @@
     }
     @include laptop {
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: minmax(100px, 180px) 1fr 1fr;
+      grid-template-rows: minmax(100px, 200px) 110px 1fr;
       grid-template-areas:
         "trailer discription"
         "trailer slider_actors"

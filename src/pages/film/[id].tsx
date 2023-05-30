@@ -4,7 +4,7 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
-import { GetServerSidePropsContext, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { IMovie } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
@@ -12,10 +12,9 @@ import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
 import React, { useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
-import { Modal } from "@/components/Modal";
-import InfoMovie from "./InfoMovie";
+import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "./WatchOnAllDevices";
-import { getCsrfToken } from "next-auth/react";
+import InfoMovie from "./InfoMovie";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -56,7 +55,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
           actors={movie.actors || []}
           className={styles.slider_actors}
         />
-        {/* <InfoMovie className={styles.info} filmLang={movie.filmLang} /> */}
+        <InfoMovie className={styles.info} filmLang={movie.filmLang} />
       </div>
       <Comments />
       <SimpleSlider
@@ -68,7 +67,7 @@ const CardId: NextPage<Props> = ({ movie }) => {
         type={"summary"}
       />
       {isOpenModal && (
-        <Modal
+        <TrailerModal
           isOpenModal={isOpenModal}
           setIsOpenModal={setIsOpenModal}
           trailer={movie.filmTrailer}
@@ -81,26 +80,6 @@ const CardId: NextPage<Props> = ({ movie }) => {
     </div>
   );
 };
-
-// export const getServerSideProps: GetServerSideProps = async (context) => {
-//   const movie = moviesData as IMovie;
-
-//   if (!movie) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   const isFilmPage = context.resolvedUrl === `/film/${context.query.id}`;
-
-//   return {
-//     props: {
-//       movie: movie,
-//       id: !isFilmPage ? null : context.query.id,
-//       lang: !isFilmPage ? null : context.query.lang || null,
-//     },
-//   };
-// };
 
 export const getStaticProps: GetStaticProps = async (context) => {
   console.log(context);
@@ -119,7 +98,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   const paths = [Array(3)].map((item) => ({
-    params: { id: moviesData.id.toString() },
+    params: { id: moviesData.id.toString(), lang: "ru" },
   }));
   return {
     paths,

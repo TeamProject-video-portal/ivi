@@ -123,14 +123,23 @@
   line-height: 20px;
   padding: 9px 15px;
 }
+
 .editLoginButton {
-  column-gap: 6px;
   @include font-regular-m;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  column-gap: 6px;
   line-height: 20px;
-  padding: 18px 61px;
+  padding: 18px 20px;
+  box-sizing: border-box;
+  min-width: 110px;
+
   svg {
     font-size: 20px;
+    margin-right: 10px;
   }
+
   @media screen and (max-width: 743px) {
     column-gap: 0;
     font-size: 0;
@@ -169,7 +178,11 @@
   color: $base-white;
   @include font-regular-m;
   line-height: 20px;
-  background-image: radial-gradient(circle at 50% 50%, rgba(126, 121, 143, 0.56), rgba(49, 43, 69, 0) 100%);
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(126, 121, 143, 0.56),
+    rgba(49, 43, 69, 0) 100%
+  );
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-size: cover;

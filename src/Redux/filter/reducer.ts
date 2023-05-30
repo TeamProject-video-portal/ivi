@@ -39,6 +39,7 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       return {
         ...state,
         ...initialState,
+        results: action.payload,
       };
 
     case FilterActionTypes.SET_GENRES:

@@ -14,18 +14,19 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IPerson, ISimpleMovie } from "@/types/types";
+import { IMovie, IPerson, ISimpleMovie } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
 import dataFilms from "@/data/Search_films_v2.json";
-import { connect } from "react-redux";
-import { useAppSelector } from "@/hooks/hooks";
+import { connect, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
+import { setResultsFilter } from "@/Redux/filter/actions";
 
 // type MoviesProps = {
 //   persons: IPerson[];
@@ -87,6 +88,7 @@ const Movies: NextPage = () => {
     isFilter,
     genres,
     countries,
+    yearsMin,
     yearsMax,
     ratingMin,
     ratingMax,
@@ -96,8 +98,35 @@ const Movies: NextPage = () => {
     directors,
     results,
   } = useAppSelector(selectFilters);
-  const dataMovies = useAppSelector(selectMovies);
-  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+  const { movies } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+
+  useEffect(() => {
+    dispatch(
+      setResultsFilter(
+        results.filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax),
+      ),
+    );
+  }, [yearsMin, yearsMax]);
+
+  useEffect(() => {
+    dispatch(
+      setResultsFilter(
+        results.filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax),
+      ),
+    );
+  }, [ratingMin, ratingMax]);
+
+  useEffect(() => {
+    dispatch(
+      setResultsFilter(
+        results.filter(
+          (item) => item?.filmTotalGrade >= scoreMin && item?.filmTotalGrade <= scoreMin,
+        ),
+      ),
+    );
+  }, [scoreMin, scoreMin]);
 
   return (
     <>
@@ -157,7 +186,11 @@ const Movies: NextPage = () => {
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults movies={results} />
+            {results.length ? (
+              <MovieResults movies={results} />
+            ) : (
+              <div className={styles.resultsEmpty}>Ничего не найдено</div>
+            )}
           </div>
         </section>
       )}
@@ -173,7 +206,6 @@ export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     // const movies = await responseMovies.json() as IMovie[];
     // const persons = personsData.persons;
     const movies = dataFilms as ISimpleMovie[];
-    console.log("store", store);
 
     store.dispatch({
       type: MoviesActionTypes.GET_MOVIES,

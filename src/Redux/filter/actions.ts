@@ -1,9 +1,10 @@
 import { FilterRangeType, IMovie } from "@/types/types";
 import { FilterActionTypes } from "./action-types";
 
-export const resetFilters = () => {
+export const resetFilters = (results: IMovie[]) => {
   return {
     type: FilterActionTypes.RESET_FILTERS,
+    payload: results,
   };
 };
 

@@ -10,12 +10,14 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { resetFilters } from "@/Redux/filter/actions";
 import { selectFilters } from "@/Redux/filter/selectors";
 import { filtersTitle } from "@/data/filters";
+import { selectMovies } from "@/Redux/movies/selectors";
 
 const Filters: FC = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState("");
 
   const dispatch = useAppDispatch();
+  const { movies } = useAppSelector(selectMovies);
   const { ratingMin, ratingMax, scoreMin, scoreMax, isFilter } = useAppSelector(selectFilters);
 
   return (
@@ -34,7 +36,7 @@ const Filters: FC = () => {
       <button
         className={`${styles.filtersBtn} ${isFilter && styles.filtersBtn_active}`}
         disabled={!isFilter}
-        onClick={() => dispatch(resetFilters())}
+        onClick={() => dispatch(resetFilters(movies))}
       >
         <TfiClose />
         {t("filters.reset_filters")}

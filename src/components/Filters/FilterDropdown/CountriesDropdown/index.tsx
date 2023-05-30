@@ -8,9 +8,11 @@ import CountriesSlider from "../../CountriesSlider";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { setCountries } from "@/Redux/filter/actions";
+import { selectFilters } from "@/Redux/filter/selectors";
 
 const CountriesDropdown: FC = () => {
   const { countries } = useAppSelector(selectMovies);
+  const { countries: countriesFilter } = useAppSelector(selectFilters);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,6 +27,7 @@ const CountriesDropdown: FC = () => {
             key={item}
             icon={BsCheckLg}
             onClick={() => dispatch(setCountries(item))}
+            activeFilter={countriesFilter.includes(item)}
           />
         ))}
       </ul>

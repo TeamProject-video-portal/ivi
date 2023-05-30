@@ -8,13 +8,13 @@ export type Breadcrumb = {
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-export type BreadcrumbsProps = {
+export type Props = {
   breadcrumbs: Breadcrumb[];
   type: "pages" | "films";
   del: string;
 };
 
-const Breadcrumbs: FC<BreadcrumbsProps> = ({ breadcrumbs, type, del }) => {
+const Breadcrumbs: FC<Props> = ({ breadcrumbs, type, del }) => {
   return (
     <div className={type === "films" ? styles.breadcrumbs_films : styles.breadcrumbs_pages}>
       <ul>

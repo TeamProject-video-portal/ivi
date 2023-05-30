@@ -9,7 +9,7 @@ type Props = {
   name: string | undefined;
   email: string | undefined;
 };
-export const UserName: FC<Props> = (props) => {
+const UserName: FC<Props> = (props) => {
   const { t } = useTranslation();
   const [currentTitle, setCurrentTitle] = useState(props.name);
   const [editMode, setEditMode] = useState(false);
@@ -78,3 +78,4 @@ export const UserName: FC<Props> = (props) => {
     </>
   );
 };
+export default UserName;

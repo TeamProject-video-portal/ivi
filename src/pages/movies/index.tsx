@@ -37,11 +37,6 @@ import { setResultsFilter } from "@/Redux/filter/actions";
 const Movies: NextPage = () => {
   const { t } = useTranslation();
 
-  const breadcrumbs: Breadcrumb[] = [
-    { item: `${t("header.my_ivi")}`, path: "/" },
-    { item: `${t("movies")}`, path: "/movies" },
-  ];
-
   const truncText = (
     <p>
       Вы любите смотреть фильмы онлайн и проводите много времени, прочесывая сайты в поисках
@@ -84,6 +79,42 @@ const Movies: NextPage = () => {
     </>
   );
 
+  const {
+    isFilter,
+    genres,
+    countries,
+    yearsMin,
+    yearsMax,
+    ratingMin,
+    ratingMax,
+    scoreMin,
+    scoreMax,
+    actors,
+    sort,
+    directors,
+    results,
+  } = useAppSelector(selectFilters);
+  const { movies } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+
+  const breadcrumbsBegin: Breadcrumb[] = [
+    { item: `${t("header.my_ivi")}`, path: "/" },
+    { item: `${t("header.movies")}`, path: "/movies" },
+  ];
+
+  const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
+
+  useEffect(() => {
+    let row = "";
+    if (genres.length) {
+      row += " " + genres.join(", ");
+      setBreadcrumbs([...breadcrumbsBegin, { item: row, path: "/movies" }]);
+    } else if (breadcrumbs.length > 2) {
+      setBreadcrumbs([...breadcrumbsBegin]);
+    }
+  }, [genres]);
+
   const filterHandler = (movies: IMovie[]): IMovie[] => {
     return movies
       .filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax)
@@ -109,25 +140,6 @@ const Movies: NextPage = () => {
     }
     return res;
   };
-
-  const {
-    isFilter,
-    genres,
-    countries,
-    yearsMin,
-    yearsMax,
-    ratingMin,
-    ratingMax,
-    scoreMin,
-    scoreMax,
-    actors,
-    sort,
-    directors,
-    results,
-  } = useAppSelector(selectFilters);
-  const { movies } = useAppSelector(selectMovies);
-  const dispatch = useAppDispatch();
-  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
   useEffect(() => {
     //let resulteFilter = results;

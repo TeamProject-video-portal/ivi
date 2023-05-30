@@ -14,7 +14,7 @@
   & a {
     position: relative;
     text-decoration: none;
-    color: $base-grey-menu;
+    color: $base-white;
     &::before {
       position: absolute;
       display: block;
@@ -34,6 +34,10 @@
   span {
     opacity: 0.56;
   }
+}
+
+.last {
+  color: $base-grey-menu;
 }
 
 .breadcrumbs_films {

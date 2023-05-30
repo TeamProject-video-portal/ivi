@@ -14,7 +14,7 @@ const ListItem: FC<ListItemProps> = ({ item, icon, onClick }) => {
 
   return (
     <li className={styles.list} onClick={onClick}>
-      <div>{item}</div>
+      <div className={styles.item}>{item}</div>
       {icon && IconItem && <IconItem />}
     </li>
   );

@@ -1,4 +1,4 @@
-import { FilterRangeType, IMovie } from "@/types/types";
+import { FilterRangeType, IMovie, SortType } from "@/types/types";
 import { FilterActionTypes } from "./action-types";
 
 export const resetFilters = (results: IMovie[]) => {
@@ -54,6 +54,13 @@ export const setDirectorsFilter = (director: string) => {
   return {
     type: FilterActionTypes.SET_DIRECTORS,
     payload: director,
+  };
+};
+
+export const setSortFilter = (sort: SortType) => {
+  return {
+    type: FilterActionTypes.SET_SORT,
+    payload: sort,
   };
 };
 

@@ -13,12 +13,14 @@ type Props = {
 
 const MovieResults: FC<Props> = ({ movies }) => {
   const [itemsToShow, setItemsToShow] = useState<IMovie[]>([]);
+  const [next, setNext] = useState(0);
 
   useEffect(() => {
     setItemsToShow([...movies.slice(0, SHOW_SIZE)]);
+    setNext(SHOW_SIZE);
   }, [movies]);
 
-  const [next, setNext] = useState(SHOW_SIZE);
+  //console.log("itemsToShow.length, movies.length, next", itemsToShow.length, movies.length, next);
 
   const sliceArray = (start: number, end: number): void => {
     setItemsToShow((state) => [...state, ...movies.slice(start, end)]);
@@ -26,8 +28,7 @@ const MovieResults: FC<Props> = ({ movies }) => {
 
   const clickHandler = () => {
     sliceArray(next, next + SHOW_SIZE);
-    setNext(next + SHOW_SIZE);
-    console.log("itemsToShow1", itemsToShow);
+    setNext((state) => (state < movies.length ? state + SHOW_SIZE : state));
   };
 
   return (
@@ -39,7 +40,12 @@ const MovieResults: FC<Props> = ({ movies }) => {
           </Link>
         ))}
       </div>
-      <Button className={styles.results__moreBtn} onClick={clickHandler}>
+      <Button
+        className={`${styles.results__moreBtn} ${
+          itemsToShow.length >= movies.length && styles.results__moreBtn_none
+        }`}
+        onClick={clickHandler}
+      >
         Показать еще
       </Button>
     </div>

@@ -14,7 +14,7 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, ISimpleMovie } from "@/types/types";
+import { IMovie, IPerson, ISimpleMovie, SortType } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -84,6 +84,32 @@ const Movies: NextPage = () => {
     </>
   );
 
+  const filterHandler = (movies: IMovie[]): IMovie[] => {
+    return movies
+      .filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax)
+      .filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax);
+    //.filter((item) => item.filmTotalGrade >= scoreMin && item.filmTotalGrade <= scoreMin);
+  };
+
+  const sortHandler = (sort: SortType, movies: IMovie[]): IMovie[] => {
+    let res = [...movies];
+    switch (sort) {
+      case "SCORE":
+        res.sort((a, b) => b.filmTotalGrade - a.filmTotalGrade);
+        break;
+      case "RATING":
+        res.sort((a, b) => b.filmGrade - a.filmGrade);
+        break;
+      case "DATE":
+        res.sort((a, b) => b.filmYear - a.filmYear);
+        break;
+      case "TITLE":
+        res.sort((a, b) => a.filmLang[0].filmName.localeCompare(b.filmLang[0].filmName));
+        break;
+    }
+    return res;
+  };
+
   const {
     isFilter,
     genres,
@@ -95,6 +121,7 @@ const Movies: NextPage = () => {
     scoreMin,
     scoreMax,
     actors,
+    sort,
     directors,
     results,
   } = useAppSelector(selectFilters);
@@ -103,30 +130,16 @@ const Movies: NextPage = () => {
   const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
 
   useEffect(() => {
-    dispatch(
-      setResultsFilter(
-        results.filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax),
-      ),
-    );
-  }, [yearsMin, yearsMax]);
+    //let resulteFilter = results;
+    let resultFilter = filterHandler(movies);
+    resultFilter = sortHandler(sort, resultFilter);
+    dispatch(setResultsFilter(resultFilter));
+  }, [yearsMin, yearsMax, ratingMin, ratingMax, scoreMin, scoreMin]);
 
   useEffect(() => {
-    dispatch(
-      setResultsFilter(
-        results.filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax),
-      ),
-    );
-  }, [ratingMin, ratingMax]);
-
-  useEffect(() => {
-    dispatch(
-      setResultsFilter(
-        results.filter(
-          (item) => item?.filmTotalGrade >= scoreMin && item?.filmTotalGrade <= scoreMin,
-        ),
-      ),
-    );
-  }, [scoreMin, scoreMin]);
+    let resultFilter = sortHandler(sort, results);
+    dispatch(setResultsFilter(resultFilter));
+  }, [sort]);
 
   return (
     <>

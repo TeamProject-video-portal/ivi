@@ -26,12 +26,9 @@ const SimpleSlider: FC<Props> = ({ title, films }) => {
       </div>
       <Slider {...newSettings} className={styles.container}>
         {films.map((item, index) => (
-          <Link href={`https://www.kinopoisk.ru/film/${item.id}/`}>
-            {" "}
+          <Link href={`https://www.kinopoisk.ru/film/${item.id}/`} key={item.id}>
             <Poster film={item} />
           </Link>
-
-          // </Link>
         ))}
       </Slider>
       <></>

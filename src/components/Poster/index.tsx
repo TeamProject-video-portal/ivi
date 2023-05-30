@@ -6,10 +6,10 @@ import Info from "./Info";
 import { ISimpleMovie } from "@/types/types";
 const posterImage = require("../../images/posterImage.jpeg");
 
-type Props = {
+export type PosterMovieProps = {
   film: ISimpleMovie;
 };
-const Poster: FC<Props> = ({ film }) => {
+const Poster: FC<PosterMovieProps> = ({ film }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

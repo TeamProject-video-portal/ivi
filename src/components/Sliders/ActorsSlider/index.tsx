@@ -5,36 +5,35 @@ import Poster from "@/components/Poster";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
-import { settings } from "../settings";
+import { settings } from "./settings";
 import { ActorsType } from "@/types/types";
-import { Actors } from "@/components/DescriptionCard/Actors";
+import { Actor } from "@/components/DescriptionCard/Actors";
+import { Raiting } from "@/components/DescriptionCard/Raiting";
 
 type Props = {
   actors: ActorsType[];
+  filmGrade: number;
+  className: string;
 };
 
-const ActorsSlider: FC<Props> = ({ actors }) => {
+const ActorsSlider: FC<Props> = ({ actors, filmGrade, className }) => {
   const newSettings = {
     ...settings,
-    slidesToShow: 4,
   };
 
   return (
-    <div className={styles.container}>
-      {/* <div className={styles.title}>
-        <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
-      </div> */}
-      <Slider {...newSettings} className={styles.container}>
+    <div className={[styles.container, className].join(" ")}>
+      <Slider {...newSettings} className={styles.slider}>
+        <Raiting filmGrade={filmGrade} />
         {actors.map((item: any) => (
           <Link
             href={{ pathname: "/actor/[id]", query: { id: "309" } }}
             key={`${item.id}`}
           >
-            <Actors img={item.photo} name={item.name} key={`${item.id}`} />
+            <Actor img={item.photo} name={item.name} key={`${item.id}`} />
           </Link>
         ))}
       </Slider>
-      <></>
     </div>
   );
 };

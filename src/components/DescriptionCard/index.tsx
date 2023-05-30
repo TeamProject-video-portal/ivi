@@ -1,53 +1,48 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./index.module.scss";
-import Image from "next/image";
-import logo from "../../images/icons/logo.svg";
-import Link from "next/link";
 import { Button } from "../Button/Button";
-import { Actors } from "./Actors";
-import { Raiting } from "./Raiting";
-import {
-  ActorsType,
-  CountriesType,
-  FilmLangType,
-  GenresType,
-} from "@/types/types";
+import { CountriesType, FilmLangType, GenresType } from "@/types/types";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-export-i18n";
-import GenresSlider from "../Sliders/GenresSlider";
-import SimpleSlider from "../Sliders/SimpleSlider";
-import ActorsSlider from "../Sliders/ActorsSlider";
+import { EditTitle } from "./EditTitle";
+import { useSession } from "next-auth/react";
 
 type Props = {
-  filmGrade: number;
   filmAge: string;
   filmYear: number;
   filmLang: FilmLangType[];
-  actors: ActorsType[];
   filmTime: number;
   countries: CountriesType[];
   genres: GenresType[];
+  className: string;
 };
 
 export const DescriptionCard: FC<Props> = ({
-  filmGrade,
   filmAge,
   filmYear,
   filmLang,
-  actors,
   filmTime,
   countries,
   genres,
+  className,
 }) => {
   const router = useRouter();
+  const { data: session } = useSession();
 
   const { t } = useTranslation();
+  const [title, setTitle] = useState<string>();
+
+  useEffect(() => {
+    router.asPath.includes("?lang=en")
+      ? setTitle(filmLang[1].filmName)
+      : setTitle(filmLang[0].filmName);
+  }, [router]);
+
   return (
-    <div className={styles.container}>
-      <h1>
-        {router.locale === "ru" ? filmLang[0].filmName : filmLang[1].filmName}{" "}
-        {t("movie.watch_online")}
-      </h1>
+    <div className={[styles.container, className].join(" ")}>
+      {session ? <EditTitle title={title} /> : <h1>{title}</h1>}
+
+      <h1>{t("movie.watch_online")}</h1>
       <div className={styles.data}>
         <div className={styles.row_time}>
           <span>{filmYear}</span>
@@ -83,18 +78,6 @@ export const DescriptionCard: FC<Props> = ({
         </div>
       </div>
 
-      <div className={styles.actors}>
-        <Raiting filmGrade={filmGrade} />
-        {actors.slice(0, 4).map((item, index) => {
-          return (
-            <Actors
-              img={item.photo || ""}
-              name={item.name}
-              key={`${item.id}`}
-            />
-          );
-        })}
-      </div>
       <div className={styles.description}>
         <p>
           {router.locale === "ru"

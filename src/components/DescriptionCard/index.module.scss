@@ -6,9 +6,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 25px;
+  // padding: 50px 25px;
   box-sizing: border-box;
 
+  @include mobile_s {
+  }
   h1 {
     @include font-bold-l;
     font-size: 36px;
@@ -69,12 +71,6 @@
         text-transform: capitalize;
       }
     }
-  }
-  .actors {
-    display: flex;
-    align-items: center;
-    margin: 20px 0;
-    width: 100%;
   }
 
   .description {

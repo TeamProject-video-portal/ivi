@@ -1,17 +1,15 @@
-//mobile_s
 @mixin mobile_s {
   @media screen and (max-width: 380px) {
     @content;
   }
 }
-//mobile_m
+
 @mixin mobile_m {
   @media screen and (min-width: 380px) and (max-width: 600px) {
     @content;
   }
 }
 
-//tablet_s
 @mixin tablet_s {
   @media screen and (min-width: 600px) and (max-width: 1020px) {
     @content;

@@ -1,6 +1,6 @@
 import { Meta, Story } from "@storybook/react";
-import PosterTopTen, { PosterProps } from "./index";
-import dataOneMovie from "@/data/One_film_response_v2.json";
+import { ResponseTopMovieKPType } from "@/types/types";
+import PosterTopTen, { PosterProps } from "../components/Carts/TopTen";
 export default {
   title: "Poster",
   component: PosterTopTen,
@@ -18,9 +18,10 @@ Default.args = {
   film: {
     id: 123,
     poster: {
-      previewUrl: dataOneMovie.filmPoster,
-      url: dataOneMovie.filmPoster,
+      previewUrl:
+        "https://kinopoiskapiunofficial.tech/images/posters/kp/309.jpg",
+      url: "https://kinopoiskapiunofficial.tech/images/posters/kp/309.jpg",
     },
   },
 };
-Default.storyName = "poster";
+Default.storyName = "PosterTopMovie";

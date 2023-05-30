@@ -21,7 +21,7 @@ const initialState: IMoviesState = {
 
 export const moviesReducer = (state = initialState, action: AnyAction): IMoviesState => {
   switch (action.type) {
-    case MoviesActionTypes.SET_MOVIES:
+    case MoviesActionTypes.GET_MOVIES:
       const actionPayload = action.payload as IMovie[];
       const years = Array.from(new Set(actionPayload.map((item) => item.filmYear)));
       const genresSet = new Set<string>();
@@ -41,7 +41,7 @@ export const moviesReducer = (state = initialState, action: AnyAction): IMoviesS
         error: "",
       };
 
-    case MoviesActionTypes.SET_MOVIES_ERROR:
+    case MoviesActionTypes.GET_MOVIES_ERROR:
       return { ...state, error: action.payload };
 
     // case HYDRATE:

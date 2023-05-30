@@ -51,11 +51,15 @@ const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
   const { t } = useTranslation();
   const [values, setValues] = useState([ratingMin, ratingMax]);
   const [finalValues, setFinalValues] = useState([ratingMin, ratingMax]);
+  const isMounted = useRef(false);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setRating([finalValues[0], finalValues[1]]));
+    if (isMounted.current) {
+      dispatch(setRating([finalValues[0], finalValues[1]]));
+    }
+    isMounted.current = true;
   }, [finalValues]);
 
   useEffect(() => {

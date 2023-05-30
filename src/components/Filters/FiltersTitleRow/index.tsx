@@ -30,6 +30,17 @@ const FiltersTitleRow: FC = () => {
     if (filters.scoreMax < 200000) {
       row += ` до ${filters.scoreMax}`;
     }
+
+    if (filters.directors.length) {
+      row += " / ";
+      row += filters.directors.join(", ");
+    }
+
+    if (filters.actors.length) {
+      row += " / ";
+      row += filters.actors.join(", ");
+    }
+
     return row;
   };
 

@@ -1,6 +1,6 @@
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "./index.module.scss";
-import { useState } from "react";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
 import Description from "@/components/Description";
 import Suggestion from "@/components/Suggestion";
@@ -14,18 +14,19 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IPerson, ISimpleMovie } from "@/types/types";
+import { IMovie, IPerson, ISimpleMovie, SortType } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
 import dataFilms from "@/data/Search_films_v2.json";
-import { connect } from "react-redux";
-import { useAppSelector } from "@/hooks/hooks";
+import { connect, useDispatch } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MoviesActionTypes } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
+import { setResultsFilter } from "@/Redux/filter/actions";
 
 // type MoviesProps = {
 //   persons: IPerson[];
@@ -35,11 +36,6 @@ import { selectFilters } from "@/Redux/filter/selectors";
 //const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
 const Movies: NextPage = () => {
   const { t } = useTranslation();
-
-  const breadcrumbs: Breadcrumb[] = [
-    { item: `${t("header.my_ivi")}`, path: "/" },
-    { item: `${t("movies")}`, path: "/movies" },
-  ];
 
   const truncText = (
     <p>
@@ -83,9 +79,79 @@ const Movies: NextPage = () => {
     </>
   );
 
-  const { isFilter } = useAppSelector(selectFilters);
-  const dataMovies = useAppSelector(selectMovies);
-  const bestMovies = [...dataMovies.movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+  const {
+    isFilter,
+    genres,
+    countries,
+    yearsMin,
+    yearsMax,
+    ratingMin,
+    ratingMax,
+    scoreMin,
+    scoreMax,
+    actors,
+    sort,
+    directors,
+    results,
+  } = useAppSelector(selectFilters);
+  const { movies } = useAppSelector(selectMovies);
+  const dispatch = useAppDispatch();
+  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+
+  const breadcrumbsBegin: Breadcrumb[] = [
+    { item: `${t("header.my_ivi")}`, path: "/" },
+    { item: `${t("header.movies")}`, path: "/movies" },
+  ];
+
+  const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
+
+  useEffect(() => {
+    let row = "";
+    if (genres.length) {
+      row += " " + genres.join(", ");
+      setBreadcrumbs([...breadcrumbsBegin, { item: row, path: "/movies" }]);
+    } else if (breadcrumbs.length > 2) {
+      setBreadcrumbs([...breadcrumbsBegin]);
+    }
+  }, [genres]);
+
+  const filterHandler = (movies: IMovie[]): IMovie[] => {
+    return movies
+      .filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax)
+      .filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax);
+    //.filter((item) => item.filmTotalGrade >= scoreMin && item.filmTotalGrade <= scoreMin);
+  };
+
+  const sortHandler = (sort: SortType, movies: IMovie[]): IMovie[] => {
+    let res = [...movies];
+    switch (sort) {
+      case "SCORE":
+        res.sort((a, b) => b.filmTotalGrade - a.filmTotalGrade);
+        break;
+      case "RATING":
+        res.sort((a, b) => b.filmGrade - a.filmGrade);
+        break;
+      case "DATE":
+        res.sort((a, b) => b.filmYear - a.filmYear);
+        break;
+      case "TITLE":
+        res.sort((a, b) => a.filmLang[0].filmName.localeCompare(b.filmLang[0].filmName));
+        break;
+    }
+    return res;
+  };
+
+  useEffect(() => {
+    //let resulteFilter = results;
+    let resultFilter = filterHandler(movies);
+    resultFilter = sortHandler(sort, resultFilter);
+    dispatch(setResultsFilter(resultFilter));
+  }, [yearsMin, yearsMax, ratingMin, ratingMax, scoreMin, scoreMin]);
+
+  useEffect(() => {
+    let resultFilter = sortHandler(sort, results);
+    dispatch(setResultsFilter(resultFilter));
+  }, [sort]);
 
   return (
     <>
@@ -145,7 +211,11 @@ const Movies: NextPage = () => {
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            <MovieResults movies={dataMovies.movies} />
+            {results.length ? (
+              <MovieResults movies={results} />
+            ) : (
+              <div className={styles.resultsEmpty}>Ничего не найдено</div>
+            )}
           </div>
         </section>
       )}
@@ -153,32 +223,33 @@ const Movies: NextPage = () => {
   );
 };
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const persons = await responsePersons.json() as IPerson[];
-  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-  // const movies = await responseMovies.json() as IMovie[];
-  // const persons = personsData.persons;
-  const movies = dataFilms as ISimpleMovie[];
-  console.log("store", store);
+export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+    // const persons = await responsePersons.json() as IPerson[];
+    // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+    // const movies = await responseMovies.json() as IMovie[];
+    // const persons = personsData.persons;
+    const movies = dataFilms as ISimpleMovie[];
 
-  store.dispatch({
-    type: MoviesActionTypes.SET_MOVIES,
-    payload: movies,
-  });
+    store.dispatch({
+      type: MoviesActionTypes.GET_MOVIES,
+      payload: movies,
+    });
 
-  // if (!persons || !movies) {
-  //   return {
-  //     notFound: true,
-  //   };
-  // }
+    // if (!persons || !movies) {
+    //   return {
+    //     notFound: true,
+    //   };
+    // }
 
-  return {
-    //props: { persons, movies },
-    props: {},
-    revalidate: 10,
-  };
-});
+    return {
+      //props: { persons, movies },
+      props: {},
+      revalidate: 10,
+    };
+  },
+);
 
 export default connect((state) => state)(Movies);
 //export default Movies;

@@ -1,9 +1,10 @@
-import { FilterRangeType } from "@/types/types";
+import { FilterRangeType, IMovie, SortType } from "@/types/types";
 import { FilterActionTypes } from "./action-types";
 
-export const resetFilters = () => {
+export const resetFilters = (results: IMovie[]) => {
   return {
     type: FilterActionTypes.RESET_FILTERS,
+    payload: results,
   };
 };
 
@@ -39,5 +40,40 @@ export const setScore = (score: FilterRangeType) => {
   return {
     type: FilterActionTypes.SET_SCORE,
     payload: score,
+  };
+};
+
+export const setActorsFilter = (actor: string) => {
+  return {
+    type: FilterActionTypes.SET_ACTORS,
+    payload: actor,
+  };
+};
+
+export const setDirectorsFilter = (director: string) => {
+  return {
+    type: FilterActionTypes.SET_DIRECTORS,
+    payload: director,
+  };
+};
+
+export const setSortFilter = (sort: SortType) => {
+  return {
+    type: FilterActionTypes.SET_SORT,
+    payload: sort,
+  };
+};
+
+export const setResultsFilter = (results: IMovie[]) => {
+  return {
+    type: FilterActionTypes.SET_FILTERS_RESULTS,
+    payload: results,
+  };
+};
+
+export const getErrorFilter = (error: string) => {
+  return {
+    type: FilterActionTypes.GET_FILTERS_ERROR,
+    payload: error,
   };
 };

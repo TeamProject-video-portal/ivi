@@ -51,3 +51,8 @@
     color: $base-white;
   }
 }
+.resultsEmpty {
+  margin: 40px auto;
+  @include font-bold-xl;
+  text-align: center;
+}

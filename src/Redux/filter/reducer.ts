@@ -1,6 +1,8 @@
 import { AnyAction } from "@reduxjs/toolkit";
 import { FILTERS_ACTIONS } from "./action-types";
-import { IMovie, SortType } from "@/types/types";
+import { IMovie } from "@/types/types";
+import { SortType } from "@/types/types";
+
 export interface IFilterState {
   isFilter: boolean;
   genres: string[];
@@ -41,7 +43,6 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       return {
         ...state,
         ...initialState,
-        results: action.payload,
       };
 
     case FILTERS_ACTIONS.SET_GENRES:
@@ -92,6 +93,9 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
 
     case FILTERS_ACTIONS.SET_SORT:
       return { ...state, sort: action.payload };
+
+    case FILTERS_ACTIONS.SET_FILTERS_GENRES_COUNTRIES:
+      return { ...state, results: action.payload, error: "" };
 
     case FILTERS_ACTIONS.SET_FILTERS_RESULTS:
       return { ...state, results: action.payload, error: "" };

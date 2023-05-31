@@ -1,10 +1,10 @@
-import { FilterRangeType, IMovie, SortType } from "@/types/types";
+import { FilterRangeType, IMovie } from "@/types/types";
+import { SortType } from "@/types/types";
 import { FILTERS_ACTIONS } from "./action-types";
 
-export const resetFilters = (results: IMovie[]) => {
+export const resetFilters = () => {
   return {
     type: FILTERS_ACTIONS.RESET_FILTERS,
-    payload: results,
   };
 };
 
@@ -61,6 +61,13 @@ export const setSortFilter = (sort: SortType) => {
   return {
     type: FILTERS_ACTIONS.SET_SORT,
     payload: sort,
+  };
+};
+
+export const setGenresCountriesFilter = (results: IMovie[]) => {
+  return {
+    type: FILTERS_ACTIONS.SET_FILTERS_GENRES_COUNTRIES,
+    payload: results,
   };
 };
 

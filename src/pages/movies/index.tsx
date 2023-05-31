@@ -27,6 +27,10 @@ import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
 import { setResultsFilter } from "@/Redux/filter/actions";
+import { sortHandler } from "@/Redux/filter/worker";
+import { filterRangesHandler } from "@/Redux/filter/worker";
+import { useRouter } from "next/router";
+import { useSearchParams } from "next/navigation";
 
 // type MoviesProps = {
 //   persons: IPerson[];
@@ -34,7 +38,8 @@ import { setResultsFilter } from "@/Redux/filter/actions";
 // };
 
 //const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
-const Movies: NextPage = () => {
+const Movies: NextPage = (context) => {
+  const router = useRouter();
   const { t } = useTranslation();
 
   const truncText = (
@@ -115,40 +120,25 @@ const Movies: NextPage = () => {
     }
   }, [genres]);
 
-  const filterHandler = (movies: IMovie[]): IMovie[] => {
-    return movies
-      .filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax)
-      .filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax);
-    //.filter((item) => item.filmTotalGrade >= scoreMin && item.filmTotalGrade <= scoreMin);
-  };
+  // let searchParams: any;
 
-  const sortHandler = (sort: SortType, movies: IMovie[]): IMovie[] => {
-    let res = [...movies];
-    switch (sort) {
-      case "SCORE":
-        res.sort((a, b) => b.filmTotalGrade - a.filmTotalGrade);
-        break;
-      case "RATING":
-        res.sort((a, b) => b.filmGrade - a.filmGrade);
-        break;
-      case "DATE":
-        res.sort((a, b) => b.filmYear - a.filmYear);
-        break;
-      case "TITLE":
-        res.sort((a, b) => a.filmLang[0].filmName.localeCompare(b.filmLang[0].filmName));
-        break;
-    }
-    return res;
-  };
+  // if (router.isReady && router.asPath.includes("?")) {
+  //   console.log("!!!");
+  //   searchParams = new URLSearchParams(router.asPath.split("?", 2)[1]);
+  // } else {
+  //   searchParams = new URLSearchParams();
+  // }
+  // console.log("searchParams", searchParams);
+
+  let searchParams = useSearchParams();
 
   useEffect(() => {
-    //let resulteFilter = results;
-    let resultFilter = filterHandler(movies);
-    resultFilter = sortHandler(sort, resultFilter);
-    dispatch(setResultsFilter(resultFilter));
-  }, [yearsMin, yearsMax, ratingMin, ratingMax, scoreMin, scoreMin]);
+    //console.log("router.query", router.asPath.split("?", 2)[1]);
+    //console.log("searchParams", searchParams);
+  }, []);
 
   useEffect(() => {
+    console.log("change sort");
     let resultFilter = sortHandler(sort, results);
     dispatch(setResultsFilter(resultFilter));
   }, [sort]);
@@ -225,6 +215,8 @@ const Movies: NextPage = () => {
 
 export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
   (store) => async (context) => {
+    console.log("context movies", context);
+
     // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
     // const persons = await responsePersons.json() as IPerson[];
     // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
@@ -246,7 +238,7 @@ export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     return {
       //props: { persons, movies },
       props: {},
-      revalidate: 10,
+      //revalidate: 10,
     };
   },
 );

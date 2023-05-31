@@ -4,9 +4,9 @@ import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { SortType } from "@/types/types";
 import { useDispatch } from "react-redux";
-import { useAppSelector } from "@/hooks/hooks";
-import { selectFilters } from "@/Redux/filter/selectors";
-import { setSortFilter } from "@/Redux/filter/actions";
+import { useAppSelector } from "../../hooks/hooks";
+import { selectFilters } from "../../Redux/filter/selectors";
+import { setSortFilter } from "../../Redux/filter/actions";
 
 const Sort: FC = () => {
   const { t } = useTranslation();

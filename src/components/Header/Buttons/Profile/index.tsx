@@ -41,7 +41,7 @@ const ProfileButton: FC<Props> = (props) => {
       //   props.setIsOpenSubMenu?.(false);
       // }}
     >
-      {session?.user ? <AuthProfile /> : <NotAuthProfile />}
+      {session?.user.name ? <AuthProfile /> : <NotAuthProfile />}
     </div>
   );
 };

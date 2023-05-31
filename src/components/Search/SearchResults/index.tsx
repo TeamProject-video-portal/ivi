@@ -12,7 +12,12 @@ type SearchResultsProps = {
   type: string;
 };
 
-const SearchResults: FC<SearchResultsProps> = ({ className, placeholder, results, type }) => {
+const SearchResults: FC<SearchResultsProps> = ({
+  className,
+  placeholder,
+  results,
+  type,
+}) => {
   const dispatch = useAppDispatch();
 
   const onClickHandler = (item: string) => {

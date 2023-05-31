@@ -4,10 +4,11 @@ import styles from "./index.module.scss";
 import { useTranslation } from "next-export-i18n";
 
 export const DropDownTitle: FC = () => {
+  const { t } = useTranslation();
   return (
     <div className={styles.title}>
-      <h3> Подписка Иви</h3>
-      <p> Стоимость 4.99 $ в месяц, продление автоматическое</p>
+      <h3> {t("header.subscription")}</h3>
+      <p> {t("header.subtitle_cost")}</p>
     </div>
   );
 };

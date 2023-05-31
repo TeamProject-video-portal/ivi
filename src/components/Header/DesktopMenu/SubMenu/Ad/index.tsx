@@ -7,15 +7,17 @@ import { settings1, settings2, settings3 } from "./settings";
 import Image from "next/image";
 import icon from "../../../../../images/icons/logo.svg";
 import img from "../../../../../images/banner__foto.jpeg";
-const posters = [
-  "https://scientificrussia.ru/images/b/teb-full.jpg",
-  "https://scientificrussia.ru/images/b/teb-full.jpg",
-  "https://scientificrussia.ru/images/b/teb-full.jpg",
-];
+import poster1 from "@/images/ad/ad_poster_1.jpeg";
+import poster2 from "@/images/ad/ad_poster_2.jpeg";
+import poster3 from "@/images/ad/ad_poster_3.jpeg";
+import poster4 from "@/images/ad/ad_poster_4.jpeg";
+
+const posters = [poster1, poster2, poster3, poster4];
 
 type Props = {
   type: string;
 };
+console.log(posters);
 const Ad: FC<Props> = ({ type }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -23,7 +25,7 @@ const Ad: FC<Props> = ({ type }) => {
     return posters.map((poster, index) => {
       return (
         <div key={index} className={styles.slide}>
-          <Image src={img} alt={`Poster ${index}`}></Image>
+          <Image src={poster} alt={`Poster ${index}`}></Image>
         </div>
       );
     });

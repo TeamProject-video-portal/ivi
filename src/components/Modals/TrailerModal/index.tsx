@@ -6,7 +6,7 @@ type Props = {
   isOpenModal: boolean;
   setIsOpenModal: Dispatch<React.SetStateAction<boolean>>;
 };
-export const Modal: FC<Props> = (props) => {
+export const TrailerModal: FC<Props> = (props) => {
   const handleClick = () => {
     props.setIsOpenModal(false);
   };

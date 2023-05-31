@@ -73,6 +73,24 @@
   padding: 15px;
   border-radius: 10px;
 
+  &::after,
+  &::before {
+    position: absolute;
+    content: "";
+    width: 50px;
+    height: 100%;
+    top: 10px;
+    z-index: 100;
+  }
+
+  &::after {
+    background-image: linear-gradient(270deg, rgba(31, 27, 46, 0), #1f1b2e);
+  }
+
+  &::before {
+    right: 0;
+    background-image: linear-gradient(90deg, rgba(31, 27, 46, 0), #1f1b2e);
+  }
   .sliders {
     width: inherit;
     width: 510px;
@@ -82,7 +100,7 @@
 
     .container_slider {
       position: relative;
-      top: -25px;
+      top: -35px;
       width: 485px;
       z-index: 3;
 
@@ -92,6 +110,7 @@
         object-fit: contain;
         padding: 0 5px;
         box-sizing: border-box;
+        margin-top: 3px;
         img {
           width: inherit;
           height: inherit;

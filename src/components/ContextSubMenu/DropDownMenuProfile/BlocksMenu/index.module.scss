@@ -2,19 +2,19 @@
 @import "../../../../styles/color.scss";
 
 .blocks {
-  width: inherit;
-  height: 280px;
-  margin: 35px 0;
   display: grid;
-  grid-template-columns: repeat(3, 170px);
-  grid-gap: 25px;
+  grid-gap: 24px;
+  grid-template-columns: repeat(4, minmax(155px, 1fr));
+  grid-template-rows: repeat(2, auto);
+  height: 280px;
+  width: 66.66666667%;
+  margin: 35px 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  box-sizing: border-box;
 
-  .news,
-  .catalogs,
-  .movies,
-  .family_account,
-  .download {
-    height: 130px;
+  .block {
+    height: 100%;
     background-color: $base-light-purple;
     border-radius: 12px;
     padding: 20px 17px;
@@ -30,10 +30,12 @@
       padding-right: 8px;
       box-sizing: border-box;
     }
-  }
 
-  .catalogs {
-    grid-column-start: span 2;
-    cursor: pointer;
+    div {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+      color: $base-grey;
+    }
   }
 }

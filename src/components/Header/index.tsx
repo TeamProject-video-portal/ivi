@@ -17,8 +17,6 @@ export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const [subMenuTitle, setSubMenuTitle] = useState("");
 
-  const router = useRouter();
-
   const { t } = useTranslation();
   return (
     <header className={styles.header}>
@@ -42,10 +40,23 @@ export const Header: FC = () => {
             setIsOpenSubMenu={setIsOpenSubMenu}
             setSubMenuTitle={setSubMenuTitle}
           />
-          <SearchButton />
-          <NotificationButton />
-          <ProfileButton />
-          <LanguageButton />
+          <SearchButton
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+          />
+          <NotificationButton
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+          />
+          <ProfileButton
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+            setSubMenuTitle={setSubMenuTitle}
+          />
+          <LanguageButton
+            isOpenSubMenu={isOpenSubMenu}
+            setIsOpenSubMenu={setIsOpenSubMenu}
+          />
         </div>
         {isOpenSubMenu && (
           <SubMenu

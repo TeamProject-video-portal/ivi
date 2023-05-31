@@ -1,6 +1,6 @@
 import { IMovie } from "@/types/types";
 import { AnyAction } from "@reduxjs/toolkit";
-import { MoviesActionTypes } from "./action-types";
+import { MOVIES_ACTIONS } from "./action-types";
 import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 
 export interface IMoviesState {
@@ -21,7 +21,7 @@ const initialState: IMoviesState = {
 
 export const moviesReducer = (state = initialState, action: AnyAction): IMoviesState => {
   switch (action.type) {
-    case MoviesActionTypes.GET_MOVIES:
+    case MOVIES_ACTIONS.GET_MOVIES:
       const actionPayload = action.payload as IMovie[];
       const years = Array.from(new Set(actionPayload.map((item) => item.filmYear)));
       const genresSet = new Set<string>();
@@ -41,7 +41,7 @@ export const moviesReducer = (state = initialState, action: AnyAction): IMoviesS
         error: "",
       };
 
-    case MoviesActionTypes.GET_MOVIES_ERROR:
+    case MOVIES_ACTIONS.GET_MOVIES_ERROR:
       return { ...state, error: action.payload };
 
     // case HYDRATE:

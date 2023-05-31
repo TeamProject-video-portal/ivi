@@ -3,13 +3,13 @@ import { IconType } from 'react-icons';
 import styles from "./index.module.scss"
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 
-type ModalListItemProps = {
+type Props = {
   icon?: IconType;
   text: string;
   children?: any;
 };
 
-export const ModalListItem: FC<ModalListItemProps> = ({ icon, text, children }) => {
+export const ModalListItem: FC<Props> = ({ icon, text, children }) => {
   const [open, setOpen] = useState(false);
   const IconItem = icon ? icon : undefined;
   return (

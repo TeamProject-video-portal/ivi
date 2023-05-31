@@ -23,7 +23,7 @@ import { connect, useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
-import { MoviesActionTypes } from "@/Redux/movies/action-types";
+import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
 import { setResultsFilter } from "@/Redux/filter/actions";
@@ -233,7 +233,7 @@ export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps
     const movies = dataFilms as ISimpleMovie[];
 
     store.dispatch({
-      type: MoviesActionTypes.GET_MOVIES,
+      type: MOVIES_ACTIONS.GET_MOVIES,
       payload: movies,
     });
 

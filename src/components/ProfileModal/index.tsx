@@ -6,12 +6,12 @@ import { BsGoogle } from "react-icons/bs";
 import { SlSocialVkontakte } from "react-icons/sl";
 import { signIn } from "next-auth/react";
 
-type ProfileModalProps = {
+type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
 };
 
-const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
+const ProfileModal: FC<Props> = ({ openModal, setOpenModal }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const [login, setLogin] = useState<string>("");
@@ -25,8 +25,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   };
 
   const onBlurHandler = () => {
-    if (!(login || password))
-      labelRef.current?.classList.remove(`${styles.active}`);
+    if (!(login || password)) labelRef.current?.classList.remove(`${styles.active}`);
   };
 
   const onClickHandler = () => {
@@ -66,21 +65,14 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   };
 
   return (
-    <div
-      className={`${styles.profileModal} ${
-        openModal && styles.profileModal_open
-      }`}
-    >
+    <div className={`${styles.profileModal} ${openModal && styles.profileModal_open}`}>
       <div className={styles.headerRow}>
         <h1 className={styles.title}>Вход или регистрация</h1>
         <button className={styles.closeBtn} onClick={() => setOpenModal(false)}>
           <div className="nbl-icon nbl-icon_close_20 nbl-simpleControlButton__nbl-icon"></div>
         </button>
         <div className={styles.bar}>
-          <div
-            className={styles.bar__line}
-            style={{ width: `calc(33.33% * ${step})` }}
-          ></div>
+          <div className={styles.bar__line} style={{ width: `calc(33.33% * ${step})` }}></div>
         </div>
       </div>
       <div className={styles.content}>
@@ -89,9 +81,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
             {step === 1 && "Войдите или зарегистрируйтесь"}
             {step === 2 && "Введите пароль для регистрации или авторизации"}
             {step === 3 &&
-              (auth
-                ? "Вы успешно авторизованы"
-                : "Ошибка: логин или пароль введены неправильно")}
+              (auth ? "Вы успешно авторизованы" : "Ошибка: логин или пароль введены неправильно")}
           </div>
           <div>
             {step === 1 && "чтобы пользоваться сервисом на любом устройстве"}
@@ -100,37 +90,19 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
         </div>
         {step === 1 && (
           <div className={styles.socialsRow}>
-            <Button
-              className={styles.googleInput}
-              color="purple"
-              onClick={googleInputHandler}
-            >
+            <Button className={styles.googleInput} color="purple" onClick={googleInputHandler}>
               <BsGoogle />
               <div>Войти через Google</div>
             </Button>
-            <Button
-              className={styles.vkInput}
-              color="purple"
-              onClick={vkInputHandler}
-            >
+            <Button className={styles.vkInput} color="purple" onClick={vkInputHandler}>
               <SlSocialVkontakte />
               <div>Войти через Вконтакте</div>
             </Button>
           </div>
         )}
-        <div
-          className={styles.loginInput}
-          onFocus={onFocusHandler}
-          onBlur={onBlurHandler}
-        >
-          <div
-            className={`nbl - icon nbl - icon_avatar_16 ${styles.loginInput__icon} `}
-          ></div>
-          <div
-            className={`${styles.loginInput__label} `}
-            ref={labelRef}
-            onClick={onFocusHandler}
-          >
+        <div className={styles.loginInput} onFocus={onFocusHandler} onBlur={onBlurHandler}>
+          <div className={`nbl - icon nbl - icon_avatar_16 ${styles.loginInput__icon} `}></div>
+          <div className={`${styles.loginInput__label} `} ref={labelRef} onClick={onFocusHandler}>
             {step === 1 && "Через email"}
             {step === 2 && "пароль"}
           </div>
@@ -156,9 +128,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
         <div className={styles.continue}>
           <Button
             className={`${styles.continue__btn} ${
-              ((login && step === 1) ||
-                (password && step === 2) ||
-                step === 3) &&
+              ((login && step === 1) || (password && step === 2) || step === 3) &&
               styles.activeContinue
             } `}
             color="pink"
@@ -178,9 +148,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
               </div>
               <div>
                 и{" "}
-                <Link href={"https://www.ivi.ru/info/agreement"}>
-                  Пользовательским соглашением
-                </Link>
+                <Link href={"https://www.ivi.ru/info/agreement"}>Пользовательским соглашением</Link>
               </div>
             </div>
           )}

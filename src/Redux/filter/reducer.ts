@@ -1,5 +1,5 @@
 import { AnyAction } from "@reduxjs/toolkit";
-import { FilterActionTypes } from "./action-types";
+import { FILTERS_ACTIONS } from "./action-types";
 import { IMovie, SortType } from "@/types/types";
 export interface IFilterState {
   isFilter: boolean;
@@ -37,14 +37,14 @@ const initialState: IFilterState = {
 
 export const filterReducer = (state = initialState, action: AnyAction) => {
   switch (action.type) {
-    case FilterActionTypes.RESET_FILTERS:
+    case FILTERS_ACTIONS.RESET_FILTERS:
       return {
         ...state,
         ...initialState,
         results: action.payload,
       };
 
-    case FilterActionTypes.SET_GENRES:
+    case FILTERS_ACTIONS.SET_GENRES:
       let genresCopy = [...state.genres];
       if (genresCopy.includes(action.payload)) {
         genresCopy = genresCopy.filter((item) => item !== action.payload);
@@ -53,7 +53,7 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       }
       return { ...state, genres: genresCopy, isFilter: true };
 
-    case FilterActionTypes.SET_COUNTRIES:
+    case FILTERS_ACTIONS.SET_COUNTRIES:
       let countriesCopy = [...state.countries];
       if (countriesCopy.includes(action.payload)) {
         countriesCopy = countriesCopy.filter((item) => item !== action.payload);
@@ -62,10 +62,10 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       }
       return { ...state, countries: countriesCopy, isFilter: true };
 
-    case FilterActionTypes.SET_YEARS:
+    case FILTERS_ACTIONS.SET_YEARS:
       return { ...state, yearsMin: action.payload[0], yearsMax: action.payload[1], isFilter: true };
 
-    case FilterActionTypes.SET_RATING:
+    case FILTERS_ACTIONS.SET_RATING:
       return {
         ...state,
         ratingMin: action.payload[0],
@@ -73,30 +73,30 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
         isFilter: true,
       };
 
-    case FilterActionTypes.SET_SCORE:
+    case FILTERS_ACTIONS.SET_SCORE:
       return { ...state, scoreMin: action.payload[0], scoreMax: action.payload[1], isFilter: true };
 
-    case FilterActionTypes.SET_ACTORS:
+    case FILTERS_ACTIONS.SET_ACTORS:
       let actorsCopy = [...state.actors];
       if (!actorsCopy.includes(action.payload)) {
         actorsCopy.push(action.payload);
       }
       return { ...state, actors: actorsCopy, isFilter: true };
 
-    case FilterActionTypes.SET_DIRECTORS:
+    case FILTERS_ACTIONS.SET_DIRECTORS:
       let directorsCopy = [...state.directors];
       if (!directorsCopy.includes(action.payload)) {
         directorsCopy.push(action.payload);
       }
       return { ...state, directors: directorsCopy, isFilter: true };
 
-    case FilterActionTypes.SET_SORT:
+    case FILTERS_ACTIONS.SET_SORT:
       return { ...state, sort: action.payload };
 
-    case FilterActionTypes.SET_FILTERS_RESULTS:
+    case FILTERS_ACTIONS.SET_FILTERS_RESULTS:
       return { ...state, results: action.payload, error: "" };
 
-    case FilterActionTypes.GET_FILTERS_ERROR:
+    case FILTERS_ACTIONS.GET_FILTERS_ERROR:
       return { ...state, error: action.payload };
 
     default:

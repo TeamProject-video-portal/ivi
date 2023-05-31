@@ -12,6 +12,7 @@ import { FaExchangeAlt } from "react-icons/fa";
 import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]";
 import { ButtonsProfile } from "@/components/ButtonsProfile";
+
 const Profile = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(true);

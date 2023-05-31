@@ -1,26 +1,26 @@
-import { FC, useState, Dispatch, SetStateAction } from 'react';
-import styles from "./index.module.scss"
+import { FC, useState, Dispatch, SetStateAction } from "react";
+import styles from "./index.module.scss";
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
-import { Button } from '../../Button/Button';
-import FilterDropdown from '../FilterDropdown';
+import { Button } from "../../Button/Button";
+import FilterDropdown from "../FilterDropdown";
 
-type FilterItemProps = {
+type Props = {
   item?: any;
   isOpen?: string;
   setIsOpen?: Dispatch<SetStateAction<string>>;
-}
+};
 
-const FilterItem: FC<FilterItemProps> = ({ item, isOpen, setIsOpen }) => {
-
+const FilterItem: FC<Props> = ({ item, isOpen, setIsOpen }) => {
   const onClickhandler = () => {
-    setIsOpen && setIsOpen(state => state === item.title ? '' : item.title)
-  }
+    setIsOpen && setIsOpen((state) => (state === item.title ? "" : item.title));
+  };
 
   return (
     <div className={styles.filtersItem}>
       <Button
         className={`${styles.content} ${isOpen === item.title && styles.content_active}`}
-        onClick={onClickhandler}>
+        onClick={onClickhandler}
+      >
         {item.value}
         {isOpen === item.title ? <BsChevronCompactUp /> : <BsChevronCompactDown />}
       </Button>

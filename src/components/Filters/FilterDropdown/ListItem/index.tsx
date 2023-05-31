@@ -3,14 +3,14 @@ import Link from "next/link";
 import { IconType } from "react-icons";
 import styles from "./index.module.scss";
 
-type ListItemProps = {
+type Props = {
   item: string;
   icon?: IconType;
   onClick: () => void;
   activeFilter?: boolean;
 };
 
-const ListItem: FC<ListItemProps> = ({ item, icon, onClick, activeFilter }) => {
+const ListItem: FC<Props> = ({ item, icon, onClick, activeFilter }) => {
   const IconItem = icon ? icon : undefined;
 
   const onClickHandler = () => {

@@ -2,14 +2,14 @@ import { FC, MouseEventHandler } from "react";
 import styles from "./index.module.scss";
 import { Button } from "./../../Button/Button";
 
-type GenresButtonProps = {
+type Props = {
   size: "big" | "small";
   genres: string;
   id: number;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 };
 
-const GenresButton: FC<GenresButtonProps> = ({ size, genres, id, onClick }) => {
+const GenresButton: FC<Props> = ({ size, genres, id, onClick }) => {
   const iconCssClass = `nbl-icon ${styles.icon} genres-icon_${id}`;
 
   return (

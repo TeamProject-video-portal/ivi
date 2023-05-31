@@ -11,12 +11,7 @@ export const TrailerModal: FC<Props> = (props) => {
     props.setIsOpenModal(false);
   };
   return (
-    <div
-      className={styles.container}
-      onClick={() => {
-        handleClick();
-      }}
-    >
+    <div className={styles.container} onClick={handleClick}>
       <div className={styles.modal}>
         <iframe src={props.trailer} frameBorder="0"></iframe>
       </div>

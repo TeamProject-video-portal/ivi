@@ -33,7 +33,7 @@ export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
       {isWarning && (
         <span className={styles.warning}>Напишите комментарий</span>
       )}
-      <button onClick={() => addComment()}>{t("buttons.add")}</button>
+      <button onClick={addComment}>{t("buttons.add")}</button>
     </div>
   );
 };

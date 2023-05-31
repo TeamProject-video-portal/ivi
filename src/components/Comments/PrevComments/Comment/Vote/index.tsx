@@ -25,7 +25,7 @@ export const Vote: FC<Props> = ({}) => {
         className={
           voteUp ? styles.button_up_active : styles.button_up_not_active
         }
-        onClick={() => handleClickUp()}
+        onClick={handleClickUp}
       >
         <div className="nbl-icon nbl-icon_thumbUp_16 vote__nbl-icon"></div>
       </Button>
@@ -33,7 +33,7 @@ export const Vote: FC<Props> = ({}) => {
         className={
           voteDown ? styles.button_down_active : styles.button_down_not_active
         }
-        onClick={() => handleClickDown()}
+        onClick={handleClickDown}
       >
         <div className="nbl-icon nbl-icon_thumbDown_16 vote__nbl-icon"></div>
       </Button>

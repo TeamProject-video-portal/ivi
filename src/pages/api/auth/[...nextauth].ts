@@ -15,13 +15,21 @@ export default NextAuth({
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const user = {
-          id: "1",
-          name: `${credentials?.username}`,
-          password: "jsmith@example.com",
-          role: "admin",
-        };
-        return user;
+        // const user = {
+        //   id: "1",
+        //   name: `${credentials?.username}`,
+        //   password: "jsmith@example.com",
+        //   role: "admin",
+        // };
+        if (credentials?.username === "Maggie") {
+          const user = {
+            id: "1",
+            name: "Maggie",
+            password: "123",
+            role: "admin",
+          };
+          return user;
+        } else return null;
       },
 
       // const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {

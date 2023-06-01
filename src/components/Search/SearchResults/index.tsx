@@ -12,7 +12,7 @@ type Props = {
   type: string;
 };
 
-const SearchResults: FC<Props> = ({ className, placeholder, results, type }) => {
+const SearchResults: FC<SearchResultsProps> = ({ className, placeholder, results, type }) => {
   const dispatch = useAppDispatch();
 
   const onClickHandler = (item: string) => {

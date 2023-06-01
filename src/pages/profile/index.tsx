@@ -3,7 +3,6 @@ import Head from "next/head";
 import styles from "./index.module.scss";
 import { Button } from "@/components/Button/Button";
 import { useTranslation } from "next-export-i18n";
-import ProfileModal from "@/components/ProfileModal";
 import { GetServerSidePropsContext, NextPage } from "next";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { TiPencil } from "react-icons/ti";
@@ -13,15 +12,17 @@ import { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]";
 import { ButtonsProfile } from "@/components/ButtonsProfile";
 import UserName from "./UserName";
+import LogOut from "./LogOut";
+import ProfileModal from "@/components/Modals/ProfileModal";
 
 const Profile = () => {
   const { t } = useTranslation();
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (session) {
-      setOpenModal(false);
+    if (!session?.user.name) {
+      setOpenModal(true);
     }
   }, []);
 
@@ -32,7 +33,7 @@ const Profile = () => {
       </Head>
       {!openModal ? (
         <div className={styles.profile}>
-          {session ? (
+          {session?.user.name ? (
             <UserName name={session.user.name} email={session.user.email} />
           ) : (
             <Button
@@ -47,19 +48,7 @@ const Profile = () => {
           )}
 
           <ButtonsProfile />
-
-          {status === "authenticated" && (
-            <div className={styles.logOutRow}>
-              <button>
-                <FaExchangeAlt />
-                <div>Сменить пароль</div>
-              </button>
-              <button onClick={() => signOut()}>
-                <MdOutlineLogout />
-                <div>Выйти</div>
-              </button>
-            </div>
-          )}
+          <LogOut />
         </div>
       ) : (
         <ProfileModal openModal={openModal} setOpenModal={setOpenModal} />

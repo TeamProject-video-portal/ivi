@@ -19,7 +19,7 @@ const Profile = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
   const { data: session, status } = useSession();
-
+  console.log(session);
   useEffect(() => {
     if (!session?.user.name) {
       setOpenModal(true);

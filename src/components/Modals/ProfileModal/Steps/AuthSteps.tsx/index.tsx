@@ -5,6 +5,7 @@ import {
   useRef,
   useState,
   ChangeEvent,
+  useEffect,
 } from "react";
 import Link from "next/link";
 import styles from "../index.module.scss";
@@ -14,6 +15,7 @@ import CompanyPolicy from "../../PolicyBlock";
 type Props = {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
+  content: Record<number, string[]>;
   inputData: string;
   setInputData: Dispatch<SetStateAction<string>>;
 };
@@ -32,14 +34,10 @@ const AuthSteps: FC<Props> = (props) => {
     labelRef.current?.classList.remove(`${styles.active}`);
   };
 
-  const contentObj: Record<string, (string | JSX.Element)[]> = {
-    0: [
-      "Войдите или зарегистрируйтесь",
-      "Через email",
-      <input className={styles.enter_login} type="text" ref={inputRef} />,
-    ],
-    1: ["Введите пароль для регистрации или авторизации", "Пароль"],
-  };
+  // const contentObj: Record<number, string[]> = {
+  //   0: ["Войдите или зарегистрируйтесь", "Через email"],
+  //   1: ["Введите пароль для регистрации или авторизации", "Пароль"],
+  // };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -53,10 +51,11 @@ const AuthSteps: FC<Props> = (props) => {
       setInputValue("");
     }
   };
+
   return (
     <div className={styles.content}>
       <div className={styles.message}>
-        <div className={styles.subtitle}>{contentObj[props.step][0]}</div>
+        <div className={styles.subtitle}>{props.content[props.step][0]}</div>
         <span>не менее 6 символов</span>
       </div>
       <div className={styles.enter_data}>
@@ -65,20 +64,21 @@ const AuthSteps: FC<Props> = (props) => {
           onFocus={onFocusHandler}
           onBlur={onBlurHandler}
         >
-          <div className={styles.label} ref={labelRef} onClick={onFocusHandler}>
-            {contentObj[props.step][1]}
-          </div>
+          {/* <div className={styles.label} ref={labelRef} onClick={onFocusHandler}>
+            {props.content[props.step][1]}
+          </div> */}
           <input
             className={styles.enter_login}
             type="text"
             ref={inputRef}
             value={inputValue}
             onChange={(e) => handleChange(e)}
+            placeholder={props.content[props.step][1]}
           />
         </div>
         <div className={styles.continue}>
           <Button
-            className={`${styles.continue__btn} ${styles.activeContinue} `}
+            className={`${styles.continue_btn} ${styles.activeContinue} `}
             color="pink"
             onClick={handleClick}
           >

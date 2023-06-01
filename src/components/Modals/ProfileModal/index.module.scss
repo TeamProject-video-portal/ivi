@@ -12,11 +12,13 @@
   display: none;
   overflow: hidden;
   z-index: 1000;
+
   &_open {
     display: flex;
     flex-direction: column;
     background-color: $base-dark-blue;
   }
+
   .headerRow {
     position: relative;
     display: flex;
@@ -27,6 +29,7 @@
     height: 52px;
     width: 100%;
   }
+
   .content {
     padding: 16px 12px 48px;
     width: 100%;
@@ -36,15 +39,18 @@
       margin-right: 24px;
     }
   }
+
   .title {
+    @include font-bold-m;
+
     margin-top: 0;
     color: $base-white;
-    @include font-bold-m;
     line-height: 20px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
+
   .closeBtn {
     position: absolute;
     right: 0;
@@ -54,6 +60,7 @@
     padding: 16px;
     background-color: transparent;
     cursor: pointer;
+
     & > div {
       width: 20px;
       height: 20px;
@@ -78,60 +85,11 @@
     height: 2px;
     background-color: $base-dark-grey;
     z-index: 10;
-    &__line {
+
+    .bar_line {
       //width: 33%;
       height: 2px;
       background-color: $base-pink;
-    }
-  }
-  .message {
-    align-self: flex-end;
-    padding: 16px;
-    margin-left: 25%;
-    width: 37.5%;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
-    border-bottom-left-radius: 0;
-    background-color: $base-dark-grey;
-    @include font-light-s;
-    word-wrap: break-word;
-    line-height: 16px;
-    color: $base-ligth-grey;
-    @media screen and (min-width: 880px) and (max-width: 1159px) {
-      width: 50%;
-      margin-left: 16.66666667%;
-    }
-    @media screen and (min-width: 600px) and (max-width: 879px) {
-      width: 75%;
-      margin-left: 0;
-    }
-    @media screen and (min-width: 272px) and (max-width: 599px) {
-      width: auto;
-      margin-left: 0;
-    }
-    .subtitle {
-      margin-bottom: 4px;
-      @include font-bold-m;
-      line-height: 20px;
-      color: $base-white;
-    }
-  }
-  .socialsRow {
-    margin-top: 24px;
-    width: 25%;
-    margin-left: 37.5%;
-    @media screen and (min-width: 880px) and (max-width: 1159px) {
-      width: 33.33333333%;
-      margin-left: 33.33333333%;
-    }
-    @media screen and (min-width: 600px) and (max-width: 879px) {
-      width: 50%;
-      margin-left: 25%;
-    }
-    @media screen and (min-width: 272px) and (max-width: 599px) {
-      width: auto;
-      margin-left: 0;
     }
   }
   .googleInput {
@@ -148,92 +106,7 @@
       font-size: 20px;
     }
   }
-  .loginInput {
-    position: relative;
-    margin-top: 24px;
-    margin-left: 37.5%;
-    width: 25%;
-    max-height: 40px;
-    overflow: hidden;
-    border-radius: 8px;
-    @media screen and (min-width: 880px) and (max-width: 1159px) {
-      width: 33.33333333%;
-      margin-left: 33.33333333%;
-    }
-    @media screen and (min-width: 600px) and (max-width: 879px) {
-      width: 50%;
-      margin-left: 25%;
-    }
-    @media screen and (min-width: 272px) and (max-width: 599px) {
-      width: auto;
-      margin-left: 0;
-    }
-    &__input {
-      padding: 18px 12px 2px 36px;
-      width: 100%;
-      height: 100%;
-      background-color: $base-light-blue;
-      outline: 0;
-      @include font-regular-m;
-      line-height: 20px;
-      color: $base-dark-purple;
-      cursor: pointer;
-    }
-    &__icon {
-      position: absolute;
-      top: 12px;
-      left: 12px;
-      width: 16px;
-      height: 16px;
-      font-size: 16px;
-      line-height: 16px;
-      color: rgba(31, 27, 46, 0.4);
-    }
-    &__label {
-      position: absolute;
-      left: 36px;
-      right: 12px;
-      top: 10px;
-      overflow: hidden;
-      height: 20px;
-      @include font-regular-m;
-      line-height: 20px;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      color: $base-ligth-grey;
-      will-change: transform;
-    }
-    .active {
-      transform: translate3d(0, -8px, 0) scale(0.9) perspective(1px);
-      transition: all 0.6s ease 0s;
-    }
-  }
-  .continue {
-    margin-top: 12px;
-    width: 25%;
-    margin-left: 37.5%;
-    @media screen and (min-width: 880px) and (max-width: 1159px) {
-      width: 33.33333333%;
-      margin-left: 33.33333333%;
-    }
-    @media screen and (min-width: 600px) and (max-width: 879px) {
-      width: 50%;
-      margin-left: 25%;
-    }
-    @media screen and (min-width: 272px) and (max-width: 599px) {
-      width: auto;
-      margin-left: 0;
-    }
-    &__btn {
-      padding: 9px 15px;
-      width: 100%;
-      border-width: 1px;
-      opacity: 0.32;
-      &.activeContinue {
-        opacity: 1;
-      }
-    }
-  }
+
   button {
     outline: 0;
     @include font-regular-m;

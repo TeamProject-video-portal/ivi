@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Head from "next/head";
 import styles from "./index.module.scss";
 import Breadcrumbs, { Breadcrumb } from "@/components/Breadcrumbs";
@@ -14,7 +14,7 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, ISimpleMovie, SortType } from "@/types/types";
+import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -26,11 +26,19 @@ import { wrapper } from "@/Redux/store";
 import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
-import { setResultsFilter } from "@/Redux/filter/actions";
+import {
+  setActorsFilter,
+  setCountries,
+  setDirectorsFilter,
+  setGenres,
+  setRating,
+  setResultsFilter,
+  setScore,
+  setYears,
+} from "@/Redux/filter/actions";
 import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
-import { useSearchParams } from "next/navigation";
 
 // type MoviesProps = {
 //   persons: IPerson[];
@@ -40,6 +48,7 @@ import { useSearchParams } from "next/navigation";
 //const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
 const Movies: NextPage = (context) => {
   const router = useRouter();
+  const isMounted = useRef(false);
   const { t } = useTranslation();
 
   const truncText = (
@@ -120,22 +129,149 @@ const Movies: NextPage = (context) => {
     }
   }, [genres]);
 
-  // let searchParams: any;
+  let searchParams: any;
 
-  // if (router.isReady && router.asPath.includes("?")) {
-  //   console.log("!!!");
-  //   searchParams = new URLSearchParams(router.asPath.split("?", 2)[1]);
-  // } else {
-  //   searchParams = new URLSearchParams();
-  // }
-  // console.log("searchParams", searchParams);
+  const setFiltersFromURLParams = (searchParams: URLSearchParams) => {
+    if (searchParams.getAll("genre").length) {
+      const genres = searchParams.getAll("genre");
+      for (const item of genres) {
+        dispatch(setGenres(item));
+      }
+    }
 
-  let searchParams = useSearchParams();
+    if (searchParams.has("country")) {
+      const countries = searchParams.getAll("country");
+      for (const item of countries) {
+        dispatch(setCountries(item));
+      }
+    }
+
+    if (searchParams.has("yearsMin") && searchParams.has("yearsMax")) {
+      dispatch(setYears([+searchParams.get("yearsMin"), +searchParams.get("yearsMax")]));
+    }
+
+    if (searchParams.has("ratingMin") && searchParams.has("ratingMax")) {
+      dispatch(setRating([+searchParams.get("ratingMin"), +searchParams.get("ratingMax")]));
+    }
+
+    if (searchParams.has("scoreMin") && searchParams.has("scoreMax")) {
+      dispatch(setScore([+searchParams.get("scoreMin"), +searchParams.get("scoreMax")]));
+    }
+
+    if (searchParams.has("actor")) {
+      const actors = searchParams.getAll("actor");
+      for (const item of actors) {
+        dispatch(setActorsFilter(item));
+      }
+    }
+
+    if (searchParams.has("director")) {
+      const directors = searchParams.getAll("director");
+      for (const item of directors) {
+        dispatch(setDirectorsFilter(item));
+      }
+    }
+  };
+
+  const setSearchParams = (pathname: string, params: SearchParamsType) => {
+    const newSearchParams = new URLSearchParams();
+
+    if (params.lang) {
+      newSearchParams.append("lang", params.lang);
+    }
+
+    if (params.genres) {
+      for (const item of params.genres) {
+        newSearchParams.append("genre", item);
+      }
+    }
+
+    if (params.countries) {
+      for (const item of params.countries) {
+        newSearchParams.append("country", item);
+      }
+    }
+
+    if (params.yearsMin) {
+      newSearchParams.set("yearsMin", params.yearsMin);
+    }
+
+    if (params.yearsMax) {
+      newSearchParams.set("yearsMax", params.yearsMax);
+    }
+
+    if (params.ratingMin) {
+      newSearchParams.set("ratingMin", params.ratingMin);
+    }
+
+    if (params.ratingMax) {
+      newSearchParams.set("ratingMax", params.ratingMax);
+    }
+
+    if (params.scoreMin) {
+      newSearchParams.set("scoreMin", params.scoreMin);
+    }
+
+    if (params.scoreMax) {
+      newSearchParams.set("scoreMax", params.scoreMax);
+    }
+
+    if (params.actors) {
+      for (const item of params.actors) {
+        newSearchParams.append("actor", item);
+      }
+    }
+
+    if (params.directors) {
+      for (const item of params.directors) {
+        newSearchParams.append("director", item);
+      }
+    }
+
+    router.push(`${pathname}${newSearchParams.toString() ? "?" : ""}${newSearchParams.toString()}`);
+  };
 
   useEffect(() => {
-    //console.log("router.query", router.asPath.split("?", 2)[1]);
-    //console.log("searchParams", searchParams);
-  }, []);
+    const queryURL = router.asPath.split("?", 2)[1];
+    const searchParams: URLSearchParams = new URLSearchParams(queryURL);
+
+    if (!isMounted.current) {
+      if (router.asPath.includes("?")) {
+        console.log("set filters from URLParams");
+        setFiltersFromURLParams(searchParams);
+      }
+    } else {
+      console.log("set params to URL");
+      const lang = searchParams.get("lang");
+      !isFilter
+        ? setSearchParams(router.pathname, { lang })
+        : setSearchParams(router.pathname, {
+            lang,
+            genres,
+            countries,
+            yearsMin,
+            yearsMax,
+            ratingMin,
+            ratingMax,
+            scoreMin,
+            scoreMax,
+            actors,
+            directors,
+          });
+    }
+    isMounted.current = true;
+  }, [
+    genres,
+    countries,
+    yearsMin,
+    yearsMax,
+    ratingMin,
+    ratingMax,
+    scoreMin,
+    scoreMax,
+    actors,
+    directors,
+  ]);
 
   useEffect(() => {
     console.log("change sort");
@@ -202,7 +338,7 @@ const Movies: NextPage = (context) => {
         <section className={styles.container}>
           <div className={styles.resultsRow}>
             {results.length ? (
-              <MovieResults movies={results} />
+              <MovieResults />
             ) : (
               <div className={styles.resultsEmpty}>Ничего не найдено</div>
             )}

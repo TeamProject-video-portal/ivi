@@ -120,3 +120,17 @@ export type ResponseTopMovieKPType = {
 export type FilterRangeType = [number, number];
 
 export type SortType = "SCORE" | "RATING" | "DATE" | "TITLE";
+
+export type SearchParamsType = {
+  lang: string | null;
+  genres?: string[];
+  countries?: string[];
+  yearsMin?: number;
+  yearsMax?: number;
+  ratingMin?: number;
+  ratingMax?: number;
+  scoreMin?: number;
+  scoreMax?: number;
+  actors?: string[];
+  directors?: string[];
+};

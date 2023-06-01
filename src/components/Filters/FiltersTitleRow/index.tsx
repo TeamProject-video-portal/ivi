@@ -11,13 +11,12 @@ const FiltersTitleRow: FC = () => {
     if (filters.genres.length) {
       row += filters.genres.join(", ");
     } else {
-      row += "Все жанры, ";
+      row += "Все жанры ";
     }
-    row += " / ";
     if (filters.countries.length) {
-      row += filters.countries.join(", ");
+      row += " / " + filters.countries.join(", ");
     } else {
-      row += "Все страны ";
+      row += "/ Все страны ";
     }
     row += ` / ${filters.yearsMin} год`;
 
@@ -32,8 +31,7 @@ const FiltersTitleRow: FC = () => {
     }
 
     if (filters.directors.length) {
-      row += " / ";
-      row += filters.directors.join(", ");
+      row += " / " + filters.directors.join(", ");
     }
 
     if (filters.actors.length) {

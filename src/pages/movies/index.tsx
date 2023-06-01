@@ -147,15 +147,21 @@ const Movies: NextPage = (context) => {
     }
 
     if (searchParams.has("yearsMin") && searchParams.has("yearsMax")) {
-      dispatch(setYears([+searchParams.get("yearsMin"), +searchParams.get("yearsMax")]));
+      const min = Number(searchParams.get("yearsMin")) || 1940;
+      const max = Number(searchParams.get("yearsMax")) || 2023;
+      dispatch(setYears([min, max]));
     }
 
     if (searchParams.has("ratingMin") && searchParams.has("ratingMax")) {
-      dispatch(setRating([+searchParams.get("ratingMin"), +searchParams.get("ratingMax")]));
+      const min = Number(searchParams.get("ratingMin")) || 4.0;
+      const max = Number(searchParams.get("ratingMax")) || 10.0;
+      dispatch(setRating([min, max]));
     }
 
     if (searchParams.has("scoreMin") && searchParams.has("scoreMax")) {
-      dispatch(setScore([+searchParams.get("scoreMin"), +searchParams.get("scoreMax")]));
+      const min = Number(searchParams.get("scoreMin")) || 10000;
+      const max = Number(searchParams.get("scoreMax")) || 200000;
+      dispatch(setScore([min, max]));
     }
 
     if (searchParams.has("actor")) {
@@ -193,27 +199,27 @@ const Movies: NextPage = (context) => {
     }
 
     if (params.yearsMin) {
-      newSearchParams.set("yearsMin", params.yearsMin);
+      newSearchParams.set("yearsMin", String(params.yearsMin));
     }
 
     if (params.yearsMax) {
-      newSearchParams.set("yearsMax", params.yearsMax);
+      newSearchParams.set("yearsMax", String(params.yearsMax));
     }
 
     if (params.ratingMin) {
-      newSearchParams.set("ratingMin", params.ratingMin);
+      newSearchParams.set("ratingMin", String(params.ratingMin));
     }
 
     if (params.ratingMax) {
-      newSearchParams.set("ratingMax", params.ratingMax);
+      newSearchParams.set("ratingMax", String(params.ratingMax));
     }
 
     if (params.scoreMin) {
-      newSearchParams.set("scoreMin", params.scoreMin);
+      newSearchParams.set("scoreMin", String(params.scoreMin));
     }
 
     if (params.scoreMax) {
-      newSearchParams.set("scoreMax", params.scoreMax);
+      newSearchParams.set("scoreMax", String(params.scoreMax));
     }
 
     if (params.actors) {

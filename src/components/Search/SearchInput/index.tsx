@@ -1,16 +1,16 @@
-import { FC, useState, useRef, ChangeEvent, Dispatch, SetStateAction } from 'react';
-import styles from './index.module.scss';
-import { MdSearch } from 'react-icons/md';
-import { TfiClose } from 'react-icons/tfi';
+import { FC, useState, useRef, ChangeEvent, Dispatch, SetStateAction } from "react";
+import styles from "./index.module.scss";
+import { MdSearch } from "react-icons/md";
+import { TfiClose } from "react-icons/tfi";
 
-type SearchInputProps = {
+type Props = {
   className?: string;
   placeholder?: string;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
-}
+};
 
-const SearchInput: FC<SearchInputProps> = ({ className, placeholder, searchValue, setSearchValue }) => {
+const SearchInput: FC<Props> = ({ className, placeholder, searchValue, setSearchValue }) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLInputElement>(null);
 
@@ -19,7 +19,7 @@ const SearchInput: FC<SearchInputProps> = ({ className, placeholder, searchValue
   };
 
   const onClickClear = () => {
-    setSearchValue('');
+    setSearchValue("");
     inputRef.current?.focus();
   };
 
@@ -29,8 +29,10 @@ const SearchInput: FC<SearchInputProps> = ({ className, placeholder, searchValue
   };
 
   return (
-    <div className={[styles.search, className].join(' ')} onFocus={onFocusHandler}>
-      <div className={`${styles.search__placeholder}`} ref={labelRef} onClick={onFocusHandler}>{placeholder}</div>
+    <div className={[styles.search, className].join(" ")} onFocus={onFocusHandler}>
+      <div className={`${styles.search__placeholder}`} ref={labelRef} onClick={onFocusHandler}>
+        {placeholder}
+      </div>
       <input
         className={styles.search__input}
         onChange={onChangeInput}
@@ -38,8 +40,11 @@ const SearchInput: FC<SearchInputProps> = ({ className, placeholder, searchValue
         type="text"
         ref={inputRef}
       />
-      {searchValue ? <TfiClose className={styles.search__close} onClick={onClickClear} /> : <MdSearch className={styles.search__icon} />}
-
+      {searchValue ? (
+        <TfiClose className={styles.search__close} onClick={onClickClear} />
+      ) : (
+        <MdSearch className={styles.search__icon} />
+      )}
     </div>
   );
 };

@@ -6,13 +6,13 @@ import { useAppSelector } from "@/hooks/hooks";
 import { selectPersons } from "@/Redux/persons/selectors";
 import { IPerson } from "@/types/types";
 
-type SearchProps = {
+type Props = {
   className?: string;
   placeholder?: string;
   type: string;
 };
 
-const Search: FC<SearchProps> = ({ className, placeholder, type }) => {
+const Search: FC<Props> = ({ className, placeholder, type }) => {
   const [searchValue, setSearchValue] = useState("");
   const [results, setResults] = useState<IPerson[]>([]);
 

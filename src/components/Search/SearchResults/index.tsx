@@ -5,19 +5,14 @@ import { IPerson } from "@/types/types";
 import { useAppDispatch } from "@/hooks/hooks";
 import { setActorsFilter, setDirectorsFilter } from "@/Redux/filter/actions";
 
-type SearchResultsProps = {
+type Props = {
   className?: string;
   placeholder?: string;
   results: IPerson[];
   type: string;
 };
 
-const SearchResults: FC<SearchResultsProps> = ({
-  className,
-  placeholder,
-  results,
-  type,
-}) => {
+const SearchResults: FC<Props> = ({ className, placeholder, results, type }) => {
   const dispatch = useAppDispatch();
 
   const onClickHandler = (item: string) => {

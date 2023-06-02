@@ -137,7 +137,8 @@
     "by_score": "by number of score",
     "by_date": "by date",
     "by_title": "by title",
-    "reset_filters": "Reset filters"
+    "reset_filters": "Reset filters",
+    "not_found": "Not found"
   },
   "profile": {
     "subscribes": "Subscriptions",
@@ -161,6 +162,10 @@
   },
   "movie": {
     "watch_online": "watch online"
+  },
+  "error": {
+    "error_page": "Error page",
+    "error": "Error"
   },
   "descriptions": {
     "movies_description_trunc": "Do you like to watch movies online and spend a lot of time scouring websites looking for something interesting? It is worth staying at ivi.ru - the films that we have collected will be enough for you for a long time. The collection is constantly growing...",

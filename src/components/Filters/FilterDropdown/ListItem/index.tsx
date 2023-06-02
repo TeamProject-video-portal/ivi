@@ -19,7 +19,9 @@ const ListItem: FC<Props> = ({ item, icon, onClick, activeFilter }) => {
 
   return (
     <li className={`${styles.list} ${activeFilter && styles.active}`} onClick={onClickHandler}>
-      <div className={styles.item}>{item}</div>
+      <div className={styles.item} contentEditable="true">
+        {item}
+      </div>
       {icon && IconItem && <IconItem />}
     </li>
   );

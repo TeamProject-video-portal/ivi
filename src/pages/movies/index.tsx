@@ -329,7 +329,7 @@ const Movies: NextPage = (context) => {
             {results.length ? (
               <MovieResults />
             ) : (
-              <div className={styles.resultsEmpty}>Ничего не найдено</div>
+              <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
             )}
           </div>
         </section>

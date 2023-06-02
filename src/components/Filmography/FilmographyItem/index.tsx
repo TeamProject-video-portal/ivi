@@ -16,7 +16,7 @@ const PhilmographyItem: FC<Props> = ({ film }) => {
   const router = useRouter();
 
   return (
-    <Link href={`/film/${film.id}`}>
+    <Link href={`/film/${film.id}?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
       <div className={styles.philmographyItem}>
         <div color="purple" className={styles.philmographyItem__imgContainer}>
           <Image

@@ -11,7 +11,7 @@ import Filters from "@/components/Filters";
 import Sort from "@/components/Sort";
 import MovieResults from "@/components/MovieResults";
 import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
-import { useLanguageQuery, useTranslation } from "next-export-i18n";
+import { useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
 import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
@@ -40,59 +40,22 @@ import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 
-// type MoviesProps = {
-//   persons: IPerson[];
-//   movies: ISimpleMovie[];
-// };
-
-//const Movies: NextPage<MoviesProps> = ({ persons, movies }) => {
 const Movies: NextPage = (context) => {
   const router = useRouter();
-  const isMounted = useRef(false);
+  //console.log("router", router);
   const { t } = useTranslation();
 
-  const truncText = (
-    <p>
-      Вы любите смотреть фильмы онлайн и проводите много времени, прочесывая сайты в поисках
-      чего-нибудь интересного? Стоит задержаться на ivi.ru – фильмов, которые собраны у нас, вам
-      хватит надолго. Коллекция постоянно пополняется как...
-    </p>
-  );
+  const truncText = <p>{t("descriptions.movies_description_trunc")}</p>;
   const fullText = (
     <>
-      <p>
-        Вы любите смотреть фильмы онлайн и проводите много времени, прочесывая сайты в поисках
-        чего-нибудь интересного? Стоит задержаться на ivi.ru – фильмов, которые собраны у нас, вам
-        хватит надолго. Коллекция постоянно пополняется как новыми фильмами, так и признанными
-        шедеврами прошлых лет! Независимо от того, кто вы – любитель энергичных боевиков или
-        поклонница молодежных сериалов, изобилие нашего каталога заставит вас забыть обо всех других
-        способах проведения досуга, и вы будете пересматривать любимые фильмы онлайн снова и снова!
-      </p>
-      <p>
-        Выбор фильмов очень широк и многообразен, так что каждый найдет для себя что-то интересное,
-        каким бы ни были его вкусы. Предпочитаете картины исключительно зарубежного производства? У
-        нас их предостаточно: это и золотая классика Голливуда, и душевные французские комедии, и
-        темпераментные итальянские драмы, и шумные индийские музыкальные фильмы. А может, вы патриот
-        и любите российские фильмы? Что ж, и таких фильмов у нас немало. Что вам больше по вкусу –
-        добрая старая классика или новинки кинопроката? Неважно, каким будет ваш ответ – у нас есть
-        все, как картины эпохи зарождения кинематографа, так 2018 года и фильмы 2017.
-      </p>
-      <p>
-        В нашем каталоге вы найдете любые жанры. Это и фильмы про любовь, и детективы, и боевики, и
-        вестерны, и фантастика, и арт-хаус, и уморительные комедии, и фильмы про войну, и ужасы, и
-        триллеры, и документалистика... Кроме «полного метра» на сайте представлены также
-        короткометражные фильмы, а также иностранные и русские сериалы.
-      </p>
-      <p>
-        Если вас интересуют самые знаковые фильмы онлайн в том или ином жанре, система рубрикации
-        поможет вам без труда сориентироваться и найти, например, лучшие драмы или лучший
-        анимационный фильм онлайн. Не упустите замечательную возможность смотреть фильмы онлайн без
-        регистрации, выбирая только то, что вам действительно интересно, и тогда, когда вам это
-        удобно. Ведь это так просто и приятно!
-      </p>
+      <p>{t("descriptions.movies_description_full_1")}</p>
+      <p>{t("descriptions.movies_description_full_2")}</p>
+      <p>{t("descriptions.movies_description_full_3")}</p>
+      <p>{t("descriptions.movies_description_full_4")}</p>
     </>
   );
 
+  const isMounted = useRef(false);
   const {
     isFilter,
     genres,
@@ -111,25 +74,44 @@ const Movies: NextPage = (context) => {
   const { movies } = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
   const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
-
   const breadcrumbsBegin: Breadcrumb[] = [
-    { item: `${t("header.my_ivi")}`, path: "/" },
-    { item: `${t("header.movies")}`, path: "/movies" },
+    { item: "Мой Иви", path: "/" },
+    {
+      item: "Фильмы",
+      path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
+    },
   ];
-
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
 
   useEffect(() => {
     let row = "";
+
     if (genres.length) {
       row += " " + genres.join(", ");
-      setBreadcrumbs([...breadcrumbsBegin, { item: row, path: "/movies" }]);
-    } else if (breadcrumbs.length > 2) {
-      setBreadcrumbs([...breadcrumbsBegin]);
+      setBreadcrumbs((state) => {
+        state[2] = {
+          item: row,
+          path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
+        };
+        return state;
+      });
+    } else {
+      setBreadcrumbs((state) => {
+        return [state[0], state[1]];
+      });
     }
   }, [genres]);
 
-  let searchParams: any;
+  // useEffect(() => {
+  //   setBreadcrumbs((state) => {
+  //     state[0] = { item: t("header.my_ivi"), path: "/" };
+  //     state[1] = {
+  //       item: t("header.movies"),
+  //       path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
+  //     };
+  //     return state;
+  //   });
+  // }, [router.asPath]);
 
   const setFiltersFromURLParams = (searchParams: URLSearchParams) => {
     if (searchParams.getAll("genre").length) {
@@ -180,6 +162,7 @@ const Movies: NextPage = (context) => {
   };
 
   const setSearchParams = (pathname: string, params: SearchParamsType) => {
+    console.log("set params to URL");
     const newSearchParams = new URLSearchParams();
 
     if (params.lang) {

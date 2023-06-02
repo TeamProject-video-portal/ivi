@@ -6,10 +6,12 @@ import { IMovie, ISimpleMovie } from "@/types/types";
 import { Button } from "../Button/Button";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectFilters } from "@/Redux/filter/selectors";
+import { useTranslation } from "next-export-i18n";
 
 const SHOW_SIZE = 14;
 
 const MovieResults: FC = () => {
+  const { t } = useTranslation();
   const { results } = useAppSelector(selectFilters);
   const [itemsToShow, setItemsToShow] = useState<IMovie[]>([]);
   const [next, setNext] = useState(0);
@@ -45,7 +47,7 @@ const MovieResults: FC = () => {
         }`}
         onClick={clickHandler}
       >
-        Показать еще
+        {t("buttons.show_more")}
       </Button>
     </div>
   );

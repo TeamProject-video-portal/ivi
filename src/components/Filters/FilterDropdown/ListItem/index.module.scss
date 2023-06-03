@@ -13,6 +13,20 @@
     display: none;
   }
 }
+.input {
+  width: 100%;
+  @include font-regular-s;
+  line-height: 16px;
+  color: $base-light-blue;
+  cursor: pointer;
+  background-color: transparent;
+  outline: 0;
+  transition: color 0.4s ease 0s;
+  &:hover {
+    color: $base-white;
+    transition: color 0.4s ease 0s;
+  }
+}
 .item {
   @include font-regular-s;
   line-height: 16px;

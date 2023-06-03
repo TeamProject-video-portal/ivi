@@ -8,10 +8,10 @@ export const resetFilters = () => {
   };
 };
 
-export const setGenres = (genres: string) => {
+export const setGenres = (genre: string) => {
   return {
     type: FILTERS_ACTIONS.SET_GENRES,
-    payload: genres,
+    payload: genre,
   };
 };
 

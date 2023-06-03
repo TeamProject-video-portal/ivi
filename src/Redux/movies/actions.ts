@@ -14,3 +14,10 @@ export const getMoviesError = (error: string) => {
     payload: error,
   };
 };
+
+export const editGenresAction = (genres: string[]) => {
+  return {
+    type: MOVIES_ACTIONS.EDIT_GENRES,
+    payload: genres,
+  };
+};

@@ -11,5 +11,7 @@ export const movieApi = async () => {
 };
 
 export const editGenresApi = async () => {
-  //  запрос
+  //  запрос к БД
+  const dataMovies = dataFilms as ISimpleMovie[];
+  return dataMovies;
 };

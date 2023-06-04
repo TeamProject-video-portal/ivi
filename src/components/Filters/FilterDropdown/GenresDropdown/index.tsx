@@ -14,26 +14,23 @@ import { editGenresAction } from "@/Redux/movies/actions";
 
 const GenresDropdown: FC = () => {
   const { genres } = useAppSelector(selectMovies);
+  const genresCopy = [...genres];
   const { genres: genresFilter } = useAppSelector(selectFilters);
-  // передать состояние
-  const [adminMode, setAdminMode] = useState(false);
+  // связать с правами пользователя
+  const [adminMode, setAdminMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
-  const [editGenres, setEditGenres] = useState<string[]>(genres);
+  const [editGenres, setEditGenres] = useState<string[]>([]);
   const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(resetFilters());
-  // }, [genres]);
-
   const toEditMode = (): void => {
-    dispatch(resetFilters());
     setEditMode(true);
-    setEditGenres((state) => genres);
+    setEditGenres((state) => genresCopy);
   };
 
   const saveGenres = (): void => {
     setEditMode(false);
-    //dispatch(editGenresAction(editGenres));
+    // внести изменения в БД
+    dispatch(editGenresAction(editGenres));
   };
 
   const editItemHandler = (index: number, value: string): void => {

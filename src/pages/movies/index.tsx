@@ -116,6 +116,7 @@ const Movies: NextPage = (context) => {
   const setFiltersFromURLParams = (searchParams: URLSearchParams) => {
     if (searchParams.getAll("genre").length) {
       const genres = searchParams.getAll("genre");
+      console.log("set filters from URLParams: genres", genres);
       for (const item of genres) {
         dispatch(setGenres(item));
       }
@@ -162,7 +163,7 @@ const Movies: NextPage = (context) => {
   };
 
   const setSearchParams = (pathname: string, params: SearchParamsType) => {
-    console.log("set params to URL");
+    console.log("set params to URL, params.genres:", params.genres);
     const newSearchParams = new URLSearchParams();
 
     if (params.lang) {
@@ -226,7 +227,6 @@ const Movies: NextPage = (context) => {
 
     if (!isMounted.current) {
       if (router.asPath.includes("?")) {
-        console.log("set filters from URLParams");
         setFiltersFromURLParams(searchParams);
       }
     } else {
@@ -338,35 +338,34 @@ const Movies: NextPage = (context) => {
   );
 };
 
-export const gerServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
-    console.log("context movies", context);
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
+  console.log("context movies", context);
 
-    // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-    // const persons = await responsePersons.json() as IPerson[];
-    // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-    // const movies = await responseMovies.json() as IMovie[];
-    // const persons = personsData.persons;
-    const movies = dataFilms as ISimpleMovie[];
+  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+  // const persons = await responsePersons.json() as IPerson[];
+  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+  // const movies = await responseMovies.json() as IMovie[];
+  // const persons = personsData.persons;
+  const movies = dataFilms as ISimpleMovie[];
+  const persons = personsData.persons;
 
-    store.dispatch({
-      type: MOVIES_ACTIONS.GET_MOVIES,
-      payload: movies,
-    });
+  store.dispatch({
+    type: MOVIES_ACTIONS.GET_MOVIES,
+    payload: movies,
+  });
 
-    // if (!persons || !movies) {
-    //   return {
-    //     notFound: true,
-    //   };
-    // }
-
+  if (!persons || !movies) {
     return {
-      //props: { persons, movies },
-      props: {},
-      //revalidate: 10,
+      notFound: true,
     };
-  },
-);
+  }
+
+  return {
+    //props: { persons, movies },
+    props: {},
+    revalidate: 10,
+  };
+});
 
 export default connect((state) => state)(Movies);
 //export default Movies;

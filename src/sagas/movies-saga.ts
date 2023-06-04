@@ -1,6 +1,6 @@
 import { call, put, takeEvery } from "redux-saga/effects";
 import { getMovies, getMoviesError } from "@/Redux/movies/actions";
-import { IMovie } from "@/types/types";
+import { IMovie, ISimpleMovie } from "@/types/types";
 import { movieApi } from "@/Redux/movies/worker";
 import { setResultsFilter } from "@/Redux/filter/actions";
 import { editGenresApi } from "@/Redux/movies/worker";
@@ -23,5 +23,10 @@ export function* watchMoviesSaga() {
 
 export function* editGenresSaga() {
   console.log("start saga edit genres");
-  //const response = yield call(editGenresApi);
+  try {
+    const response: IMovie[] = yield call(editGenresApi);
+  } catch (error) {
+    console.log("error in editGenresSaga", error);
+    yield put(getMoviesError(String(error)));
+  }
 }

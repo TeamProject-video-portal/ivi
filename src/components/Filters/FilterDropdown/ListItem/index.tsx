@@ -34,7 +34,7 @@ const ListItem: FC<Props> = ({ item, icon, editItem, onClick, activeFilter, edit
           <input
             className={styles.input}
             type="text"
-            value={inputGenre}
+            defaultValue={inputGenre}
             onChange={onChangeInput}
             onBlur={() => editItem && editItem(inputGenre)}
           />

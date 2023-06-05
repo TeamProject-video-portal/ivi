@@ -14,11 +14,11 @@ import { IPerson } from "@/types/types";
 import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import personsData from "@/data/persons.json";
 
-type PersonProps = {
+type Props = {
   person: IPerson;
 };
 
-const Person: NextPage<PersonProps> = ({ person }) => {
+const Person: NextPage<Props> = ({ person }) => {
   const { t } = useTranslation();
   const router = useRouter();
 

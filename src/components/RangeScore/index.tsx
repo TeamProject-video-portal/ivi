@@ -24,7 +24,7 @@ const ThumbLabel = ({
     index,
     0,
     " - ",
-    (value) => `${value}`
+    (value) => `${value}`,
   );
 
   return (
@@ -49,13 +49,13 @@ const ThumbLabel = ({
   );
 };
 
-type RangeScoreProps = {
+type Props = {
   rtl: boolean;
   scoreMin: number;
   scoreMax: number;
 };
 
-const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
+const RangeScore: FC<Props> = ({ rtl, scoreMin, scoreMax }) => {
   const { t } = useTranslation();
   const [values, setValues] = useState([scoreMin, scoreMax]);
   const [finalValues, setFinalValues] = useState([scoreMin, scoreMax]);
@@ -132,11 +132,7 @@ const RangeScore: FC<RangeScoreProps> = ({ rtl, scoreMin, scoreMax }) => {
               alignItems: "center",
             }}
           >
-            <ThumbLabel
-              rangeRef={rangeRef.current}
-              values={values}
-              index={index}
-            />
+            <ThumbLabel rangeRef={rangeRef.current} values={values} index={index} />
             <div
               style={{
                 height: "16px",

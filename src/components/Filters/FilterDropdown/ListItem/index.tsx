@@ -1,19 +1,24 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import Link from "next/link";
 import { IconType } from "react-icons";
 import styles from "./index.module.scss";
 
-type ListItemProps = {
+type Props = {
   item: string;
   icon?: IconType;
-  onClick?: () => void;
+  onClick: () => void;
+  activeFilter?: boolean;
 };
 
-const ListItem: FC<ListItemProps> = ({ item, icon, onClick }) => {
+const ListItem: FC<Props> = ({ item, icon, onClick, activeFilter }) => {
   const IconItem = icon ? icon : undefined;
 
+  const onClickHandler = () => {
+    onClick();
+  };
+
   return (
-    <li className={styles.list} onClick={onClick}>
+    <li className={`${styles.list} ${activeFilter && styles.active}`} onClick={onClickHandler}>
       <div className={styles.item}>{item}</div>
       {icon && IconItem && <IconItem />}
     </li>

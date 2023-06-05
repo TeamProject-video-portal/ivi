@@ -7,11 +7,11 @@ import { Button } from "@/components/Button/Button";
 import { PersonFilmsType } from "@/types/types";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 
-type PhilmographyItemProps = {
+type Props = {
   film: PersonFilmsType;
 };
 
-const PhilmographyItem: FC<PhilmographyItemProps> = ({ film }) => {
+const PhilmographyItem: FC<Props> = ({ film }) => {
   const { t } = useTranslation();
   const router = useRouter();
 

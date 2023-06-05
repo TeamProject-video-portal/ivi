@@ -17,7 +17,6 @@ const Filters: FC = () => {
   const [isOpen, setIsOpen] = useState("");
 
   const dispatch = useAppDispatch();
-  const { movies } = useAppSelector(selectMovies);
   const { ratingMin, ratingMax, scoreMin, scoreMax, isFilter } = useAppSelector(selectFilters);
 
   return (
@@ -36,7 +35,7 @@ const Filters: FC = () => {
       <button
         className={`${styles.filtersBtn} ${isFilter && styles.filtersBtn_active}`}
         disabled={!isFilter}
-        onClick={() => dispatch(resetFilters(movies))}
+        onClick={() => dispatch(resetFilters())}
       >
         <TfiClose />
         {t("filters.reset_filters")}

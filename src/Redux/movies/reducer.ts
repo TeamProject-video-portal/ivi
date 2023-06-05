@@ -44,6 +44,9 @@ export const moviesReducer = (state = initialState, action: AnyAction): IMoviesS
     case MOVIES_ACTIONS.GET_MOVIES_ERROR:
       return { ...state, error: action.payload };
 
+    case MOVIES_ACTIONS.EDIT_GENRES:
+      return { ...state, genres: action.payload };
+
     // case HYDRATE:
     //   return {
     //     ...state,

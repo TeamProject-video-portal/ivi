@@ -21,9 +21,10 @@ export type Props = {
   width?: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
+  title?: string;
 };
 
-export const Button: FC<Props> = ({ children, className, color, type, width, onClick }) => {
+export const Button: FC<Props> = ({ children, className, color, type, width, onClick, title }) => {
   const cssClass = [styles.button, className];
   if (color === "pink") {
     cssClass.push(styles.pink);
@@ -72,7 +73,12 @@ export const Button: FC<Props> = ({ children, className, color, type, width, onC
   }
 
   return (
-    <button className={cssClass.join(" ")} style={{ width: `${width}` }} onClick={onClick}>
+    <button
+      className={cssClass.join(" ")}
+      style={{ width: `${width}` }}
+      onClick={onClick}
+      title={title}
+    >
       {children}
     </button>
   );

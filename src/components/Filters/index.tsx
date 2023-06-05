@@ -5,17 +5,23 @@ import FilterItem from "./FilterItem";
 import RangeRating from "../RangeRating";
 import RangeScore from "../RangeScore";
 import { IoFilter } from "react-icons/io5";
-import { useLanguageQuery, useTranslation } from "next-export-i18n";
+import { useTranslation } from "next-export-i18n";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { resetFilters } from "@/Redux/filter/actions";
 import { selectFilters } from "@/Redux/filter/selectors";
-import { filtersTitle } from "@/data/filters";
 import { selectMovies } from "@/Redux/movies/selectors";
 
 const Filters: FC = () => {
   const { t } = useTranslation();
-  const [isOpen, setIsOpen] = useState("");
+  const filtersTitle = [
+    { title: "genres", value: t("contextSubMenu.genres") },
+    { title: "countries", value: t("contextSubMenu.countries") },
+    { title: "years", value: t("contextSubMenu.years") },
+    { title: "producers", value: t("contextSubMenu.directors") },
+    { title: "actors", value: t("contextSubMenu.actors") },
+  ];
 
+  const [isOpen, setIsOpen] = useState("");
   const dispatch = useAppDispatch();
   const { ratingMin, ratingMax, scoreMin, scoreMax, isFilter } = useAppSelector(selectFilters);
 

@@ -9,3 +9,9 @@ export const movieApi = async () => {
   const dataMovies = dataFilms as ISimpleMovie[];
   return dataMovies;
 };
+
+export const editGenresApi = async () => {
+  //  запрос к БД
+  const dataMovies = dataFilms as ISimpleMovie[];
+  return dataMovies;
+};

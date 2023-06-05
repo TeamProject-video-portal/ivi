@@ -1,6 +1,6 @@
 import { all, fork } from "redux-saga/effects";
 import { getDataTopMoviesSaga } from "./top-movies-saga";
-import { getMoviesSaga } from "./movies-saga";
+import { getMoviesSaga, watchMoviesSaga } from "./movies-saga";
 import { getPersonsSaga } from "./persons-saga";
 import { watchFiltersSaga } from "./filter-saga";
 import { getDataBannerSaga } from "./banner-saga";
@@ -18,6 +18,7 @@ export function* rootSaga() {
       fork(getPersonsSaga),
       fork(watchFiltersSaga),
       fork(getDataHomePageSaga),
+      fork(watchMoviesSaga),
     ]);
   } catch (e) {}
 }

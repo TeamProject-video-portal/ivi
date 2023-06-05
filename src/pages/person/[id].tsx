@@ -108,7 +108,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const data = personsData.persons as IPerson[];
 
   const paths = data.map((item) => ({
-    params: { id: item.id.toString() },
+    params: { id: item.id.toString(), lang: "ru" },
   }));
 
   return {

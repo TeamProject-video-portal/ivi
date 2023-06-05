@@ -25,8 +25,11 @@ const SimpleSlider: FC<Props> = ({ title, films }) => {
         <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
       </div>
       <Slider {...newSettings} className={styles.container}>
-        {films.map((item, index) => (
-          <Link href={`https://www.kinopoisk.ru/film/${item.id}/`} key={item.id}>
+        {films?.map((item, index) => (
+          <Link
+            href={`https://www.kinopoisk.ru/film/${item.id}/`}
+            key={item.id}
+          >
             <Poster film={item} />
           </Link>
         ))}

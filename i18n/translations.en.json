@@ -85,7 +85,8 @@
     "top_movies": "Top Movies",
     "persons": "Persons",
     "reviews": "Reviews",
-    "watching_with_a_movie": "Watching with a movie"
+    "watching_with_a_movie": "Watching with a movie",
+    "bestFantasyFilms": "Best in fantasy films"
   },
   "footer": {
     "about_us": "About us",
@@ -161,7 +162,10 @@
     "entrance_by_code": "Entrance by code"
   },
   "movie": {
-    "watch_online": "watch online"
+
+    "watch_online": "watch online",
+    "free": "Free"
+
   },
   "error": {
     "error_page": "Error page",
@@ -173,5 +177,6 @@
     "movies_description_full_2": "The choice of films is very wide and varied, so that everyone will find something interesting for themselves, whatever their tastes. Do you prefer paintings exclusively of foreign production? We have plenty of them: these are the golden classics of Hollywood, and soulful French comedies, and temperamental Italian dramas, and noisy Indian musical films. Or maybe you are a patriot and love Russian films? Well, we have many such films. What do you like more - good old classics or new film distribution? No matter what your answer is, we've got it all, from early cinematic films to 2018 and 2017 films.",
     "movies_description_full_3": "In our catalog you will find any genres. These are films about love, and detectives, and action films, and westerns, and science fiction, and art house, and hilarious comedies, and films about war, and horror, and thrillers, and documentaries ... In addition to the 'full meter' on the site there are also short films, as well as foreign and Russian serials.",
     "movies_description_full_4": "If you are interested in the most iconic movies online in a particular genre, the category system will help you easily navigate and find, for example, the best dramas or the best animated film online. Do not miss the wonderful opportunity to watch movies online without registration, choosing only what you are really interested in, and when it is convenient for you. It's so easy and enjoyable!"
+
   }
 }

@@ -84,7 +84,8 @@
     "top_movies": "Лучшие фильмы",
     "persons": "Персоны",
     "reviews": "Отзывы",
-    "watching_with_a_movie": "С фильмом смотрят"
+    "watching_with_a_movie": "С фильмом смотрят",
+    "bestFantasyFilms": "Лучшие в жанре фэнтези"
   },
   "footer": {
     "about_us": "О нас",
@@ -160,7 +161,8 @@
     "entrance_by_code": "Вход по коду"
   },
   "movie": {
-    "watch_online": "смотреть онлайн"
+    "watch_online": "смотреть онлайн",
+    "free": "Бесплатно"
   },
   "error": {
     "error_page": "Страница ошибки",

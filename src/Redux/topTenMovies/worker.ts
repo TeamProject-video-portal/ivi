@@ -21,6 +21,6 @@ export const getDataTopMoviesWorker = async () => {
   return new Promise<ResponseTopMovieKPType[]>((resolve, reject) => {
     setTimeout(() => {
       resolve(topMovie.data);
-    }, 1000);
+    }, 6000);
   });
 };

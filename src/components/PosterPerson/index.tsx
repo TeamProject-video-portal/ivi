@@ -5,11 +5,11 @@ import Link from "next/link";
 import { IPerson } from "@/types/types";
 import { useRouter } from "next/router";
 
-type Props = {
+export type PosterPersonProps = {
   person: IPerson;
 };
 
-const PosterPerson: FC<Props> = ({ person }) => {
+const PosterPerson: FC<PosterPersonProps> = ({ person }) => {
   const router = useRouter();
   const personNameLang = person.personLang[0].personName;
   const name = personNameLang.match(/.*\s/i) || personNameLang;
@@ -17,7 +17,9 @@ const PosterPerson: FC<Props> = ({ person }) => {
 
   return (
     <Link
-      href={`/person/${person.id}?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}
+      href={`/person/${person.id}?lang=${
+        router.asPath.includes("lang=en") ? "en" : "ru"
+      }`}
       className={styles.container}
     >
       <div className={styles.poster}>
@@ -33,7 +35,9 @@ const PosterPerson: FC<Props> = ({ person }) => {
       <div className={styles.description}>
         <div className={styles.name}>{name}</div>
         <div className={styles.surname}>{surname}</div>
-        <div className={styles.countFilms}>{person.films.length} фильма(ов)</div>
+        <div className={styles.countFilms}>
+          {person.films.length} фильма(ов)
+        </div>
       </div>
     </Link>
   );

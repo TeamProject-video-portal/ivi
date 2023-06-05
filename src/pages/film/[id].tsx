@@ -15,6 +15,7 @@ import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "./WatchOnAllDevices";
 import InfoMovie from "./InfoMovie";
+import { getMovieWorker } from "@/Redux/movie/workers";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -96,13 +97,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths = async () => {
-  const paths = [Array(3)].map((item) => ({
-    params: { id: moviesData.id.toString(), lang: "ru" },
-  }));
+export const getStaticPaths = async (context: number) => {
+  const movie = await getMovieWorker(context, "ru");
+  // const paths = [Array(3)].map((item) => ({
+  //   params: { id: moviesData.id.toString(), lang: "ru" },
+  // }));
   return {
-    paths,
-    fallback: "blocking",
+    props: {
+      movie,
+    },
   };
 };
 

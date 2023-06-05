@@ -85,7 +85,9 @@
     "persons": "Персоны",
     "reviews": "Отзывы",
     "watching_with_a_movie": "С фильмом смотрят",
-    "bestFantasyFilms": "Лучшие в жанре фэнтези"
+    "best_fantasy_films": "Лучшие в жанре фэнтези",
+    "best_films": "Лучшие фильмы",
+    "family_comedies": "Cемейные комедии"
   },
   "footer": {
     "about_us": "О нас",

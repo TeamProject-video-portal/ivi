@@ -1,27 +1,17 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
-import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import { useTranslation } from "next-export-i18n";
 import { FC, useEffect, useState } from "react";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import dataFilms from "@/data/Search_films_v2.json";
 import main_banner from "@/data/Main_banner.json";
-import {
-  ISimpleMovie,
-  IMovie,
-  BannerType,
-  MoviesForSlidersOnHomePageT,
-} from "@/types/types";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { ISimpleMovie, MoviesForSlidersOnHomePageT } from "@/types/types";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { wrapper } from "@/Redux/store";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
-import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
-import { selectTopMovies } from "@/Redux/topTenMovies/selectors";
-import { useRouter } from "next/router";
 import { RootState } from "@/Redux/RootState";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -54,13 +44,20 @@ const Home: FC<Props> = (context: any) => {
       /> */}
 
       <SliderTopTen />
+
       <SimpleSlider
-        title={t("sliders_title.bestFantasyFilms")}
-        films={moviesForSliders.bestFantasyFilmsSet as ISimpleMovie[]}
+        title={t("sliders_title.best_films")}
+        films={moviesForSliders.bestFilmsSet as ISimpleMovie[]}
       />
+
       <SimpleSlider
-        title={t("sliders_title.modern_cartoons")}
-        films={dataFilms as ISimpleMovie[]}
+        title={t("sliders_title.family_comedies")}
+        films={moviesForSliders.familyFriendlyComediesSet as ISimpleMovie[]}
+      />
+
+      <SimpleSlider
+        title={t("sliders_title.best_fantasy_films")}
+        films={moviesForSliders.bestFantasyFilmsSet as ISimpleMovie[]}
       />
     </>
   );

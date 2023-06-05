@@ -1,5 +1,5 @@
 import { RootState } from "../RootState";
 
 export const selectTopMovies = (state: RootState) => {
-  return state.topMovies;
+  return state.topMovies.data;
 };

@@ -1,14 +1,14 @@
-import { FC } from 'react';
-import styles from "./index.module.scss"
+import { FC } from "react";
+import styles from "./index.module.scss";
 import Image from "next/image";
-import Link from 'next/link';
-import { IPerson } from '@/types/types';
+import Link from "next/link";
+import { IPerson } from "@/types/types";
 
-type Props = {
+export type PosterPersonProps = {
   person: IPerson;
 };
 
-const PosterPerson: FC<Props> = ({ person }) => {
+const PosterPerson: FC<PosterPersonProps> = ({ person }) => {
   const personNameLang = person.personLang[0].personName;
   const name = personNameLang.match(/.*\s/i) || personNameLang;
   const surname = personNameLang.slice(name[0].length);

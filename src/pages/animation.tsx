@@ -12,8 +12,12 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import authOptions from "./api/auth/[...nextauth]";
 import dataMovies from "@/data/Search_films_v2.json";
-export const Cartoons = () => {
+import axios from "axios";
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+
+export const Cartoons = ({ res }: any) => {
   const [content, setContent] = useState();
+  console.log(res);
   // const { data: session, status } = useSession();
   // console.log(session);
   // const router = useRouter();
@@ -30,5 +34,21 @@ export const Cartoons = () => {
 
   return <div>{/* {session && <div><div/>} */}</div>;
 };
+
+// export const getStaticProps = async () => {
+//   const res = await axios({
+//     method: "get",
+//     url: "https://jsonplaceholder.org/posts/",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "X-Frame-Options": "SAMEORIGIN",
+//     },
+//   }).then((r) => r.data);
+//   return {
+//     props: {
+//       res,
+//     },
+//   };
+// };
 
 export default Cartoons;

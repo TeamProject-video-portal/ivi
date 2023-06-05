@@ -24,11 +24,9 @@ type Props = {
   error: any;
 };
 
-const Home: FC<Props> = (context) => {
+const Home: FC<Props> = (context: any) => {
   // const [data, setData] = useState(startMovies);
   const dataBanner = useSelector(selectBanner);
-
-  // console.log("context", context);
   const { t } = useTranslation();
   return (
     <>
@@ -90,16 +88,16 @@ const Home: FC<Props> = (context) => {
 // }
 // };
 
-export const gerServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async (context) => {
+export const getStaticProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
     const res = main_banner;
 
     store.dispatch({
       type: DATA_BANNER.GET_DATA_BANNER,
       payload: res,
     });
-    return {
-      props: {},
-    };
-  });
+
+    return { props: {} };
+  }
+);
 export default connect((state) => state)(Home);

@@ -13,10 +13,10 @@ export const Cartoons = ({ res }: any) => {
   const movie = useSelector(selectMovie);
   const put = useDispatch();
   const handleClick = async () => {
-    const res = await getMovieWorker(435, "ru");
-    console.log(res);
-    put(getDataMovieSuccess(res));
-    console.log(store.getState());
+    // const res = await getMovieWorker(435, "ru");
+    // console.log(res);
+    // put(getDataMovieSuccess(res));
+    // console.log(store.getState());
   };
   useEffect(() => {
     console.log(movie);

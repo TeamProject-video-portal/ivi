@@ -13,6 +13,7 @@ import { moviesReducer } from "./movies/reducer";
 import { personsReducer } from "./persons/reducer";
 import { filterReducer } from "./filter/reducer";
 import { homePageReducer } from "./homePage/reducer";
+import { movieReducer } from "./movie/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -24,6 +25,7 @@ const makeStore = () => {
       persons: personsReducer,
       filters: filterReducer,
       homePage: homePageReducer,
+      movie: movieReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import styles from "./index.module.scss";
 import Image, { StaticImageData } from "next/image";
-
+import Link from "next/link";
 // const posterImage = require("../../../images/posterImage.jpeg");
 import { ResponseTopMovieKPType } from "@/types/types";
 

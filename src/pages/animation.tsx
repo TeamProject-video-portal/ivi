@@ -1,35 +1,26 @@
-import ProfileButton from "@/components/Header/Buttons/Profile";
-import Poster from "@/components/Poster";
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from "next";
-import { getServerSession } from "next-auth";
-import { getCsrfToken, getSession, signIn, useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import authOptions from "./api/auth/[...nextauth]";
-import dataMovies from "@/data/Search_films_v2.json";
-import axios from "axios";
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { store } from "@/Redux/store";
-import { DATA_HOME_PAGE } from "@/Redux/homePage/action-types";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovieWorker } from "@/Redux/movie/workers";
+import { getDataHomePageSuccess } from "@/Redux/homePage/actions";
+import { useEffect } from "react";
+import { selectMovie } from "@/Redux/movie/selectors";
+import { getDataMovieSuccess } from "@/Redux/movie/actions";
 
 export const Cartoons = ({ res }: any) => {
   // const { data: session, status } = useSession();
   // console.log(session);
   // const router = useRouter();
-
+  const movie = useSelector(selectMovie);
+  const put = useDispatch();
   const handleClick = async () => {
-    // store.dispatch({
-    //   type: DATA_HOME_PAGE.GET_DATA_HOME_PAGE,
-    //   payload: res,
-    // });
+    const res = await getMovieWorker(435, "ru");
+    console.log(res);
+    put(getDataMovieSuccess(res));
     console.log(store.getState());
   };
-
+  useEffect(() => {
+    console.log(movie);
+  }, [movie]);
   return (
     <div>
       <button onClick={handleClick}>123</button>

@@ -14,25 +14,27 @@ import authOptions from "./api/auth/[...nextauth]";
 import dataMovies from "@/data/Search_films_v2.json";
 import axios from "axios";
 import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
+import { store } from "@/Redux/store";
+import { DATA_HOME_PAGE } from "@/Redux/homePage/action-types";
 
 export const Cartoons = ({ res }: any) => {
-  const [content, setContent] = useState();
-  console.log(res);
   // const { data: session, status } = useSession();
   // console.log(session);
   // const router = useRouter();
 
   const handleClick = async () => {
-    // const { data: session } = useSession();
-    // const payload = { username: "Maggie", password: "password" };
-    // const res = await signIn("credentials", {
-    //   ...payload,
-    //   redirect: false,
+    // store.dispatch({
+    //   type: DATA_HOME_PAGE.GET_DATA_HOME_PAGE,
+    //   payload: res,
     // });
-    // console.log(session);
+    console.log(store.getState());
   };
 
-  return <div>{/* {session && <div><div/>} */}</div>;
+  return (
+    <div>
+      <button onClick={handleClick}>123</button>
+    </div>
+  );
 };
 
 // export const getStaticProps = async () => {

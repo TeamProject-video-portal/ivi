@@ -4,7 +4,6 @@ import {
   getDataBannerSuccess,
 } from "@/Redux/banner/actions";
 import { getDataBannerWorker } from "@/Redux/banner/worker";
-import { getDataTopMovies } from "@/Redux/homePage/workers";
 import { BannerType } from "@/types/types";
 import { call, put } from "redux-saga/effects";
 

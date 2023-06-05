@@ -134,3 +134,9 @@ export type SearchParamsType = {
   actors?: string[];
   directors?: string[];
 };
+
+export type MoviesForSlidersOnHomePageT = {
+  bestFantasyFilmsSet: ISimpleMovie[];
+  bestFilmsSet: ISimpleMovie[];
+  familyFriendlyComediesSet: ISimpleMovie[];
+};

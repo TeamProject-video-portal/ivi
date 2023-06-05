@@ -83,7 +83,8 @@
     "top_movies": "Top Movies",
     "persons": "Persons",
     "reviews": "Reviews",
-    "watching_with_a_movie": "Watching with a movie"
+    "watching_with_a_movie": "Watching with a movie",
+    "bestFantasyFilms": "Best in fantasy films"
   },
   "footer": {
     "about_us": "About us",
@@ -158,6 +159,7 @@
     "entrance_by_code": "Entrance by code"
   },
   "movie": {
-    "watch_online": "watch online"
+    "watch_online": "watch online",
+    "free": "Free"
   }
 }

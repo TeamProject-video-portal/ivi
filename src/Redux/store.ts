@@ -23,6 +23,7 @@ const makeStore = () => {
       movies: moviesReducer,
       persons: personsReducer,
       filters: filterReducer,
+      homePage: homePageReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

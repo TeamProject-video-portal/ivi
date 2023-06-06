@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Link from "next/link";
 import { settings } from "../settings";
 import { ISimpleMovie } from "@/types/types";
+import { Loader } from "@/components/Loader";
 
 type Props = {
   title: string;
@@ -24,16 +25,17 @@ const SimpleSlider: FC<Props> = ({ title, films }) => {
         <h4>{title}</h4>
         <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
       </div>
-      <Slider {...newSettings} className={styles.container}>
-        {films?.map((item, index) => (
-          <Link
-            href={`https://www.kinopoisk.ru/film/${item.id}/`}
-            key={item.id}
-          >
-            <Poster film={item} />
-          </Link>
-        ))}
-      </Slider>
+      {!films ? (
+        <Loader className={styles.loading_simple} />
+      ) : (
+        <Slider {...newSettings} className={styles.container}>
+          {films?.map((item, index) => (
+            <Link href={`/film/${item.id}?lang=ru`} key={item.id}>
+              <Poster film={item} />
+            </Link>
+          ))}
+        </Slider>
+      )}
       <></>
     </div>
   );

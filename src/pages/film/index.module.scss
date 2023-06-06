@@ -7,8 +7,7 @@
 
   .wrapper {
     display: grid;
-    padding: 20px;
-    margin: 20px 0;
+    margin: 20px 0 50px 0;
     box-sizing: border-box;
     grid-template-columns: 100%;
     grid-template-areas:
@@ -24,6 +23,7 @@
         "trailer discription"
         "trailer slider_actors"
         "trailer info"
+        "trailer info"
         "trailer info";
     }
     @include laptop {
@@ -32,6 +32,7 @@
       grid-template-areas:
         "trailer discription"
         "trailer slider_actors"
+        "trailer info"
         "trailer info"
         "trailer info";
     }

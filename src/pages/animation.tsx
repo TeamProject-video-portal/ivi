@@ -1,10 +1,6 @@
-import { store } from "@/Redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { getMovieWorker } from "@/Redux/movie/workers";
-import { getDataHomePageSuccess } from "@/Redux/homePage/actions";
 import { useEffect } from "react";
 import { selectMovie } from "@/Redux/movie/selectors";
-import { getDataMovieSuccess } from "@/Redux/movie/actions";
 
 export const Cartoons = ({ res }: any) => {
   // const { data: session, status } = useSession();
@@ -21,11 +17,7 @@ export const Cartoons = ({ res }: any) => {
   useEffect(() => {
     console.log(movie);
   }, [movie]);
-  return (
-    <div>
-      <button onClick={handleClick}>123</button>
-    </div>
-  );
+  return <div>{/* <Comments /> */}</div>;
 };
 
 // export const getStaticProps = async () => {

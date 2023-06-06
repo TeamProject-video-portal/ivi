@@ -14,22 +14,17 @@ import React, { useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "./WatchOnAllDevices";
-import InfoMovie from "./InfoMovie";
-import { getMovieWorker } from "@/Redux/movie/workers";
 import axios from "axios";
+import DetailsMovie from "../../components/InfoMovie/Details";
+import InfoMovie from "@/components/InfoMovie";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
   { item: "Комедии", path: "/movies" },
 ];
 
-type Props = {
-  movie: IMovie;
-};
-
 const CardId: NextPage = ({ movie }: any) => {
   const { t } = useTranslation();
-  const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
   console.log(movie);
   return (
@@ -57,7 +52,7 @@ const CardId: NextPage = ({ movie }: any) => {
           actors={movie.actors || []}
           className={styles.slider_actors}
         />
-        <InfoMovie className={styles.info} filmLang={movie.filmLang} />
+        <InfoMovie className={styles.info} movie={movie} />
       </div>
       <Comments />
       <SimpleSlider
@@ -84,9 +79,10 @@ const CardId: NextPage = ({ movie }: any) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log("context", context.params?.id);
+  console.log("context", context.params);
+  const locale = context.params?.lang || "ru";
   const movieResponse = await axios.get(
-    `http://84.201.131.92:5003/film/${context.params?.id}?lang=ru`
+    `http://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`
   );
   const movie = movieResponse.data as IMovie;
   if (!movie) {
@@ -102,9 +98,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = [Array(3)].map((item) => ({
-    params: { id: moviesData.id.toString() },
-  }));
+  const locales = ["ru", "en"];
+
+  const paths = locales.flatMap((locale) => {
+    return [Array(3)].map((movie) => ({
+      params: { id: moviesData.id.toString(), lang: locale },
+    }));
+  });
   return {
     paths,
     fallback: "blocking",

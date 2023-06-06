@@ -18,7 +18,7 @@ import { Loader } from "@/components/Loader";
 const SliderTopTen = () => {
   const { t } = useTranslation();
   const movies = useSelector((store: RootState) => store.topMovies.data);
-
+  console.log(movies);
   const router = useRouter();
   const newSettings = {
     ...settings,
@@ -46,9 +46,9 @@ const SliderTopTen = () => {
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {(movies as ResponseTopMovieKPType[]).map((item, i) => (
-            // <Link href={`/film/${item.id}/?lang=${locale}`} key={item.id}>
-            <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
-            // </Link>
+            <Link href={`/film/${item.id}/?lang=${locale}`} key={item.id}>
+              <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
+            </Link>
           ))}
         </Slider>
       )}

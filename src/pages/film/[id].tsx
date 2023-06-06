@@ -16,6 +16,7 @@ import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "./WatchOnAllDevices";
 import InfoMovie from "./InfoMovie";
 import { getMovieWorker } from "@/Redux/movie/workers";
+import axios from "axios";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -26,11 +27,11 @@ type Props = {
   movie: IMovie;
 };
 
-const CardId: NextPage<Props> = ({ movie }) => {
+const CardId: NextPage = ({ movie }: any) => {
   const { t } = useTranslation();
   const router = useRouter();
   const [isOpenModal, setIsOpenModal] = useState(false);
-
+  console.log(movie);
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
@@ -83,8 +84,11 @@ const CardId: NextPage<Props> = ({ movie }) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context);
-  const movie = moviesData;
+  console.log("context", context.params?.id);
+  const movieResponse = await axios.get(
+    `http://84.201.131.92:5003/film/${context.params?.id}?lang=ru`
+  );
+  const movie = movieResponse.data as IMovie;
   if (!movie) {
     return {
       notFound: true,
@@ -92,14 +96,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   return {
-    props: { movie: movie },
+    props: { movie },
     revalidate: 10,
   };
 };
 
 export const getStaticPaths = async () => {
   const paths = [Array(3)].map((item) => ({
-    params: { id: moviesData.id.toString(), lang: "ru" },
+    params: { id: moviesData.id.toString() },
   }));
   return {
     paths,

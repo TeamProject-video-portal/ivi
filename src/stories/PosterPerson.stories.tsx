@@ -14,7 +14,8 @@ export const personForSlider: Story = {
     person: {
       id: 21495,
       personLink: "https://www.kinopoisk.ru/name/21495/",
-      personPicture: "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/21495.jpg",
+      personPicture:
+        "https://kinopoiskapiunofficial.tech/images/actor_posters/kp/21495.jpg",
       personGender: "MALE",
       height: 183,
       age: 48,
@@ -39,7 +40,8 @@ export const personForSlider: Story = {
           name: "Эквилибриум",
           year: 2002,
           rating: 7.9,
-          poster: "https://kinopoiskapiunofficial.tech/images/posters/kp/309.jpg",
+          poster:
+            "https://kinopoiskapiunofficial.tech/images/posters/kp/309.jpg",
         },
       ],
     },

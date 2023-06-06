@@ -1,4 +1,9 @@
-import { Action, configureStore, getDefaultMiddleware, ThunkAction } from "@reduxjs/toolkit";
+import {
+  Action,
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { bannerReducer } from "./banner/reducer";
 import createSagaMiddleware from "redux-saga";
@@ -7,6 +12,8 @@ import { topMovieReducer } from "./topTenMovies/reducer";
 import { moviesReducer } from "./movies/reducer";
 import { personsReducer } from "./persons/reducer";
 import { filterReducer } from "./filter/reducer";
+import { homePageReducer } from "./homePage/reducer";
+import { movieReducer } from "./movie/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -17,6 +24,8 @@ const makeStore = () => {
       movies: moviesReducer,
       persons: personsReducer,
       filters: filterReducer,
+      homePage: homePageReducer,
+      movie: movieReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });
@@ -34,4 +43,5 @@ export type AppThunk<ReturnType = void> = ThunkAction<
   unknown,
   Action<string>
 >;
+export const store = makeStore();
 export const wrapper = createWrapper<RootStore>(makeStore);

@@ -1,8 +1,14 @@
-import { GET_DATA } from "./action-types";
+import { DATA_MOVIE } from "./action-types";
 
-export const GET_ACTOR = (value: any) => {
+export const getMovieStart = () => {
   return {
-    type: GET_DATA.GET_ACTOR,
-    payload: value,
+    type: DATA_MOVIE.GET_DATA_MOVIE_START,
   };
 };
+export const getDataMovieSuccess = (payload: any) => ({
+  type: DATA_MOVIE.GET_DATA_MOVIE_SUCCESS,
+  payload,
+});
+export const getMovieFail = () => ({
+  type: DATA_MOVIE.GET_DATA_MOVIE_FAIL,
+});

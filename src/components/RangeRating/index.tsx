@@ -41,13 +41,13 @@ const ThumbLabel = ({
   );
 };
 
-type Props = {
+export type RangeRatingProps = {
   rtl: boolean;
   ratingMin: number;
   ratingMax: number;
 };
 
-const RangeRating: FC<Props> = ({ rtl, ratingMin, ratingMax }) => {
+const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
   const { t } = useTranslation();
   const [values, setValues] = useState([ratingMin, ratingMax]);
   const [finalValues, setFinalValues] = useState([ratingMin, ratingMax]);
@@ -125,7 +125,11 @@ const RangeRating: FC<Props> = ({ rtl, ratingMin, ratingMax }) => {
               alignItems: "center",
             }}
           >
-            <ThumbLabel rangeRef={rangeRef.current} values={values} index={index} />
+            <ThumbLabel
+              rangeRef={rangeRef.current}
+              values={values}
+              index={index}
+            />
             <div
               style={{
                 height: "16px",

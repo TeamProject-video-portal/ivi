@@ -17,7 +17,7 @@ const posters = [poster1, poster2, poster3, poster4];
 type Props = {
   type: string;
 };
-console.log(posters);
+
 const Ad: FC<Props> = ({ type }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 

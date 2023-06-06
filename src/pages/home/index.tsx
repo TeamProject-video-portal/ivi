@@ -1,22 +1,18 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
-import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import { useTranslation } from "next-export-i18n";
 import { FC, useEffect, useState } from "react";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import dataFilms from "@/data/Search_films_v2.json";
 import main_banner from "@/data/Main_banner.json";
-import { ISimpleMovie, IMovie, BannerType } from "@/types/types";
-import { GetServerSideProps, GetStaticProps } from "next";
+import { ISimpleMovie, MoviesForSlidersOnHomePageT } from "@/types/types";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { wrapper } from "@/Redux/store";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
-import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
-import { selectTopMovies } from "@/Redux/topTenMovies/selectors";
-import { useRouter } from "next/router";
+import { RootState } from "@/Redux/RootState";
 
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
@@ -24,12 +20,14 @@ type Props = {
   error: any;
 };
 
-const Home: FC<Props> = (context) => {
+const Home: FC<Props> = (context: any) => {
   // const [data, setData] = useState(startMovies);
   const dataBanner = useSelector(selectBanner);
-
-  // console.log("context", context);
   const { t } = useTranslation();
+  const moviesForSliders: MoviesForSlidersOnHomePageT = useSelector(
+    (store: RootState) => store.homePage
+  );
+  console.log(moviesForSliders);
   return (
     <>
       <Head>
@@ -48,58 +46,33 @@ const Home: FC<Props> = (context) => {
       <SliderTopTen />
 
       <SimpleSlider
-        title={t("sliders_title.modern_cartoons")}
-        films={dataFilms as ISimpleMovie[]}
+        title={t("sliders_title.best_films")}
+        films={moviesForSliders.bestFilmsSet as ISimpleMovie[]}
+      />
+
+      <SimpleSlider
+        title={t("sliders_title.family_comedies")}
+        films={moviesForSliders.familyFriendlyComediesSet as ISimpleMovie[]}
+      />
+
+      <SimpleSlider
+        title={t("sliders_title.best_fantasy_films")}
+        films={moviesForSliders.bestFantasyFilmsSet as ISimpleMovie[]}
       />
     </>
   );
 };
 
-// export const getStaticProps: GetStaticProps = async (ctx) => {
-// try {
-// const res = await axios({
-//   method: "get",
-//   url: "https://api.kinopoisk.dev/v1.3/movie",
-//   headers: {
-//     "Content-Type": "application/json",
-//     "X-API-KEY": `13RH6Q2-2T1M1E7-M50R852-366EP7D`,
-//     "X-Frame-Options": "SAMEORIGIN",
-//   },
-//   params: {
-//     Application: "13RH6Q2-2T1M1E7-M50R852-366EP7D",
-//     selectFields: "videos year id poster logo",
-//     year: 2020,
-//   },
-// });
-// const put = useDispatch();
-// const res = main_banner as BannerType[];
-// put(bannerReducer(main_banner, GET_BANNER));
-
-// return {
-//   props: {
-// startMovies: res,
-//   },
-// };
-// } catch {
-//   const res = [main_banner as BannerType[]];
-//   return {
-//     props: {
-//       startMovies: [],
-//     },
-//   };
-// }
-// };
-
-export const gerServerSideProps: GetServerSideProps =
-  wrapper.getServerSideProps((store) => async (context) => {
+export const getStaticProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
     const res = main_banner;
 
     store.dispatch({
       type: DATA_BANNER.GET_DATA_BANNER,
       payload: res,
     });
-    return {
-      props: {},
-    };
-  });
+
+    return { props: {} };
+  }
+);
 export default connect((state) => state)(Home);

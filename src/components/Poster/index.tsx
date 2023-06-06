@@ -1,9 +1,11 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import Icons from "./Info/Icons";
 import Info from "./Info";
 import { ISimpleMovie } from "@/types/types";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-export-i18n";
 const posterImage = require("../../images/posterImage.jpeg");
 
 export type PosterMovieProps = {
@@ -11,6 +13,16 @@ export type PosterMovieProps = {
 };
 const Poster: FC<PosterMovieProps> = ({ film }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const { t } = useTranslation();
+  const [locale, setLocale] = useState<any>("ru");
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
 
   return (
     <div className={styles.wrapper}>
@@ -30,8 +42,12 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
           {isOpen && <Info />}
         </div>
         <div className={styles.description}>
-          <span className={styles.name}>{film?.filmLang[0].filmName}</span>
-          <span className={styles.tariff}>Бесплатно</span>
+          <span className={styles.name}>
+            {locale === "ru"
+              ? film?.filmLang[0].filmName
+              : film?.filmLang[1].filmName}
+          </span>
+          <span className={styles.tariff}>{t("movie.free")}</span>
         </div>
       </div>
     </div>

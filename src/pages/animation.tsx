@@ -1,34 +1,47 @@
-import ProfileButton from "@/components/Header/Buttons/Profile";
-import Poster from "@/components/Poster";
-import {
-  GetServerSideProps,
-  GetServerSidePropsContext,
-  InferGetServerSidePropsType,
-} from "next";
-import { getServerSession } from "next-auth";
-import { getCsrfToken, getSession, signIn, useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { useState } from "react";
-import authOptions from "./api/auth/[...nextauth]";
-import dataMovies from "@/data/Search_films_v2.json";
-export const Cartoons = () => {
-  const [content, setContent] = useState();
+import { store } from "@/Redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { getMovieWorker } from "@/Redux/movie/workers";
+import { getDataHomePageSuccess } from "@/Redux/homePage/actions";
+import { useEffect } from "react";
+import { selectMovie } from "@/Redux/movie/selectors";
+import { getDataMovieSuccess } from "@/Redux/movie/actions";
+
+export const Cartoons = ({ res }: any) => {
   // const { data: session, status } = useSession();
   // console.log(session);
   // const router = useRouter();
-
+  const movie = useSelector(selectMovie);
+  const put = useDispatch();
   const handleClick = async () => {
-    // const { data: session } = useSession();
-    // const payload = { username: "Maggie", password: "password" };
-    // const res = await signIn("credentials", {
-    //   ...payload,
-    //   redirect: false,
-    // });
-    // console.log(session);
+    // const res = await getMovieWorker(435, "ru");
+    // console.log(res);
+    // put(getDataMovieSuccess(res));
+    // console.log(store.getState());
   };
-
-  return <div>{/* {session && <div><div/>} */}</div>;
+  useEffect(() => {
+    console.log(movie);
+  }, [movie]);
+  return (
+    <div>
+      <button onClick={handleClick}>123</button>
+    </div>
+  );
 };
+
+// export const getStaticProps = async () => {
+//   const res = await axios({
+//     method: "get",
+//     url: "https://jsonplaceholder.org/posts/",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "X-Frame-Options": "SAMEORIGIN",
+//     },
+//   }).then((r) => r.data);
+//   return {
+//     props: {
+//       res,
+//     },
+//   };
+// };
 
 export default Cartoons;

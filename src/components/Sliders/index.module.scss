@@ -37,3 +37,18 @@
     }
   }
 }
+
+.loading_simple,
+.loading_top_movies {
+  width: 100%;
+  display: flex;
+  flex: 1 1;
+}
+
+.loading_top_movies {
+  height: 400px;
+}
+
+.loading_simple {
+  height: 300px;
+}

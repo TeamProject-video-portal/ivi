@@ -1,6 +1,7 @@
 import { BannerType, ResponseTopMovieKPType } from "@/types/types";
 import { DATA_TOP_MOVIES } from "./action-types";
 import topMovie from "@/data/top_movie.json";
+import { HYDRATE } from "next-redux-wrapper";
 
 export type TopMovieReducerT = {
   data: ResponseTopMovieKPType[];

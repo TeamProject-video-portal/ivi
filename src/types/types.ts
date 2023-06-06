@@ -46,6 +46,7 @@ export interface IMovie extends ISimpleMovie {
   filmTotalGrade: number;
   filmR: string;
   similarFilms: ISimpleMovie[];
+  reviews: string[];
 }
 
 export type PersonLangType = {
@@ -133,4 +134,10 @@ export type SearchParamsType = {
   scoreMax?: number;
   actors?: string[];
   directors?: string[];
+};
+
+export type MoviesForSlidersOnHomePageT = {
+  bestFantasyFilmsSet: ISimpleMovie[];
+  bestFilmsSet: ISimpleMovie[];
+  familyFriendlyComediesSet: ISimpleMovie[];
 };

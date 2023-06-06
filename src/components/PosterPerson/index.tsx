@@ -5,11 +5,11 @@ import Link from "next/link";
 import { IPerson } from "@/types/types";
 import { useRouter } from "next/router";
 
-type Props = {
+export type PosterPersonProps = {
   person: IPerson;
 };
 
-const PosterPerson: FC<Props> = ({ person }) => {
+const PosterPerson: FC<PosterPersonProps> = ({ person }) => {
   const router = useRouter();
   const personNameLang = person.personLang[0].personName;
   const name = personNameLang.match(/.*\s/i) || personNameLang;

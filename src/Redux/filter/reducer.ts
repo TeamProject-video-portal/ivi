@@ -29,7 +29,7 @@ const initialState: IFilterState = {
   ratingMin: 4.0,
   ratingMax: 10.0,
   scoreMin: 10000,
-  scoreMax: 200000,
+  scoreMax: 1000000,
   actors: [],
   directors: [],
   results: [],

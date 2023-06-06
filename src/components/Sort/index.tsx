@@ -3,15 +3,14 @@ import styles from "./index.module.scss";
 import { BsChevronCompactDown, BsChevronCompactUp } from "react-icons/bs";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
 import { SortType } from "@/types/types";
-import { useDispatch } from "react-redux";
-import { useAppSelector } from "../../hooks/hooks";
+import { useDispatch, useSelector } from "react-redux";
 import { selectFilters } from "../../Redux/filter/selectors";
 import { setSortFilter } from "../../Redux/filter/actions";
 
 const Sort: FC = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { sort } = useAppSelector(selectFilters);
+  const { sort } = useSelector(selectFilters);
 
   const SortList = {
     SCORE: `${t("filters.by_score")}`,

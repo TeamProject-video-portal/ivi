@@ -85,12 +85,10 @@ const CardId: NextPage = ({ movie }: any) => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   console.log("context", context.params?.id);
-  // const data = await axios.get("https://jsonplaceholder.typicode.com/users");
   const movieResponse = await axios.get(
     `http://84.201.131.92:5003/film/${context.params?.id}?lang=ru`
   );
   const movie = movieResponse.data as IMovie;
-  // const movie = data.data[0];
   if (!movie) {
     return {
       notFound: true,

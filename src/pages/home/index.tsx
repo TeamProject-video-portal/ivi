@@ -37,7 +37,7 @@ const Home: FC<Props> = (context: any) => {
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
-      {/* <Banner movies={dataBanner.data} /> */}
+      <Banner movies={dataBanner.data} />
       {/* <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}

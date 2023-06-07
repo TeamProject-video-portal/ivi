@@ -27,7 +27,7 @@ const PersonsSlider: FC = () => {
   return (
     <div>
       {!popularActors ? (
-        <Loader className={styles.loading_simple} />
+        <Loader type="loading_simple" />
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {popularActors.map((item, i) => (

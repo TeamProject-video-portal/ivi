@@ -335,12 +335,12 @@ const Movies: NextPage = (context) => {
             </h2>
             <GenresSlider />
           </div>
-          <SimpleSlider
+          {/* <SimpleSlider
             title={t("sliders_title.top_movies")}
             films={bestMovies as ISimpleMovie[]}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-          />
+          /> */}
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>
               {t("sliders_title.persons")}{" "}
@@ -366,16 +366,16 @@ const Movies: NextPage = (context) => {
   );
 };
 
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    console.log("context movies", context);
+    const movies = dataFilms as ISimpleMovie[];
+    const persons = personsData.persons;
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  console.log("context movies", context);
-  const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
-
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES,
-    payload: movies,
-  });
+    store.dispatch({
+      type: MOVIES_ACTIONS.GET_MOVIES,
+      payload: movies,
+    });
 
     return {
       //props: { persons, movies },

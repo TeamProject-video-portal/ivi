@@ -17,7 +17,9 @@ const PosterPerson: FC<PosterPersonProps> = ({ person }) => {
 
   return (
     <Link
-      href={`/person/${person.id}?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}
+      href={`/person/${person.id}?lang=${
+        router.asPath.includes("lang=en") ? "en" : "ru"
+      }`}
       className={styles.container}
     >
       <div className={styles.poster}>
@@ -33,7 +35,9 @@ const PosterPerson: FC<PosterPersonProps> = ({ person }) => {
       <div className={styles.description}>
         <div className={styles.name}>{name}</div>
         <div className={styles.surname}>{surname}</div>
-        <div className={styles.countFilms}>{person.films.length} фильма(ов)</div>
+        <div className={styles.countFilms}>
+          {person.films.length} фильма(ов)
+        </div>
       </div>
     </Link>
   );

@@ -19,11 +19,16 @@ const initialState: IMoviesState = {
   error: "",
 };
 
-export const moviesReducer = (state = initialState, action: AnyAction): IMoviesState => {
+export const moviesReducer = (
+  state = initialState,
+  action: AnyAction
+): IMoviesState => {
   switch (action.type) {
     case MOVIES_ACTIONS.GET_MOVIES:
       const actionPayload = action.payload as IMovie[];
-      const years = Array.from(new Set(actionPayload.map((item) => item.filmYear)));
+      const years = Array.from(
+        new Set(actionPayload.map((item) => item.filmYear))
+      );
       const genresSet = new Set<string>();
       actionPayload.map((item) => {
         item.genres.map((elem) => genresSet.add(elem.name));

@@ -16,6 +16,7 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
   const router = useRouter();
   const { t } = useTranslation();
   const [locale, setLocale] = useState<any>("ru");
+
   useEffect(() => {
     if (router.query?.lang) {
       setLocale(router.query?.lang);

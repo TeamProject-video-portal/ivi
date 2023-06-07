@@ -13,6 +13,7 @@ import { wrapper } from "@/Redux/store";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
 import { RootState } from "@/Redux/RootState";
+import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
@@ -27,7 +28,6 @@ const Home: FC<Props> = (context: any) => {
   const moviesForSliders: MoviesForSlidersOnHomePageT = useSelector(
     (store: RootState) => store.homePage
   );
-  console.log(moviesForSliders);
   return (
     <>
       <Head>
@@ -38,12 +38,12 @@ const Home: FC<Props> = (context: any) => {
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
       <Banner movies={dataBanner.data} />
-      {/* <SliderContinueBrowsing
+      <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
-      /> */}
+      />
 
-      <SliderTopTen />
+      {/* <SliderTopTen /> */}
 
       <SimpleSlider
         title={t("sliders_title.best_films")}

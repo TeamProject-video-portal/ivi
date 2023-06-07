@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import Image, { StaticImageData } from "next/image";
 
 export type CartProps = {
-  title: string;
+  title: { ruName: string; enName: string };
   text: string;
   type: string;
-  img: StaticImageData;
+  img: string;
 };
 
 const progress = 80;
@@ -34,9 +34,9 @@ const CardMovie: FC<CartProps> = (props) => {
         )}
       </div>
       <div className={styles.decription}>
-        <h5 className={styles.title}>{props.title}</h5>
+        <h5 className={styles.title}>{props.title?.ruName}</h5>
         {props.type === "detailed" ? (
-          <div className={styles.text}>
+          <div>
             <p className={styles.text}>
               {" "}
               {props.text.length > 200
@@ -47,7 +47,7 @@ const CardMovie: FC<CartProps> = (props) => {
           </div>
         ) : (
           <div>
-            <p className={styles.text}>Сезон 1, Серия 1</p>
+            <p className={styles.text}>{props.text}</p>
           </div>
         )}
       </div>

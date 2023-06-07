@@ -21,6 +21,7 @@ export default NextAuth({
         //   password: "jsmith@example.com",
         //   role: "admin",
         // };
+
         if (credentials?.username === "Maggie") {
           const user = {
             id: "1",

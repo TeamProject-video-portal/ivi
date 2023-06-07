@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useEffect } from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -7,38 +7,42 @@ import Link from "next/link";
 import CardMovie from "@/components/CardMovie";
 import { settings } from "./settings";
 import img from "../../../images/banner__foto.jpeg";
+import { useSelector } from "react-redux";
+import { selectBrowsingMovie } from "@/Redux/continue_browsing/selectors";
+import { store } from "@/Redux/store";
+import { BrowsingMovie } from "@/Redux/continue_browsing/reducer";
 
 type Props = {
   title: string;
   type: string;
 };
-const data = {
-  title: "1. Возвращение в Простоквашино. Часть 1",
-  text: "В жизни дяди Федора произошли серьезные перемены. У него появилась маленькая сестренка – Вера Павловна. И потому мама и папа уделяют сыну совсем мало внимания. А ему, между тем, требуется поддержка родителей. Дядя Федор получает известие из Простоквашино. На ферме Матроскина завелся таинственный грызун, который вывел из строя систему электроснабжения. Холодильник перестал работать, все молоко скисло. А Шарик вместо того, чтобы охранять дом, стал модным блогером. Дядя Федор спешит на помощь.",
-  type: "detailed",
-  img: img,
-};
 
 const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
+  const movies: BrowsingMovie[] = store.getState().continueBrowsing;
+  const m = useSelector(selectBrowsingMovie);
+  console.log(m);
   const newSettings = {
     ...settings,
     centerMode: false,
-    slidesToShow: 3,
+    slidesToShow: movies.length <= 3 ? movies.length : 3,
   };
 
+  // useEffect(() => {
+  //   console.log("selector", m);
+  // }, [m]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         <h4>{title}</h4>
       </div>
       <Slider {...newSettings} className={styles.container}>
-        {[...new Array(5)].map((item, index) => (
-          <Link href="/film" key={`${item}-${index}`}>
+        {movies.map((item, index) => (
+          <Link href={`/film/${item.id}?lang=ru`} key={`${item}-${index}`}>
             <CardMovie
-              title={data.title}
+              title={item.name}
               type={type}
-              text={data.text}
-              img={data.img}
+              text={item.description}
+              img={item.poster}
             />
           </Link>
         ))}

@@ -77,7 +77,7 @@ export const Comments: FC = () => {
 
   useEffect(() => {
     //отправить основной комментарий
-    console.log(id);
+    // console.log(id);
   }, [id]);
   return (
     <div className={styles.container}>

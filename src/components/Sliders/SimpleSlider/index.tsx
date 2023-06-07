@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { Dispatch, FC, SetStateAction } from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import Poster from "@/components/Poster";
@@ -12,8 +12,10 @@ import { Loader } from "@/components/Loader";
 type Props = {
   title: string;
   films: ISimpleMovie[];
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
-const SimpleSlider: FC<Props> = ({ title, films }) => {
+const SimpleSlider: FC<Props> = ({ title, films, isLoading, setIsLoading }) => {
   const newSettings = {
     ...settings,
     slidesToShow: 7,
@@ -26,11 +28,17 @@ const SimpleSlider: FC<Props> = ({ title, films }) => {
         <div className="nbl-icon nbl-icon_arrowRight_6x16 nbl-blockHeader__nbl-icon"></div>
       </div>
       {!films ? (
-        <Loader className={styles.loading_simple} />
+        <Loader type={"loading_simple"} />
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {films?.map((item, index) => (
-            <Link href={`/film/${item.id}?lang=ru`} key={item.id}>
+            <Link
+              href={`/film/${item.id}?lang=ru`}
+              key={item.id}
+              onClick={() => {
+                setIsLoading(true);
+              }}
+            >
               <Poster film={item} />
             </Link>
           ))}

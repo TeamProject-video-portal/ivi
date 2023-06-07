@@ -6,21 +6,22 @@ import axios from "axios";
 
 export const Cartoons = ({ res }: any) => {
   const handleClick = async () => {
-    // const payload = {
-    //   username: "Анатолий Пушкин",
-    //   password: "123",
-    // };
-    // const res = await signIn("credentials", {
-    //   ...payload,
-    //   redirect: false,
-    // });
-    const res = await axios
-      .post("http://84.201.131.92:5000/api/profile-service/docs/users/login", {
-        login: "Анатолий Пушкин",
-        password: "123",
-      })
-      .then((response) => console.log(response));
-    console.log("res", res);
+    const payload = {
+      username: "Maggie",
+      password: "123",
+    };
+    const res = await signIn("credentials", {
+      ...payload,
+      redirect: false,
+    });
+    console.log(res);
+    // const res = await axios
+    //   .post("http://84.201.131.92:5000/users/login", {
+    //     email: "Maggie",
+    //     password: "123",
+    //   })
+    //   .then((response) => console.log(response));
+    // console.log("res", res);
   };
   return (
     <div>

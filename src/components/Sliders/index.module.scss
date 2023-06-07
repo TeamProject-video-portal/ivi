@@ -18,6 +18,11 @@
     width: calc(100% - 30px);
   }
 
+  .container_slider {
+    * {
+      margin: 0;
+    }
+  }
   .title {
     height: 35px;
     width: inherit;
@@ -51,4 +56,13 @@
 
 .loading_simple {
   height: 300px;
+}
+
+.loading_page {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  background-color: rgb($base-dark-blue, 0.9);
+  z-index: 101;
 }

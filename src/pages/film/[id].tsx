@@ -10,7 +10,7 @@ import { IMovie } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "./WatchOnAllDevices";
@@ -20,6 +20,7 @@ import InfoMovie from "@/components/InfoMovie";
 import { getContinueBrowsing } from "@/Redux/continue_browsing/actions";
 import { store } from "@/Redux/store";
 import { useDispatch } from "react-redux";
+import { Loader } from "@/components/Loader";
 
 const breadcrumbs: Breadcrumb[] = [
   { item: "Фильмы", path: "/movies" },
@@ -28,23 +29,31 @@ const breadcrumbs: Breadcrumb[] = [
 
 const CardId: NextPage = ({ movie }: any) => {
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const put = useDispatch();
-  put(
-    getContinueBrowsing({
-      id: movie.id,
-      poster: movie.filmPoster,
-      name: {
-        ruName: movie.filmLang[0].filmName,
-        enName: movie.filmLang[1].filmName,
-      },
-      description: movie.filmLang.filmDescription,
-    })
-  );
+
+  useEffect(() => {
+    put(
+      getContinueBrowsing({
+        id: movie.id,
+        poster: movie.filmPoster,
+        name: {
+          ruName: movie.filmLang[0].filmName,
+          enName: movie.filmLang[1].filmName,
+        },
+        description: movie.filmLang.filmDescription,
+      })
+    );
+  }, []);
+
+  console.log(store.getState());
   // console.log(store.getState());
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
+      {isLoading && <Loader type="loading_page" />}
+
       <div className={styles.wrapper}>
         <TrailerCard
           filmPicture={movie.filmPoster}
@@ -73,6 +82,8 @@ const CardId: NextPage = ({ movie }: any) => {
       <SimpleSlider
         title={t("sliders_title.watching_with_a_movie")}
         films={movie.similarFilms}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
       <SliderContinueBrowsing
         title={"Трейлеры и доп. материалы"}

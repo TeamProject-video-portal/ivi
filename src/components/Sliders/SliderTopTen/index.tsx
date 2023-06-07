@@ -42,7 +42,7 @@ const SliderTopTen = () => {
         <h4>{t("sliders_title.during_the_week")}</h4>
       </div>
       {!movies ? (
-        <Loader className={styles.loading_top_movies} />
+        <Loader type="loading_simple" />
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {(movies as ResponseTopMovieKPType[]).map((item, i) => (

@@ -13,7 +13,6 @@ export type CartProps = {
 const progress = 80;
 const CardMovie: FC<CartProps> = (props) => {
   const MainClassNames = `container_${props.type}`;
-
   return (
     <div className={styles[MainClassNames]}>
       <div className={styles.banner}>
@@ -35,12 +34,12 @@ const CardMovie: FC<CartProps> = (props) => {
       </div>
       <div className={styles.decription}>
         <h5 className={styles.title}>{props.title?.ruName}</h5>
-        {props.type === "detailed" ? (
+        {props.type === "detailed" && props.text ? (
           <div>
             <p className={styles.text}>
               {" "}
               {props.text.length > 200
-                ? props.text.slice(0, 170) + "..."
+                ? props?.text.slice(0, 170) + "..."
                 : props.text}
             </p>
             <p className={styles.text}>6 мин</p>

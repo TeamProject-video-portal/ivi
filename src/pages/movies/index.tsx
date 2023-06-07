@@ -14,7 +14,13 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
+import {
+  IMovie,
+  IPerson,
+  ISimpleMovie,
+  SearchParamsType,
+  SortType,
+} from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -39,11 +45,13 @@ import {
 import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
+import { Loader } from "@/components/Loader";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
   //console.log("router", router);
   const { t } = useTranslation();
+  const [isLoading, setIsLoading] = useState(false);
 
   const truncText = <p>{t("descriptions.movies_description_trunc")}</p>;
   const fullText = (
@@ -73,7 +81,9 @@ const Movies: NextPage = (context) => {
   } = useAppSelector(selectFilters);
   const { movies } = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
-  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+  const bestMovies = [...movies]
+    .sort((a, b) => b.filmGrade - a.filmGrade)
+    .slice(0, 15);
   const breadcrumbsBegin: Breadcrumb[] = [
     { item: "Мой Иви", path: "/" },
     {
@@ -81,7 +91,8 @@ const Movies: NextPage = (context) => {
       path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
     },
   ];
-  const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
+  const [breadcrumbs, setBreadcrumbs] =
+    useState<Breadcrumb[]>(breadcrumbsBegin);
 
   useEffect(() => {
     let row = "";
@@ -91,7 +102,9 @@ const Movies: NextPage = (context) => {
       setBreadcrumbs((state) => {
         state[2] = {
           item: row,
-          path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
+          path: `/movies?lang=${
+            router.asPath.includes("lang=en") ? "en" : "ru"
+          }`,
         };
         return state;
       });
@@ -218,7 +231,11 @@ const Movies: NextPage = (context) => {
       }
     }
 
-    router.push(`${pathname}${newSearchParams.toString() ? "?" : ""}${newSearchParams.toString()}`);
+    router.push(
+      `${pathname}${
+        newSearchParams.toString() ? "?" : ""
+      }${newSearchParams.toString()}`
+    );
   };
 
   useEffect(() => {
@@ -273,9 +290,12 @@ const Movies: NextPage = (context) => {
       <Head>
         <title>{t("filters.search_movies")}</title>
       </Head>
+      {isLoading && <Loader type="loading_page" />}
+
       <div className={styles.container}>
         <section className={styles.headerbar}>
           <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
+
           {!isFilter && (
             <>
               <h1 className={styles.title}>{t("filters.movies_online")}</h1>
@@ -310,15 +330,21 @@ const Movies: NextPage = (context) => {
       {!isFilter && (
         <section>
           <div className={styles.genresRow}>
-            <h2 className={styles.genresRow__title}>{t("contextSubMenu.genres")}</h2>
+            <h2 className={styles.genresRow__title}>
+              {t("contextSubMenu.genres")}
+            </h2>
             <GenresSlider />
           </div>
           <SimpleSlider
             title={t("sliders_title.top_movies")}
             films={bestMovies as ISimpleMovie[]}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
           />
           <div className={styles.personRow}>
-            <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
+            <h2 className={styles.personRow__title}>
+              {t("sliders_title.persons")}{" "}
+            </h2>
             <PersonsSlider />
           </div>
         </section>
@@ -329,7 +355,9 @@ const Movies: NextPage = (context) => {
             {results.length ? (
               <MovieResults />
             ) : (
-              <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
+              <div className={styles.resultsEmpty}>
+                {t("filters.not_found")}
+              </div>
             )}
           </div>
         </section>
@@ -338,34 +366,36 @@ const Movies: NextPage = (context) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  console.log("context movies", context);
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    console.log("context movies", context);
 
-  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const persons = await responsePersons.json() as IPerson[];
-  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-  // const movies = await responseMovies.json() as IMovie[];
-  // const persons = personsData.persons;
-  const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
+    // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
+    // const persons = await responsePersons.json() as IPerson[];
+    // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
+    // const movies = await responseMovies.json() as IMovie[];
+    // const persons = personsData.persons;
+    const movies = dataFilms as ISimpleMovie[];
+    const persons = personsData.persons;
 
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES,
-    payload: movies,
-  });
+    store.dispatch({
+      type: MOVIES_ACTIONS.GET_MOVIES,
+      payload: movies,
+    });
 
-  if (!persons || !movies) {
+    if (!persons || !movies) {
+      return {
+        notFound: true,
+      };
+    }
+
     return {
-      notFound: true,
+      //props: { persons, movies },
+      props: {},
+      revalidate: 10,
     };
   }
-
-  return {
-    //props: { persons, movies },
-    props: {},
-    revalidate: 10,
-  };
-});
+);
 
 export default connect((state) => state)(Movies);
 //export default Movies;

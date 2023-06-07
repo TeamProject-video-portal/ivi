@@ -5,9 +5,7 @@ import { getPersonsSaga } from "./persons-saga";
 import { watchFiltersSaga } from "./filter-saga";
 import { getDataBannerSaga } from "./banner-saga";
 import { getDataHomePageSaga } from "./home-page-saga";
-export type InferValueTypes<T> = T extends { [key: string]: infer U }
-  ? U
-  : never;
+export type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 export function* rootSaga() {
   try {
@@ -20,5 +18,7 @@ export function* rootSaga() {
       fork(getDataHomePageSaga),
       fork(watchMoviesSaga),
     ]);
-  } catch (e) {}
+  } catch (e) {
+    console.log("error in root saga", e);
+  }
 }

@@ -19,13 +19,14 @@ import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
 import dataFilms from "@/data/Search_films_v2.json";
-import { connect, useDispatch } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { wrapper } from "@/Redux/store";
 import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 import { END } from "redux-saga";
 import { selectFilters } from "@/Redux/filter/selectors";
+import { selectHomePage } from "@/Redux/homePage/selectors";
 import {
   setActorsFilter,
   setCountries,
@@ -39,6 +40,7 @@ import {
 import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
+import { selectPersons } from "@/Redux/persons/selectors";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
@@ -56,6 +58,7 @@ const Movies: NextPage = (context) => {
   );
 
   const isMounted = useRef(false);
+  const dispatch = useAppDispatch();
   const {
     isFilter,
     genres,
@@ -72,8 +75,10 @@ const Movies: NextPage = (context) => {
     results,
   } = useAppSelector(selectFilters);
   const { movies } = useAppSelector(selectMovies);
-  const dispatch = useAppDispatch();
-  const bestMovies = [...movies].sort((a, b) => b.filmGrade - a.filmGrade).slice(0, 15);
+  const { bestFilmsSet } = useAppSelector(selectHomePage);
+
+  const { popularActors } = useAppSelector(selectPersons);
+
   const breadcrumbsBegin: Breadcrumb[] = [
     { item: "Мой Иви", path: "/" },
     {
@@ -143,7 +148,7 @@ const Movies: NextPage = (context) => {
 
     if (searchParams.has("scoreMin") && searchParams.has("scoreMax")) {
       const min = Number(searchParams.get("scoreMin")) || 10000;
-      const max = Number(searchParams.get("scoreMax")) || 200000;
+      const max = Number(searchParams.get("scoreMax")) || 1000000;
       dispatch(setScore([min, max]));
     }
 
@@ -315,7 +320,7 @@ const Movies: NextPage = (context) => {
           </div>
           <SimpleSlider
             title={t("sliders_title.top_movies")}
-            films={bestMovies as ISimpleMovie[]}
+            films={bestFilmsSet as ISimpleMovie[]}
           />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
@@ -340,12 +345,6 @@ const Movies: NextPage = (context) => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
   console.log("context movies", context);
-
-  // const responsePersons = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const persons = await responsePersons.json() as IPerson[];
-  // const responseMovies = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies`);
-  // const movies = await responseMovies.json() as IMovie[];
-  // const persons = personsData.persons;
   const movies = dataFilms as ISimpleMovie[];
   const persons = personsData.persons;
 

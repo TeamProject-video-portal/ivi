@@ -10,7 +10,7 @@ type Props = {
 
 const Filmography: FC<Props> = ({ person }) => {
   const { t } = useTranslation();
-  const filmographyArray = person.films;
+  const filmographyArray = person.films || [];
 
   return (
     <div className={styles.filmography}>
@@ -19,7 +19,7 @@ const Filmography: FC<Props> = ({ person }) => {
           {t("person.filmography")}
         </h2>
         <div className={styles.count}>
-          {person.films.length} {t("person.count_movies")}
+          {person.films?.length || 0} {t("person.count_movies")}
         </div>
       </div>
       <div className={styles.filmographyContent}>

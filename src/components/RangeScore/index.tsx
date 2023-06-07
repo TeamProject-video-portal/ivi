@@ -7,7 +7,7 @@ import { setScore } from "../../Redux/filter/actions";
 
 const STEP = 1000;
 const MIN = 0;
-const MAX = 200000;
+const MAX = 1000000;
 
 const ThumbLabel = ({
   rangeRef,

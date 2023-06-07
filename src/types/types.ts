@@ -157,8 +157,8 @@ export type MoviesForFilmsPageT = {
   bestFilmsSet: ISimpleMovie[];
   actors: PersonForSearchType[];
   directors: PersonForSearchType[];
-  genresRu: any;
-  genresRuEn: any;
-  countriesRu: any;
-  countriesEn: any;
+  genresRu: GenresType[];
+  genresEn: GenresType[];
+  countriesRu: CountriesType[];
+  countriesEn: CountriesType[];
 };

@@ -181,39 +181,7 @@
         }
       ]
     },
-    {
-      "id": 43284,
-      "personLink": "https://api.kinopoisk.dev/v1/person/43284",
-      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
-      "personLang": [
-        {
-          "lang": "ru",
-          "personName": "Оскар Айзек",
-          "career": "Актер,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
-        },
-        {
-          "lang": "en",
-          "personName": "Oscar Isaac",
-          "career": null,
-          "birthPlace": null
-        }
-      ],
-      "films": [
-        {
-          "id": 1009253,
-          "name": "Фрэнсис и Крестный отец"
-        },
-        {
-          "id": 591746,
-          "name": "Инерция"
-        },
-        {
-          "id": 464475,
-          "name": "Франкенштейн"
-        }
-      ]
-    },
+
     {
       "id": 117,
       "personLink": "https://www.kinopoisk.ru//name/37859/",
@@ -269,39 +237,6 @@
         {
           "id": 276762,
           "name": "Гарри Поттер и Дары Смерти: Часть I"
-        }
-      ]
-    },
-    {
-      "id": 43284,
-      "personLink": "https://api.kinopoisk.dev/v1/person/43284",
-      "personPicture": "https://avatars.mds.yandex.net/get-kinopoisk-image/1777765/731110c9-9d9b-405c-bbf8-ef89fa0dbf51/orig",
-      "personLang": [
-        {
-          "lang": "ru",
-          "personName": "Оскар Айзек",
-          "career": "Актер,  Продюсер",
-          "birthPlace": "Голливуд, Лос-Анджелес, Калифорния, США"
-        },
-        {
-          "lang": "en",
-          "personName": "Christian Bale",
-          "career": null,
-          "birthPlace": null
-        }
-      ],
-      "films": [
-        {
-          "id": 1009253,
-          "name": "Фрэнсис и Крестный отец"
-        },
-        {
-          "id": 591746,
-          "name": "Инерция"
-        },
-        {
-          "id": 464475,
-          "name": "Франкенштейн"
         }
       ]
     }

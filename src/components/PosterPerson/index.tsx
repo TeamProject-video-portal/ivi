@@ -15,18 +15,24 @@ const PosterPerson: FC<PosterPersonProps> = ({ person, lang }) => {
 
   if (lang === "ru") {
     personNameLang =
-      person.person.personLang[0].personName || person.person.personLang[1].personName || "";
+      person.person.personLang[0].personName ||
+      person.person.personLang[1].personName ||
+      "";
   } else {
     personNameLang =
-      person.person.personLang[1].personName || person.person.personLang[0].personName || "";
+      person.person.personLang[1].personName ||
+      person.person.personLang[0].personName ||
+      "";
   }
 
   const name = personNameLang.match(/.*\s/i) || personNameLang;
   const surname = personNameLang.slice(name[0]?.length) || "";
 
   return (
-
-    <Link href={`/person/${person.person.id}?lang=${lang}`} className={styles.container}>
+    <Link
+      href={`/person/${person.person.id}?lang=${lang}`}
+      className={styles.container}
+    >
       <div className={styles.poster}>
         <Image
           src={person.person.personPicture}

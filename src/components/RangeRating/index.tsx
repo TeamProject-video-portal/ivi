@@ -2,7 +2,7 @@ import { FC, useState, useRef, ReactNode, useEffect } from "react";
 import styles from "./index.module.scss";
 import { Range, getTrackBackground, useThumbOverlap } from "react-range";
 import { useLanguageQuery, useTranslation } from "next-export-i18n";
-import { useAppDispatch } from "../../hooks/hooks";
+import { useDispatch } from "react-redux";
 import { setRating } from "../../Redux/filter/actions";
 
 const STEP = 0.1;
@@ -53,7 +53,7 @@ const RangeRating: FC<RangeRatingProps> = ({ rtl, ratingMin, ratingMax }) => {
   const [finalValues, setFinalValues] = useState([ratingMin, ratingMax]);
   const isMounted = useRef(false);
 
-  const dispatch = useAppDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isMounted.current) {

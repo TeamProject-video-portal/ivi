@@ -1,24 +1,24 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { RiUser4Line } from "react-icons/ri";
-import { IPerson } from "@/types/types";
+import { PersonForSearchType } from "@/types/types";
 import { useAppDispatch } from "@/hooks/hooks";
 import { setActorsFilter, setDirectorsFilter } from "@/Redux/filter/actions";
 
 type Props = {
   className?: string;
   placeholder?: string;
-  results: IPerson[];
+  results: PersonForSearchType[] | [];
   type: string;
 };
 
-const SearchResults: FC<Props> = ({ className, placeholder, results, type }) => {
+const SearchResults: FC<Props> = ({ className, placeholder, results, type }): any => {
   const dispatch = useAppDispatch();
 
-  const onClickHandler = (item: string) => {
-    if (type === "actors") {
+  const onClickHandler = (item: any) => {
+    if (type === "actors" && item) {
       dispatch(setActorsFilter(item));
-    } else {
+    } else if (item) {
       dispatch(setDirectorsFilter(item));
     }
   };
@@ -33,7 +33,7 @@ const SearchResults: FC<Props> = ({ className, placeholder, results, type }) => 
         >
           <div className={`nbl-icon nbl-icon_person_20 ${styles.icon}`}></div>
           <div>
-            <div className={styles.item}>{item.personLang[0].personName}</div>
+            <div className={styles.item}>{item.personLang[0].personName || ""}</div>
             <div className={styles.label}>{placeholder}</div>
           </div>
         </li>

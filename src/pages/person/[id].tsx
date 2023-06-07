@@ -11,8 +11,9 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
-import { GetStaticProps, GetStaticPaths, NextPage } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage, GetServerSideProps } from "next";
 import personsData from "@/data/persons.json";
+import axios from "axios";
 
 type Props = {
   person: IPerson;
@@ -24,7 +25,7 @@ const Person: NextPage<Props> = ({ person }) => {
 
   const breadcrumbs: Breadcrumb[] = [
     {
-      item: `${person.films.length} ${t("person.count_movies")}`,
+      item: `${person.films?.length || 0} ${t("person.count_movies")}`,
       path: "#filmography",
     },
     { item: `${t("person.biography")}`, path: "#" },
@@ -81,13 +82,16 @@ const Person: NextPage<Props> = ({ person }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.params?.id || 0;
-  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person/${id}`);
-  // const person = await response.json() as IPerson;
+  const lang = context.params?.lang || "ru";
+  //84.201.131.92:5002/persons/4?lang=ru
 
-  const data = personsData.persons as IPerson[];
-  const person = data.find((item) => String(item.id) == id);
+  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
+  const person = response.data as IPerson;
+
+  // const data = personsData.persons as IPerson[];
+  // const person = data.find((item) => String(item.id) == id);
 
   if (!person) {
     return {
@@ -97,23 +101,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: { person },
-    revalidate: 10,
-  };
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/person`);
-  // const data = await response.json() as IPerson[];
-
-  const data = personsData.persons as IPerson[];
-
-  const paths = data.map((item) => ({
-    params: { id: item.id.toString(), lang: "ru" },
-  }));
-
-  return {
-    paths,
-    fallback: "blocking",
   };
 };
 

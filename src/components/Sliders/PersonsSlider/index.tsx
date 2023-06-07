@@ -9,7 +9,9 @@ import { settings } from "./../settings";
 import { IPerson } from "@/types/types";
 import PosterPerson from "@/components/PosterPerson";
 import { useAppSelector } from "@/hooks/hooks";
-import { selectPersons } from "@/Redux/persons/selectors";
+import { Loader } from "@/components/Loader";
+import { useRouter } from "next/router";
+import { selectMovies } from "@/Redux/movies/selectors";
 
 const PersonsSlider: FC = () => {
   const newSettings = {
@@ -18,16 +20,21 @@ const PersonsSlider: FC = () => {
     slidesToShow: 7,
   };
 
-  const { actors } = useAppSelector(selectPersons);
-  const persons = actors.slice(0, 8);
+  const { popularActors } = useAppSelector(selectMovies);
+  const router = useRouter();
+  const lang = router.asPath.includes("lang=en") ? "en" : "ru";
 
   return (
     <div>
-      <Slider {...newSettings} className={styles.container}>
-        {persons.map((item, i) => (
-          <PosterPerson key={i} person={item} />
-        ))}
-      </Slider>
+      {!popularActors ? (
+        <Loader className={styles.loading_simple} />
+      ) : (
+        <Slider {...newSettings} className={styles.container}>
+          {popularActors.map((item, i) => (
+            <PosterPerson key={i} person={item} lang={lang} />
+          ))}
+        </Slider>
+      )}
     </div>
   );
 };

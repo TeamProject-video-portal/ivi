@@ -51,7 +51,7 @@ export interface IMovie extends ISimpleMovie {
 
 export type PersonLangType = {
   lang: "ru" | "en";
-  personName: string;
+  personName: string | null;
   career?: string | null;
   birthPlace?: string | null;
 };
@@ -65,15 +65,25 @@ export type PersonFilmsType = {
 };
 export interface IPerson {
   id: number;
-  personLink: string;
+  personLink?: string;
   personPicture: string;
   personGender?: string;
   personLang: PersonLangType[];
   height?: number;
   age?: number;
   birthDate?: string;
-  films: PersonFilmsType[];
+  films?: PersonFilmsType[];
 }
+
+export type PersonForSliderType = {
+  filmsNumber: number;
+  person: IPerson;
+};
+
+export type PersonForSearchType = {
+  id: number;
+  personLang: PersonLangType[];
+};
 
 export type ResponseError = {
   message: string;
@@ -140,4 +150,15 @@ export type MoviesForSlidersOnHomePageT = {
   bestFantasyFilmsSet: ISimpleMovie[];
   bestFilmsSet: ISimpleMovie[];
   familyFriendlyComediesSet: ISimpleMovie[];
+};
+
+export type MoviesForFilmsPageT = {
+  popularActors: PersonForSliderType[];
+  bestFilmsSet: ISimpleMovie[];
+  actors: PersonForSearchType[];
+  directors: PersonForSearchType[];
+  genresRu: GenresType[];
+  genresEn: GenresType[];
+  countriesRu: CountriesType[];
+  countriesEn: CountriesType[];
 };

@@ -1,4 +1,4 @@
-import { IPerson } from "@/types/types";
+import { IPerson, PersonForSliderType } from "@/types/types";
 import { PERSONS_ACTIONS } from "./action-types";
 
 export const getActors = (actors: IPerson[]) => {
@@ -12,6 +12,13 @@ export const getDirectors = (directors: IPerson[]) => {
   return {
     type: PERSONS_ACTIONS.GET_DIRECTORS,
     payload: directors,
+  };
+};
+
+export const getPopularActors = (actors: PersonForSliderType[]) => {
+  return {
+    type: PERSONS_ACTIONS.GET_POPULAR_ACTORS,
+    payload: actors,
   };
 };
 

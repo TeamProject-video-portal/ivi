@@ -26,7 +26,7 @@ const FiltersTitleRow: FC = () => {
 
     row += ` / Рейтинг: от ${filters.ratingMin} до ${filters.ratingMax}`;
     row += ` / Количество оценок: от ${filters.scoreMin}`;
-    if (filters.scoreMax < 200000) {
+    if (filters.scoreMax < 1000000) {
       row += ` до ${filters.scoreMax}`;
     }
 

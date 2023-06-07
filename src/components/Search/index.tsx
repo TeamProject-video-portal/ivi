@@ -20,12 +20,14 @@ const Search: FC<Props> = ({ className, placeholder, type }) => {
   const persons = type == "actors" ? actors : directors;
 
   useEffect(() => {
-    if (searchValue.trim()) {
-      setResults((state) =>
-        persons.filter((item) =>
-          item.personLang[0].personName.toLowerCase().includes(searchValue.toLowerCase()),
-        ),
-      );
+    console.log("personssearch", persons);
+    const findPersons = persons.filter(
+      (item) =>
+        item.personLang[0].personName &&
+        item.personLang[0].personName.toLowerCase().includes(searchValue.toLowerCase()),
+    );
+    if (searchValue.trim() && findPersons.length) {
+      setResults((state) => findPersons);
     } else {
       setResults([]);
     }

@@ -4,16 +4,15 @@ import PropTypes from "prop-types";
 import Image, { StaticImageData } from "next/image";
 
 export type CartProps = {
-  title: string;
+  title: { ruName: string; enName: string };
   text: string;
   type: string;
-  img: StaticImageData;
+  img: string;
 };
 
 const progress = 80;
 const CardMovie: FC<CartProps> = (props) => {
   const MainClassNames = `container_${props.type}`;
-
   return (
     <div className={styles[MainClassNames]}>
       <div className={styles.banner}>
@@ -34,20 +33,20 @@ const CardMovie: FC<CartProps> = (props) => {
         )}
       </div>
       <div className={styles.decription}>
-        <h5 className={styles.title}>{props.title}</h5>
-        {props.type === "detailed" ? (
-          <div className={styles.text}>
+        <h5 className={styles.title}>{props.title?.ruName}</h5>
+        {props.type === "detailed" && props.text ? (
+          <div>
             <p className={styles.text}>
               {" "}
               {props.text.length > 200
-                ? props.text.slice(0, 170) + "..."
+                ? props?.text.slice(0, 170) + "..."
                 : props.text}
             </p>
             <p className={styles.text}>6 мин</p>
           </div>
         ) : (
           <div>
-            <p className={styles.text}>Сезон 1, Серия 1</p>
+            <p className={styles.text}>{props.text}</p>
           </div>
         )}
       </div>

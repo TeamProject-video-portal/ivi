@@ -50,15 +50,17 @@ const dataComments: dataCommentsT = [
 ];
 
 export const Comments: FC = () => {
-  const [newComment, setNewComment] = useState("");
+  const [newComment, setNewComment] = useState<string>("");
   const [idComment, setIdComment] = useState<dataCommentsT[]>();
   const [isClickCommentButton, setIsClickCommentButton] = useState(false);
   let now = dayjs().format("DD MMMM YYYY");
-  const [data, setData] = useState(dataComments);
+  // const [data, setData] = useState(dataComments);
+  const [data, setData] = useState<dataCommentsT>([]);
   const { t } = useTranslation();
+  const [id, setId] = useState<number>();
 
   useEffect(() => {
-    if (newComment.trim() !== "") {
+    if (newComment && newComment.trim() !== "") {
       setData([
         ...data,
         {
@@ -70,8 +72,13 @@ export const Comments: FC = () => {
         },
       ]);
     }
+    setId(data.length + 1);
   }, [newComment]);
 
+  useEffect(() => {
+    //отправить основной комментарий
+    // console.log(id);
+  }, [id]);
   return (
     <div className={styles.container}>
       <h2>{t("sliders_title.reviews")}</h2>

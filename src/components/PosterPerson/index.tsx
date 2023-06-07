@@ -25,6 +25,7 @@ const PosterPerson: FC<PosterPersonProps> = ({ person, lang }) => {
   const surname = personNameLang.slice(name[0]?.length) || "";
 
   return (
+
     <Link href={`/person/${person.person.id}?lang=${lang}`} className={styles.container}>
       <div className={styles.poster}>
         <Image
@@ -39,6 +40,7 @@ const PosterPerson: FC<PosterPersonProps> = ({ person, lang }) => {
       <div className={styles.description}>
         <div className={styles.name}>{name}</div>
         <div className={styles.surname}>{surname}</div>
+
         <div className={styles.countFilms}>{person.filmsNumber} фильма(ов)</div>
       </div>
     </Link>

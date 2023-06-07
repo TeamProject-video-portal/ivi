@@ -27,7 +27,7 @@ const Banner: FC<Props> = ({ movies }) => {
           key={`${item}-${index}`}
           className={styles.slide}
           onClick={() => {
-            console.log(item.id);
+            // console.log(item.id);
           }}
         >
           <iframe
@@ -42,7 +42,7 @@ const Banner: FC<Props> = ({ movies }) => {
           <div
             className={styles.bg}
             onClick={() => {
-              console.log(item.id);
+              // console.log(item.id);
             }}
           ></div>
           <div className={styles.logo}>

@@ -36,6 +36,8 @@ export const PrevComments: FC<Props> = ({ dataComments, setData }) => {
   //поиск выбранного комментария
   const filterItems = (data: commentsT[], idComment: string) => {
     return data?.reduce((acc: commentsT[], item: commentsT) => {
+      //оправить дочерний комментарий
+      // console.log(idComment);
       if (item.id === idComment) {
         item.children.push({
           id: `${item?.id}.${item?.children?.length + 1}`,

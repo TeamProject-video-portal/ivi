@@ -46,7 +46,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   //авторизация пользователя
   const authorization = async () => {
     const payload = {
-      username: `${dataUser.login}`,
+      email: `${dataUser.login}`,
       password: `${dataUser.password}`,
     };
     const res = await signIn("credentials", {
@@ -58,15 +58,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
 
   const registration = () => {
     setIsNewAccout(true);
-  };
-
-  const googleInputHandler = () => {
-    setOpenModal(false);
-    signIn("google");
-  };
-
-  const vkInputHandler = () => {
-    setOpenModal(false);
   };
 
   useEffect(() => {

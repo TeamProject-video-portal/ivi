@@ -129,10 +129,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
 export const getStaticPaths = async () => {
   const locales = ["ru", "en"];
-  // const movieResponse = await axios.get(
-  //   `http://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`
-  // );
-  // const movie = movieResponse.data as IMovie;
+
   const paths = locales.flatMap((locale) => {
     return [Array(1)].map((movie) => ({
       params: { id: moviesData.id.toString(), lang: locale },

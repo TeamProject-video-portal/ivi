@@ -18,7 +18,7 @@ import { Loader } from "@/components/Loader";
 const SliderTopTen = () => {
   const { t } = useTranslation();
   const movies = useSelector((store: RootState) => store.topMovies.data);
-  console.log(movies);
+
   const router = useRouter();
   const newSettings = {
     ...settings,

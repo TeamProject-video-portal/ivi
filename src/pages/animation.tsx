@@ -15,11 +15,19 @@ export const Cartoons = ({ res }: any) => {
       redirect: false,
     });
     console.log(res);
+    // const https = require("https");
+    // const agent = new https.Agent({
+    //   rejectUnauthorized: false,
+    // });
     // const res = await axios
-    //   .post("http://84.201.131.92:5000/users/login", {
-    //     email: "Maggie",
-    //     password: "123",
-    //   })
+    //   .post(
+    //     "http://84.201.131.92:5000/users/login",
+    //     {
+    //       email: "Maggie",
+    //       password: "123",
+    //     },
+    //     { httpsAgent: agent }
+    //   )
     //   .then((response) => console.log(response));
     // console.log("res", res);
   };

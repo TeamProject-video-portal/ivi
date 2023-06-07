@@ -24,7 +24,7 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
       setLocale("ru");
     }
   }, [router]);
-
+  console.log(film);
   return (
     <div className={styles.wrapper}>
       <div
@@ -40,7 +40,14 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
             fill
             sizes="100%"
           ></Image>
-          {isOpen && <Info />}
+          {isOpen && (
+            <Info
+              raiting={film.filmGrade}
+              filmYear={film.filmYear}
+              country={film.countries}
+              genres={film.genres}
+            />
+          )}
         </div>
         <div className={styles.description}>
           <span className={styles.name}>

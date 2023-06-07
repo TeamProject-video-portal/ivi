@@ -1,14 +1,14 @@
 import { FC } from "react";
 import styles from "./index.module.scss";
 import { RiUser4Line } from "react-icons/ri";
-import { IPerson } from "@/types/types";
+import { PersonForSearchType } from "@/types/types";
 import { useAppDispatch } from "@/hooks/hooks";
 import { setActorsFilter, setDirectorsFilter } from "@/Redux/filter/actions";
 
 type Props = {
   className?: string;
   placeholder?: string;
-  results: IPerson[] | [];
+  results: PersonForSearchType[] | [];
   type: string;
 };
 

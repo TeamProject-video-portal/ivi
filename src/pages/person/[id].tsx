@@ -87,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const lang = context.params?.lang || "ru";
   //84.201.131.92:5002/persons/4?lang=ru
 
-  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=ru`);
+  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
   const person = response.data as IPerson;
 
   // const data = personsData.persons as IPerson[];

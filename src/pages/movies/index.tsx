@@ -40,7 +40,6 @@ import {
 import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
-import { selectPersons } from "@/Redux/persons/selectors";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
@@ -75,9 +74,7 @@ const Movies: NextPage = (context) => {
     results,
   } = useAppSelector(selectFilters);
   const { movies } = useAppSelector(selectMovies);
-  const { bestFilmsSet } = useAppSelector(selectHomePage);
-
-  const { popularActors } = useAppSelector(selectPersons);
+  const { bestFilmsSet } = useAppSelector(selectMovies);
 
   const breadcrumbsBegin: Breadcrumb[] = [
     { item: "Мой Иви", path: "/" },

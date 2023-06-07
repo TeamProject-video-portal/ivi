@@ -1,10 +1,17 @@
-import { IMovie } from "@/types/types";
+import { IMovie, MoviesForFilmsPageT } from "@/types/types";
 import { MOVIES_ACTIONS } from "./action-types";
 
 export const getMovies = (movies: IMovie[]) => {
   return {
     type: MOVIES_ACTIONS.GET_MOVIES,
     payload: movies,
+  };
+};
+
+export const getMoviesData = (data: MoviesForFilmsPageT) => {
+  return {
+    type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+    payload: data,
   };
 };
 

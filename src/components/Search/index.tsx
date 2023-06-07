@@ -3,8 +3,8 @@ import styles from "./index.module.scss";
 import SearchInput from "./SearchInput";
 import SearchResults from "./SearchResults";
 import { useAppSelector } from "@/hooks/hooks";
-import { selectPersons } from "@/Redux/persons/selectors";
-import { IPerson } from "@/types/types";
+import { IPerson, PersonForSearchType } from "@/types/types";
+import { selectMovies } from "@/Redux/movies/selectors";
 
 type Props = {
   className?: string;
@@ -14,18 +14,18 @@ type Props = {
 
 const Search: FC<Props> = ({ className, placeholder, type }) => {
   const [searchValue, setSearchValue] = useState("");
-  const [results, setResults] = useState<IPerson[]>([]);
+  const [results, setResults] = useState<PersonForSearchType[]>([]);
 
-  const { actors, directors } = useAppSelector(selectPersons);
+  const { actors, directors } = useAppSelector(selectMovies);
   const persons = type == "actors" ? actors : directors;
 
   useEffect(() => {
-    console.log("personssearch", persons);
     const findPersons = persons.filter(
       (item) =>
         item.personLang[0].personName &&
         item.personLang[0].personName.toLowerCase().includes(searchValue.toLowerCase()),
     );
+
     if (searchValue.trim() && findPersons.length) {
       setResults((state) => findPersons);
     } else {

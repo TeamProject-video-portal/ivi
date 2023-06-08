@@ -11,31 +11,41 @@ import { TiPencil } from "react-icons/ti";
 import { GiSave } from "react-icons/gi";
 import { Button } from "@/components/Button/Button";
 import { editGenresAction } from "@/Redux/movies/actions";
+import { GenresType } from "@/types/types";
+import { useRouter } from "next/router";
 
 const GenresDropdown: FC = () => {
-  const { genres } = useAppSelector(selectMovies);
-  const genresCopy = [...genres];
+  const router = useRouter();
+  const lang = router.asPath.includes("lang=en") ? "en" : "ru";
+
+  const { genresRu, genresEn } = useAppSelector(selectMovies);
+  const genres = lang === "en" ? genresEn : genresRu;
+  const genresCopy = JSON.parse(JSON.stringify(genres));
   const { genres: genresFilter } = useAppSelector(selectFilters);
+
   // связать с правами пользователя
   const [adminMode, setAdminMode] = useState(true);
   const [editMode, setEditMode] = useState(false);
-  const [editGenres, setEditGenres] = useState<string[]>([]);
+  const [editGenres, setEditGenres] = useState<GenresType[]>(genresCopy);
   const dispatch = useAppDispatch();
 
   const toEditMode = (): void => {
     setEditMode(true);
-    setEditGenres((state) => genresCopy);
   };
 
   const saveGenres = (): void => {
     setEditMode(false);
+    setEditGenres(genresCopy);
     // внести изменения в БД
-    dispatch(editGenresAction(editGenres));
+    //dispatch(editGenresAction(editGenres));
   };
 
-  const editItemHandler = (index: number, value: string): void => {
+  const editItemHandler = (id: number, value: string): void => {
     setEditGenres((state) => {
-      state[index] = value;
+      const find = state.find((item) => item.id === id);
+      if (find) {
+        find.name = value;
+      }
       return state;
     });
   };
@@ -66,11 +76,11 @@ const GenresDropdown: FC = () => {
             {editGenres.length &&
               editGenres.map((item, index) => (
                 <ListItem
-                  item={item}
-                  key={`${index}_${item}`}
+                  item={item.name}
+                  key={`${item.id}`}
                   icon={BsCheckLg}
                   editItem={(value) => {
-                    editItemHandler(index, value);
+                    editItemHandler(item.id, value);
                   }}
                   editMode={editMode}
                 />
@@ -80,11 +90,11 @@ const GenresDropdown: FC = () => {
           <ul className={styles.list} key={1}>
             {genres.map((item, index) => (
               <ListItem
-                item={item}
-                key={`${index}_${item}`}
+                item={item.name}
+                key={`${item.id}`}
                 icon={BsCheckLg}
-                onClick={() => dispatch(setGenres(item))}
-                activeFilter={genresFilter.includes(item)}
+                onClick={() => dispatch(setGenres(item.name))}
+                activeFilter={genresFilter.includes(item.name)}
               />
             ))}
           </ul>

@@ -8,6 +8,7 @@ import styles from "./index.module.scss";
 import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { setCountries } from "@/Redux/filter/actions";
+import { useRouter } from "next/router";
 
 const PrevButton: FC = (props: any) => {
   return (
@@ -42,14 +43,21 @@ const CountriesSlider: FC = () => {
     nextArrow: <NextButton />,
   };
 
-  const { countries } = useAppSelector(selectMovies);
+  const { countriesRu, countriesEn } = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const lang = router.asPath.includes("lang=en") ? "en" : "ru";
+  const countries = lang === "en" ? countriesEn : countriesRu;
 
   return (
     <Slider {...settings} className={styles.container}>
       {countries.map((item, i) => (
-        <Button className={styles.slide} key={item} onClick={() => dispatch(setCountries(item))}>
-          {item}
+        <Button
+          className={styles.slide}
+          key={item.id}
+          onClick={() => dispatch(setCountries(item.name))}
+        >
+          {item.name}
         </Button>
       ))}
     </Slider>

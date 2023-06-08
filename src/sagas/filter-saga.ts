@@ -19,6 +19,7 @@ export function* filterMoviesSaga() {
   console.log("start saga filter genres countries");
   const { genres, countries } = yield select((state) => state.filters);
   const body = { genres: genres, countries: countries };
+  console.log("body", body);
 
   try {
     const response: IMovie[] = yield call(filterApi, body);

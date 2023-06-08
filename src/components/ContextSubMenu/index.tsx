@@ -31,10 +31,8 @@ export const ContextSubMenu: FC<ContextSubProps> = ({ children, className, title
           <h3>{t("contextSubMenu.genres")}</h3>
           <ul>
             {genres.map((item, index) => (
-              <li key={`${item.length}-${index}`} onClick={() => dispatch(setGenres(item))}>
-                <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                  {item}
-                </Link>
+              <li key={item.id} onClick={() => dispatch(setGenres(item.name))}>
+                <Link href={`/movies?lang=${lang}`}>{item.name}</Link>
               </li>
             ))}
           </ul>
@@ -43,42 +41,28 @@ export const ContextSubMenu: FC<ContextSubProps> = ({ children, className, title
           <h3>{t("contextSubMenu.countries")}</h3>
           <ul>
             <li key={0} onClick={() => dispatch(setCountries("Россия"))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Русские
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Русские</Link>
             </li>
             <li key={1} onClick={() => dispatch(setCountries("США"))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Американские
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Американские</Link>
             </li>
             <li key={2} onClick={() => dispatch(setCountries("СССР"))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Советские
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Советские</Link>
             </li>
           </ul>
           <h3>{t("contextSubMenu.years")}</h3>
           <ul>
             <li key={0} onClick={() => dispatch(setYears([2023, 2023]))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Фильмы 2023 года
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Фильмы 2023 года</Link>
             </li>
             <li key={1} onClick={() => dispatch(setYears([2022, 2022]))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Фильмы 2022 года
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Фильмы 2022 года</Link>
             </li>
             <li key={2} onClick={() => dispatch(setYears([2021, 2021]))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Фильмы 2021 года
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Фильмы 2021 года</Link>
             </li>
             <li key={3} onClick={() => dispatch(setYears([2020, 2020]))}>
-              <Link href={`/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}>
-                Фильмы 2020 года
-              </Link>
+              <Link href={`/movies?lang=${lang}`}>Фильмы 2020 года</Link>
             </li>
           </ul>
         </div>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
@@ -11,7 +12,7 @@ export default NextAuth({
     CredentialsProvider({
       name: "credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        email: { label: "Username", type: "text", placeholder: "jsmith" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
@@ -21,35 +22,44 @@ export default NextAuth({
         //   password: "jsmith@example.com",
         //   role: "admin",
         // };
-        if (credentials?.username === "Maggie") {
-          const user = {
-            id: "1",
-            name: "Maggie",
-            password: "123",
-            role: "admin",
-          };
+        //   const https = require("https");
+        //   const agent = new https.Agent({
+        //     rejectUnauthorized: false,
+        //   });
+        //   const user = await axios.post(
+        //     "http://84.201.131.92:5000/users/login",
+        //     {
+        //       email: `${credentials?.email}`,
+        //       password: `${credentials?.password}`,
+        //     },
+        //     { httpsAgent: agent }
+        //   );
+        //   // const user = await res.json();
+        //   if (user) {
+        //     return user;
+        //   } else {
+        //     return null;
+        //   }
+        // },
+
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: credentials?.email,
+            password: credentials?.password,
+          }),
+        });
+        const user = await res.json();
+
+        if (user) {
           return user;
-        } else return null;
+        } else {
+          return null;
+        }
       },
-
-      // const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     email: credentials?.email,
-      //     password: credentials?.password,
-      //   }),
-      // });
-      // const user = await res.json();
-
-      // if (user) {
-      //   return user;
-      // } else {
-      //   return null;
-      // }
-      // },
     }),
   ],
   callbacks: {

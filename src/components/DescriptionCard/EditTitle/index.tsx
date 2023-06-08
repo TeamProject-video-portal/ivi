@@ -21,7 +21,7 @@ export const EditTitle: FC<Props> = ({ title }) => {
 
   const handleEditClick = () => {
     setEditMode(true);
-    console.log(currentTitle);
+    // console.log(currentTitle);
   };
 
   const handleSaveClick = () => {

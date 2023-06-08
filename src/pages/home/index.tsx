@@ -3,9 +3,7 @@ import { Inter } from "next/font/google";
 import Banner from "@/components/Banner";
 import { useTranslation } from "next-export-i18n";
 import { FC, useEffect, useState } from "react";
-import SliderTopTen from "@/components/Sliders/SliderTopTen";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
-import dataFilms from "@/data/Search_films_v2.json";
 import main_banner from "@/data/Main_banner.json";
 import { ISimpleMovie, MoviesForSlidersOnHomePageT } from "@/types/types";
 import { connect, useDispatch, useSelector } from "react-redux";
@@ -13,7 +11,9 @@ import { wrapper } from "@/Redux/store";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { selectBanner } from "@/Redux/banner/selectors";
 import { RootState } from "@/Redux/RootState";
-
+import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
+import { Loader } from "@/components/Loader";
+import styles from "./Home.module.scss";
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
   startMovies: any;
@@ -27,7 +27,8 @@ const Home: FC<Props> = (context: any) => {
   const moviesForSliders: MoviesForSlidersOnHomePageT = useSelector(
     (store: RootState) => store.homePage
   );
-  console.log(moviesForSliders);
+  const [isLoading, setIsLoading] = useState(false);
+
   return (
     <>
       <Head>
@@ -38,26 +39,32 @@ const Home: FC<Props> = (context: any) => {
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
       <Banner movies={dataBanner.data} />
-      {/* <SliderContinueBrowsing
+      <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
-      /> */}
+      />
 
-      <SliderTopTen />
-
+      {/* <SliderTopTen /> */}
+      {isLoading && <Loader type="loading_page" />}
       <SimpleSlider
         title={t("sliders_title.best_films")}
         films={moviesForSliders.bestFilmsSet as ISimpleMovie[]}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
 
       <SimpleSlider
         title={t("sliders_title.family_comedies")}
         films={moviesForSliders.familyFriendlyComediesSet as ISimpleMovie[]}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
 
       <SimpleSlider
         title={t("sliders_title.best_fantasy_films")}
         films={moviesForSliders.bestFantasyFilmsSet as ISimpleMovie[]}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
     </>
   );

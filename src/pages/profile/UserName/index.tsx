@@ -24,7 +24,6 @@ const UserName: FC<Props> = (props) => {
 
   const handleEditClick = () => {
     setEditMode(true);
-    console.log(currentTitle);
   };
 
   const handleSaveClick = () => {

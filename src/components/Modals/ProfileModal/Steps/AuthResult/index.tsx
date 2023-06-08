@@ -22,7 +22,7 @@ const AuthResult: FC<Props> = (props) => {
   };
 
   useEffect(() => {
-    console.log(props.result);
+    // console.log(props.result);
     if (props.result?.ok) {
       setTitle("Вы успешно авторизованы");
     } else if (!props.result?.ok && props.isNewAccout) {

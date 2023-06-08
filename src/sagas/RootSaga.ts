@@ -11,7 +11,7 @@ export function* rootSaga() {
   try {
     yield all([
       fork(getDataBannerSaga),
-      fork(getDataTopMoviesSaga),
+      // fork(getDataTopMoviesSaga),
       fork(getMoviesSaga),
       fork(watchFiltersSaga),
       fork(getDataHomePageSaga),

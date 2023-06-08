@@ -1,12 +1,26 @@
+import { CountriesType, GenresType } from "@/types/types";
 import { FC, useState } from "react";
 import Icons from "./Icons";
 import styles from "./index.module.scss";
 import Rating from "./Rating";
-const Info: FC = () => {
+
+type Props = {
+  raiting: number;
+  filmYear: number;
+  country: CountriesType[];
+  genres: GenresType[];
+};
+const Info: FC<Props> = ({ raiting, filmYear, country, genres }) => {
+  console.log("raiting", raiting);
   return (
     <div className={styles.container}>
       <Icons />
-      <Rating />
+      <Rating
+        raiting={raiting}
+        filmYear={filmYear}
+        country={country}
+        genres={genres}
+      />
     </div>
   );
 };

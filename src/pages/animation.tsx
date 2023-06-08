@@ -1,23 +1,42 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { selectMovie } from "@/Redux/movie/selectors";
+import { Comments } from "@/components/Comments";
+import { signIn } from "next-auth/react";
+import axios from "axios";
 
 export const Cartoons = ({ res }: any) => {
-  // const { data: session, status } = useSession();
-  // console.log(session);
-  // const router = useRouter();
-  const movie = useSelector(selectMovie);
-  const put = useDispatch();
   const handleClick = async () => {
-    // const res = await getMovieWorker(435, "ru");
-    // console.log(res);
-    // put(getDataMovieSuccess(res));
-    // console.log(store.getState());
+    const payload = {
+      username: "Maggie",
+      password: "123",
+    };
+    const res = await signIn("credentials", {
+      ...payload,
+      redirect: false,
+    });
+    console.log(res);
+    // const https = require("https");
+    // const agent = new https.Agent({
+    //   rejectUnauthorized: false,
+    // });
+    // const res = await axios
+    //   .post(
+    //     "http://84.201.131.92:5000/users/login",
+    //     {
+    //       email: "Maggie",
+    //       password: "123",
+    //     },
+    //     { httpsAgent: agent }
+    //   )
+    //   .then((response) => console.log(response));
+    // console.log("res", res);
   };
-  useEffect(() => {
-    console.log(movie);
-  }, [movie]);
-  return <div>{/* <Comments /> */}</div>;
+  return (
+    <div>
+      <button onClick={handleClick}>click me</button>
+      {/* <Comments />{" "} */}
+    </div>
+  );
 };
 
 // export const getStaticProps = async () => {

@@ -46,7 +46,7 @@ export interface IMovie extends ISimpleMovie {
   filmTotalGrade: number;
   filmR: string;
   similarFilms: ISimpleMovie[];
-  reviews: string[];
+  reviews?: string[];
 }
 
 export type PersonLangType = {

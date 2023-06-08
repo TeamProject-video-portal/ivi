@@ -5,15 +5,15 @@ import { select } from "redux-saga/effects";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectFilters } from "./selectors";
 import { SortType } from "@/types/types";
+import axios from "axios";
 
 export const filterApi = async (body?: any) => {
-  // const { data } = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/movies`, body);
-  // return data;
+  const { data } = await axios.post(`https://84.201.131.92:5003/movies?lang=ru`, body);
+  console.log("data", data);
+  return data;
 
-  // const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/movies?${query}`);
-  // const dataMovies = (await response.json()) as IMovie[];
-  const dataMovies = dataFilms as ISimpleMovie[];
-  return dataMovies;
+  // const dataMovies = dataFilms as ISimpleMovie[];
+  // return dataMovies;
 };
 
 export const filterRangesHandler = (

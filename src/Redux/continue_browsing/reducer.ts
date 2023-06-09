@@ -16,7 +16,7 @@ const initialState: BrowsingMovie[] = [
       ruName: "фильм",
       enName: "film",
     },
-    description: " lololo",
+    description: " Самый лучший фильм",
   },
 ];
 

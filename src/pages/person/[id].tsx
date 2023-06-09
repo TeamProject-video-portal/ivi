@@ -19,7 +19,7 @@ import {
 } from "next";
 import personsData from "@/data/persons.json";
 import axios from "axios";
-
+import personData from "@/data/person.json";
 const Person: NextPage = ({ person }: any) => {
   const { t } = useTranslation();
   const router = useRouter();
@@ -93,18 +93,14 @@ const Person: NextPage = ({ person }: any) => {
     </>
   );
 };
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
   const lang = context.params?.lang || "ru";
-  //84.201.131.92:5002/persons/4?lang=ru
 
   const response = await axios.get(
     `http://84.201.131.92:5002/persons/${id}?lang=${lang}`
   );
-  const person = response.data as IPerson;
-
-  // const data = personsData.persons as IPerson[];
-  // const person = data.find((item) => String(item.id) == id);
+  const person = response.data;
 
   if (!person) {
     return {
@@ -117,4 +113,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   };
 };
 
+export const getStaticPaths: GetStaticPaths = async () => {
+  const locales = ["ru", "en"];
+
+  const paths = locales.flatMap((locale) => {
+    return [Array(1)].map((person) => ({
+      params: { id: personData.id.toString(), lang: locale },
+    }));
+  });
+
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
 export default Person;

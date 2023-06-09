@@ -89,7 +89,10 @@ export const moviesReducer = (
     //     ...state,
     //     ...action.payload.movies,
     //   };
-
+    case MOVIES_ACTIONS.GET_MOVIES_START:
+      return action.type;
+    case MOVIES_ACTIONS.GET_MOVIES_DATA_ALL:
+      return action.type;
     default:
       return state;
   }

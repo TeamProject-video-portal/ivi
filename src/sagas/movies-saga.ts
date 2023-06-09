@@ -1,5 +1,10 @@
 import { call, put, takeEvery } from "redux-saga/effects";
-import { getMovies, getMoviesData, getMoviesError } from "@/Redux/movies/actions";
+import {
+  getMovies,
+  getMoviesData,
+  getMoviesDataStart,
+  getMoviesError,
+} from "@/Redux/movies/actions";
 import { IMovie, ISimpleMovie, MoviesForFilmsPageT } from "@/types/types";
 import { movieAllApi, movieApi } from "@/Redux/movies/worker";
 import { setResultsFilter } from "@/Redux/filter/actions";
@@ -7,9 +12,10 @@ import { editGenresApi } from "@/Redux/movies/worker";
 import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 
 export function* getMoviesSaga() {
+  yield put(getMoviesDataStart());
   try {
-    // const response: IMovie[] = yield call(movieApi);
-    // yield put(getMovies(response));
+    const response: IMovie[] = yield call(movieApi);
+    yield put(getMovies(response));
     const responseMovies: MoviesForFilmsPageT = yield call(movieAllApi);
     console.log("responseMovies", responseMovies);
     yield put(getMoviesData(responseMovies));

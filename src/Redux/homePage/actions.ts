@@ -14,6 +14,7 @@ export const getDataHomePageSuccess = (payload: any) => ({
   type: DATA_HOME_PAGE.GET_DATA_HOME_PAGE_SUCCESS,
   payload,
 });
+
 export const getDataHomePageFail = () => ({
   type: DATA_HOME_PAGE.GET_DATA_HOME_PAGE_FAIL,
 });

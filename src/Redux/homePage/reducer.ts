@@ -9,6 +9,8 @@ const initialState: MoviesForSlidersOnHomePageT = {
 
 export const homePageReducer = (state = initialState, action: any) => {
   switch (action.type) {
+    case DATA_HOME_PAGE.GET_DATA_HOME_PAGE:
+      return action.type;
     case DATA_HOME_PAGE.GET_DATA_HOME_PAGE_START:
       return action.type;
     case DATA_HOME_PAGE.GET_DATA_HOME_PAGE_FAIL:

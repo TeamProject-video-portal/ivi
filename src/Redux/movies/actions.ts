@@ -28,3 +28,13 @@ export const editGenresAction = (genres: string[]) => {
     payload: genres,
   };
 };
+
+export const getMoviesDataStart = () => {
+  return {
+    type: MOVIES_ACTIONS.GET_MOVIES_START,
+  };
+};
+
+export const getMoviesDataAll = () => {
+  return { type: MOVIES_ACTIONS.GET_MOVIES_DATA_ALL };
+};

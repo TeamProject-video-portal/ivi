@@ -9,6 +9,5 @@ export const getDataBannerWorker = async () => {
     httpsAgent: agent,
   });
 
-
   return response.data;
 };

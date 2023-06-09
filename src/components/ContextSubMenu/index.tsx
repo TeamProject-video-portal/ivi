@@ -41,28 +41,28 @@ export const ContextSubMenu: FC<ContextSubProps> = ({ children, className, title
           <h3>{t("contextSubMenu.countries")}</h3>
           <ul>
             <li key={0} onClick={() => dispatch(setCountries("Россия"))}>
-              <Link href={`/movies?lang=${lang}`}>Русские</Link>
+              <Link href={`/movies?lang=${lang}`}>{t("contextSubMenu.countries_russian")}</Link>
             </li>
             <li key={1} onClick={() => dispatch(setCountries("США"))}>
-              <Link href={`/movies?lang=${lang}`}>Американские</Link>
+              <Link href={`/movies?lang=${lang}`}>{t("contextSubMenu.countries_usa")}</Link>
             </li>
             <li key={2} onClick={() => dispatch(setCountries("СССР"))}>
-              <Link href={`/movies?lang=${lang}`}>Советские</Link>
+              <Link href={`/movies?lang=${lang}`}>{t("contextSubMenu.countries_ussr")}</Link>
             </li>
           </ul>
           <h3>{t("contextSubMenu.years")}</h3>
           <ul>
-            <li key={0} onClick={() => dispatch(setYears([2023, 2023]))}>
-              <Link href={`/movies?lang=${lang}`}>Фильмы 2023 года</Link>
+            <li key={0} onClick={() => dispatch(setYears([2010, 2023]))}>
+              <Link href={`/movies?lang=${lang}`}>{t("header.movies")} 2010 - 2023</Link>
             </li>
-            <li key={1} onClick={() => dispatch(setYears([2022, 2022]))}>
-              <Link href={`/movies?lang=${lang}`}>Фильмы 2022 года</Link>
+            <li key={1} onClick={() => dispatch(setYears([2000, 2010]))}>
+              <Link href={`/movies?lang=${lang}`}>{t("header.movies")} 2000 - 2010</Link>
             </li>
-            <li key={2} onClick={() => dispatch(setYears([2021, 2021]))}>
-              <Link href={`/movies?lang=${lang}`}>Фильмы 2021 года</Link>
+            <li key={2} onClick={() => dispatch(setYears([1990, 2000]))}>
+              <Link href={`/movies?lang=${lang}`}>{t("header.movies")} 1990 - 2000</Link>
             </li>
-            <li key={3} onClick={() => dispatch(setYears([2020, 2020]))}>
-              <Link href={`/movies?lang=${lang}`}>Фильмы 2020 года</Link>
+            <li key={3} onClick={() => dispatch(setYears([1940, 1990]))}>
+              <Link href={`/movies?lang=${lang}`}>{t("filters.before_year")} 1990</Link>
             </li>
           </ul>
         </div>

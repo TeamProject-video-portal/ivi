@@ -48,7 +48,10 @@
     "animations_HD": "Animations в HD",
     "animations_Paramount_Play": "Animations Paramount Play /",
     "animations_Dreamworks": "Animations Dreamworks",
-    "animations_СТС_Kids": "Animations СТС Kids"
+    "animations_СТС_Kids": "Animations СТС Kids",
+    "countries_ussr": "USSR",
+    "countries_usa": "USA",
+    "countries_russian": "Russian"
   },
   "buttons": {
     "watch": "Watch",
@@ -129,6 +132,8 @@
     "movies_online": "Movies watch online",
     "search_movies": "Movie search",
     "all_year": "All years",
+    "all_genres": "All genres",
+    "all_countries": "All countries",
     "directors": "Directors",
     "director": "Director",
     "actors": "Actors",
@@ -141,7 +146,24 @@
     "by_date": "by date",
     "by_title": "by title",
     "reset_filters": "Reset filters",
-    "not_found": "Not found"
+    "not_found": "Not found",
+    "before_year": "Before",
+    "from_rating": "from",
+    "to_rating": "to",
+    "rating_from": "Rating: from",
+    "from_score": "Score: from",
+    "year": "year",
+    "before_2000_year": "Before 2000",
+    "russian_movies": "Russian movies",
+    "soviet_movies": "Soviet movies",
+    "american_movies": "American movies",
+    "2022_year": "2022 year",
+    "comedy": "Comedy",
+    "thrillers": "Thrillers",
+    "detectives": "Detectives",
+    "adventures": "Adventures",
+    "fantastic": "Fantastic",
+    "drama": "Drama"
   },
   "profile": {
     "subscribes": "Subscriptions",

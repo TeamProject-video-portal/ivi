@@ -8,8 +8,16 @@ import { SortType } from "@/types/types";
 import axios from "axios";
 
 export const filterApi = async (body?: any) => {
-  const { data } = await axios.post(`https://84.201.131.92:5003/movies?lang=ru`, body);
-  console.log("data", data);
+  //const { data } = await axios.post(`https://84.201.131.92:5003/movies?lang=ru`, { "genres": "триллер", "countries": [], "actors": [], "directors": []});
+  const { data } = await axios({
+    method: "post",
+    url: `https://84.201.131.92:5003/movies?lang=ru`,
+    data: body,
+    headers: {
+      "Content-type": "application/json; charset=UTF-8",
+    },
+  });
+  console.log("dataafter", data);
   return data;
 
   // const dataMovies = dataFilms as ISimpleMovie[];

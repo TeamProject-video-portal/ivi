@@ -78,6 +78,7 @@ const GenresMinSlider: FC = () => {
             id={findItem?.id || 1}
             key={item.id}
             onClick={() => dispatch(setGenres(item.name))}
+            iconClass={findItem?.icon || ""}
           />
         );
       })}

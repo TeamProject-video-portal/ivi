@@ -11,6 +11,7 @@ import { selectMovies } from "@/Redux/movies/selectors";
 import { genresIcons } from "@/data/filters";
 import { setGenres } from "@/Redux/filter/actions";
 import { useRouter } from "next/router";
+import { Loader } from "@/components/Loader";
 
 const GenresSlider: FC = () => {
   const newSettings = {
@@ -27,21 +28,25 @@ const GenresSlider: FC = () => {
 
   return (
     <div>
-      <Slider {...newSettings} className={styles.container}>
-        {genres.map((item, i) => {
-          const findItem = genresIcons.find((elem) => elem.title === item.name);
-          //console.log(findItem?.title, item);
-          return (
-            <GenresButton
-              key={item.id}
-              size="big"
-              genres={item.name}
-              id={findItem?.id || 1}
-              onClick={() => dispatch(setGenres(item.name))}
-            />
-          );
-        })}
-      </Slider>
+      {!genres.length ? (
+        <Loader type="loading_simple" />
+      ) : (
+        <Slider {...newSettings} className={styles.container}>
+          {genres.map((item, i) => {
+            const findItem = genresIcons.find((elem) => elem.title === item.name);
+            return (
+              <GenresButton
+                key={item.id}
+                size="big"
+                genres={item.name}
+                id={findItem?.id || 1}
+                onClick={() => dispatch(setGenres(item.name))}
+                iconClass={findItem?.icon || ""}
+              />
+            );
+          })}
+        </Slider>
+      )}
     </div>
   );
 };

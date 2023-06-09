@@ -8,8 +8,8 @@ import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 
 export function* getMoviesSaga() {
   try {
-    const response: IMovie[] = yield call(movieApi);
-    yield put(getMovies(response));
+    // const response: IMovie[] = yield call(movieApi);
+    // yield put(getMovies(response));
     const responseMovies: MoviesForFilmsPageT = yield call(movieAllApi);
     console.log("responseMovies", responseMovies);
     yield put(getMoviesData(responseMovies));

@@ -8,6 +8,7 @@ import styles from "./index.module.scss";
 import { Button } from "../Button/Button";
 import { useAppDispatch } from "@/hooks/hooks";
 import { setCountries, setGenres, setYears } from "@/Redux/filter/actions";
+import { useTranslation } from "next-export-i18n";
 
 const PrevButton: FC = (props: any) => {
   return (
@@ -43,51 +44,82 @@ const Suggestion: FC = () => {
     nextArrow: <NextButton />,
   };
 
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   return (
     <Slider {...settings} className={styles.container}>
-      <Button className={styles.slide} key={0} onClick={() => dispatch(setYears([2022, 2022]))}>
-        {"2022 год"}
+      <Button
+        className={styles.slide}
+        key={"2022"}
+        onClick={() => dispatch(setYears([2022, 2022]))}
+      >
+        {t("filters.2022_year")}
       </Button>
-      <Button className={styles.slide} key={1} onClick={() => dispatch(setYears([2021, 2021]))}>
-        {"2021 год"}
+      <Button
+        className={styles.slide}
+        key={"20002010"}
+        onClick={() => dispatch(setYears([2000, 2010]))}
+      >
+        {"2000 - 2010"}
       </Button>
-      <Button className={styles.slide} key={2} onClick={() => dispatch(setYears([2020, 2020]))}>
-        {"2020 год"}
+      <Button
+        className={styles.slide}
+        key={"19402000"}
+        onClick={() => dispatch(setYears([1940, 2000]))}
+      >
+        {t("filters.before_2000_year")}
       </Button>
-      <Button className={styles.slide} key={3} onClick={() => dispatch(setYears([2019, 2019]))}>
-        {"2019 год"}
+      <Button
+        className={styles.slide}
+        key={"russian"}
+        onClick={() => dispatch(setCountries("Россия"))}
+      >
+        {t("filters.russian_movies")}
       </Button>
-      <Button className={styles.slide} key={4} onClick={() => dispatch(setYears([2018, 2018]))}>
-        {"2018 год"}
+      <Button className={styles.slide} key={"ussr"} onClick={() => dispatch(setCountries("СССР"))}>
+        {t("filters.soviet_movies")}
       </Button>
-      <Button className={styles.slide} key={5} onClick={() => dispatch(setCountries("Россия"))}>
-        {"Русские фильмы"}
+      <Button className={styles.slide} key={"usa"} onClick={() => dispatch(setCountries("США"))}>
+        {t("filters.american_movies")}
       </Button>
-      <Button className={styles.slide} key={6} onClick={() => dispatch(setCountries("СССР"))}>
-        {"Советские фильмы"}
+      <Button
+        className={styles.slide}
+        key={"comedy"}
+        onClick={() => dispatch(setGenres("комедия"))}
+      >
+        {t("filters.comedy")}
       </Button>
-      <Button className={styles.slide} key={7} onClick={() => dispatch(setCountries("США"))}>
-        {"Американские фильмы"}
+      <Button
+        className={styles.slide}
+        key={"thrillers"}
+        onClick={() => dispatch(setGenres("триллер"))}
+      >
+        {t("filters.thrillers")}
       </Button>
-      <Button className={styles.slide} key={8} onClick={() => dispatch(setGenres("комедия"))}>
-        {"Комедии"}
+      <Button
+        className={styles.slide}
+        key={"detectives"}
+        onClick={() => dispatch(setGenres("детектив"))}
+      >
+        {t("filters.detectives")}
       </Button>
-      <Button className={styles.slide} key={9} onClick={() => dispatch(setGenres("триллер"))}>
-        {"Триллеры"}
+      <Button
+        className={styles.slide}
+        key={"adventures"}
+        onClick={() => dispatch(setGenres("приключения"))}
+      >
+        {t("filters.adventures")}
       </Button>
-      <Button className={styles.slide} key={10} onClick={() => dispatch(setGenres("детектив"))}>
-        {"Детективы"}
+      <Button
+        className={styles.slide}
+        key={"fantastic"}
+        onClick={() => dispatch(setGenres("фантастика"))}
+      >
+        {t("filters.fantastic")}
       </Button>
-      <Button className={styles.slide} key={11} onClick={() => dispatch(setGenres("приключения"))}>
-        {"Приключения"}
-      </Button>
-      <Button className={styles.slide} key={12} onClick={() => dispatch(setGenres("фантастика"))}>
-        {"Фантастические"}
-      </Button>
-      <Button className={styles.slide} key={13} onClick={() => dispatch(setGenres("драма"))}>
-        {"Драмы"}
+      <Button className={styles.slide} key={"drama"} onClick={() => dispatch(setGenres("драма"))}>
+        {t("filters.drama")}
       </Button>
     </Slider>
   );

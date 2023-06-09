@@ -28,7 +28,7 @@ const initialState: IFilterState = {
   yearsMax: 2023,
   ratingMin: 4.0,
   ratingMax: 10.0,
-  scoreMin: 10000,
+  scoreMin: 1000,
   scoreMax: 1000000,
   actors: [],
   directors: [],

@@ -10,7 +10,12 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { genresIcons } from "@/data/filters";
 import { setGenres } from "@/Redux/filter/actions";
+
 import { useSelector } from "react-redux";
+
+import { useRouter } from "next/router";
+import { Loader } from "@/components/Loader";
+
 
 const GenresSlider: FC = () => {
   const newSettings = {
@@ -19,26 +24,37 @@ const GenresSlider: FC = () => {
     slidesToShow: 7,
   };
 
+
   const { genres } = useSelector(selectMovies);
+
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const lang = router.asPath.includes("lang=en") ? "en" : "ru";
+  const genres = lang === "en" ? genresEn : genresRu;
 
   return (
     <div>
-      <Slider {...newSettings} className={styles.container}>
-        {genres?.map((item, i) => {
-          const findItem = genresIcons.find((elem) => elem.title === item);
-          //console.log(findItem?.title, item);
-          return (
-            <GenresButton
-              key={item}
-              size="big"
-              genres={item}
-              id={findItem?.id || 1}
-              onClick={() => dispatch(setGenres(item))}
-            />
-          );
-        })}
-      </Slider>
+
+      {!genres.length ? (
+        <Loader type="loading_simple" />
+      ) : (
+        <Slider {...newSettings} className={styles.container}>
+          {genres?.map((item, i) => {
+            const findItem = genresIcons.find((elem) => elem.title === item.name);
+            return (
+              <GenresButton
+                key={item.id}
+                size="big"
+                genres={item.name}
+                id={findItem?.id || 1}
+                onClick={() => dispatch(setGenres(item.name))}
+                iconClass={findItem?.icon || ""}
+              />
+            );
+          })}
+        </Slider>
+      )}
+
     </div>
   );
 };

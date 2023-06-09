@@ -17,8 +17,8 @@ export function* watchFiltersSaga() {
 
 export function* filterMoviesSaga() {
   console.log("start saga filter genres countries");
-  const { genres, countries } = yield select((state) => state.filters);
-  const body = { genres: genres, countries: countries };
+  const { genres, countries, actors, directors } = yield select((state) => state.filters);
+  const body = { genres, countries, actors, directors };
 
   try {
     const response: IMovie[] = yield call(filterApi, body);
@@ -37,15 +37,15 @@ export function* filterMoviesSaga() {
       scoreMax,
     );
 
-    const { actors, directors } = yield select((state) => state.filters);
+    //const { actors, directors } = yield select((state) => state.filters);
 
-    if (actors.length) {
-      resultFilter = filterPersons(resultFilter, actors, "actors");
-    }
+    // if (actors.length) {
+    //   resultFilter = filterPersons(resultFilter, actors, "actors");
+    // }
 
-    if (directors.length) {
-      resultFilter = filterPersons(resultFilter, directors, "directors");
-    }
+    // if (directors.length) {
+    //   resultFilter = filterPersons(resultFilter, directors, "directors");
+    // }
 
     const { sort } = yield select((state) => state.filters);
     resultFilter = sortHandler(sort, resultFilter);

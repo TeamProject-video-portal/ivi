@@ -26,7 +26,7 @@ const PersonsSlider: FC = () => {
 
   return (
     <div>
-      {!popularActors ? (
+      {!popularActors.length ? (
         <Loader type="loading_simple" />
       ) : (
         <Slider {...newSettings} className={styles.container}>

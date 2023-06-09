@@ -2,32 +2,36 @@ import { FC } from "react";
 import styles from "./index.module.scss";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectFilters } from "@/Redux/filter/selectors";
+import { useTranslation } from "next-export-i18n";
 
 const FiltersTitleRow: FC = () => {
   const filters = useAppSelector(selectFilters);
+  const { t } = useTranslation();
 
   const createRow = (): string => {
     let row = "";
     if (filters.genres.length) {
       row += filters.genres.join(", ");
     } else {
-      row += "Все жанры ";
+      row += t("filters.all_year");
     }
     if (filters.countries.length) {
       row += " / " + filters.countries.join(", ");
     } else {
-      row += "/ Все страны ";
+      row += `/ ${t("filters.all_countries")} `;
     }
-    row += ` / ${filters.yearsMin} год`;
+    row += ` / ${filters.yearsMin} ${t("filters.year")}`;
 
     if (filters.yearsMin !== filters.yearsMax) {
-      row += ` - ${filters.yearsMax} год`;
+      row += ` - ${filters.yearsMax} ${t("filters.year")}`;
     }
 
-    row += ` / Рейтинг: от ${filters.ratingMin} до ${filters.ratingMax}`;
-    row += ` / Количество оценок: от ${filters.scoreMin}`;
+    row += ` / ${t("filters.rating_from")} ${filters.ratingMin} ${t("filters.to_rating")} ${
+      filters.ratingMax
+    }`;
+    row += ` / ${t("filters.from_score")} ${filters.scoreMin}`;
     if (filters.scoreMax < 1000000) {
-      row += ` до ${filters.scoreMax}`;
+      row += ` ${t("filters.to_rating")} ${filters.scoreMax}`;
     }
 
     if (filters.directors.length) {

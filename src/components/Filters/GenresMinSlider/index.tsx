@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { genresIcons } from "@/data/filters";
 import { setGenres } from "@/Redux/filter/actions";
+import { useRouter } from "next/router";
 
 const PrevButton: FC = (props: any) => {
   return (
@@ -60,20 +61,24 @@ const GenresMinSlider: FC = () => {
     ],
   };
 
-  const { genres } = useAppSelector(selectMovies);
+  const { genresEn, genresRu } = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+  const lang = router.asPath.includes("lang=en") ? "en" : "ru";
+  const genres = lang === "en" ? genresEn : genresRu;
 
   return (
     <Slider {...settings} className={styles.container}>
       {genres.map((item, i) => {
-        const findItem = genresIcons.find((elem) => elem.title === item);
+        const findItem = genresIcons.find((elem) => elem.title === item.name);
         return (
           <GenresButton
             size="small"
-            genres={item}
+            genres={item.name}
             id={findItem?.id || 1}
-            key={item}
-            onClick={() => dispatch(setGenres(item))}
+            key={item.id}
+            onClick={() => dispatch(setGenres(item.name))}
+            iconClass={findItem?.icon || ""}
           />
         );
       })}

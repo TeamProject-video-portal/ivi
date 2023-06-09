@@ -85,5 +85,9 @@ const Home: FC<Props> = (context: any) => {
     </>
   );
 };
-
+export const getStaticProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    return { props: {} };
+  }
+);
 export default connect((state) => state)(Home);

@@ -54,7 +54,7 @@ const Home: FC<Props> = (context: any) => {
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
-      {/* <Banner movies={dataBanner.data} /> */}
+      <Banner movies={dataBanner.data} />
       <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
@@ -85,5 +85,9 @@ const Home: FC<Props> = (context: any) => {
     </>
   );
 };
-
+export const getStaticProps = wrapper.getServerSideProps(
+  (store) => async (context) => {
+    return { props: {} };
+  }
+);
 export default connect((state) => state)(Home);

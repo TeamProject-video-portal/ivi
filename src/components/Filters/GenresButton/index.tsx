@@ -7,10 +7,11 @@ type Props = {
   genres: string;
   id: number;
   onClick?: MouseEventHandler<HTMLButtonElement>;
+  iconClass: string;
 };
 
-const GenresButton: FC<Props> = ({ size, genres, id, onClick }) => {
-  const iconCssClass = `nbl-icon ${styles.icon} genres-icon_${id}`;
+const GenresButton: FC<Props> = ({ size, genres, id, onClick, iconClass }) => {
+  const iconCssClass = `nbl-icon ${styles.icon} ${iconClass}`;
 
   return (
     <div className={styles.container}>

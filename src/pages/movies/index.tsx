@@ -41,6 +41,7 @@ import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
+import axios from "axios";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
@@ -320,12 +321,12 @@ const Movies: NextPage = (context) => {
             <h2 className={styles.genresRow__title}>{t("contextSubMenu.genres")}</h2>
             <GenresSlider />
           </div>
-          {/* <SimpleSlider
-            title={t("sliders_title.top_movies")}
-            films={bestMovies as ISimpleMovie[]}
+          <SimpleSlider
+            title={t("sliders_title.best_films")}
+            films={bestFilmsSet as ISimpleMovie[]}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-          /> */}
+          />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
             <PersonsSlider />
@@ -347,10 +348,16 @@ const Movies: NextPage = (context) => {
   );
 };
 
+//export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  console.log("context movies", context);
   const movies = dataFilms as ISimpleMovie[];
   const persons = personsData.persons;
+  //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+
+  // store.dispatch({
+  //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+  //   payload: data,
+  // });
 
   store.dispatch({
     type: MOVIES_ACTIONS.GET_MOVIES,
@@ -360,7 +367,7 @@ export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => 
   return {
     //props: { persons, movies },
     props: {},
-    revalidate: 10,
+    //revalidate: 10,
   };
 });
 

@@ -44,7 +44,7 @@ const ThumbLabel = ({
         ...(labelStyle as React.CSSProperties),
       }}
     >
-      {index === 1 ? `более ${labelValue}` : `от ${labelValue}`}
+      {index === 1 ? `${labelValue}` : `от ${labelValue}`}
     </div>
   );
 };

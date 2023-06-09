@@ -47,7 +47,10 @@
     "animations_HD": "Мультики в HD",
     "animations_Paramount_Play": "Мультфильмы Paramount Play /",
     "animations_Dreamworks": "Мультфильмы Dreamworks",
-    "animations_СТС_Kids": "Мультфильмы СТС Kids"
+    "animations_СТС_Kids": "Мультфильмы СТС Kids",
+    "countries_ussr": "Советские",
+    "countries_usa": "Американские",
+    "countries_russian": "Русские"
   },
   "buttons": {
     "watch": "Смотреть",
@@ -128,6 +131,8 @@
     "movies_online": "Фильмы смотреть онлайн",
     "search_movies": "Поиск фильмов",
     "all_year": "Все годы",
+    "all_genres": "Все жанры",
+    "all_countries": "Все страны",
     "directors": "Режиссёры",
     "director": "Режиссёр",
     "actors": "Актёры",
@@ -140,7 +145,24 @@
     "by_date": "по дате выхода",
     "by_title": "по алфавиту",
     "reset_filters": "Сбросить фильтры",
-    "not_found": "Ничего не найдено"
+    "not_found": "Ничего не найдено",
+    "before_year": "До",
+    "from_rating": "от",
+    "to_rating": "до",
+    "rating_from": "Рейтинг: от",
+    "from_score": "Количество оценок: от",
+    "year": "год",
+    "before_2000_year": "До 2000 года",
+    "russian_movies": "Русские фильмы",
+    "soviet_movies": "Советские фильмы",
+    "american_movies": "Американские фильмы",
+    "2022_year": "2022 год",
+    "comedy": "Комедии",
+    "thrillers": "Триллеры",
+    "detectives": "Детективы",
+    "adventures": "Приключения",
+    "fantastic": "Фантастические",
+    "drama": "Драмы"
   },
   "profile": {
     "subscribes": "Подписки",

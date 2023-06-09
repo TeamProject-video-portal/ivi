@@ -16,7 +16,6 @@ import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
 
-
 const GenresSlider: FC = () => {
   const newSettings = {
     ...settings, // текущие настройки слайдера
@@ -24,37 +23,33 @@ const GenresSlider: FC = () => {
     slidesToShow: 7,
   };
 
-
   const { genres } = useSelector(selectMovies);
-
+  console.log(genres);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const lang = router.asPath.includes("lang=en") ? "en" : "ru";
-  const genres = lang === "en" ? genresEn : genresRu;
-
+  // const genres = lang === "en" ? genresEn : genresRu;
   return (
     <div>
-
-      {!genres.length ? (
+      {genres === undefined ? (
         <Loader type="loading_simple" />
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {genres?.map((item, i) => {
-            const findItem = genresIcons.find((elem) => elem.title === item.name);
+            const findItem = genresIcons.find((elem) => elem.title === item);
             return (
               <GenresButton
-                key={item.id}
+                key={i}
                 size="big"
-                genres={item.name}
+                genres={item}
                 id={findItem?.id || 1}
-                onClick={() => dispatch(setGenres(item.name))}
+                onClick={() => dispatch(setGenres(item))}
                 iconClass={findItem?.icon || ""}
               />
             );
           })}
         </Slider>
       )}
-
     </div>
   );
 };

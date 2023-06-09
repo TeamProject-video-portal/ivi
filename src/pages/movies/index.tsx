@@ -14,7 +14,13 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
+import {
+  IMovie,
+  IPerson,
+  ISimpleMovie,
+  SearchParamsType,
+  SortType,
+} from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -45,7 +51,6 @@ import { Loader } from "@/components/Loader";
 import { getMoviesDataAll, getMoviesDataStart } from "@/Redux/movies/actions";
 
 import axios from "axios";
-
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
@@ -107,7 +112,6 @@ const Movies: NextPage = (context) => {
   const [breadcrumbs, setBreadcrumbs] =
     useState<Breadcrumb[]>(breadcrumbsBegin);
 
-
   useEffect(() => {
     let row = "";
 
@@ -116,7 +120,9 @@ const Movies: NextPage = (context) => {
       setBreadcrumbs((state) => {
         state[2] = {
           item: row,
-          path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
+          path: `/movies?lang=${
+            router.asPath.includes("lang=en") ? "en" : "ru"
+          }`,
         };
         return state;
       });
@@ -243,7 +249,11 @@ const Movies: NextPage = (context) => {
       }
     }
 
-    router.push(`${pathname}${newSearchParams.toString() ? "?" : ""}${newSearchParams.toString()}`);
+    router.push(
+      `${pathname}${
+        newSearchParams.toString() ? "?" : ""
+      }${newSearchParams.toString()}`
+    );
   };
 
   useEffect(() => {
@@ -338,19 +348,21 @@ const Movies: NextPage = (context) => {
       {!isFilter && (
         <section>
           <div className={styles.genresRow}>
-            <h2 className={styles.genresRow__title}>{t("contextSubMenu.genres")}</h2>
+            <h2 className={styles.genresRow__title}>
+              {t("contextSubMenu.genres")}
+            </h2>
             <GenresSlider />
           </div>
           <SimpleSlider
-
             title={t("sliders_title.top_movies")}
-
             films={bestFilmsSet as ISimpleMovie[]}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
           />
           <div className={styles.personRow}>
-            <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
+            <h2 className={styles.personRow__title}>
+              {t("sliders_title.persons")}{" "}
+            </h2>
             <PersonsSlider />
           </div>
         </section>
@@ -361,7 +373,9 @@ const Movies: NextPage = (context) => {
             {results.length ? (
               <MovieResults />
             ) : (
-              <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
+              <div className={styles.resultsEmpty}>
+                {t("filters.not_found")}
+              </div>
             )}
           </div>
         </section>
@@ -371,27 +385,29 @@ const Movies: NextPage = (context) => {
 };
 
 //export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
-  //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
+  (store) => async (context) => {
+    const movies = dataFilms as ISimpleMovie[];
+    const persons = personsData.persons;
+    //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
 
-  // store.dispatch({
-  //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
-  //   payload: data,
-  // });
+    // store.dispatch({
+    //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+    //   payload: data,
+    // });
 
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES,
-    payload: movies,
-  });
+    store.dispatch({
+      type: MOVIES_ACTIONS.GET_MOVIES,
+      payload: movies,
+    });
 
-  return {
-    //props: { persons, movies },
-    props: {},
-    //revalidate: 10,
-  };
-});
+    return {
+      //props: { persons, movies },
+      props: {},
+      //revalidate: 10,
+    };
+  }
+);
 
 export default connect((state) => state)(Movies);
 //export default Movies;

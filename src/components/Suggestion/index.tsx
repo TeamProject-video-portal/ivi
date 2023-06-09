@@ -13,7 +13,9 @@ import { useTranslation } from "next-export-i18n";
 const PrevButton: FC = (props: any) => {
   return (
     <Button
-      className={`${styles.prev} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      className={`${styles.prev} ${
+        props.className.includes("slick-disabled") && styles.disabled
+      }`}
       onClick={props.onClick}
     >
       <BsChevronCompactLeft />
@@ -24,7 +26,9 @@ const PrevButton: FC = (props: any) => {
 const NextButton: FC = (props: any) => {
   return (
     <Button
-      className={`${styles.next} ${props.className.includes("slick-disabled") && styles.disabled}`}
+      className={`${styles.next} ${
+        props.className.includes("slick-disabled") && styles.disabled
+      }`}
       onClick={props.onClick}
     >
       <BsChevronCompactRight />
@@ -77,10 +81,18 @@ const Suggestion: FC = () => {
       >
         {t("filters.russian_movies")}
       </Button>
-      <Button className={styles.slide} key={"ussr"} onClick={() => dispatch(setCountries("СССР"))}>
+      <Button
+        className={styles.slide}
+        key={"ussr"}
+        onClick={() => dispatch(setCountries("СССР"))}
+      >
         {t("filters.soviet_movies")}
       </Button>
-      <Button className={styles.slide} key={"usa"} onClick={() => dispatch(setCountries("США"))}>
+      <Button
+        className={styles.slide}
+        key={"usa"}
+        onClick={() => dispatch(setCountries("США"))}
+      >
         {t("filters.american_movies")}
       </Button>
       <Button
@@ -118,7 +130,11 @@ const Suggestion: FC = () => {
       >
         {t("filters.fantastic")}
       </Button>
-      <Button className={styles.slide} key={"drama"} onClick={() => dispatch(setGenres("драма"))}>
+      <Button
+        className={styles.slide}
+        key={"drama"}
+        onClick={() => dispatch(setGenres("драма"))}
+      >
         {t("filters.drama")}
       </Button>
     </Slider>

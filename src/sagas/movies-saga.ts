@@ -19,16 +19,21 @@ export function* getMoviesSaga() {
   }
 }
 
+export function* watchMoviesSaga() {
+  //   yield takeEvery(MOVIES_ACTIONS.EDIT_GENRES, editGenresSaga);
+  yield takeEvery(MOVIES_ACTIONS.GET_MOVIES_DATA, getMoviesSaga);
+}
+
 // export function* watchMoviesSaga() {
 //   yield takeEvery(MOVIES_ACTIONS.EDIT_GENRES, editGenresSaga);
 // }
 
-// export function* editGenresSaga() {
-//   console.log("start saga edit genres");
-//   try {
-//     const response: IMovie[] = yield call(editGenresApi);
-//   } catch (error) {
-//     console.log("error in editGenresSaga", error);
-//     yield put(getMoviesError(String(error)));
-//   }
-// }
+export function* editGenresSaga() {
+  console.log("start saga edit genres");
+  try {
+    const response: IMovie[] = yield call(editGenresApi);
+  } catch (error) {
+    console.log("error in editGenresSaga", error);
+    yield put(getMoviesError(String(error)));
+  }
+}

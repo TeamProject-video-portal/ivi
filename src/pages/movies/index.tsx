@@ -352,17 +352,17 @@ const Movies: NextPage = (context) => {
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
   const movies = dataFilms as ISimpleMovie[];
   const persons = personsData.persons;
-  //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+  store.dispatch({
+    type: MOVIES_ACTIONS.GET_MOVIES,
+    payload: movies,
+  });
+
+  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
 
   // store.dispatch({
   //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
   //   payload: data,
   // });
-
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES,
-    payload: movies,
-  });
 
   return {
     //props: { persons, movies },

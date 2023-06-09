@@ -14,6 +14,8 @@ import { RootState } from "@/Redux/RootState";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import { Loader } from "@/components/Loader";
 import styles from "./Home.module.scss";
+import { getDataBanner } from "@/Redux/banner/actions";
+import { getDataHomePage } from "@/Redux/homePage/actions";
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
   startMovies: any;
@@ -24,10 +26,24 @@ const Home: FC<Props> = (context: any) => {
   // const [data, setData] = useState(startMovies);
   const dataBanner = useSelector(selectBanner);
   const { t } = useTranslation();
+  const put = useDispatch();
   const moviesForSliders: MoviesForSlidersOnHomePageT = useSelector(
     (store: RootState) => store.homePage
   );
   const [isLoading, setIsLoading] = useState(false);
+  const res = main_banner;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await put(getDataBanner(res));
+        await put(getDataHomePage());
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -38,7 +54,7 @@ const Home: FC<Props> = (context: any) => {
         <link rel="icon" href="/favicon.ico" />
         <meta httpEquiv="Permissions-Policy" content="interest-cohort=()" />
       </Head>
-      <Banner movies={dataBanner.data} />
+      {/* <Banner movies={dataBanner.data} /> */}
       <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
@@ -70,16 +86,4 @@ const Home: FC<Props> = (context: any) => {
   );
 };
 
-export const getStaticProps = wrapper.getServerSideProps(
-  (store) => async (context) => {
-    const res = main_banner;
-
-    store.dispatch({
-      type: DATA_BANNER.GET_DATA_BANNER,
-      payload: res,
-    });
-
-    return { props: {} };
-  }
-);
 export default connect((state) => state)(Home);

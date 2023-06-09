@@ -10,6 +10,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/hooks";
 import { selectMovies } from "@/Redux/movies/selectors";
 import { genresIcons } from "@/data/filters";
 import { setGenres } from "@/Redux/filter/actions";
+import { useSelector } from "react-redux";
 
 const GenresSlider: FC = () => {
   const newSettings = {
@@ -18,13 +19,13 @@ const GenresSlider: FC = () => {
     slidesToShow: 7,
   };
 
-  const { genres } = useAppSelector(selectMovies);
+  const { genres } = useSelector(selectMovies);
   const dispatch = useAppDispatch();
 
   return (
     <div>
       <Slider {...newSettings} className={styles.container}>
-        {genres.map((item, i) => {
+        {genres?.map((item, i) => {
           const findItem = genresIcons.find((elem) => elem.title === item);
           //console.log(findItem?.title, item);
           return (

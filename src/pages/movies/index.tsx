@@ -47,6 +47,7 @@ import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
+import { getMoviesDataAll, getMoviesDataStart } from "@/Redux/movies/actions";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
@@ -81,8 +82,8 @@ const Movies: NextPage = (context) => {
     directors,
     results,
   } = useAppSelector(selectFilters);
-  const { movies } = useAppSelector(selectMovies);
-  const { bestFilmsSet } = useAppSelector(selectMovies);
+  const { movies } = useSelector(selectMovies);
+  const { bestFilmsSet } = useSelector(selectMovies);
 
   const breadcrumbsBegin: Breadcrumb[] = [
     { item: "Мой Иви", path: "/" },
@@ -91,6 +92,19 @@ const Movies: NextPage = (context) => {
       path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
     },
   ];
+  //////////////////////////
+  const put = useDispatch();
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await put(getMoviesDataAll());
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
+  ////////////////////
   const [breadcrumbs, setBreadcrumbs] =
     useState<Breadcrumb[]>(breadcrumbsBegin);
 
@@ -335,12 +349,12 @@ const Movies: NextPage = (context) => {
             </h2>
             <GenresSlider />
           </div>
-          {/* <SimpleSlider
+          <SimpleSlider
             title={t("sliders_title.top_movies")}
-            films={bestMovies as ISimpleMovie[]}
+            films={bestFilmsSet as ISimpleMovie[]}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
-          /> */}
+          />
           <div className={styles.personRow}>
             <h2 className={styles.personRow__title}>
               {t("sliders_title.persons")}{" "}

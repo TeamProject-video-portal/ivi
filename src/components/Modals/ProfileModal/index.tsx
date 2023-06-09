@@ -3,7 +3,6 @@ import styles from "./index.module.scss";
 import { signIn, SignInResponse, useSession } from "next-auth/react";
 import AuthSteps from "./Steps/AuthSteps.tsx";
 import AuthResult from "./Steps/AuthResult";
-import { CSSTransition } from "react-transition-group";
 
 type ProfileModalProps = {
   openModal: boolean;

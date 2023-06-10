@@ -106,7 +106,6 @@ const CardId: NextPage = ({ movie }: any) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  console.log(context);
   const https = require("https");
   const agent = new https.Agent({
     rejectUnauthorized: false,

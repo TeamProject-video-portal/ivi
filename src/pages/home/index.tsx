@@ -35,15 +35,13 @@ const Home: FC<Props> = (context: any) => {
   const res = main_banner;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await put(getDataBanner(res));
-        await put(getDataHomePage());
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    try {
+      put(getDataBanner(res));
+      put(getDataHomePage());
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

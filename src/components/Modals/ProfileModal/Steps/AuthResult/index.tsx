@@ -25,6 +25,7 @@ const AuthResult: FC<Props> = (props) => {
   const [nicknameUser, setNicknameUser] = useState<string | null>();
   const resAuth = useSelector(selectAuthUser);
   const resRegistr = useSelector(selectRegistrUser);
+
   const authHandleClick = () => {
     props.setOpenModal(false);
     props.setIsRegistration(false);
@@ -42,11 +43,13 @@ const AuthResult: FC<Props> = (props) => {
       localStorage.getItem("nickname") === ""
     ) {
       setTitle("profile.success_auth");
+      setEmailUser(localStorage.getItem("email"));
     } else if (
       localStorage.getItem("email") !== "" &&
       localStorage.getItem("nickname") !== ""
     ) {
       setTitle("profile.success_regist");
+      setNicknameUser(localStorage.getItem("nickname"));
     } else if (
       localStorage.getItem("email") === "" &&
       localStorage.getItem("nickname") === ""

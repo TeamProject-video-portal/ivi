@@ -1,4 +1,10 @@
-import React, { Dispatch, FC, SetStateAction } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import Poster from "@/components/Poster";
@@ -8,6 +14,7 @@ import Link from "next/link";
 import { settings } from "../settings";
 import { ISimpleMovie } from "@/types/types";
 import { Loader } from "@/components/Loader";
+import { useRouter } from "next/router";
 
 type Props = {
   title: string;
@@ -20,7 +27,16 @@ const SimpleSlider: FC<Props> = ({ title, films, isLoading, setIsLoading }) => {
     ...settings,
     slidesToShow: 7,
   };
+  const router = useRouter();
+  const [locale, setLocale] = useState<any>("ru");
 
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -33,7 +49,7 @@ const SimpleSlider: FC<Props> = ({ title, films, isLoading, setIsLoading }) => {
         <Slider {...newSettings} className={styles.container}>
           {films?.map((item, index) => (
             <Link
-              href={`/film/${item.id}?lang=ru`}
+              href={`/film/${item.id}?lang=${locale}`}
               key={item.id}
               onClick={() => {
                 setIsLoading(true);

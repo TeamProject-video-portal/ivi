@@ -24,14 +24,14 @@ export const NewComments: FC<Props> = ({ newComment, setNewComment }) => {
   return (
     <div className={styles.container}>
       <textarea
-        placeholder="Введите комментарий"
+        placeholder={`${t("movie.enter_comment")}`}
         value={comment}
         onChange={(event) => {
           setComment(event.target.value);
         }}
       ></textarea>
       {isWarning && (
-        <span className={styles.warning}>Напишите комментарий</span>
+        <span className={styles.warning}>{t("movie.write_comment")}</span>
       )}
       <button onClick={addComment}>{t("buttons.add")}</button>
     </div>

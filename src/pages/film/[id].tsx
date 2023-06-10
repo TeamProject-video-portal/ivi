@@ -42,13 +42,14 @@ const CardId: NextPage = ({ movie }: any) => {
           ruName: movie.filmLang[0].filmName,
           enName: movie.filmLang[1].filmName,
         },
-        description: movie.filmLang.filmDescription,
+        description: {
+          ruName: movie.filmLang[0].filmDescription,
+          enName: movie.filmLang[1].filmDescription,
+        },
       })
     );
   }, []);
 
-  console.log(store.getState());
-  // console.log(store.getState());
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
@@ -110,11 +111,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
     rejectUnauthorized: false,
   });
   const locale = context.params?.lang || "ru";
-  const movieResponse = await axios.get(
-    `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
-    { httpsAgent: agent }
-  );
-  const movie = movieResponse.data as IMovie;
+  let movie = moviesData as IMovie;
+  try {
+    const movieResponse = await axios.get(
+      `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
+      { httpsAgent: agent }
+    );
+    movie = movieResponse.data as IMovie;
+  } catch (e) {
+    movie = moviesData as IMovie;
+  }
   if (!movie) {
     return {
       notFound: true,
@@ -142,4 +148,3 @@ export const getStaticPaths = async () => {
 };
 
 export default CardId;
-// `https://84.201.131.92:5003/api/films/${context.params?.id}?lang=${locale}`

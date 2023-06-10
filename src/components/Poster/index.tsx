@@ -24,7 +24,6 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
       setLocale("ru");
     }
   }, [router]);
-  console.log(film);
   return (
     <div className={styles.wrapper}>
       <div

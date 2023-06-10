@@ -1,64 +1,47 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { Comments } from "@/components/Comments";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import axios from "axios";
+import { getToken } from "next-auth/jwt";
+import { Login, Registration } from "@/profileRequests/AuthService";
+import { getDataUser, getDataUserSuccess } from "@/Redux/auth/actions";
+import { store } from "@/Redux/store";
+import { selectAuthUser } from "@/Redux/auth/selectors";
+import { getDataUserRegistrationSuccess } from "@/Redux/registration/actions";
 
 export const Cartoons = ({ res }: any) => {
+  const session = useSession();
+  const put = useDispatch();
   const handleClick = async () => {
-    const res = await axios.get(
-      "http://84.201.131.92:5002/persons/305?lang=ru"
-    );
-    console.log(res);
-
     // const payload = {
-    //   username: "Maggie",
+    //   email: "exaple@gmail.com",
     //   password: "123",
     // };
     // const res = await signIn("credentials", {
     //   ...payload,
     //   redirect: false,
     // });
-    // console.log(res);
-
-    // const https = require("https");
-    // const agent = new https.Agent({
-    //   rejectUnauthorized: false,
-    // });
-    // const res = await axios
-    //   .post(
-    //     "http://84.201.131.92:5002/persons/${id}?lang=${lang}",
-    //     {
-    //       email: "Maggie",
-    //       password: "123",
-    //     },
-    //     { httpsAgent: agent }
-    //   )
-    //   .then((response) => console.log(response));
-    // console.log("res", res);
+    try {
+      console.log("try");
+      const res = await Registration("Maggie", "example@gmail.com", "123");
+      localStorage.setItem("token", res.data.tokens.accessToken);
+      put(getDataUserRegistrationSuccess(res.data));
+    } catch (e) {
+      console.log(e);
+    }
+    // console.log(session);
+    // const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
+    // put(getDataUserSuccess({ email: "exaple@gmail.com", password: "123" }));
   };
+  const dataUser = useSelector(selectAuthUser);
   return (
     <div>
       <button onClick={handleClick}>click me</button>
+      <button onClick={() => console.log(store.getState())}>state</button>
       {/* <Comments />{" "} */}
     </div>
   );
 };
-
-// export const getStaticProps = async () => {
-//   const res = await axios({
-//     method: "get",
-//     url: "https://jsonplaceholder.org/posts/",
-//     headers: {
-//       "Content-Type": "application/json",
-//       "X-Frame-Options": "SAMEORIGIN",
-//     },
-//   }).then((r) => r.data);
-//   return {
-//     props: {
-//       res,
-//     },
-//   };
-// };
 
 export default Cartoons;

@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from "react";
+import React, { FC, useEffect, useState } from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { selectBrowsingMovie } from "@/Redux/continue_browsing/selectors";
 import { store } from "@/Redux/store";
 import { BrowsingMovie } from "@/Redux/continue_browsing/reducer";
+import { useRouter } from "next/router";
 
 type Props = {
   title: string;
@@ -23,7 +24,16 @@ const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
     centerMode: false,
     slidesToShow: 3,
   };
+  const router = useRouter();
+  const [locale, setLocale] = useState<any>("ru");
 
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>
@@ -31,7 +41,10 @@ const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
       </div>
       <Slider {...newSettings} className={styles.container_slider}>
         {movies.map((item, index) => (
-          <Link href={`/film/${item.id}?lang=ru`} key={`${item}-${index}`}>
+          <Link
+            href={`/film/${item.id}?lang=${locale}`}
+            key={`${item}-${index}`}
+          >
             <CardMovie
               title={item.name}
               type={type}

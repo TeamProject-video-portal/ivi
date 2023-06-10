@@ -3,11 +3,14 @@ import styles from "../index.module.scss";
 import { Button } from "@/components/Button/Button";
 import CompanyPolicy from "../../PolicyBlock";
 import { SignInResponse } from "next-auth/react";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "@/Redux/auth/selectors";
+import { useTranslation } from "next-export-i18n";
+import { selectRegistrUser } from "@/Redux/registration/selectors";
 
 type Props = {
   openModal: boolean;
   setOpenModal: Dispatch<SetStateAction<boolean>>;
-  result: SignInResponse | undefined;
   isRegistration: boolean;
   setIsRegistration: Dispatch<SetStateAction<boolean>>;
   isAuthorization: boolean;
@@ -15,37 +18,63 @@ type Props = {
   isNewAccout: boolean;
 };
 const AuthResult: FC<Props> = (props) => {
-  const [title, setTitle] = useState<string>();
+  const { t } = useTranslation();
+  const [title, setTitle] = useState<string>("");
+
+  const [emailUser, setEmailUser] = useState<string | null>();
+  const [nicknameUser, setNicknameUser] = useState<string | null>();
+  const resAuth = useSelector(selectAuthUser);
+  const resRegistr = useSelector(selectRegistrUser);
   const authHandleClick = () => {
     props.setOpenModal(false);
     props.setIsRegistration(false);
   };
 
   useEffect(() => {
-    // console.log(props.result);
-    if (props.result?.ok) {
-      setTitle("Вы успешно авторизованы");
-    } else if (!props.result?.ok && props.isNewAccout) {
-      setTitle("Вы успешно зарегистрированы");
-    } else if (!props.result?.ok) {
-      setTitle("Логин или пароль введены  неправильно");
-    }
-  }, [props.result]);
+    setEmailUser(localStorage.getItem("email"));
+    setNicknameUser(localStorage.getItem("nickname"));
+    setTitle("");
+  }, []);
 
+  useEffect(() => {
+    if (
+      localStorage.getItem("email") !== "" &&
+      localStorage.getItem("nickname") === ""
+    ) {
+      setTitle("profile.success_auth");
+    } else if (
+      localStorage.getItem("email") !== "" &&
+      localStorage.getItem("nickname") !== ""
+    ) {
+      setTitle("profile.success_regist");
+    } else if (
+      localStorage.getItem("email") === "" &&
+      localStorage.getItem("nickname") === ""
+    ) {
+      setTitle("profile.error_auth");
+    }
+  }, [resAuth, resRegistr]);
+
+  useEffect(() => {
+    if (props.openModal === false) {
+      setTitle("");
+    }
+  }, [props.openModal]);
   return (
     <div className={styles.content}>
       <div className={styles.message}>
-        <div className={styles.subtitle}>{title}</div>
+        <div className={styles.subtitle}>{t(title)}</div>
       </div>
+
       <div className={styles.enter_data}>
         <div className={styles.continue}>
-          {props.result?.ok || props.isNewAccout ? (
+          {emailUser !== "" || nicknameUser !== "" ? (
             <Button
               className={`${styles.continue_btn} ${styles.activeContinue} `}
               color="pink"
               onClick={authHandleClick}
             >
-              Продолжить
+              {t("buttons.continue")}
             </Button>
           ) : (
             <div>
@@ -54,14 +83,14 @@ const AuthResult: FC<Props> = (props) => {
                 color="pink"
                 onClick={() => props.setIsRegistration(true)}
               >
-                Зарегистрироваться
+                {t("buttons.register")}
               </Button>
               <Button
                 className={`${styles.continue_btn} ${styles.activeContinue} `}
                 color="pink"
                 onClick={() => props.setIsAuthorization(true)}
               >
-                Войти
+                {t("buttons.enter")}
               </Button>
             </div>
           )}

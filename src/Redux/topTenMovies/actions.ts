@@ -1,6 +1,6 @@
 import { DATA_TOP_MOVIES } from "./action-types";
 
-export const getDataTopMovies = (value: any) => {
+export const getDataTopMovies = () => {
   return {
     type: DATA_TOP_MOVIES.GET_DATA_TOP_MOVIES,
   };

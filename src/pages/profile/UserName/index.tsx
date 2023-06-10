@@ -41,7 +41,7 @@ const UserName: FC<Props> = (props) => {
             />
             <div className={styles.userEmail}>
               <div className="nbl-icon nbl-icon_email_16"></div>
-              <div>qwerty@gmail.com</div>
+              <div>{props.email}</div>
             </div>
           </div>
 
@@ -58,10 +58,9 @@ const UserName: FC<Props> = (props) => {
         <div className={styles.loginRow}>
           <div className={styles.profile_data}>
             <div className={styles.userName}>{currentTitle}</div>
-            <p>{props.email}</p>
             <div className={styles.userEmail}>
               <div className="nbl-icon nbl-icon_email_16"></div>
-              <div>qwerty@gmail.com</div>
+              <div>{props.email}</div>
             </div>
           </div>
           <Button

@@ -11,9 +11,7 @@ import { MOVIES_ACTIONS } from "./action-types";
 import { createWrapper, Context, HYDRATE } from "next-redux-wrapper";
 
 export interface IMoviesState {
-  movies: IMovie[];
-  genres: string[];
-  countries: string[];
+  start: string;
   actors: PersonForSearchType[];
   directors: PersonForSearchType[];
   genresRu: GenresType[];
@@ -26,9 +24,7 @@ export interface IMoviesState {
 }
 
 const initialState: IMoviesState = {
-  movies: [],
-  genres: [],
-  countries: [],
+  start: "",
   actors: [],
   directors: [],
   genresRu: [],
@@ -40,33 +36,8 @@ const initialState: IMoviesState = {
   error: "",
 };
 
-export const moviesReducer = (
-  state = initialState,
-  action: AnyAction
-): IMoviesState => {
+export const moviesReducer = (state = initialState, action: AnyAction): IMoviesState => {
   switch (action.type) {
-    case MOVIES_ACTIONS.GET_MOVIES:
-      const actionPayload = action.payload as IMovie[];
-
-      const genresSet = new Set<string>();
-      actionPayload.map((item) => {
-        item.genres.map((elem) => genresSet.add(elem.name));
-      });
-      const countriesSet = new Set<string>();
-      actionPayload.map((item) => {
-        item.countries.map((elem) => countriesSet.add(elem.name));
-      });
-      return {
-        ...state,
-        movies: actionPayload,
-        genres: Array.from(genresSet),
-        countries: Array.from(countriesSet),
-        error: "",
-      };
-
-    case MOVIES_ACTIONS.GET_MOVIES_ERROR:
-      return { ...state, error: action.payload };
-
     case MOVIES_ACTIONS.GET_MOVIES_DATA:
       return {
         ...state,
@@ -81,18 +52,37 @@ export const moviesReducer = (
         error: "",
       };
 
-    case MOVIES_ACTIONS.EDIT_GENRES:
-      return { ...state, genres: action.payload };
+    case MOVIES_ACTIONS.GET_MOVIES_ERROR:
+      return { ...state, error: action.payload };
+
+    case MOVIES_ACTIONS.GET_MOVIES_START:
+      return { ...state, start: "START" };
+
+    case MOVIES_ACTIONS.EDIT_GENRE:
+      let genresCopy = [...state.genresRu];
+      let findGenre = genresCopy.find((item) => item.id === action.payload.id);
+      if (findGenre) {
+        genresCopy = genresCopy.map((item) =>
+          item.id === action.payload.id ? (item.name = action.payload.genre) : item,
+        );
+        return { ...state, genresRu: genresCopy };
+      } else {
+        genresCopy = [...state.genresEn];
+        findGenre = genresCopy.find((item) => item.id === action.payload.id);
+        if (findGenre) {
+          genresCopy = genresCopy.map((item) =>
+            item.id === action.payload.id ? (item.name = action.payload.genre) : item,
+          );
+          return { ...state, genresEn: genresCopy };
+        }
+      }
+      return state;
 
     // case HYDRATE:
     //   return {
     //     ...state,
     //     ...action.payload.movies,
     //   };
-    case MOVIES_ACTIONS.GET_MOVIES_START:
-      return action.type;
-    case MOVIES_ACTIONS.GET_MOVIES_DATA_ALL:
-      return action.type;
     default:
       return state;
   }

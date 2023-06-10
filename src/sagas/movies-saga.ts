@@ -1,10 +1,5 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import {
-  getMovies,
-  getMoviesData,
-  getMoviesDataStart,
-  getMoviesError,
-} from "@/Redux/movies/actions";
+import { call, put, takeEvery, take } from "redux-saga/effects";
+import { getMoviesData, getMoviesDataStart, getMoviesError } from "@/Redux/movies/actions";
 import { IMovie, ISimpleMovie, MoviesForFilmsPageT } from "@/types/types";
 import { movieAllApi, movieApi } from "@/Redux/movies/worker";
 import { setResultsFilter } from "@/Redux/filter/actions";
@@ -13,11 +8,10 @@ import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 
 export function* getMoviesSaga() {
   yield put(getMoviesDataStart());
+  console.log("start movies get saga");
   try {
-    const response: IMovie[] = yield call(movieApi);
-    yield put(getMovies(response));
     const responseMovies: MoviesForFilmsPageT = yield call(movieAllApi);
-    console.log("responseMovies", responseMovies);
+    //console.log("responseMovies", responseMovies);
     yield put(getMoviesData(responseMovies));
   } catch (error) {
     console.log("error in getMoviesSaga", error);
@@ -26,20 +20,16 @@ export function* getMoviesSaga() {
 }
 
 export function* watchMoviesSaga() {
-  //   yield takeEvery(MOVIES_ACTIONS.EDIT_GENRES, editGenresSaga);
-  yield takeEvery(MOVIES_ACTIONS.GET_MOVIES_DATA, getMoviesSaga);
+  yield takeEvery(MOVIES_ACTIONS.WATCH_EDIT_GENRE, editGenreSaga);
 }
 
-// export function* watchMoviesSaga() {
-//   yield takeEvery(MOVIES_ACTIONS.EDIT_GENRES, editGenresSaga);
-// }
-
-export function* editGenresSaga() {
-  console.log("start saga edit genres");
+export function* editGenreSaga(args: any) {
+  console.log("start saga edit genre");
   try {
-    const response: IMovie[] = yield call(editGenresApi);
+    const response: any = yield call(editGenresApi, args);
+    console.log("response", response);
   } catch (error) {
-    console.log("error in editGenresSaga", error);
+    console.log("error in editGenreSaga", error);
     yield put(getMoviesError(String(error)));
   }
 }

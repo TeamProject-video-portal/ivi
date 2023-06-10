@@ -42,7 +42,7 @@ import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
 
-import { getMoviesDataAll, getMoviesDataStart } from "@/Redux/movies/actions";
+import { getMoviesData, getMoviesDataStart } from "@/Redux/movies/actions";
 
 import axios from "axios";
 
@@ -79,7 +79,6 @@ const Movies: NextPage = (context) => {
     directors,
     results,
   } = useAppSelector(selectFilters);
-  const { movies } = useSelector(selectMovies);
   const { bestFilmsSet } = useSelector(selectMovies);
 
   const breadcrumbsBegin: Breadcrumb[] = [
@@ -91,17 +90,18 @@ const Movies: NextPage = (context) => {
   ];
 
   //////////////////////////
-  const put = useDispatch();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await put(getMoviesDataAll());
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
+  // const put = useDispatch();
+  // useEffect(() => {
+  //   console.log("useeffect");
+  //   const fetchData = async () => {
+  //     try {
+  //       await put(getMoviesData());
+  //       setIsLoading(false);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  // }, []);
   ////////////////////
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
 
@@ -123,17 +123,6 @@ const Movies: NextPage = (context) => {
       });
     }
   }, [genres]);
-
-  // useEffect(() => {
-  //   setBreadcrumbs((state) => {
-  //     state[0] = { item: t("header.my_ivi"), path: "/" };
-  //     state[1] = {
-  //       item: t("header.movies"),
-  //       path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
-  //     };
-  //     return state;
-  //   });
-  // }, [router.asPath]);
 
   const setFiltersFromURLParams = (searchParams: URLSearchParams) => {
     if (searchParams.getAll("genre").length) {
@@ -365,21 +354,15 @@ const Movies: NextPage = (context) => {
   );
 };
 
-//export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  const movies = dataFilms as ISimpleMovie[];
-  const persons = personsData.persons;
-  //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+//   (store) => async (context) => {
 
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
+  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
   // store.dispatch({
   //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
   //   payload: data,
   // });
-
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES,
-    payload: movies,
-  });
 
   return {
     //props: { persons, movies },

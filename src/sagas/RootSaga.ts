@@ -15,7 +15,7 @@ export function* rootSaga() {
       fork(getMoviesSaga),
       fork(watchFiltersSaga),
       fork(getDataHomePageSaga),
-      //fork(watchMoviesSaga),
+      fork(watchMoviesSaga),
     ]);
   } catch (e) {
     console.log("error in root saga", e);

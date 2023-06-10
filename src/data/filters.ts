@@ -1,5 +1,5 @@
 export const genresIcons = [
-  { id: 1, title: "anime", icon: "genres-icon_1" },
+  { id: 1, title: "аниме", icon: "genres-icon_1" },
   { id: 2, title: "биография", icon: "genres-icon_2" },
   { id: 3, title: "боевик", icon: "genres-icon_3" },
   { id: 4, title: "вестерн", icon: "genres-icon_4" },
@@ -15,7 +15,7 @@ export const genresIcons = [
   { id: 14, title: "короткометражка", icon: "genres-icon_14" },
   { id: 15, title: "криминал", icon: "genres-icon_15" },
   { id: 16, title: "мелодрама", icon: "genres-icon_16" },
-  { id: 17, title: "музыкальный", icon: "genres-icon_17" },
+  { id: 17, title: "музыка", icon: "genres-icon_17" },
   { id: 18, title: "мультфильм", icon: "genres-icon_18" },
   { id: 19, title: "мюзикл", icon: "genres-icon_19" },
   { id: 20, title: "новости", icon: "genres-icon_20" },

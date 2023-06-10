@@ -15,12 +15,14 @@ import {
 } from "next-auth/react";
 import nextAuth, { getServerSession } from "next-auth";
 import authOptions from "../api/auth/[...nextauth]";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProfileButton from "@/components/Header/Buttons/Profile";
 
 const admin = ({}) => {
-  const { data: session } = useSession();
-  console.log(session);
+  const [nicknameUser, setNicknameUser] = useState<string | null>();
+  useEffect(() => {
+    setNicknameUser(localStorage.getItem("nickname"));
+  }, []);
   return (
     <>
       <Head>
@@ -28,7 +30,7 @@ const admin = ({}) => {
       </Head>
       <div className={styles.adminPage}>
         <h1>Страница администратора</h1>
-        <p>Добро пожаловать {session?.user.name}</p>
+        <p>Добро пожаловать {nicknameUser}</p>
         {/* {session && <div>Signed in as {session.user.email}</div>} */}
       </div>
     </>

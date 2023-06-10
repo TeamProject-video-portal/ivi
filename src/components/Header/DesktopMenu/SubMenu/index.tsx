@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import Link from "next/link";
 import Ad from "./Ad";
@@ -8,6 +8,9 @@ import { DropDownMenuSerial } from "@/components/ContextSubMenu/DropDownMenuSeri
 import { DropDownMenuAnim } from "@/components/ContextSubMenu/DropDownMenuAnim";
 import { DropDownMenuButton } from "@/components/ContextSubMenu/DropDownMenuButton";
 import { DropDownMenuProfile } from "@/components/ContextSubMenu/DropDownMenuProfile";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "@/Redux/auth/selectors";
+import { selectRegistrUser } from "@/Redux/registration/selectors";
 
 type Props = {
   isOpenSubMenu?: boolean;

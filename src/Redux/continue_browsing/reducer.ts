@@ -5,18 +5,18 @@ export type BrowsingMovie = {
   id: number;
   poster: string;
   name: { ruName: string; enName: string };
-  description: string;
+  description: { ruName: string; enName: string };
 };
 
 const initialState: BrowsingMovie[] = [
   {
-    id: 535341,
+    id: 309,
     poster: "https://st.kp.yandex.net/images/film_big/535341.jpg",
     name: {
       ruName: "фильм",
       enName: "film",
     },
-    description: " Самый лучший фильм",
+    description: { ruName: " Самый лучший фильм", enName: "film" },
   },
 ];
 

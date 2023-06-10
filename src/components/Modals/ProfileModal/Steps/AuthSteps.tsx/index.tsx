@@ -11,6 +11,7 @@ import Link from "next/link";
 import styles from "../index.module.scss";
 import { Button } from "@/components/Button/Button";
 import CompanyPolicy from "../../PolicyBlock";
+import { useLanguageSwitcherIsActive, useTranslation } from "next-export-i18n";
 
 type Props = {
   step: number;
@@ -24,7 +25,7 @@ const AuthSteps: FC<Props> = (props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const [inputValue, setInputValue] = useState(props.inputData);
-
+  const { t } = useTranslation();
   const onFocusHandler = () => {
     inputRef.current?.focus();
     labelRef.current?.classList.add(`${styles.active}`);
@@ -33,11 +34,6 @@ const AuthSteps: FC<Props> = (props) => {
   const onBlurHandler = () => {
     labelRef.current?.classList.remove(`${styles.active}`);
   };
-
-  // const contentObj: Record<number, string[]> = {
-  //   0: ["Войдите или зарегистрируйтесь", "Через email"],
-  //   1: ["Введите пароль для регистрации или авторизации", "Пароль"],
-  // };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -55,8 +51,8 @@ const AuthSteps: FC<Props> = (props) => {
   return (
     <div className={styles.content}>
       <div className={styles.message}>
-        <div className={styles.subtitle}>{props.content[props.step][0]}</div>
-        <span>не менее 6 символов</span>
+        <div className={styles.subtitle}>{t(props.content[props.step][0])}</div>
+        <span>{t("profile.least_characters")}</span>
       </div>
       <div className={styles.enter_data}>
         <div
@@ -73,7 +69,7 @@ const AuthSteps: FC<Props> = (props) => {
             ref={inputRef}
             value={inputValue}
             onChange={(e) => handleChange(e)}
-            placeholder={props.content[props.step][1]}
+            placeholder={t(props.content[props.step][1])}
           />
         </div>
         <div className={styles.continue}>
@@ -82,7 +78,7 @@ const AuthSteps: FC<Props> = (props) => {
             color="pink"
             onClick={handleClick}
           >
-            Продолжить
+            {t("buttons.continue")}
           </Button>
         </div>
         <CompanyPolicy />

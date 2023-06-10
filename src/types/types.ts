@@ -89,11 +89,63 @@ export type ResponseError = {
   message: string;
 };
 
-export interface IUser {
+export type AuthData = {
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  user: {
+    id: number;
+    email: string;
+    password: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+};
+
+export type TokenType = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type UserType = {
+  id: number;
+  email: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ProfileType = {
+  id: number;
   userId: number;
-  name?: string;
-  email?: string;
-  userRole?: string;
+  nickname: string;
+  updatedAt: string;
+  createdAt: string;
+};
+export type RegistrationUserType = {
+  tokens: TokenType;
+  user: UserType;
+  profile: ProfileType;
+};
+
+export type AuthResponseType = {
+  tokens: TokenType;
+  user: UserType;
+};
+export interface IUser {
+  tokens?: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  token?: any;
+  user?: {
+    id: number;
+    email: string;
+    password: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export interface IFilters {}

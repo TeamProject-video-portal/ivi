@@ -67,6 +67,8 @@
     "read_more": "Подробнее",
     "show_more": "Показать еще",
     "enter_register": "Войти или зарегистрироваться",
+    "register": "Зарегистрироваться",
+    "enter": "Войти",
     "watch_by_subscription": "по подписке Иви",
     "watch_first_30_days": "Первые 30 дней подписки бесплатно",
     "trailer": "Трейлер",
@@ -77,7 +79,10 @@
     "en": "Англ",
     "enter_or_regist": "Войти или зарегистрироваться",
     "edit_profile": "Редактировать профиль",
-    "save": "Сохранить"
+    "save": "Сохранить",
+    "logout": "Выйти",
+    "change_password": "Сменить пароль",
+    "continue": "Продолжить"
   },
   "sliders_title": {
     "continue_browsing": "Продолжить просмотр",
@@ -182,11 +187,30 @@
     "help": "Помощь",
     "browsing_history": "История просмотров",
     "certificate_activation": "Активация сертификата",
-    "entrance_by_code": "Вход по коду"
+    "entrance_by_code": "Вход по коду",
+    "least_characters": "не менее 6 символов",
+    "clicking": "Нажимая «Продолжить», я соглашаюсь",
+    "to_policy": "Политикой конфиденциальности",
+    "user_agreement": "Пользовательским соглашением",
+    "enter_or_regist": "Войдите или зарегистрируйтесь",
+    "by_email": "Через email",
+    "enter_password": "Введите пароль для регистрации или авторизации",
+    "password": "Пароль",
+    "email": "Почта",
+    "nickname": "Никнейм",
+    "enter_email": "Введите почту",
+    "enter_nickname": "Введите никнейм",
+    "enter_password_short": "Введите пароль",
+    "success_auth": "Вы успешно авторизованы",
+    "success_regist": "Вы успешно зарегистрированы",
+    "error_auth": "Логин или пароль введены  неправильно",
+    "user": "Пользователь"
   },
   "movie": {
     "watch_online": "смотреть онлайн",
-    "free": "Бесплатно"
+    "free": "Бесплатно",
+    "enter_comment": "Введите комментарий",
+    "write_comment": "Напишите комментарий"
   },
   "error": {
     "error_page": "Страница ошибки",

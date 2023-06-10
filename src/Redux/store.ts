@@ -1,4 +1,9 @@
-import { Action, configureStore, getDefaultMiddleware, ThunkAction } from "@reduxjs/toolkit";
+import {
+  Action,
+  configureStore,
+  getDefaultMiddleware,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { bannerReducer } from "./banner/reducer";
 import createSagaMiddleware from "redux-saga";
@@ -8,6 +13,8 @@ import { moviesReducer } from "./movies/reducer";
 import { filterReducer } from "./filter/reducer";
 import { homePageReducer } from "./homePage/reducer";
 import { continueBrowsingReducer } from "./continue_browsing/reducer";
+import { AuthUserReducer } from "./auth/reducer";
+import { RegistrationUserReducer } from "./registration/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -19,6 +26,8 @@ const makeStore = () => {
       filters: filterReducer,
       homePage: homePageReducer,
       continueBrowsing: continueBrowsingReducer,
+      authData: AuthUserReducer,
+      registrationData: RegistrationUserReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

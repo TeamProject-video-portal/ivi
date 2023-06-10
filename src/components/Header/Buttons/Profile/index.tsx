@@ -4,6 +4,10 @@ import { useSession } from "next-auth/react";
 import { AuthProfile } from "./AuthProfile";
 import { NotAuthProfile } from "./NotAuthProfile";
 import Link from "next/link";
+import { getDataUser } from "@/profileRequests/AuthService";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "@/Redux/auth/selectors";
+import { selectRegistrUser } from "@/Redux/registration/selectors";
 
 type Props = {
   isOpenSubMenu?: boolean;
@@ -12,10 +16,29 @@ type Props = {
 };
 
 const ProfileButton: FC<Props> = (props) => {
-  const { data: session } = useSession();
   const router = useRouter();
 
   const [locale, setLocale] = useState<any>("ru");
+  const [emailUser, setEmailUser] = useState<string | null>();
+  const [nicknameUser, setNicknameUser] = useState<string | null>();
+  const resAuth = useSelector(selectAuthUser);
+  const resRegistr = useSelector(selectRegistrUser);
+
+  useEffect(() => {
+    if (localStorage.getItem("email") === null) {
+      localStorage.setItem("email", "");
+      localStorage.setItem("nickname", "");
+    } else {
+      setEmailUser(localStorage.getItem("email"));
+      setNicknameUser(localStorage.getItem("nickname"));
+    }
+  }, []);
+
+  useEffect(() => {
+    setEmailUser(localStorage.getItem("email"));
+    setNicknameUser(localStorage.getItem("nickname"));
+  }, [resAuth, resRegistr]);
+
   useEffect(() => {
     if (router.query?.lang) {
       setLocale(router.query?.lang);
@@ -37,11 +60,12 @@ const ProfileButton: FC<Props> = (props) => {
         props.setIsOpenSubMenu?.(true);
         props.setSubMenuTitle?.("profile");
       }}
-      // onMouseLeave={() => {
-      //   props.setIsOpenSubMenu?.(false);
-      // }}
     >
-      {session?.user.name ? <AuthProfile /> : <NotAuthProfile />}
+      {emailUser ? (
+        <AuthProfile name={nicknameUser ? nicknameUser : emailUser} />
+      ) : (
+        <NotAuthProfile />
+      )}
     </div>
   );
 };

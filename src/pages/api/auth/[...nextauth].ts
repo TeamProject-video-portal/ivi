@@ -7,6 +7,7 @@ import { userAgent } from "next/server";
 interface CustomUser extends User {
   role: string;
 }
+
 export default NextAuth({
   providers: [
     CredentialsProvider({
@@ -18,10 +19,14 @@ export default NextAuth({
       async authorize(credentials, req) {
         // const user = {
         //   id: "1",
-        //   name: `${credentials?.username}`,
+        //   name: `${credentials?.email}`,
         //   password: "jsmith@example.com",
-        //   role: "admin",
+        //   role: `${process.env.JWT_SECRET}`,
+        //   // accessToken: tokens.access_token,
         // };
+
+        // };
+        // return user;
         //   const https = require("https");
         //   const agent = new https.Agent({
         //     rejectUnauthorized: false,
@@ -34,7 +39,7 @@ export default NextAuth({
         //     },
         //     { httpsAgent: agent }
         //   );
-        //   // const user = await res.json();
+        // //   // const user = await res.json();
         //   if (user) {
         //     return user;
         //   } else {
@@ -42,18 +47,21 @@ export default NextAuth({
         //   }
         // },
 
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password,
-          }),
-        });
-        const user = await res.json();
-
+        const user: Promise<any> = await fetch(
+          "http://84.201.131.92:5000/users/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              authorization: `${process.env.JWT_SECRET}`,
+            },
+            body: JSON.stringify({
+              email: credentials?.email,
+              password: credentials?.password,
+            }),
+          }
+        ).then((res) => res.json());
+        // console.log("user", user);
         if (user) {
           return user;
         } else {
@@ -64,20 +72,14 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.name = user.name;
-        // token.role = user.role;
-      }
-      return token;
+      return { token, user };
     },
     async session({ session, token }) {
-      if (token?.name) {
-        session.user = {
-          userId: 123,
-          name: token.name,
-          userRole: "admin",
-        };
-      }
+      console.log("token", token);
+      session.user = {
+        token,
+      };
+
       return session;
     },
   },

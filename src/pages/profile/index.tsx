@@ -14,17 +14,27 @@ import { ButtonsProfile } from "@/components/ButtonsProfile";
 import UserName from "./UserName";
 import LogOut from "./LogOut";
 import ProfileModal from "@/components/Modals/ProfileModal";
+import { useSelector } from "react-redux";
+import { selectAuthUser } from "@/Redux/auth/selectors";
+import { selectRegistrUser } from "@/Redux/registration/selectors";
 
 const Profile = () => {
   const { t } = useTranslation();
   const [openModal, setOpenModal] = useState(false);
-  const { data: session, status } = useSession();
-  console.log(session);
+  const [emailUser, setEmailUser] = useState<string | null>();
+  const [nicknameUser, setNicknameUser] = useState<string | null>();
+  const resAuth = useSelector(selectAuthUser);
+  const resRegistr = useSelector(selectRegistrUser);
+
   useEffect(() => {
-    if (!session?.user.name) {
-      setOpenModal(true);
-    }
+    setEmailUser(localStorage.getItem("email"));
+    setNicknameUser(localStorage.getItem("nickname"));
   }, []);
+
+  useEffect(() => {
+    setEmailUser(localStorage.getItem("email"));
+    setNicknameUser(localStorage.getItem("nickname"));
+  }, [resAuth, resRegistr]);
 
   return (
     <>
@@ -33,8 +43,11 @@ const Profile = () => {
       </Head>
       {!openModal ? (
         <div className={styles.profile}>
-          {session?.user.name ? (
-            <UserName name={session.user.name} email={session.user.email} />
+          {emailUser ? (
+            <UserName
+              name={nicknameUser ? nicknameUser : emailUser}
+              email={emailUser}
+            />
           ) : (
             <Button
               type="loginButton"

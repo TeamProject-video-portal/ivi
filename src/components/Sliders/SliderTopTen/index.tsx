@@ -10,15 +10,17 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslation } from "next-export-i18n";
 import { ResponseTopMovieKPType } from "@/types/types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { RootState } from "@/Redux/RootState";
 import { Loader } from "@/components/Loader";
+import { getDataTopMovies } from "@/Redux/topTenMovies/actions";
 
 const SliderTopTen = () => {
   const { t } = useTranslation();
   const movies = useSelector((store: RootState) => store.topMovies.data);
-
+  const [locale, setLocale] = useState<any>("ru");
+  const put = useDispatch();
   const router = useRouter();
   const newSettings = {
     ...settings,
@@ -26,7 +28,6 @@ const SliderTopTen = () => {
     slidesToShow: 5,
   };
 
-  const [locale, setLocale] = useState<any>("ru");
   useEffect(() => {
     if (router.query?.lang) {
       setLocale(router.query?.lang);
@@ -34,6 +35,16 @@ const SliderTopTen = () => {
       setLocale("ru");
     }
   }, [router]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await put(getDataTopMovies());
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
 
   return (
     <div className={styles.container}>
@@ -46,7 +57,10 @@ const SliderTopTen = () => {
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {(movies as ResponseTopMovieKPType[]).map((item, i) => (
-            <Link href={`/film/${item.id}/?lang=${locale}`} key={item.id}>
+            <Link
+              href={`https://www.kinopoisk.ru/film/${item.id}`}
+              key={item.id}
+            >
               <PosterTopTen num={i + 1} key={`${item.id}`} film={item} />
             </Link>
           ))}

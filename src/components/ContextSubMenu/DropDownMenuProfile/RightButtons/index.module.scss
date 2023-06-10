@@ -23,6 +23,18 @@
     height: 40px;
   }
 
+  .user_data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    h1 {
+      @include font-regular-xl;
+      margin: 15px 0;
+    }
+    h2 {
+      @include font-regular-l;
+    }
+  }
   .bottom_buttons {
     display: flex;
     flex-direction: column;

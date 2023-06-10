@@ -17,13 +17,12 @@ import {
   NextPage,
   GetServerSideProps,
 } from "next";
-import personsData from "@/data/persons.json";
 import axios from "axios";
 import personData from "@/data/person.json";
+
 const Person: NextPage = ({ person }: any) => {
   const { t } = useTranslation();
   const router = useRouter();
-  console.log(person);
   const breadcrumbs: Breadcrumb[] = [
     {
       item: `${person.films?.length || 0} ${t("person.count_movies")}`,
@@ -96,11 +95,15 @@ const Person: NextPage = ({ person }: any) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
   const lang = context.params?.lang || "ru";
-
-  const response = await axios.get(
-    `http://84.201.131.92:5002/persons/${id}?lang=${lang}`
-  );
-  const person = response.data;
+  let person = personData;
+  try {
+    const response = await axios.get(
+      `http://84.201.131.92:5002/persons/${id}?lang=${lang}`
+    );
+    person = response.data;
+  } catch (e) {
+    person = personData;
+  }
 
   if (!person) {
     return {

@@ -11,7 +11,6 @@ type Props = {
   genres: GenresType[];
 };
 const Info: FC<Props> = ({ raiting, filmYear, country, genres }) => {
-  console.log("raiting", raiting);
   return (
     <div className={styles.container}>
       <Icons />

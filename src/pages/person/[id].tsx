@@ -98,7 +98,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let person = personData;
   try {
     const response = await axios.get(
-      `http://84.201.131.92:5002/persons/${id}?lang=${lang}`
+      `http://84.201.131.92:5002/${id}?lang=${lang}`
     );
     person = response.data;
   } catch (e) {

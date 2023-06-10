@@ -37,7 +37,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   const [step, setStep] = useState<number>(0);
   const [inputData, setInputData] = useState("");
   const { data: session } = useSession();
-  const [result, setResult] = useState<SignInResponse | undefined>();
+  const [isRequest, setIsRequest] = useState(false);
   const [isRegistration, setIsRegistration] = useState<boolean>(false);
   const [isAuthorization, setIsAuthorization] = useState<boolean>(false);
   const [dataUser, setDataUser] = useState<DataUser>({
@@ -54,11 +54,12 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   const authorization = async () => {
     try {
       const res = await Login(dataUser.login, dataUser.password);
-
       localStorage.setItem("token", res.data.tokens.accessToken);
       localStorage.setItem("idUser", res.data.user.id.toString());
       localStorage.setItem("email", res.data.user.email);
       put(getDataUserSuccess(res.data));
+
+      console.log(res);
     } catch (e) {
       put(getDataUserFail());
       console.log(`authorization ${e}`);
@@ -88,7 +89,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       setIsRegistration(false);
       setStep(0);
     }
-    console.log(isAuthorization);
   }, [isAuthorization]);
 
   //запись введенных данных

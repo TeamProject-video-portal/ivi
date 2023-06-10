@@ -45,7 +45,7 @@ export interface IMovie extends ISimpleMovie {
   filmTrailer: string;
   filmTotalGrade: number;
   filmR: string;
-  similarFilms: ISimpleMovie[];
+  similarFilms?: ISimpleMovie[];
   reviews?: string[];
 }
 
@@ -214,3 +214,43 @@ export type MoviesForFilmsPageT = {
   countriesRu: CountriesType[];
   countriesEn: CountriesType[];
 };
+
+export interface IMovieRes {
+  id: number;
+  filmType: string;
+  filmLink: string;
+  filmTrailer: string;
+  filmYear: number;
+  filmTime: number;
+  filmGrade: number;
+  filmTotalGrade: number;
+  filmR: string;
+  filmAge: string;
+  filmPoster: string;
+  directors: {
+    id: number;
+    name: string;
+  }[];
+  similarFilms: ISimilarFilmRes[];
+}
+
+interface ISimilarFilmRes {
+  id: number;
+  filmPoster: string;
+  filmGrade: number;
+  filmYear: number;
+  filmTime: number;
+  filmAge: string;
+  filmLang: {
+    lang: string;
+    filmName: string;
+  }[];
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  countries: {
+    id: number;
+    name: string;
+  }[];
+}

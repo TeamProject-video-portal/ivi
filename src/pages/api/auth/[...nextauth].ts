@@ -54,6 +54,7 @@ export default NextAuth({
             headers: {
               "Content-Type": "application/json",
               authorization: `${process.env.JWT_SECRET}`,
+              // Authorization = `Bearer ${localStorage.getItem("token")}`
             },
             body: JSON.stringify({
               email: credentials?.email,
@@ -72,6 +73,7 @@ export default NextAuth({
   ],
   callbacks: {
     async jwt({ token, user }) {
+      console.log("token", token);
       return { token, user };
     },
     async session({ session, token }) {

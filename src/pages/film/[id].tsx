@@ -6,7 +6,7 @@ import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
 import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import { IMovie } from "@/types/types";
+import { IMovie, IMovieRes } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
@@ -106,21 +106,24 @@ const CardId: NextPage = ({ movie }: any) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
+  console.log(context);
   const https = require("https");
   const agent = new https.Agent({
     rejectUnauthorized: false,
   });
   const locale = context.params?.lang || "ru";
-  let movie: IMovie;
+  let movie: IMovieRes;
   try {
     const movieResponse = await axios.get(
-      `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
+      `https://84.201.131.92:5003/${context.params?.id}?lang=${locale}`,
       { httpsAgent: agent }
     );
-    movie = movieResponse.data as IMovie;
+    console.log(movieResponse);
+    movie = movieResponse.data as IMovieRes;
   } catch (e) {
-    movie = moviesData as IMovie;
+    movie = moviesData as IMovieRes;
   }
+  movie = moviesData as IMovieRes;
 
   return {
     props: { movie },

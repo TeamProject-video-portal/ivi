@@ -111,7 +111,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     rejectUnauthorized: false,
   });
   const locale = context.params?.lang || "ru";
-  let movie = moviesData as IMovie;
+  let movie: IMovie;
   try {
     const movieResponse = await axios.get(
       `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
@@ -120,11 +120,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     movie = movieResponse.data as IMovie;
   } catch (e) {
     movie = moviesData as IMovie;
-  }
-  if (!movie) {
-    return {
-      notFound: true,
-    };
   }
 
   return {

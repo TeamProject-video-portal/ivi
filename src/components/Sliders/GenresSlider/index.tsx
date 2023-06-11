@@ -23,27 +23,27 @@ const GenresSlider: FC = () => {
     slidesToShow: 7,
   };
 
-  const { genres } = useSelector(selectMovies);
-  console.log(genres);
+  const { genresRu, genresEn } = useAppSelector(selectMovies);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const lang = router.asPath.includes("lang=en") ? "en" : "ru";
-  // const genres = lang === "en" ? genresEn : genresRu;
+  const genres = lang === "en" ? genresEn : genresRu;
+
   return (
     <div>
-      {genres === undefined ? (
+      {!genres.length ? (
         <Loader type="loading_simple" />
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {genres?.map((item, i) => {
-            const findItem = genresIcons.find((elem) => elem.title === item);
+            const findItem = genresIcons.find((elem) => elem.title === item.name);
             return (
               <GenresButton
-                key={i}
+                key={item.id}
                 size="big"
-                genres={item}
+                genres={item.name}
                 id={findItem?.id || 1}
-                onClick={() => dispatch(setGenres(item))}
+                onClick={() => dispatch(setGenres(item.name))}
                 iconClass={findItem?.icon || ""}
               />
             );

@@ -14,13 +14,7 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import {
-  IMovie,
-  IPerson,
-  ISimpleMovie,
-  SearchParamsType,
-  SortType,
-} from "@/types/types";
+import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -48,7 +42,7 @@ import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
 
-import { getMoviesDataAll, getMoviesDataStart } from "@/Redux/movies/actions";
+import { getMoviesData, getMoviesDataStart } from "@/Redux/movies/actions";
 
 import axios from "axios";
 
@@ -84,7 +78,6 @@ const Movies: NextPage = (context) => {
     directors,
     results,
   } = useAppSelector(selectFilters);
-  const { movies } = useSelector(selectMovies);
   const { bestFilmsSet } = useSelector(selectMovies);
 
   const breadcrumbsBegin: Breadcrumb[] = [
@@ -95,21 +88,7 @@ const Movies: NextPage = (context) => {
     },
   ];
 
-  //////////////////////////
-  const put = useDispatch();
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await put(getMoviesDataAll());
-        setIsLoading(false);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  }, []);
-  ////////////////////
-  const [breadcrumbs, setBreadcrumbs] =
-    useState<Breadcrumb[]>(breadcrumbsBegin);
+  const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
 
   useEffect(() => {
     let row = "";
@@ -119,9 +98,7 @@ const Movies: NextPage = (context) => {
       setBreadcrumbs((state) => {
         state[2] = {
           item: row,
-          path: `/movies?lang=${
-            router.asPath.includes("lang=en") ? "en" : "ru"
-          }`,
+          path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
         };
         return state;
       });
@@ -131,17 +108,6 @@ const Movies: NextPage = (context) => {
       });
     }
   }, [genres]);
-
-  // useEffect(() => {
-  //   setBreadcrumbs((state) => {
-  //     state[0] = { item: t("header.my_ivi"), path: "/" };
-  //     state[1] = {
-  //       item: t("header.movies"),
-  //       path: `/movies?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`,
-  //     };
-  //     return state;
-  //   });
-  // }, [router.asPath]);
 
   const setFiltersFromURLParams = (searchParams: URLSearchParams) => {
     if (searchParams.getAll("genre").length) {
@@ -248,11 +214,7 @@ const Movies: NextPage = (context) => {
       }
     }
 
-    router.push(
-      `${pathname}${
-        newSearchParams.toString() ? "?" : ""
-      }${newSearchParams.toString()}`
-    );
+    router.push(`${pathname}${newSearchParams.toString() ? "?" : ""}${newSearchParams.toString()}`);
   };
 
   useEffect(() => {
@@ -347,9 +309,7 @@ const Movies: NextPage = (context) => {
       {!isFilter && (
         <section>
           <div className={styles.genresRow}>
-            <h2 className={styles.genresRow__title}>
-              {t("contextSubMenu.genres")}
-            </h2>
+            <h2 className={styles.genresRow__title}>{t("contextSubMenu.genres")}</h2>
             <GenresSlider />
           </div>
           <SimpleSlider
@@ -359,9 +319,7 @@ const Movies: NextPage = (context) => {
             setIsLoading={setIsLoading}
           />
           <div className={styles.personRow}>
-            <h2 className={styles.personRow__title}>
-              {t("sliders_title.persons")}{" "}
-            </h2>
+            <h2 className={styles.personRow__title}>{t("sliders_title.persons")} </h2>
             <PersonsSlider />
           </div>
         </section>
@@ -372,9 +330,7 @@ const Movies: NextPage = (context) => {
             {results.length ? (
               <MovieResults />
             ) : (
-              <div className={styles.resultsEmpty}>
-                {t("filters.not_found")}
-              </div>
+              <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
             )}
           </div>
         </section>
@@ -383,30 +339,33 @@ const Movies: NextPage = (context) => {
   );
 };
 
-//export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
-export const getStaticProps: GetStaticProps = wrapper.getStaticProps(
-  (store) => async (context) => {
-    const movies = dataFilms as ISimpleMovie[];
-    const persons = personsData.persons;
-    //const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+// export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps(
+//   (store) => async (context) => {
 
-    // store.dispatch({
-    //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
-    //   payload: data,
-    // });
+export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
+  console.log("SSH movie page");
+  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+  // store.dispatch({
+  //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+  //   payload: data,
+  // });
 
-    store.dispatch({
-      type: MOVIES_ACTIONS.GET_MOVIES,
-      payload: movies,
-    });
+  // store.dispatch(END);
 
-    return {
-      //props: { persons, movies },
-      props: {},
-      //revalidate: 10,
-    };
-  }
-);
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
+
+  // return {
+  //   props: { data },
+  //   revalidate: 10,
+  // };
+  return {
+    props: {},
+  };
+});
 
 export default connect((state) => state)(Movies);
 //export default Movies;

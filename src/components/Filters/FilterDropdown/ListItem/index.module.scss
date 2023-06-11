@@ -4,6 +4,7 @@
 .list {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin-top: 12px;
   color: $base-light-blue;
   &:hover svg {
@@ -41,6 +42,13 @@
   color: $base-white;
   transition: color 0.4s ease 0s;
   svg {
+    display: block;
+  }
+}
+.save {
+  background: $base-dark-purple;
+  color: $base-light-blue;
+  & .active {
     display: block;
   }
 }

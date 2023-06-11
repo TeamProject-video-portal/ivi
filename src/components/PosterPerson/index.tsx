@@ -40,7 +40,6 @@ const PosterPerson: FC<PosterPersonProps> = ({ person, lang }) => {
       <div className={styles.description}>
         <div className={styles.name}>{name}</div>
         <div className={styles.surname}>{surname}</div>
-
         <div className={styles.countFilms}>{strHandler(person.filmsNumber)}</div>
       </div>
     </Link>

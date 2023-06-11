@@ -32,13 +32,7 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
         onMouseLeave={() => setIsOpen(false)}
       >
         <div className={styles.poster}>
-          <Image
-            src={film?.filmPoster}
-            alt=""
-            className={styles.img}
-            fill
-            sizes="100%"
-          ></Image>
+          <Image src={film?.filmPoster} alt="" className={styles.img} fill sizes="100%"></Image>
           {isOpen && (
             <Info
               raiting={film.filmGrade}
@@ -50,9 +44,7 @@ const Poster: FC<PosterMovieProps> = ({ film }) => {
         </div>
         <div className={styles.description}>
           <span className={styles.name}>
-            {locale === "ru"
-              ? film?.filmLang[0].filmName
-              : film?.filmLang[1].filmName}
+            {locale === "ru" ? film?.filmLang[0].filmName : film?.filmLang[1].filmName}
           </span>
           <span className={styles.tariff}>{t("movie.free")}</span>
         </div>

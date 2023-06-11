@@ -8,7 +8,6 @@ import { SortType } from "@/types/types";
 import axios from "axios";
 
 export const filterApi = async (body?: any) => {
-  //const { data } = await axios.post(`https://84.201.131.92:5003/movies?lang=ru`, { "genres": "триллер", "countries": [], "actors": [], "directors": []});
   const { data } = await axios({
     method: "post",
     url: `https://84.201.131.92:5003/movies?lang=ru`,
@@ -17,11 +16,8 @@ export const filterApi = async (body?: any) => {
       "Content-type": "application/json; charset=UTF-8",
     },
   });
-  console.log("dataafter", data);
+  //console.log("dataafter", data);
   return data;
-
-  // const dataMovies = dataFilms as ISimpleMovie[];
-  // return dataMovies;
 };
 
 export const filterRangesHandler = (
@@ -30,13 +26,13 @@ export const filterRangesHandler = (
   yearsMax: number,
   ratingMin: number,
   ratingMax: number,
-  scoreMin?: number,
-  scoreMax?: number,
+  scoreMin: number,
+  scoreMax: number,
 ): IMovie[] => {
   return movies
     .filter((item) => item.filmYear >= yearsMin && item.filmYear <= yearsMax)
-    .filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax);
-  //.filter((item) => item.filmTotalGrade >= scoreMin && item.filmTotalGrade <= scoreMax);
+    .filter((item) => item.filmGrade >= ratingMin && item.filmGrade <= ratingMax)
+    .filter((item) => item.filmTotalGrade >= scoreMin && item.filmTotalGrade <= scoreMax);
 };
 
 export const filterPersons = (movies: IMovie[], persons: string[], type: string): IMovie[] => {

@@ -10,6 +10,7 @@ import ProfileModal from "@/components/Modals/ProfileModal";
 import { useSelector } from "react-redux";
 import { selectAuthUser } from "@/Redux/auth/selectors";
 import { selectRegistrUser } from "@/Redux/registration/selectors";
+import { useSession } from "next-auth/react";
 
 const Profile = () => {
   const { t } = useTranslation();
@@ -29,6 +30,13 @@ const Profile = () => {
     setNicknameUser(localStorage.getItem("nickname"));
   }, [resAuth, resRegistr]);
 
+  const session = useSession();
+  useEffect(() => {
+    console.log(session.status);
+    if (session.data?.user.name) {
+      localStorage.setItem("session", session.data?.user.name);
+    }
+  }, [session]);
   return (
     <>
       <Head>

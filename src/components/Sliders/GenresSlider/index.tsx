@@ -36,7 +36,9 @@ const GenresSlider: FC = () => {
       ) : (
         <Slider {...newSettings} className={styles.container}>
           {genres?.map((item, i) => {
-            const findItem = genresIcons.find((elem) => elem.title === item.name);
+            const findItem = genresIcons.find(
+              (elem) => elem.title === item.name
+            );
             return (
               <GenresButton
                 key={item.id}

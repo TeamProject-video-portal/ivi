@@ -134,18 +134,8 @@ export type AuthResponseType = {
   user: UserType;
 };
 export interface IUser {
-  tokens?: {
-    accessToken: string;
-    refreshToken: string;
-  };
-  token?: any;
-  user?: {
-    id: number;
-    email: string;
-    password: string;
-    createdAt: string;
-    updatedAt: string;
-  };
+  id: number;
+  name: string;
 }
 
 export interface IFilters {}

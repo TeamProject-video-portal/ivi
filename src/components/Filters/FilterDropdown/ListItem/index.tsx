@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 import styles from "./index.module.scss";
 import { GiSave } from "react-icons/gi";
 import { useAppDispatch } from "@/hooks/hooks";
-import { watchEditGenre } from "@/Redux/movies/actions";
+import { editGenre, watchEditGenre } from "@/Redux/movies/actions";
 
 type Props = {
   item: string;
@@ -27,7 +27,6 @@ const ListItem: FC<Props> = ({ item, icon, id, onClick, activeFilter, editMode }
   };
 
   const saveHandler = () => {
-    console.log("save", id, inputGenre);
     setActive(false);
     if (id) {
       dispatch(watchEditGenre({ id: id, genre: inputGenre }));

@@ -4,11 +4,6 @@ import { ISimpleMovie } from "@/types/types";
 import axios from "axios";
 import { useRouter } from "next/router";
 
-export const movieApi = async () => {
-  const dataMovies = dataFilms as ISimpleMovie[];
-  return dataMovies;
-};
-
 export const movieAllApi = async () => {
   const https = require("https");
   const agent = new https.Agent({
@@ -42,4 +37,6 @@ export const editGenresApi = async (args: any) => {
       "Content-type": "application/json; charset=UTF-8",
     },
   });
+
+  return data;
 };

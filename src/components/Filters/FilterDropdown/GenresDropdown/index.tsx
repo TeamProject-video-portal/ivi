@@ -19,6 +19,7 @@ const GenresDropdown: FC = () => {
 
   const { genresRu, genresEn } = useAppSelector(selectMovies);
   const genres = lang === "en" ? genresEn : genresRu;
+  const genresCopy = [...genres];
   const { genres: genresFilter } = useAppSelector(selectFilters);
 
   // связать с правами пользователя
@@ -57,8 +58,8 @@ const GenresDropdown: FC = () => {
 
         {editMode ? (
           <ul className={styles.list} key={0}>
-            {genres.length &&
-              genres.map((item, index) => (
+            {genresCopy.length &&
+              genresCopy.map((item, index) => (
                 <ListItem
                   item={item.name}
                   key={`${item.id}`}

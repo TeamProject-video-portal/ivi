@@ -21,8 +21,6 @@ const MovieResults: FC = () => {
     setNext(SHOW_SIZE);
   }, [results]);
 
-  //console.log("itemsToShow.length, results.length, next", itemsToShow.length, results.length, next);
-
   const sliceArray = (start: number, end: number): void => {
     setItemsToShow((state) => [...state, ...results.slice(start, end)]);
   };

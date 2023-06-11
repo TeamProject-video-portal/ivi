@@ -48,7 +48,6 @@ import axios from "axios";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
-  //console.log("router", router);
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -89,20 +88,6 @@ const Movies: NextPage = (context) => {
     },
   ];
 
-  //////////////////////////
-  // const put = useDispatch();
-  // useEffect(() => {
-  //   console.log("useeffect");
-  //   const fetchData = async () => {
-  //     try {
-  //       await put(getMoviesData());
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   };
-  // }, []);
-  ////////////////////
   const [breadcrumbs, setBreadcrumbs] = useState<Breadcrumb[]>(breadcrumbsBegin);
 
   useEffect(() => {
@@ -358,17 +343,28 @@ const Movies: NextPage = (context) => {
 //   (store) => async (context) => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
-  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
-  // store.dispatch({
-  //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
-  //   payload: data,
-  // });
+  console.log("SSH movie page");
+  const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+  store.dispatch({
+    type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+    payload: data,
+  });
+
+  store.dispatch(END);
+
+  if (!data) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
-    //props: { persons, movies },
-    props: {},
-    //revalidate: 10,
+    props: { data },
+    revalidate: 10,
   };
+  // return {
+  //   props: {},
+  // };
 });
 
 export default connect((state) => state)(Movies);

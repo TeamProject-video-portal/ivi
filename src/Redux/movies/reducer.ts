@@ -58,30 +58,10 @@ export const moviesReducer = (state = initialState, action: AnyAction): IMoviesS
     case MOVIES_ACTIONS.GET_MOVIES_START:
       return { ...state, start: "START" };
 
-    case MOVIES_ACTIONS.EDIT_GENRE:
-      let genresCopy = [...state.genresRu];
-      let findGenre = genresCopy.find((item) => item.id === action.payload.id);
-      if (findGenre) {
-        genresCopy = genresCopy.map((item) =>
-          item.id === action.payload.id ? (item.name = action.payload.genre) : item,
-        );
-        return { ...state, genresRu: genresCopy };
-      } else {
-        genresCopy = [...state.genresEn];
-        findGenre = genresCopy.find((item) => item.id === action.payload.id);
-        if (findGenre) {
-          genresCopy = genresCopy.map((item) =>
-            item.id === action.payload.id ? (item.name = action.payload.genre) : item,
-          );
-          return { ...state, genresEn: genresCopy };
-        }
-      }
-      return state;
-
     // case HYDRATE:
     //   return {
     //     ...state,
-    //     ...action.payload.movies,
+    //     ...action.payload.moviesReducer,
     //   };
     default:
       return state;

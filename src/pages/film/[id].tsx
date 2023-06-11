@@ -85,6 +85,8 @@ const CardId: NextPage = ({ movie }: any) => {
           filmGrade={movie.filmGrade}
           actors={movie.actors || []}
           className={styles.slider_actors}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
         <InfoMovie className={styles.info} movie={movie} />
       </div>
@@ -99,6 +101,8 @@ const CardId: NextPage = ({ movie }: any) => {
         title={t("movie.trailers")}
         type={"detailed"}
         movies={dataForTrailers}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
       {isOpenModal && (
         <TrailerModal

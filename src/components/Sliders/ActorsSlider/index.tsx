@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "./index.module.scss";
 import Slider from "react-slick";
 import Poster from "@/components/Poster";
@@ -15,9 +21,17 @@ type Props = {
   actors: ActorsType[];
   filmGrade: number;
   className: string;
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 
-const ActorsSlider: FC<Props> = ({ actors, filmGrade, className }) => {
+const ActorsSlider: FC<Props> = ({
+  actors,
+  filmGrade,
+  className,
+  isLoading,
+  setIsLoading,
+}) => {
   const router = useRouter();
   const [locale, setLocale] = useState<string | string[]>("ru");
 
@@ -38,7 +52,13 @@ const ActorsSlider: FC<Props> = ({ actors, filmGrade, className }) => {
       <Slider {...newSettings} className={styles.slider}>
         <Raiting filmGrade={filmGrade} />
         {actors.map((item: any) => (
-          <Link href={`/person/${item.id}?lang=${locale}`} key={`${item.id}`}>
+          <Link
+            href={`/person/${item.id}?lang=${locale}`}
+            key={`${item.id}`}
+            onClick={() => {
+              setIsLoading(true);
+            }}
+          >
             <Actor img={item.photo} name={item.name} key={`${item.id}`} />
           </Link>
         ))}

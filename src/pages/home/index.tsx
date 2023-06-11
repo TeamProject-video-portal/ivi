@@ -67,6 +67,8 @@ const Home: FC<Props> = (context: any) => {
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
         movies={ContinueBrowingmovies}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
 
       <SliderTopTen />

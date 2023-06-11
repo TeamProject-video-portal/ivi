@@ -2,6 +2,7 @@ import { DetailedHTMLProps, Dispatch, FC, useState } from "react";
 import styles from "./index.module.scss";
 import { Button } from "../Button/Button";
 import { useTranslation } from "next-export-i18n";
+import next from "next";
 
 type Props = {
   filmLink: string;
@@ -11,11 +12,9 @@ type Props = {
 
 export const FilmButtons: FC<Props> = (props) => {
   const { t } = useTranslation();
-
   const handleClick = () => {
     props.setIsOpenModal(true);
   };
-
   return (
     <div className={styles.bottom_buttons}>
       <div className={styles.left_side}>
@@ -33,7 +32,6 @@ export const FilmButtons: FC<Props> = (props) => {
         <Button color={"darkbluegrey"} className={styles.favorite}>
           <div className="nbl-icon nbl-icon_favoriteAdd_20 nbl-button__nbl-icon"></div>
         </Button>
-
         <Button color={"darkbluegrey"} className={styles.share}>
           <div className="nbl-icon nbl-icon_share_20 nbl-button__nbl-icon"></div>
         </Button>

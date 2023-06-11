@@ -3,6 +3,8 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import { useTranslation } from "next-export-i18n";
 import FilmButtons from "../FilmButtons";
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 type Props = {
   filmPicture: string;
@@ -14,16 +16,20 @@ type Props = {
 
 export const TrailerCard: FC<Props> = (props) => {
   const { t } = useTranslation();
+  const router = useRouter();
+
   return (
     <div className={[styles.container, props.className].join(" ")}>
       <div className={styles.player_block}>
         <Image src={props.filmPicture} alt=" " fill></Image>
         <div className={styles.buttons}>
-          <button className={styles.watch}>
+          <Link
+            href={`https://www.kinopoisk.ru/film/${router.query.id}`}
+            className={styles.watch}
+          >
             <p>{t("buttons.watch")}</p>
             <span>{t("buttons.watch_by_subscription")}</span>
-          </button>
-
+          </Link>
           <div className={styles.note}>
             <p>{t("buttons.watch_first_30_days")}</p>
           </div>

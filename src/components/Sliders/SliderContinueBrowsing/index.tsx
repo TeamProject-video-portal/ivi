@@ -1,4 +1,10 @@
-import React, { FC, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import styles from "../index.module.scss";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
@@ -16,9 +22,17 @@ type Props = {
   title: string;
   type: string;
   movies: BrowsingMovie[];
+  isLoading: boolean;
+  setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 
-const SliderContinueBrowsing: FC<Props> = ({ title, type, movies }) => {
+const SliderContinueBrowsing: FC<Props> = ({
+  title,
+  type,
+  movies,
+  isLoading,
+  setIsLoading,
+}) => {
   const newSettings = {
     ...settings,
     centerMode: false,
@@ -44,6 +58,9 @@ const SliderContinueBrowsing: FC<Props> = ({ title, type, movies }) => {
           <Link
             href={`/film/${item.id}?lang=${locale}`}
             key={`${item}-${index}`}
+            onClick={() => {
+              setIsLoading(true);
+            }}
           >
             <CardMovie
               title={item.name}

@@ -16,13 +16,21 @@ type Props = {
 export const WatchOnAllDevices: FC<Props> = (props) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const [locale, setLocale] = useState<any>("ru");
 
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
   return (
     <div className={styles.container}>
       <div className={styles.title}>
         <h2>
           {t("movie.watch")}{" "}
-          {router.asPath.includes("lang=ru")
+          {locale === "ru"
             ? props.filmLang[0].filmName
             : props.filmLang[1].filmName}
           {t("movie.all_devices")}

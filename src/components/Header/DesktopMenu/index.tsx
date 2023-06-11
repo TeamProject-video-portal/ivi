@@ -57,8 +57,7 @@ const DesktopMenu: FC<Props> = (props) => {
           {t("header.movies")}
         </span>
       </Link>
-      {/* <Link href="/series"> */}
-      <Link href="https://www.ivi.tv/series">
+      <Link href="/series">
         <span
           className={styles.link_movies}
           onMouseEnter={() => {
@@ -70,8 +69,7 @@ const DesktopMenu: FC<Props> = (props) => {
           {t("header.series")}
         </span>
       </Link>
-      <Link href={`/animation?lang=${locale}`}>
-        {/* <Link href="https://www.ivi.tv/animation"> */}
+      <Link href="https://www.ivi.tv/animation">
         <span
           className={styles.link_movies}
           onMouseEnter={() => {

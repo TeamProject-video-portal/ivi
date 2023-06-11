@@ -23,7 +23,6 @@ const initialState: BrowsingMovie[] = [
 export const continueBrowsingReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case DATA_CONTINUE_BROWSING.GET_CONTINUE_BROWSING:
-      console.log("payload", action.payload);
       return [...state, action.payload];
 
     default:

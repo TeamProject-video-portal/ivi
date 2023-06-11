@@ -5,6 +5,7 @@ import { useTranslation } from "next-export-i18n";
 
 export const DownButtons: FC = () => {
   const { t } = useTranslation();
+
   return (
     <div className={styles.down_buttons}>
       <button className={styles.button_watch}>

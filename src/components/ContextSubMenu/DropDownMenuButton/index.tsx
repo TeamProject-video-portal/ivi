@@ -6,8 +6,10 @@ import { BlocksMenu } from "./BlocksMenu";
 import { DownButtons } from "./DownButtons";
 import { DropDownTitle } from "./DropDownTitle";
 import Ad from "@/components/Header/DesktopMenu/SubMenu/Ad";
+
 export const DropDownMenuButton: FC = () => {
   const { t } = useTranslation();
+
   return (
     <div className={styles.container}>
       <div className={styles.content}>

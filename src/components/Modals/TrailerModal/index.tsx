@@ -10,6 +10,7 @@ export const TrailerModal: FC<Props> = (props) => {
   const handleClick = () => {
     props.setIsOpenModal(false);
   };
+
   return (
     <div className={styles.container} onClick={handleClick}>
       <div className={styles.modal}>

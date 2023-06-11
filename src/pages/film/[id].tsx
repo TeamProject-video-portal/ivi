@@ -4,24 +4,22 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
-import { GetServerSideProps, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import { IMovie, IMovieRes } from "@/types/types";
+import { IMovieRes } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
-import TrailerCard from "./TrailerCard";
 import React, { useEffect, useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
 import WatchOnAllDevices from "../../components/WatchOnAllDevices";
 import axios from "axios";
-import DetailsMovie from "../../components/InfoMovie/Details";
 import InfoMovie from "@/components/InfoMovie";
 import { getContinueBrowsing } from "@/Redux/continue_browsing/actions";
-import { store } from "@/Redux/store";
 import { useDispatch } from "react-redux";
 import { Loader } from "@/components/Loader";
 import dataForTrailers from "../../data/trailers_for_movie.json";
+import TrailerCard from "@/components/TrailerCard";
 
 const CardId: NextPage = ({ movie }: any) => {
   const [id, setId] = useState<any>();
@@ -32,7 +30,7 @@ const CardId: NextPage = ({ movie }: any) => {
   const router = useRouter();
   const breadcrumbs: Breadcrumb[] = [
     { item: "Фильмы", path: "/movies" },
-    // { item: movie.genres[0].name, path: "/movies" },
+    { item: movie.genres[0].name, path: "/movies" },
   ];
 
   useEffect(() => {
@@ -124,20 +122,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const locale = context.params?.lang || "ru";
   let movie: IMovieRes;
   try {
-    console.log(123);
-    const movieResponse = await fetch(
-      `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`
+    console.log(context);
+    const movieResponse = await axios.get(
+      `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
+      { httpsAgent: agent, timeout: 5000 }
     );
-    // const movieResponse = await axios.get(
-    //   `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
-    //   { httpsAgent: agent, timeout: 5000 }
-    // );
     console.log("movieResponse", movieResponse.status);
-    // movie = movieResponse.data as IMovieRes;
+    movie = movieResponse.data;
   } catch (e) {
-    movie = moviesData as IMovieRes;
+    movie = moviesData;
   }
-  movie = moviesData as IMovieRes;
 
   return {
     props: { movie },

@@ -99,7 +99,6 @@ export const Comments: FC = () => {
     };
     try {
       const sentNewComment = await sendComment(dataComment);
-      console.log(sentNewComment);
     } catch (e) {
       console.log("comment", e);
     }

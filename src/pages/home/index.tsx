@@ -51,7 +51,6 @@ const Home: FC<Props> = (context: any) => {
   }, []);
 
   useEffect(() => {
-    console.log(data);
     setMoviesForSliders(data);
   }, [data]);
   return (

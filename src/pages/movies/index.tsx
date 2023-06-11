@@ -54,7 +54,6 @@ import axios from "axios";
 
 const Movies: NextPage = (context) => {
   const router = useRouter();
-  //console.log("router", router);
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
 

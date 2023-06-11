@@ -37,13 +37,11 @@ const SliderTopTen = () => {
   }, [router]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        await put(getDataTopMovies());
-      } catch (error) {
-        console.log(error);
-      }
-    };
+    try {
+      put(getDataTopMovies());
+    } catch (error) {
+      console.log(error);
+    }
   }, []);
 
   return (

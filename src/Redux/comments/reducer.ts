@@ -10,7 +10,6 @@ const initialState: any = {
 };
 
 export const commentReducer = (state = initialState, action: any) => {
-  console.log(action.type);
   switch (action.type) {
     case DATA_COMMENTS.SEND_COMMENT_START:
       return action.type;

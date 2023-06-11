@@ -58,8 +58,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       localStorage.setItem("idUser", res.data.user.id.toString());
       localStorage.setItem("email", res.data.user.email);
       put(getDataUserSuccess(res.data));
-
-      console.log(res);
     } catch (e) {
       put(getDataUserFail());
       console.log(`authorization ${e}`);

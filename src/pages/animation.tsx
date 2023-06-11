@@ -9,7 +9,7 @@ import { getDataUser, getDataUserSuccess } from "@/Redux/auth/actions";
 import { store } from "@/Redux/store";
 import { selectAuthUser } from "@/Redux/auth/selectors";
 import { getDataUserRegistrationSuccess } from "@/Redux/registration/actions";
-
+import Link from "next/link";
 export const Cartoons = ({ res }: any) => {
   const session = useSession();
   const put = useDispatch();
@@ -22,29 +22,12 @@ export const Cartoons = ({ res }: any) => {
       ...payload,
       redirect: false,
     });
-    console.log(res);
-    console.log(session);
-    // try {
-    //   console.log("try");
-    //   const res = await Registration("Maggie", "example@gmail.com", "123");
-    //   localStorage.setItem("token", res.data.tokens.accessToken);
-    //   put(getDataUserRegistrationSuccess(res.data));
-    // } catch (e) {
-    //   console.log(e);
-    // }
-    // console.log(session);
-    // const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
-    // put(getDataUserSuccess({ email: "exaple@gmail.com", password: "123" }));
-    // window.open(
-    //   "https://oauth.vk.com/authorize?client_id=6909581&display=page&redirect_uri=<http://localhost:3000/animation?lang=ru>&scope=1026&response_type=token&v=5.131&state=123456"
-    // );
+
     signIn("vk");
   };
-  const dataUser = useSelector(selectAuthUser);
-
   return (
     <div>
-      <button onClick={handleClick}>click me</button>
+      {/* <button onClick={handleClick}>click me</button> */}
       {/* <button onClick={() => console.log(store.getState())}>state</button> */}
       {/* <Comments />{" "} */}
     </div>

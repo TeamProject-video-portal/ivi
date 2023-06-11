@@ -47,7 +47,7 @@ export const RightButtons: FC = () => {
           <h2> {emailUser}</h2>
         </div>
       ) : (
-        <Link href={`/profile?=lang=${locale}`}>
+        <Link href={`/profile?lang=${locale}`}>
           <button className={styles.button_watch}>
             {t("buttons.enter_or_regist")}
           </button>

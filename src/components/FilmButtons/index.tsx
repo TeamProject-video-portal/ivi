@@ -1,9 +1,6 @@
 import { DetailedHTMLProps, Dispatch, FC, useState } from "react";
 import styles from "./index.module.scss";
-import Link from "next/link";
-import Image from "next/image";
-import img from "../../../images/banner__foto.jpeg";
-import { Button } from "../../../components/Button/Button";
+import { Button } from "../Button/Button";
 import { useTranslation } from "next-export-i18n";
 
 type Props = {
@@ -18,6 +15,7 @@ export const FilmButtons: FC<Props> = (props) => {
   const handleClick = () => {
     props.setIsOpenModal(true);
   };
+
   return (
     <div className={styles.bottom_buttons}>
       <div className={styles.left_side}>
@@ -40,6 +38,7 @@ export const FilmButtons: FC<Props> = (props) => {
           <div className="nbl-icon nbl-icon_share_20 nbl-button__nbl-icon"></div>
         </Button>
       </div>
+
       <Button color={"darkbluegrey"} className={styles.free_movies}>
         <div className="nbl-icon nbl-icon_catalog_16 nbl-button__nbl-icon"></div>
         <p>{t("buttons.free_movies")}</p>

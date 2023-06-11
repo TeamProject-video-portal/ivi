@@ -33,6 +33,7 @@
       width: auto;
       margin-left: 0;
     }
+
     .subtitle {
       margin-bottom: 4px;
       @include font-bold-m;
@@ -101,6 +102,24 @@
         }
       }
     }
+  }
+
+  .vk {
+    @include font-regular-m;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 20px;
+    cursor: pointer;
+
+    svg {
+      width: 35px;
+      height: 30px;
+      color: white;
+      margin-right: 20px;
+    }
+    // background-color: red;
   }
 }
 

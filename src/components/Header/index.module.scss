@@ -28,16 +28,18 @@
     }
 
     .container_active {
-      height: inherit;
       @include laptop {
       }
       @include desktop {
       }
+
+      height: inherit;
       position: absolute;
       opacity: 0.48;
       border-radius: 14px 14px 0px 0px;
       z-index: 0;
     }
+
     .main_part {
       height: inherit;
       display: flex;

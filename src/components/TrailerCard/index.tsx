@@ -1,9 +1,6 @@
-import { DetailedHTMLProps, Dispatch, FC, useState } from "react";
+import { Dispatch, FC } from "react";
 import styles from "./index.module.scss";
-import Link from "next/link";
 import Image from "next/image";
-import img from "../../../images/banner__foto.jpeg";
-import { Button } from "../../../components/Button/Button";
 import { useTranslation } from "next-export-i18n";
 import FilmButtons from "../FilmButtons";
 

@@ -206,7 +206,8 @@
     "success_auth": "You are successfully logged in",
     "success_regist": "You are successfully regist",
     "error_auth": "Username or password entered incorrectly",
-    "user": "User"
+    "user": "User",
+    "Vkontakte": "Log in with Vkontakte"
   },
   "movie": {
     "watch_online": "watch online",

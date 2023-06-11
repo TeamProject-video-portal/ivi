@@ -4,32 +4,38 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
 import VkProvider from "next-auth/providers/vk";
 import { userAgent } from "next/server";
+
+// import  from `next-auth/providers/vk`
 interface CustomUser extends User {
   role: string;
 }
-const apiVersion = "5.126";
+
+const VK_CLIENT_ID = 51672772;
+const VK_CLIENT_SECRET = "Myzf7Psrc376Twd6AcT6";
 export default NextAuth({
+  secret: process.env.SECRET,
   providers: [
     VkProvider({
-      clientId: `${process.env.VK_CLIENT_ID}` || "51672772",
-      clientSecret: process.env.VK_CLIENT_SECRET || "Myzf7Psrc376Twd6AcT6",
+      clientId: VK_CLIENT_ID.toString(),
+      clientSecret: VK_CLIENT_SECRET,
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      return { token, user };
-    },
-    async session({ session, token }) {
-      console.log("token", token);
-      session.user = {
-        token,
-      };
 
-      return session;
-    },
-  },
+  // callbacks: {
+  //   async jwt({ token, user }) {
+  //     return { token, user };
+  //   },
+  //   async session({ session, token }) {
+  //     console.log("token", token);
+  //     session.user = {
+  //       token,
+  //     };
+
+  //     return session;
+  //   },
+  // },
   // json: true,
-  secret: process.env.JWT_SECRET,
+  // secret: process.env.JWT_SECRET,
   session: {
     strategy: "jwt",
     // Seconds - How long until an idle session expires and is no longer valid.

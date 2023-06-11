@@ -12,7 +12,8 @@ import styles from "../index.module.scss";
 import { Button } from "@/components/Button/Button";
 import CompanyPolicy from "../../PolicyBlock";
 import { useLanguageSwitcherIsActive, useTranslation } from "next-export-i18n";
-
+import { SlSocialVkontakte } from "react-icons/sl";
+import { signIn, useSession } from "next-auth/react";
 type Props = {
   step: number;
   setStep: Dispatch<SetStateAction<number>>;
@@ -47,13 +48,24 @@ const AuthSteps: FC<Props> = (props) => {
       setInputValue("");
     }
   };
-
+  const session = useSession();
+  console.log(session);
   return (
     <div className={styles.content}>
       <div className={styles.message}>
         <div className={styles.subtitle}>{t(props.content[props.step][0])}</div>
         <span>{t("profile.least_characters")}</span>
       </div>
+      {props.step === 0 && (
+        <div
+          className={[styles.message, styles.vk].join(" ")}
+          onClick={() => signIn("vk")}
+        >
+          <SlSocialVkontakte />
+          {t("profile.Vkontakte")}
+        </div>
+      )}
+
       <div className={styles.enter_data}>
         <div
           className={styles.input_div}

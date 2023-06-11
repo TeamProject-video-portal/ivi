@@ -7,77 +7,24 @@ import { userAgent } from "next/server";
 interface CustomUser extends User {
   role: string;
 }
+const apiVersion = "5.126";
 export default NextAuth({
   providers: [
-    CredentialsProvider({
-      name: "credentials",
-      credentials: {
-        email: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        // const user = {
-        //   id: "1",
-        //   name: `${credentials?.username}`,
-        //   password: "jsmith@example.com",
-        //   role: "admin",
-        // };
-        //   const https = require("https");
-        //   const agent = new https.Agent({
-        //     rejectUnauthorized: false,
-        //   });
-        //   const user = await axios.post(
-        //     "http://84.201.131.92:5000/users/login",
-        //     {
-        //       email: `${credentials?.email}`,
-        //       password: `${credentials?.password}`,
-        //     },
-        //     { httpsAgent: agent }
-        //   );
-        //   // const user = await res.json();
-        //   if (user) {
-        //     return user;
-        //   } else {
-        //     return null;
-        //   }
-        // },
-
-        const res = await fetch(`${process.env.NEXTAUTH_URL}/profile`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: credentials?.email,
-            password: credentials?.password,
-          }),
-        });
-        const user = await res.json();
-
-        if (user) {
-          return user;
-        } else {
-          return null;
-        }
-      },
+    VkProvider({
+      clientId: `${process.env.VK_CLIENT_ID}` || "51672772",
+      clientSecret: process.env.VK_CLIENT_SECRET || "Myzf7Psrc376Twd6AcT6",
     }),
   ],
   callbacks: {
     async jwt({ token, user }) {
-      if (user) {
-        token.name = user.name;
-        // token.role = user.role;
-      }
-      return token;
+      return { token, user };
     },
     async session({ session, token }) {
-      if (token?.name) {
-        session.user = {
-          userId: 123,
-          name: token.name,
-          userRole: "admin",
-        };
-      }
+      console.log("token", token);
+      session.user = {
+        token,
+      };
+
       return session;
     },
   },

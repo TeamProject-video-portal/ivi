@@ -45,7 +45,7 @@ export interface IMovie extends ISimpleMovie {
   filmTrailer: string;
   filmTotalGrade: number;
   filmR: string;
-  similarFilms: ISimpleMovie[];
+  similarFilms?: ISimpleMovie[];
   reviews?: string[];
 }
 
@@ -89,11 +89,63 @@ export type ResponseError = {
   message: string;
 };
 
-export interface IUser {
+export type AuthData = {
+  tokens: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  user: {
+    id: number;
+    email: string;
+    password: string;
+    createdAt: string;
+    updatedAt: string;
+  };
+};
+
+export type TokenType = {
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type UserType = {
+  id: number;
+  email: string;
+  password: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ProfileType = {
+  id: number;
   userId: number;
-  name?: string;
-  email?: string;
-  userRole?: string;
+  nickname: string;
+  updatedAt: string;
+  createdAt: string;
+};
+export type RegistrationUserType = {
+  tokens: TokenType;
+  user: UserType;
+  profile: ProfileType;
+};
+
+export type AuthResponseType = {
+  tokens: TokenType;
+  user: UserType;
+};
+export interface IUser {
+  tokens?: {
+    accessToken: string;
+    refreshToken: string;
+  };
+  token?: any;
+  user?: {
+    id: number;
+    email: string;
+    password: string;
+    createdAt: string;
+    updatedAt: string;
+  };
 }
 
 export interface IFilters {}
@@ -162,3 +214,43 @@ export type MoviesForFilmsPageT = {
   countriesRu: CountriesType[];
   countriesEn: CountriesType[];
 };
+
+export interface IMovieRes {
+  id: number;
+  filmType: string;
+  filmLink: string;
+  filmTrailer: string;
+  filmYear: number;
+  filmTime: number;
+  filmGrade: number;
+  filmTotalGrade: number;
+  filmR: string;
+  filmAge: string;
+  filmPoster: string;
+  directors: {
+    id: number;
+    name: string;
+  }[];
+  similarFilms: ISimilarFilmRes[];
+}
+
+interface ISimilarFilmRes {
+  id: number;
+  filmPoster: string;
+  filmGrade: number;
+  filmYear: number;
+  filmTime: number;
+  filmAge: string;
+  filmLang: {
+    lang: string;
+    filmName: string;
+  }[];
+  genres: {
+    id: number;
+    name: string;
+  }[];
+  countries: {
+    id: number;
+    name: string;
+  }[];
+}

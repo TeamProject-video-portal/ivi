@@ -28,7 +28,7 @@ export const DescriptionCard: FC<Props> = ({
 }) => {
   const router = useRouter();
   const { data: session } = useSession();
-
+  const [isAdmin, setIsAdmin] = useState<boolean>(false);
   const { t } = useTranslation();
   const [title, setTitle] = useState<string>();
 
@@ -38,9 +38,18 @@ export const DescriptionCard: FC<Props> = ({
       : setTitle(filmLang[0].filmName);
   }, [router]);
 
+  useEffect(() => {
+    const user = localStorage.getItem("idUser")
+      ? localStorage.getItem("idUser")
+      : null;
+
+    if (user !== null && user == "1") {
+      setIsAdmin(true);
+    }
+  }, []);
   return (
     <div className={[styles.container, className].join(" ")}>
-      {session ? <EditTitle title={title} /> : <h1>{title}</h1>}
+      {isAdmin ? <EditTitle title={title} /> : <h1>{title}</h1>}
 
       <h1>{t("movie.watch_online")}</h1>
       <div className={styles.data}>

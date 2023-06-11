@@ -3,6 +3,11 @@ import styles from "./index.module.scss";
 import { signIn, SignInResponse, useSession } from "next-auth/react";
 import AuthSteps from "./Steps/AuthSteps.tsx";
 import AuthResult from "./Steps/AuthResult";
+import { Login, Registration } from "@/profileRequests/AuthService";
+import { useDispatch } from "react-redux";
+import { getDataUserFail, getDataUserSuccess } from "@/Redux/auth/actions";
+import { getDataUserRegistrationFail } from "@/Redux/registration/actions";
+import { useTranslation } from "next-export-i18n";
 
 type ProfileModalProps = {
   openModal: boolean;
@@ -15,22 +20,24 @@ export type DataUser = {
   password: string;
 };
 
-const contentAuth: Record<number, string[]> = {
-  0: ["Войдите или зарегистрируйтесь", "Через email"],
-  1: ["Введите пароль для регистрации или авторизации", "Пароль"],
-};
-
-const contentRegistraion: Record<number, string[]> = {
-  0: ["Введите почту ", "Почта"],
-  1: ["Введите никнейм", "Никнейм"],
-  2: ["Введите пароль ", "Пароль"],
-};
-
 const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
+  const { t } = useTranslation();
+
+  const contentAuth: Record<number, string[]> = {
+    0: ["profile.enter_or_regist", "profile.by_email"],
+    1: ["profile.enter_password", "profile.password"],
+  };
+
+  const contentRegistraion: Record<number, string[]> = {
+    0: ["profile.enter_email", "profile.email"],
+    1: ["profile.enter_nickname", "profile.nickname"],
+    2: ["profile.enter_password_short", "profile.password"],
+  };
+
   const [step, setStep] = useState<number>(0);
   const [inputData, setInputData] = useState("");
   const { data: session } = useSession();
-  const [result, setResult] = useState<SignInResponse | undefined>();
+  const [isRequest, setIsRequest] = useState(false);
   const [isRegistration, setIsRegistration] = useState<boolean>(false);
   const [isAuthorization, setIsAuthorization] = useState<boolean>(false);
   const [dataUser, setDataUser] = useState<DataUser>({
@@ -41,22 +48,38 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
   const [endStep, setEndStep] = useState(2);
   const [enterData, setEnterData] = useState(contentAuth);
   const [isNewAccout, setIsNewAccout] = useState(false);
+  const put = useDispatch();
 
   //авторизация пользователя
   const authorization = async () => {
-    const payload = {
-      email: `${dataUser.login}`,
-      password: `${dataUser.password}`,
-    };
-    const res = await signIn("credentials", {
-      ...payload,
-      redirect: false,
-    });
-    setResult(res);
+    try {
+      const res = await Login(dataUser.login, dataUser.password);
+      localStorage.setItem("token", res.data.tokens.accessToken);
+      localStorage.setItem("idUser", res.data.user.id.toString());
+      localStorage.setItem("email", res.data.user.email);
+      put(getDataUserSuccess(res.data));
+    } catch (e) {
+      put(getDataUserFail());
+      console.log(`authorization ${e}`);
+    }
   };
 
-  const registration = () => {
+  const registration = async () => {
     setIsNewAccout(true);
+    try {
+      const res = await Registration(
+        dataUser.nickName,
+        dataUser.login,
+        dataUser.password
+      );
+      localStorage.setItem("token", res.data.tokens.accessToken);
+      localStorage.setItem("idUser", res.data.user.id.toString());
+      localStorage.setItem("email", res.data.user.email);
+      localStorage.setItem("nickname", res.data.profile.nickname);
+    } catch (e) {
+      put(getDataUserRegistrationFail());
+      console.log("registration", e);
+    }
   };
 
   useEffect(() => {
@@ -64,7 +87,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       setIsRegistration(false);
       setStep(0);
     }
-    console.log(isAuthorization);
   }, [isAuthorization]);
 
   //запись введенных данных
@@ -109,12 +131,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       dataUser.login !== "" &&
       dataUser.password !== ""
     ) {
-      ////////////////////////
-      //запрос на регистрацию
-      /////////////////
-      authorization();
       registration();
-      console.log("need registration");
     }
   }, [dataUser]);
 
@@ -139,7 +156,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       }`}
     >
       <div className={styles.headerRow}>
-        <h1 className={styles.title}>Вход или регистрация</h1>
+        <h1 className={styles.title}>{t("buttons.enter_or_regist")}</h1>
         <button className={styles.closeBtn} onClick={() => setOpenModal(false)}>
           <div className="nbl-icon nbl-icon_close_20 nbl-simpleControlButton__nbl-icon"></div>
         </button>
@@ -164,7 +181,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
         <AuthResult
           openModal={openModal}
           setOpenModal={setOpenModal}
-          result={result}
           isRegistration={isRegistration}
           setIsRegistration={setIsRegistration}
           isAuthorization={isAuthorization}

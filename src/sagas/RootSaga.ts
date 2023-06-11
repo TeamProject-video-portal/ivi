@@ -1,4 +1,4 @@
-import { all, fork } from "redux-saga/effects";
+import { all, fork, takeEvery } from "redux-saga/effects";
 import { getDataTopMoviesSaga } from "./top-movies-saga";
 import { getMoviesSaga, watchMoviesSaga } from "./movies-saga";
 //import { getMoviesSaga } from "./movies-saga";
@@ -11,7 +11,7 @@ export function* rootSaga() {
   try {
     yield all([
       fork(getDataBannerSaga),
-      // fork(getDataTopMoviesSaga),
+      fork(getDataTopMoviesSaga),
       //fork(getMoviesSaga),
       fork(watchFiltersSaga),
       fork(getDataHomePageSaga),

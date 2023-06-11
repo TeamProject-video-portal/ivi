@@ -12,7 +12,6 @@ import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
 import { GetStaticProps, GetStaticPaths, NextPage, GetServerSideProps } from "next";
-import personsData from "@/data/persons.json";
 import axios from "axios";
 import personData from "@/data/person.json";
 
@@ -63,16 +62,8 @@ const Person: NextPage = ({ person }: any) => {
               priority
             ></Image>
           </div>
-          <h1 className={styles.title}>
-            {router.asPath.includes("lang=en")
-              ? person.personLang[1].personName
-              : person.personLang[0].personName}
-          </h1>
-          <div className={styles.title_en}>
-            {router.asPath.includes("lang=en")
-              ? person.personLang[0].personName
-              : person.personLang[1].personName}
-          </div>
+          <h1 className={styles.title}>{person.personLang[0].personName}</h1>
+          <div className={styles.title_en}>{person.personLang[1].personName}</div>
           <Description truncText={truncText} fullText={fullText} className={styles.description} />
           <div className={styles.breadcrumbsRow}>
             <Breadcrumbs breadcrumbs={breadcrumbs} type="films" del="&middot;" />
@@ -88,9 +79,13 @@ const Person: NextPage = ({ person }: any) => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
   const lang = context.params?.lang || "ru";
-
-  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
-  const person = response.data;
+  let person = personData;
+  try {
+    const response = await axios.get(`http://84.201.131.92:5002/${id}?lang=${lang}`);
+    person = response.data;
+  } catch (e) {
+    person = personData;
+  }
 
   if (!person) {
     return {

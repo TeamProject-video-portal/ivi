@@ -77,8 +77,14 @@
     "ru": "Rus",
     "en": "Eng",
     "enter_or_regist": "Enter or register",
+    "register": "Register",
+    "enter": "Enter",
     "edit_profile": "Edit profile",
-    "save": "Save"
+    "save": "Save",
+    "logout": "LogOut",
+    "change_password": "Change password",
+    "continue": "Continue",
+    "connect_devices": "Connect Devices"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",
@@ -183,11 +189,35 @@
     "help": "Help",
     "browsing_history": "Browsing history",
     "certificate_activation": "Certificate activation",
-    "entrance_by_code": "Entrance by code"
+    "entrance_by_code": "Entrance by code",
+    "least_characters": "at least 6 characters",
+    "clicking": "By clicking «Continue» I agree",
+    "to_policy": "To the Privacy Policy",
+    "user_agreement": "User Agreement",
+    "enter_or_regist": "Login or register",
+    "by_email": "By email",
+    "enter_password": "Enter your password to register or login",
+    "password": "Password",
+    "email": "Email",
+    "nickname": "Nickname",
+    "enter_email": "Enter email",
+    "enter_nickname": "Enter nickname",
+    "enter_password_short": "Enter password",
+    "success_auth": "You are successfully logged in",
+    "success_regist": "You are successfully regist",
+    "error_auth": "Username or password entered incorrectly",
+    "user": "User"
   },
   "movie": {
     "watch_online": "watch online",
-    "free": "Free"
+    "free": "Free",
+    "enter_comment": "Enter a comment",
+    "write_comment": "Write a comment",
+    "visible_comment": "Log in to leave a review",
+    "trailers": "Trailers and extras materials",
+    "watch": "Watch",
+    "all_devices": "on all devices",
+    "download": "The application is available for download on iOS, Android, SmartTV and prefixes"
   },
   "error": {
     "error_page": "Error page",

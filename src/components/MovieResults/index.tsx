@@ -7,6 +7,7 @@ import { Button } from "../Button/Button";
 import { useAppSelector } from "@/hooks/hooks";
 import { selectFilters } from "@/Redux/filter/selectors";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 
 const SHOW_SIZE = 14;
 
@@ -30,11 +31,22 @@ const MovieResults: FC = () => {
     setNext((state) => (state < results.length ? state + SHOW_SIZE : state));
   };
 
+  const router = useRouter();
+  const [locale, setLocale] = useState<any>("ru");
+
+  useEffect(() => {
+    if (router.query?.lang) {
+      setLocale(router.query?.lang);
+    } else {
+      setLocale("ru");
+    }
+  }, [router]);
+
   return (
     <div className={styles.results}>
       <div className={styles.results__list}>
         {itemsToShow.map((item, i) => (
-          <Link href={`/film/${item.id}`} key={`${item.id}`}>
+          <Link href={`/film/${item.id}?lang=${locale}`} key={`${item.id}`}>
             <Poster film={item} />
           </Link>
         ))}

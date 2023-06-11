@@ -2,7 +2,12 @@ import { BannerReducerT } from "./banner/reducer";
 import { TopMovieReducerT } from "./topTenMovies/reducer";
 import { IMoviesState } from "./movies/reducer";
 import { IFilterState } from "./filter/reducer";
-import { ISimpleMovie, MoviesForSlidersOnHomePageT } from "@/types/types";
+import {
+  AuthResponseType,
+  ISimpleMovie,
+  MoviesForSlidersOnHomePageT,
+  RegistrationUserType,
+} from "@/types/types";
 import { BrowsingMovie } from "./continue_browsing/reducer";
 
 export type RootState = {
@@ -12,4 +17,7 @@ export type RootState = {
   filters: IFilterState;
   homePage: MoviesForSlidersOnHomePageT;
   continueBrowsing: BrowsingMovie[];
+  authData: AuthResponseType;
+  registrationData: RegistrationUserType;
+  comment: any;
 };

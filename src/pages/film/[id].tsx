@@ -6,14 +6,14 @@ import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
 import { GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
-import { IMovie } from "@/types/types";
+import { IMovie, IMovieRes } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import TrailerCard from "./TrailerCard";
 import React, { useEffect, useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
-import WatchOnAllDevices from "./WatchOnAllDevices";
+import WatchOnAllDevices from "../../components/WatchOnAllDevices";
 import axios from "axios";
 import DetailsMovie from "../../components/InfoMovie/Details";
 import InfoMovie from "@/components/InfoMovie";
@@ -21,17 +21,18 @@ import { getContinueBrowsing } from "@/Redux/continue_browsing/actions";
 import { store } from "@/Redux/store";
 import { useDispatch } from "react-redux";
 import { Loader } from "@/components/Loader";
-
-const breadcrumbs: Breadcrumb[] = [
-  { item: "Фильмы", path: "/movies" },
-  { item: "Комедии", path: "/movies" },
-];
+import dataForTrailers from "../../data/trailers_for_movie.json";
 
 const CardId: NextPage = ({ movie }: any) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const put = useDispatch();
+
+  const breadcrumbs: Breadcrumb[] = [
+    { item: "Фильмы", path: "/movies" },
+    { item: movie.genres[0].name, path: "/movies" },
+  ];
 
   useEffect(() => {
     put(
@@ -42,16 +43,18 @@ const CardId: NextPage = ({ movie }: any) => {
           ruName: movie.filmLang[0].filmName,
           enName: movie.filmLang[1].filmName,
         },
-        description: movie.filmLang.filmDescription,
+        description: {
+          ruName: movie.filmLang[0].filmDescription,
+          enName: movie.filmLang[1].filmDescription,
+        },
       })
     );
   }, []);
 
-  console.log(store.getState());
-  // console.log(store.getState());
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
+
       {isLoading && <Loader type="loading_page" />}
 
       <div className={styles.wrapper}>
@@ -86,8 +89,9 @@ const CardId: NextPage = ({ movie }: any) => {
         setIsLoading={setIsLoading}
       />
       <SliderContinueBrowsing
-        title={"Трейлеры и доп. материалы"}
-        type={"summary"}
+        title={t("movie.trailers")}
+        type={"detailed"}
+        movies={dataForTrailers}
       />
       {isOpenModal && (
         <TrailerModal
@@ -110,16 +114,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
     rejectUnauthorized: false,
   });
   const locale = context.params?.lang || "ru";
-  const movieResponse = await axios.get(
-    `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
-    { httpsAgent: agent }
-  );
-  const movie = movieResponse.data as IMovie;
-  if (!movie) {
-    return {
-      notFound: true,
-    };
+  let movie: IMovieRes;
+  try {
+    const movieResponse = await axios.get(
+      `https://84.201.131.92:5003/film${context.params?.id}?lang=${locale}`,
+      { httpsAgent: agent }
+    );
+    console.log("movieResponse", movieResponse);
+    movie = movieResponse.data as IMovieRes;
+  } catch (e) {
+    movie = moviesData as IMovieRes;
   }
+  movie = moviesData as IMovieRes;
 
   return {
     props: { movie },
@@ -142,4 +148,3 @@ export const getStaticPaths = async () => {
 };
 
 export default CardId;
-// `https://84.201.131.92:5003/api/films/${context.params?.id}?lang=${locale}`

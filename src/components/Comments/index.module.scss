@@ -24,4 +24,8 @@
     @include font-light-m;
     color: $base-grey-menu;
   }
+
+  .not_auth {
+    margin: 50px 0;
+  }
 }

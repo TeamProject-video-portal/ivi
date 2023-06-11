@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import Image from "next/image";
 import logo from "../../images/icons/logo.svg";
@@ -12,14 +12,22 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import LanguageButton from "./Buttons/Language";
 import { useTranslation } from "next-export-i18n";
+import { Loader } from "../Loader";
 
 export const Header: FC = () => {
   const [isOpenSubMenu, setIsOpenSubMenu] = useState(false);
   const [subMenuTitle, setSubMenuTitle] = useState("");
-
+  const [isLoader, setIsLoader] = useState(false);
   const { t } = useTranslation();
+  const router = useRouter();
+
+  useEffect(() => {
+    setIsLoader(false);
+  }, [router]);
   return (
     <header className={styles.header}>
+      {isLoader && <Loader type="loading_page" />}
+
       <div className={styles.container}>
         {isOpenSubMenu && <div className={styles.container_active}></div>}
 
@@ -31,6 +39,8 @@ export const Header: FC = () => {
             isOpenSubMenu={isOpenSubMenu}
             setIsOpenSubMenu={setIsOpenSubMenu}
             setSubMenuTitle={setSubMenuTitle}
+            isLoader={isLoader}
+            setIsLoader={setIsLoader}
           />
         </div>
 

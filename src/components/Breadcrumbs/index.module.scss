@@ -2,9 +2,12 @@
 @import "../../styles/mixins.scss";
 
 .breadcrumbs_pages {
-  @include font-regular-s;
+  @include font-regular-m;
+
+  margin: 30px 2px;
   line-height: 16px;
   color: $base-white;
+
   ul {
     display: flex;
   }

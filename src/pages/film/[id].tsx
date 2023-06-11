@@ -4,7 +4,7 @@ import { DescriptionCard } from "@/components/DescriptionCard";
 import SliderContinueBrowsing from "@/components/Sliders/SliderContinueBrowsing";
 import moviesData from "@/data/One_film_response_v2.json";
 import { Comments } from "@/components/Comments";
-import { GetStaticProps, NextPage } from "next";
+import { GetServerSideProps, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 import { IMovie, IMovieRes } from "@/types/types";
 import { useTranslation } from "next-export-i18n";
@@ -24,14 +24,15 @@ import { Loader } from "@/components/Loader";
 import dataForTrailers from "../../data/trailers_for_movie.json";
 
 const CardId: NextPage = ({ movie }: any) => {
+  const [id, setId] = useState<any>();
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const put = useDispatch();
-
+  const router = useRouter();
   const breadcrumbs: Breadcrumb[] = [
     { item: "Фильмы", path: "/movies" },
-    { item: movie.genres[0].name, path: "/movies" },
+    // { item: movie.genres[0].name, path: "/movies" },
   ];
 
   useEffect(() => {
@@ -49,7 +50,15 @@ const CardId: NextPage = ({ movie }: any) => {
         },
       })
     );
+    setId(router.asPath);
   }, []);
+
+  //при изменения id фильма лоудер убирается
+  useEffect(() => {
+    if (router.asPath !== id) {
+      setIsLoading(false);
+    }
+  }, [router]);
 
   return (
     <div className={styles.container}>
@@ -107,7 +116,6 @@ const CardId: NextPage = ({ movie }: any) => {
     </div>
   );
 };
-
 export const getStaticProps: GetStaticProps = async (context) => {
   const https = require("https");
   const agent = new https.Agent({
@@ -116,12 +124,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const locale = context.params?.lang || "ru";
   let movie: IMovieRes;
   try {
-    const movieResponse = await axios.get(
-      `https://84.201.131.92:5003/film${context.params?.id}?lang=${locale}`,
-      { httpsAgent: agent }
+    console.log(123);
+    const movieResponse = await fetch(
+      `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`
     );
-    console.log("movieResponse", movieResponse);
-    movie = movieResponse.data as IMovieRes;
+    // const movieResponse = await axios.get(
+    //   `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
+    //   { httpsAgent: agent, timeout: 5000 }
+    // );
+    console.log("movieResponse", movieResponse.status);
+    // movie = movieResponse.data as IMovieRes;
   } catch (e) {
     movie = moviesData as IMovieRes;
   }

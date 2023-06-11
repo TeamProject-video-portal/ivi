@@ -94,6 +94,7 @@ export const Comments: FC = () => {
     const dataComment = {
       id: id,
       review: newComment,
+      parentReviewId: null,
       profileId: localStorage.getItem("id"),
       filmId: router.query?.id,
     };

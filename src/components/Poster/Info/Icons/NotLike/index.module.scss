@@ -4,6 +4,7 @@
 .container {
   position: relative;
   margin-bottom: 5px;
+  z-index: 50;
 
   &:hover {
     .description {
@@ -21,7 +22,8 @@
   .description {
     display: none;
     position: absolute;
-    top: -30px;
+    top: -25px;
+    right: 0px;
     transition: 0.2s;
 
     span {

@@ -10,7 +10,7 @@ export type BrowsingMovie = {
 
 const initialState: BrowsingMovie[] = [
   {
-    id: 309,
+    id: 300,
     poster: "https://st.kp.yandex.net/images/film_big/535341.jpg",
     name: {
       ruName: "фильм",
@@ -23,7 +23,11 @@ const initialState: BrowsingMovie[] = [
 export const continueBrowsingReducer = (state = initialState, action: any) => {
   switch (action.type) {
     case DATA_CONTINUE_BROWSING.GET_CONTINUE_BROWSING:
-      return [...state, action.payload];
+      if (state[state.length - 1].id === action.payload.id) {
+        return state;
+      } else {
+        return [...state, action.payload];
+      }
 
     default:
       return state;

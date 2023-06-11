@@ -11,7 +11,12 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Breadcrumb } from "@/components/Breadcrumbs";
 import Filmography from "@/components/Filmography";
 import { IPerson } from "@/types/types";
-import { GetStaticProps, GetStaticPaths, NextPage, GetServerSideProps } from "next";
+import {
+  GetStaticProps,
+  GetStaticPaths,
+  NextPage,
+  GetServerSideProps,
+} from "next";
 import personsData from "@/data/persons.json";
 import axios from "axios";
 import personData from "@/data/person.json";
@@ -29,14 +34,15 @@ const Person: NextPage = ({ person }: any) => {
 
   const truncText = (
     <p>
-      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной
-      роли в картине братьев...
+      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший
+      известным благодаря главной роли в картине братьев...
     </p>
   );
   const fullText = (
     <p>
-      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший известным благодаря главной
-      роли в картине братьев Коэн «Внутри Льюина Дэвиса».
+      Оскар Айзек (Oscar Isaak Hernandez) - американский актер, ставший
+      известным благодаря главной роли в картине братьев Коэн «Внутри Льюина
+      Дэвиса».
     </p>
   );
 
@@ -73,9 +79,17 @@ const Person: NextPage = ({ person }: any) => {
               ? person.personLang[0].personName
               : person.personLang[1].personName}
           </div>
-          <Description truncText={truncText} fullText={fullText} className={styles.description} />
+          <Description
+            truncText={truncText}
+            fullText={fullText}
+            className={styles.description}
+          />
           <div className={styles.breadcrumbsRow}>
-            <Breadcrumbs breadcrumbs={breadcrumbs} type="films" del="&middot;" />
+            <Breadcrumbs
+              breadcrumbs={breadcrumbs}
+              type="films"
+              del="&middot;"
+            />
           </div>
           <div className={styles.filmographyRow}>
             <Filmography person={person} />
@@ -90,9 +104,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
   const lang = context.params?.lang || "ru";
 
-  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
-  const person = response.data;
-
+  let person;
+  try {
+    const response = await axios.get(
+      `http://84.201.131.92:5002/persons/${id}?lang=${lang}`,
+      { timeout: 5000 }
+    );
+    person = response.data;
+  } catch (e) {
+    person = personData;
+  }
   if (!person) {
     return {
       notFound: true,

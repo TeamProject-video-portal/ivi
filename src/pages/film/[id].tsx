@@ -85,6 +85,8 @@ const CardId: NextPage = ({ movie }: any) => {
           filmGrade={movie.filmGrade}
           actors={movie.actors || []}
           className={styles.slider_actors}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
         <InfoMovie className={styles.info} movie={movie} />
       </div>
@@ -99,6 +101,8 @@ const CardId: NextPage = ({ movie }: any) => {
         title={t("movie.trailers")}
         type={"detailed"}
         movies={dataForTrailers}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
       />
       {isOpenModal && (
         <TrailerModal
@@ -122,7 +126,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const locale = context.params?.lang || "ru";
   let movie: IMovieRes;
   try {
-    console.log(context);
     const movieResponse = await axios.get(
       `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
       { httpsAgent: agent, timeout: 5000 }

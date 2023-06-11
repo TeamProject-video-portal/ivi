@@ -49,11 +49,12 @@
         height: 48px;
         margin: 0 auto;
         position: relative;
+        padding: 6px 0;
 
         p {
           @include font-regular-s;
-          margin-bottom: 1px;
         }
+
         span {
           @include font-light-xs;
           color: $base-grey-menu;

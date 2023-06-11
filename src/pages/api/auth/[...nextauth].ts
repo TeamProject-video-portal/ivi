@@ -21,39 +21,39 @@ export default NextAuth({
     }),
   ],
 
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     return { token, user };
-  //   },
-  //   async session({ session, token }) {
-  //     console.log("token", token);
-  //     session.user = {
-  //       token,
-  //     };
+  callbacks: {
+    async signIn(params) {
+      const { user, account, profile } = params;
 
-  //     return session;
-  //   },
-  // },
-  // json: true,
-  // secret: process.env.JWT_SECRET,
+      return true;
+    },
+
+    async jwt({ token, user }) {
+      console.log("token", token);
+      return { token, user };
+    },
+
+    async session({ session, token }) {
+      const response = await axios.get(
+        `https://api.vk.com/method/users.get?access_token=${token.accessToken}&v=5.131`
+      );
+      const userData = response.data.response[0];
+      session.user = {
+        id: userData.id,
+        name: `${userData.first_name} ${userData.last_name}`,
+      };
+      return session;
+    },
+  },
+
   session: {
     strategy: "jwt",
-    // Seconds - How long until an idle session expires and is no longer valid.
     maxAge: 30 * 24 * 60 * 60, // 30 days
-    // Seconds - Throttle how frequently to write to database to extend a session.
-    // Use it to limit write operations. Set to 0 to always update the database.
-    // Note: This option is ignored if using JSON Web Tokens
-    //updateAge: 24 * 60 * 60, // 24 hours
   },
   pages: {
-    signIn: "/animation",
+    signIn: "/profile",
     signOut: "/home",
     error: "/profile",
-    //   signIn: '/auth/signin',
-    // signOut: '/auth/signout',
-    // error: '/auth/error', // Error code passed in query string as ?error=
-    // verifyRequest: '/auth/verify-request', // (used for check email message)
-    // newUser: '/auth/new-user' // New users will be directed here on first sign in (leave the property out if not of interest)
   },
   jwt: {
     secret: "jwttoken",

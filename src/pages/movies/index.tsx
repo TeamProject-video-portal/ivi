@@ -41,9 +41,7 @@ import { sortHandler } from "@/Redux/filter/worker";
 import { filterRangesHandler } from "@/Redux/filter/worker";
 import { useRouter } from "next/router";
 import { Loader } from "@/components/Loader";
-
 import { getMoviesData, getMoviesDataStart } from "@/Redux/movies/actions";
-
 import axios from "axios";
 
 const Movies: NextPage = (context) => {

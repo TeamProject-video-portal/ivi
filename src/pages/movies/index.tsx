@@ -75,6 +75,7 @@ const Movies: NextPage = (context) => {
     sort,
     directors,
     results,
+    loading,
   } = useAppSelector(selectFilters);
   const { bestFilmsSet } = useSelector(selectMovies);
 
@@ -325,9 +326,9 @@ const Movies: NextPage = (context) => {
       {isFilter && (
         <section className={styles.container}>
           <div className={styles.resultsRow}>
-            {results.length ? (
-              <MovieResults />
-            ) : (
+            {loading && <Loader type="loading_simple" />}
+            {!loading && results.length && <MovieResults />}
+            {!loading && !results.length && (
               <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
             )}
           </div>

@@ -83,7 +83,8 @@
     "save": "Save",
     "logout": "LogOut",
     "change_password": "Change password",
-    "continue": "Continue"
+    "continue": "Continue",
+    "connect_devices": "Connect Devices"
   },
   "sliders_title": {
     "continue_browsing": "Continue browsing",
@@ -210,8 +211,13 @@
   "movie": {
     "watch_online": "watch online",
     "free": "Free",
-    "enter_comment": "Введите комментарий",
-    "write_comment": "Write a comment"
+    "enter_comment": "Enter a comment",
+    "write_comment": "Write a comment",
+    "visible_comment": "Log in to leave a review",
+    "trailers": "Trailers and extras materials",
+    "watch": "Watch",
+    "all_devices": "on all devices",
+    "download": "The application is available for download on iOS, Android, SmartTV and prefixes"
   },
   "error": {
     "error_page": "Error page",

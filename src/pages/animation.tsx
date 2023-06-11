@@ -35,8 +35,13 @@ export const Cartoons = ({ res }: any) => {
     // console.log(session);
     // const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET);
     // put(getDataUserSuccess({ email: "exaple@gmail.com", password: "123" }));
+    // window.open(
+    //   "https://oauth.vk.com/authorize?client_id=6909581&display=page&redirect_uri=<http://localhost:3000/animation?lang=ru>&scope=1026&response_type=token&v=5.131&state=123456"
+    // );
+    signIn("vk");
   };
   const dataUser = useSelector(selectAuthUser);
+
   return (
     <div>
       <button onClick={handleClick}>click me</button>

@@ -5,6 +5,7 @@
   width: 700px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 30px;
   h2 {
     @include font-regular-l;
     font-size: 24px;

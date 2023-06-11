@@ -7,69 +7,75 @@ import { userAgent } from "next/server";
 interface CustomUser extends User {
   role: string;
 }
-
+const VK_CLIENT_ID = 51672772;
+const VK_CLIENT_SECRET = "Myzf7Psrc376Twd6AcT6";
 export default NextAuth({
   providers: [
-    CredentialsProvider({
-      name: "credentials",
-      credentials: {
-        email: { label: "Username", type: "text", placeholder: "jsmith" },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        // const user = {
-        //   id: "1",
-        //   name: `${credentials?.email}`,
-        //   password: "jsmith@example.com",
-        //   role: `${process.env.JWT_SECRET}`,
-        //   // accessToken: tokens.access_token,
-        // };
-
-        // };
-        // return user;
-        //   const https = require("https");
-        //   const agent = new https.Agent({
-        //     rejectUnauthorized: false,
-        //   });
-        //   const user = await axios.post(
-        //     "http://84.201.131.92:5000/users/login",
-        //     {
-        //       email: `${credentials?.email}`,
-        //       password: `${credentials?.password}`,
-        //     },
-        //     { httpsAgent: agent }
-        //   );
-        // //   // const user = await res.json();
-        //   if (user) {
-        //     return user;
-        //   } else {
-        //     return null;
-        //   }
-        // },
-
-        const user: Promise<any> = await fetch(
-          "http://84.201.131.92:5000/users/login",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              authorization: `${process.env.JWT_SECRET}`,
-              // Authorization = `Bearer ${localStorage.getItem("token")}`
-            },
-            body: JSON.stringify({
-              email: credentials?.email,
-              password: credentials?.password,
-            }),
-          }
-        ).then((res) => res.json());
-        // console.log("user", user);
-        if (user) {
-          return user;
-        } else {
-          return null;
-        }
-      },
+    VkProvider({
+      clientId: process.env.VK_CLIENT_ID || "DEFAULT_CLIENT_ID",
+      clientSecret: process.env.VK_CLIENT_SECRET || "DEFAULT_VK_CLIENT_SECRET",
     }),
+
+    // CredentialsProvider({
+    //   name: "credentials",
+    //   credentials: {
+    //     email: { label: "Username", type: "text", placeholder: "jsmith" },
+    //     password: { label: "Password", type: "password" },
+    //   },
+    //   async authorize(credentials, req) {
+    // const user = {
+    //   id: "1",
+    //   name: `${credentials?.email}`,
+    //   password: "jsmith@example.com",
+    //   role: `${process.env.JWT_SECRET}`,
+    //   // accessToken: tokens.access_token,
+    // };
+
+    // };
+    // return user;
+    //   const https = require("https");
+    //   const agent = new https.Agent({
+    //     rejectUnauthorized: false,
+    //   });
+    //   const user = await axios.post(
+    //     "http://84.201.131.92:5000/users/login",
+    //     {
+    //       email: `${credentials?.email}`,
+    //       password: `${credentials?.password}`,
+    //     },
+    //     { httpsAgent: agent }
+    //   );
+    // //   // const user = await res.json();
+    //   if (user) {
+    //     return user;
+    //   } else {
+    //     return null;
+    //   }
+    // },
+
+    // const user: Promise<any> = await fetch(
+    //   "http://84.201.131.92:5000/users/login",
+    //   {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       authorization: `${process.env.JWT_SECRET}`,
+    //       // Authorization = `Bearer ${localStorage.getItem("token")}`
+    //     },
+    //     body: JSON.stringify({
+    //       email: credentials?.email,
+    //       password: credentials?.password,
+    //     }),
+    //   }
+    // ).then((res) => res.json());
+    // console.log("user", user);
+    //   if (user) {
+    //     return user;
+    //   } else {
+    //     return null;
+    //   }
+    // },
+    // }),
   ],
   callbacks: {
     async jwt({ token, user }) {

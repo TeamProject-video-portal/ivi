@@ -17,6 +17,9 @@ import styles from "./Home.module.scss";
 import { getDataBanner } from "@/Redux/banner/actions";
 import { getDataHomePage } from "@/Redux/homePage/actions";
 import SliderTopTen from "@/components/Sliders/SliderTopTen";
+import { selectHomePage } from "@/Redux/homePage/selectors";
+import { selectBrowsingMovie } from "@/Redux/continue_browsing/selectors";
+import { BrowsingMovie } from "@/Redux/continue_browsing/reducer";
 const inter = Inter({ subsets: ["latin"] });
 type Props = {
   startMovies: any;
@@ -28,9 +31,12 @@ const Home: FC<Props> = (context: any) => {
   const dataBanner = useSelector(selectBanner);
   const { t } = useTranslation();
   const put = useDispatch();
-  const moviesForSliders: MoviesForSlidersOnHomePageT = useSelector(
-    (store: RootState) => store.homePage
-  );
+
+  const data = useSelector(selectHomePage);
+  const ContinueBrowingmovies: BrowsingMovie[] =
+    useSelector(selectBrowsingMovie);
+  const [moviesForSliders, setMoviesForSliders] =
+    useState<MoviesForSlidersOnHomePageT>(data);
   const [isLoading, setIsLoading] = useState(false);
   const res = main_banner;
 
@@ -44,6 +50,10 @@ const Home: FC<Props> = (context: any) => {
     }
   }, []);
 
+  useEffect(() => {
+    console.log(data);
+    setMoviesForSliders(data);
+  }, [data]);
   return (
     <div className={styles.wrapper}>
       <Head>
@@ -57,6 +67,7 @@ const Home: FC<Props> = (context: any) => {
       <SliderContinueBrowsing
         title={t("sliders_title.continue_browsing")}
         type={"summary"}
+        movies={ContinueBrowingmovies}
       />
 
       <SliderTopTen />

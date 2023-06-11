@@ -82,7 +82,8 @@
     "save": "Сохранить",
     "logout": "Выйти",
     "change_password": "Сменить пароль",
-    "continue": "Продолжить"
+    "continue": "Продолжить",
+    "connect_devices": "Подключить устройства"
   },
   "sliders_title": {
     "continue_browsing": "Продолжить просмотр",
@@ -210,7 +211,12 @@
     "watch_online": "смотреть онлайн",
     "free": "Бесплатно",
     "enter_comment": "Введите комментарий",
-    "write_comment": "Напишите комментарий"
+    "write_comment": "Напишите комментарий",
+    "visible_comment": "Авторизируйтесь, чтобы оставить отзыв",
+    "trailers": "Трейлеры и доп. материалы",
+    "watch": "Смотреть",
+    "all_devices": "на всех устройствах",
+    "download": "Приложение доступно для скачивания на iOS, Android, SmartTV и приставках"
   },
   "error": {
     "error_page": "Страница ошибки",

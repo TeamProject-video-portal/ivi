@@ -24,6 +24,7 @@ const LogOut = () => {
     put(clearDataUser());
     localStorage.setItem("email", "");
     localStorage.setItem("nickname", "");
+    localStorage.setItem("idUser", "");
   };
 
   return (

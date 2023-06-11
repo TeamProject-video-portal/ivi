@@ -19,4 +19,5 @@ export type RootState = {
   continueBrowsing: BrowsingMovie[];
   authData: AuthResponseType;
   registrationData: RegistrationUserType;
+  comment: any;
 };

@@ -344,27 +344,27 @@ const Movies: NextPage = (context) => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
   console.log("SSH movie page");
-  const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
-  store.dispatch({
-    type: MOVIES_ACTIONS.GET_MOVIES_DATA,
-    payload: data,
-  });
+  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+  // store.dispatch({
+  //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
+  //   payload: data,
+  // });
 
-  store.dispatch(END);
+  // store.dispatch(END);
 
-  if (!data) {
-    return {
-      notFound: true,
-    };
-  }
+  // if (!data) {
+  //   return {
+  //     notFound: true,
+  //   };
+  // }
 
-  return {
-    props: { data },
-    revalidate: 10,
-  };
   // return {
-  //   props: {},
+  //   props: { data },
+  //   revalidate: 10,
   // };
+  return {
+    props: {},
+  };
 });
 
 export default connect((state) => state)(Movies);

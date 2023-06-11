@@ -8,7 +8,7 @@ import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 
 export function* watchMoviesSaga() {
   yield takeEvery(MOVIES_ACTIONS.WATCH_EDIT_GENRE, editGenreSaga);
-  yield takeEvery(MOVIES_ACTIONS.GET_MOVIES_DATA, getMoviesSaga);
+  //yield takeEvery(MOVIES_ACTIONS.GET_MOVIES_DATA, getMoviesSaga);
 }
 
 export function* getMoviesSaga() {

@@ -1,7 +1,12 @@
+import { sendComment } from "@/profileRequests/AuthService";
+import { sendCommentAction } from "@/Redux/comments/actions";
+import axios from "axios";
 import dayjs from "dayjs";
 import { GetServerSideProps } from "next";
 import { useTranslation } from "next-export-i18n";
+import { useRouter } from "next/router";
 import { FC, ReactNode, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import styles from "./index.module.scss";
 import { NewComments } from "./NewComments";
 import { PrevComments } from "./PrevComments";
@@ -51,13 +56,16 @@ const dataComments: dataCommentsT = [
 
 export const Comments: FC = () => {
   const [newComment, setNewComment] = useState<string>("");
-  const [idComment, setIdComment] = useState<dataCommentsT[]>();
-  const [isClickCommentButton, setIsClickCommentButton] = useState(false);
   let now = dayjs().format("DD MMMM YYYY");
-  // const [data, setData] = useState(dataComments);
   const [data, setData] = useState<dataCommentsT>([]);
   const { t } = useTranslation();
   const [id, setId] = useState<number>();
+  const router = useRouter();
+  const [emailUser, setEmailUser] = useState<string | null>();
+
+  useEffect(() => {
+    setEmailUser(localStorage.getItem("email"));
+  }, []);
 
   useEffect(() => {
     if (newComment && newComment.trim() !== "") {
@@ -71,21 +79,47 @@ export const Comments: FC = () => {
           children: [],
         },
       ]);
+      setId(data.length + 1);
     }
-    setId(data.length + 1);
   }, [newComment]);
 
+  //оправка комментария
   useEffect(() => {
-    //отправить основной комментарий
-    // console.log(id);
+    if (id) {
+      sendNewComment();
+    }
   }, [id]);
+
+  const sendNewComment = async () => {
+    const dataComment = {
+      id: id,
+      review: newComment,
+      profileId: localStorage.getItem("id"),
+      filmId: router.query?.id,
+    };
+    try {
+      const sentNewComment = await sendComment(dataComment);
+      console.log(sentNewComment);
+    } catch (e) {
+      console.log("comment", e);
+    }
+  };
+
   return (
     <div className={styles.container}>
-      <h2>{t("sliders_title.reviews")}</h2>
-      <div></div>
-      <PrevComments dataComments={data} setData={setData} />
+      {emailUser !== "" ? (
+        <div>
+          <h2>{t("sliders_title.reviews")}</h2>
+          <div></div>
+          <PrevComments dataComments={data} setData={setData} />
 
-      <NewComments newComment={newComment} setNewComment={setNewComment} />
+          <NewComments newComment={newComment} setNewComment={setNewComment} />
+        </div>
+      ) : (
+        <div className={styles.not_auth}>
+          <h2>{t("movie.visible_comment")}</h2>
+        </div>
+      )}
     </div>
   );
 };

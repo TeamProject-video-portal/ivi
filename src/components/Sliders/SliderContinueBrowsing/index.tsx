@@ -15,10 +15,10 @@ import { useRouter } from "next/router";
 type Props = {
   title: string;
   type: string;
+  movies: BrowsingMovie[];
 };
 
-const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
-  const movies: BrowsingMovie[] = useSelector(selectBrowsingMovie);
+const SliderContinueBrowsing: FC<Props> = ({ title, type, movies }) => {
   const newSettings = {
     ...settings,
     centerMode: false,
@@ -40,7 +40,7 @@ const SliderContinueBrowsing: FC<Props> = ({ title, type }) => {
         <h4>{title}</h4>
       </div>
       <Slider {...newSettings} className={styles.container_slider}>
-        {movies.map((item, index) => (
+        {movies?.map((item, index) => (
           <Link
             href={`/film/${item.id}?lang=${locale}`}
             key={`${item}-${index}`}

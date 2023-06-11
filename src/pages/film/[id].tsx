@@ -13,7 +13,7 @@ import TrailerCard from "./TrailerCard";
 import React, { useEffect, useState } from "react";
 import ActorsSlider from "@/components/Sliders/ActorsSlider";
 import { TrailerModal } from "@/components/Modals/TrailerModal";
-import WatchOnAllDevices from "./WatchOnAllDevices";
+import WatchOnAllDevices from "../../components/WatchOnAllDevices";
 import axios from "axios";
 import DetailsMovie from "../../components/InfoMovie/Details";
 import InfoMovie from "@/components/InfoMovie";
@@ -21,17 +21,18 @@ import { getContinueBrowsing } from "@/Redux/continue_browsing/actions";
 import { store } from "@/Redux/store";
 import { useDispatch } from "react-redux";
 import { Loader } from "@/components/Loader";
-
-const breadcrumbs: Breadcrumb[] = [
-  { item: "Фильмы", path: "/movies" },
-  { item: "Комедии", path: "/movies" },
-];
+import dataForTrailers from "../../data/trailers_for_movie.json";
 
 const CardId: NextPage = ({ movie }: any) => {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(false);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const put = useDispatch();
+
+  const breadcrumbs: Breadcrumb[] = [
+    { item: "Фильмы", path: "/movies" },
+    { item: movie.genres[0].name, path: "/movies" },
+  ];
 
   useEffect(() => {
     put(
@@ -53,6 +54,7 @@ const CardId: NextPage = ({ movie }: any) => {
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />
+
       {isLoading && <Loader type="loading_page" />}
 
       <div className={styles.wrapper}>
@@ -87,8 +89,9 @@ const CardId: NextPage = ({ movie }: any) => {
         setIsLoading={setIsLoading}
       />
       <SliderContinueBrowsing
-        title={"Трейлеры и доп. материалы"}
-        type={"summary"}
+        title={t("movie.trailers")}
+        type={"detailed"}
+        movies={dataForTrailers}
       />
       {isOpenModal && (
         <TrailerModal
@@ -114,10 +117,10 @@ export const getStaticProps: GetStaticProps = async (context) => {
   let movie: IMovieRes;
   try {
     const movieResponse = await axios.get(
-      `https://84.201.131.92:5003/${context.params?.id}?lang=${locale}`,
+      `https://84.201.131.92:5003/film${context.params?.id}?lang=${locale}`,
       { httpsAgent: agent }
     );
-    console.log(movieResponse);
+    console.log("movieResponse", movieResponse);
     movie = movieResponse.data as IMovieRes;
   } catch (e) {
     movie = moviesData as IMovieRes;

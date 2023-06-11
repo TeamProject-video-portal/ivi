@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-export const API_URL = "http://84.201.131.92:5000/users";
+export const API_URL = "http://84.201.131.92:5000";
 
 const $api = axios.create({
   withCredentials: true,

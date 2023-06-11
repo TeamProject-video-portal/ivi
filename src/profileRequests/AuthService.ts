@@ -8,7 +8,7 @@ export const Login = (
   email: string,
   password: string
 ): Promise<AxiosResponse<AuthResponseType>> => {
-  return $api.post("/login", { email, password });
+  return $api.post("/users/login", { email, password });
 };
 
 export const Registration = (
@@ -16,12 +16,25 @@ export const Registration = (
   email: string,
   password: string
 ): Promise<AxiosResponse<RegistrationUserType>> => {
-  return $api.post("/registration", {
+  return $api.post("/users/registration", {
     userDto: { email: email, password: password },
     profileDto: { nickname: nickname },
   });
 };
 
 export const getDataUser = (id: number): Promise<AxiosResponse<any>> => {
-  return $api.get(`/full/${id}`);
+  return $api.get(`/users/full/${id}`);
+};
+
+type DataCommentT = {
+  id: number | undefined;
+  review: string;
+  profileId: string | null;
+  filmId: string | string[] | undefined;
+};
+
+export const sendComment = (
+  data: DataCommentT
+): Promise<AxiosResponse<any>> => {
+  return $api.post(`film/${data.filmId}/comment`, data);
 };

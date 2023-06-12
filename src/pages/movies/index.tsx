@@ -327,7 +327,7 @@ const Movies: NextPage = (context) => {
         <section className={styles.container}>
           <div className={styles.resultsRow}>
             {loading && <Loader type="loading_simple" />}
-            {!loading && results.length && <MovieResults />}
+            {!loading && results.length > 0 && <MovieResults />}
             {!loading && !results.length && (
               <div className={styles.resultsEmpty}>{t("filters.not_found")}</div>
             )}

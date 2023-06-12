@@ -58,7 +58,7 @@ const GenresDropdown: FC = () => {
 
         {editMode ? (
           <ul className={styles.list} key={0}>
-            {genresCopy.length &&
+            {genresCopy.length > 0 &&
               genresCopy.map((item, index) => (
                 <ListItem
                   item={item.name}
@@ -71,7 +71,7 @@ const GenresDropdown: FC = () => {
           </ul>
         ) : (
           <ul className={styles.list} key={1}>
-            {genres.length &&
+            {genres.length > 0 &&
               genres.map((item, index) => (
                 <ListItem
                   item={item.name}

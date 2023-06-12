@@ -18,6 +18,7 @@ export interface IFilterState {
   results: IMovie[];
   sort: SortType;
   error: string;
+  loading: string;
 }
 
 const initialState: IFilterState = {
@@ -35,6 +36,7 @@ const initialState: IFilterState = {
   results: [],
   sort: "RATING",
   error: "",
+  loading: false,
 };
 
 export const filterReducer = (state = initialState, action: AnyAction) => {
@@ -52,7 +54,7 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       } else {
         genresCopy.push(action.payload);
       }
-      return { ...state, genres: genresCopy, isFilter: true };
+      return { ...state, genres: genresCopy, isFilter: true, loading: true, error: "" };
 
     case FILTERS_ACTIONS.SET_COUNTRIES:
       let countriesCopy = [...state.countries];
@@ -61,10 +63,17 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
       } else {
         countriesCopy.push(action.payload);
       }
-      return { ...state, countries: countriesCopy, isFilter: true };
+      return { ...state, countries: countriesCopy, isFilter: true, loading: true, error: "" };
 
     case FILTERS_ACTIONS.SET_YEARS:
-      return { ...state, yearsMin: action.payload[0], yearsMax: action.payload[1], isFilter: true };
+      return {
+        ...state,
+        yearsMin: action.payload[0],
+        yearsMax: action.payload[1],
+        isFilter: true,
+        loading: true,
+        error: "",
+      };
 
     case FILTERS_ACTIONS.SET_RATING:
       return {
@@ -72,36 +81,45 @@ export const filterReducer = (state = initialState, action: AnyAction) => {
         ratingMin: action.payload[0],
         ratingMax: action.payload[1],
         isFilter: true,
+        loading: true,
+        error: "",
       };
 
     case FILTERS_ACTIONS.SET_SCORE:
-      return { ...state, scoreMin: action.payload[0], scoreMax: action.payload[1], isFilter: true };
+      return {
+        ...state,
+        scoreMin: action.payload[0],
+        scoreMax: action.payload[1],
+        isFilter: true,
+        loading: true,
+        error: "",
+      };
 
     case FILTERS_ACTIONS.SET_ACTORS:
       let actorsCopy = [...state.actors];
       if (!actorsCopy.includes(action.payload)) {
         actorsCopy.push(action.payload);
       }
-      return { ...state, actors: actorsCopy, isFilter: true };
+      return { ...state, actors: actorsCopy, isFilter: true, loading: true, error: "" };
 
     case FILTERS_ACTIONS.SET_DIRECTORS:
       let directorsCopy = [...state.directors];
       if (!directorsCopy.includes(action.payload)) {
         directorsCopy.push(action.payload);
       }
-      return { ...state, directors: directorsCopy, isFilter: true };
+      return { ...state, directors: directorsCopy, isFilter: true, loading: true, error: "" };
 
     case FILTERS_ACTIONS.SET_SORT:
       return { ...state, sort: action.payload };
 
     case FILTERS_ACTIONS.SET_FILTERS_GENRES_COUNTRIES:
-      return { ...state, results: action.payload, error: "" };
+      return { ...state, results: action.payload, error: "", loading: false };
 
     case FILTERS_ACTIONS.SET_FILTERS_RESULTS:
       return { ...state, results: action.payload, error: "" };
 
     case FILTERS_ACTIONS.GET_FILTERS_ERROR:
-      return { ...state, error: action.payload };
+      return { ...state, error: action.payload, loading: false };
 
     default:
       return state;

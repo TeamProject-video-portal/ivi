@@ -18,7 +18,7 @@ export interface IFilterState {
   results: IMovie[];
   sort: SortType;
   error: string;
-  loading: string;
+  loading: boolean;
 }
 
 const initialState: IFilterState = {

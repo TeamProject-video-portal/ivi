@@ -12,7 +12,7 @@ export function* watchMoviesSaga() {
 }
 
 export function* getMoviesSaga() {
-  yield put(getMoviesDataStart());
+  //yield put(getMoviesDataStart());
   try {
     console.log("start movies get saga !!!!!!!!!!!!");
     const responseMovies: MoviesForFilmsPageT = yield call(movieAllApi);

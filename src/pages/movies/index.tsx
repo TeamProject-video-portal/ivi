@@ -14,7 +14,14 @@ import FiltersTitleRow from "@/components/Filters/FiltersTitleRow";
 import { useTranslation } from "next-export-i18n";
 import { GetStaticProps, GetServerSideProps, NextPage } from "next";
 import GenresSlider from "@/components/Sliders/GenresSlider";
-import { IMovie, IPerson, ISimpleMovie, SearchParamsType, SortType } from "@/types/types";
+import {
+  IMovie,
+  IPerson,
+  ISimpleMovie,
+  MoviesForFilmsPageT,
+  SearchParamsType,
+  SortType,
+} from "@/types/types";
 import SimpleSlider from "@/components/Sliders/SimpleSlider";
 import PersonsSlider from "@/components/Sliders/PersonsSlider";
 import personsData from "@/data/persons.json";
@@ -92,7 +99,7 @@ const Movies: NextPage = (context) => {
   const put = useDispatch();
 
   useEffect(() => {
-    console.log("first useeffect!!!!!!!!!!!");
+    console.log("first useeffect!");
     async function fetchData() {
       try {
         const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
@@ -359,7 +366,12 @@ const Movies: NextPage = (context) => {
 
 export const getStaticProps: GetStaticProps = wrapper.getStaticProps((store) => async (context) => {
   console.log("SSH movie page");
-  // const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
+  // const https = require("https");
+  // const agent = new https.Agent({
+  //   rejectUnauthorized: false,
+  // });
+  // const res = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`, { httpsAgent: agent });
+  // const data = res.data as MoviesForFilmsPageT;
   // store.dispatch({
   //   type: MOVIES_ACTIONS.GET_MOVIES_DATA,
   //   payload: data,

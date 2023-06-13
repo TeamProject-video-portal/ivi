@@ -32,9 +32,3 @@ type DataCommentT = {
   profileId: string | null;
   filmId: string | string[] | undefined;
 };
-
-export const sendComment = (
-  data: DataCommentT
-): Promise<AxiosResponse<any>> => {
-  return $api.post(`film/${data.filmId}/comment`, data);
-};

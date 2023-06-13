@@ -16,6 +16,7 @@ import { continueBrowsingReducer } from "./continue_browsing/reducer";
 import { AuthUserReducer } from "./auth/reducer";
 import { RegistrationUserReducer } from "./registration/reducer";
 import { commentReducer } from "./comments/reducer";
+import { MovieReducer } from "./movie/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 const makeStore = () => {
@@ -30,6 +31,7 @@ const makeStore = () => {
       authData: AuthUserReducer,
       registrationData: RegistrationUserReducer,
       comment: commentReducer,
+      movie: MovieReducer,
     },
     middleware: [...getDefaultMiddleware(), sagaMiddleware],
   });

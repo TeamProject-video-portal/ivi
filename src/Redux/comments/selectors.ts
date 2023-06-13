@@ -1,5 +1,5 @@
 import { RootState } from "../RootState";
 
-export const selectBanner = (state: RootState) => {
-  return state.banner;
+export const selectComment = (state: RootState) => {
+  return state.comment;
 };

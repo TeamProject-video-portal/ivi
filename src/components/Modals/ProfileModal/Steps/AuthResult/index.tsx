@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { selectAuthUser } from "@/Redux/auth/selectors";
 import { useTranslation } from "next-export-i18n";
 import { selectRegistrUser } from "@/Redux/registration/selectors";
+import { Loader } from "@/components/Loader";
 
 type Props = {
   openModal: boolean;
@@ -20,7 +21,7 @@ type Props = {
 const AuthResult: FC<Props> = (props) => {
   const { t } = useTranslation();
   const [title, setTitle] = useState<string>("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const [emailUser, setEmailUser] = useState<string | null>();
   const [nicknameUser, setNicknameUser] = useState<string | null>();
   const resAuth = useSelector(selectAuthUser);
@@ -63,6 +64,19 @@ const AuthResult: FC<Props> = (props) => {
       setTitle("");
     }
   }, [props.openModal]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return <Loader type={"loader_page"} />;
+  }
+
   return (
     <div className={styles.content}>
       <div className={styles.message}>

@@ -1,9 +1,13 @@
 import { DATA_COMMENTS } from "./action-types";
 
-export const sendCommentAction = (payload: number) => {
+export const sendComment = (payload: {
+  idFilm: number;
+  idComment: string;
+  comment: string;
+}) => {
   return {
     type: DATA_COMMENTS.SEND_COMMENT,
-    payload,
+    ...payload,
   } as const;
 };
 

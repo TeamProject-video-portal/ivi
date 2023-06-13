@@ -5,11 +5,64 @@ import {
   RegistrationUserType,
 } from "@/types/types";
 import { MOVIE_DATA } from "./action-types";
-import data from "@/data/One_film_response_v2.json";
+import * as actions from "./actions";
+import { InferValueTypes } from "@/sagas/RootSaga";
 
-const initialState: IMovieRes = data;
+type Actions = ReturnType<InferValueTypes<typeof actions>>;
 
-export const RegistrationUserReducer = (state = initialState, action: any) => {
+export type MovieSearchT = {
+  data: IMovieRes[];
+};
+const initialState: IMovieRes = {
+  id: 0,
+  filmType: "",
+  filmLink: "",
+  filmTrailer: "",
+  filmYear: 0,
+  filmTime: 0,
+  filmGrade: 0,
+  filmTotalGrade: 0,
+  filmR: "",
+  filmAge: "",
+  filmPoster: "",
+  directors: [
+    {
+      id: 0,
+      name: "",
+    },
+  ],
+  similarFilms: [
+    {
+      id: 0,
+      filmPoster: "",
+      filmGrade: 0,
+      filmYear: 0,
+      filmTime: 0,
+      filmAge: "",
+      filmLang: [
+        {
+          lang: "",
+          filmName: "",
+        },
+      ],
+      genres: [
+        {
+          id: 0,
+          name: "",
+        },
+      ],
+      countries: [
+        {
+          id: 0,
+          name: "",
+        },
+      ],
+    },
+  ],
+  reviews: [],
+};
+
+export const MovieReducer = (state = initialState, action: Actions) => {
   switch (action.type) {
     case MOVIE_DATA.GET_MOVIE_DATA:
       return action.type;
@@ -18,7 +71,7 @@ export const RegistrationUserReducer = (state = initialState, action: any) => {
       return action.type;
 
     case MOVIE_DATA.GET_MOVIE_DATA_FAIL:
-      return data;
+      return action.type;
 
     case MOVIE_DATA.GET_MOVIE_DATA_SUCCESS:
       return action.payload;

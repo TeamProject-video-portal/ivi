@@ -86,60 +86,59 @@ const Person: NextPage = ({ person }: any) => {
   );
 };
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const id = context.params?.id || 0;
-//   const lang = context.params?.lang || "ru";
-
-//   let person;
-//   try {
-//     const response = await axios.get(
-//       `http://84.201.131.92:5002/persons/${id}?lang=${lang}`,
-//       { timeout: 5000 }
-//     );
-//     person = response.data;
-//   } catch (e) {
-//     person = personData;
-//   }
-//   if (!person) {
-//     return {
-//       notFound: true,
-//     };
-//   }
-
-//   return {
-//     props: { person },
-//   };
-// };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const locales = ["ru", "en"];
-
-//   const paths = locales.flatMap((locale) => {
-//     return [Array(1)].map((person) => ({
-//       params: { id: personData.id.toString(), lang: locale },
-//     }));
-//   });
-
-//   return {
-//     paths,
-//     fallback: "blocking",
-//   };
-// };
-
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params?.id || 0;
   const lang = context.params?.lang || "ru";
 
-  const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
-  const person = response.data as IPerson;
-
+  let person;
+  try {
+    const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`, {
+      timeout: 5000,
+    });
+    person = response.data;
+  } catch (e) {
+    person = personData;
+  }
   if (!person) {
     return {
       notFound: true,
     };
   }
+
   return {
     props: { person },
   };
 };
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const locales = ["ru", "en"];
+
+  const paths = locales.flatMap((locale) => {
+    return [Array(1)].map((person) => ({
+      params: { id: personData.id.toString(), lang: locale },
+    }));
+  });
+
+  return {
+    paths,
+    fallback: "blocking",
+  };
+};
+
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const id = context.params?.id || 0;
+//   const lang = context.params?.lang || "ru";
+
+//   const response = await axios.get(`http://84.201.131.92:5002/persons/${id}?lang=${lang}`);
+//   const person = response.data as IPerson;
+
+//   if (!person) {
+//     return {
+//       notFound: true,
+//     };
+//   }
+//   return {
+//     props: { person },
+//   };
+// };
 export default Person;

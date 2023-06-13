@@ -20,4 +20,5 @@ export type RootState = {
   authData: AuthResponseType;
   registrationData: RegistrationUserType;
   comment: any;
+  movie: any;
 };

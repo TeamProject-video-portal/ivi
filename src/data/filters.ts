@@ -70,3 +70,17 @@ export const filtersTitle = [
   { title: "producers", value: "Режиссёры" },
   { title: "actors", value: "Актёры" },
 ];
+
+export const genresRuLocal = [
+  {
+    id: 1,
+    name: "комедия",
+  },
+];
+
+export const genresEnLocal = [
+  {
+    id: 1,
+    name: "comedy",
+  },
+];

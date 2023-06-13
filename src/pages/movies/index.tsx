@@ -100,16 +100,7 @@ const Movies: NextPage = (context) => {
 
   useEffect(() => {
     console.log("first useeffect!");
-    async function fetchData() {
-      try {
-        const { data } = await axios.get(`https://84.201.131.92:5003/movies?lang=ru`);
-        put(getMoviesData(data));
-        setIsLoading(false);
-      } catch (error) {
-        console.log("error in useEffect on movie page", error);
-      }
-    }
-    fetchData();
+    put(getMoviesDataStart());
   }, []);
 
   useEffect(() => {

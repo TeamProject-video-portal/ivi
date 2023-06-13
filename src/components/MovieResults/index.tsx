@@ -40,16 +40,14 @@ const MovieResults: FC = () => {
     } else {
       setLocale("ru");
     }
-  }, [router]);
+  }, [router.asPath]);
 
   return (
     <div className={styles.results}>
       <div className={styles.results__list}>
         {itemsToShow.map((item, i) => (
           <Link
-            href={`/film/${item.id}?lang=${
-              router.asPath.includes("lang=en") ? "en" : "ru"
-            }`}
+            href={`/film/${item.id}?lang=${router.asPath.includes("lang=en") ? "en" : "ru"}`}
             key={`${item.id}`}
           >
             <Poster film={item} />

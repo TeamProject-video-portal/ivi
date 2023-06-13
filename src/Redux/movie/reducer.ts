@@ -59,6 +59,7 @@ const initialState: IMovieRes = {
       ],
     },
   ],
+  reviews: [],
 };
 
 export const MovieReducer = (state = initialState, action: Actions) => {

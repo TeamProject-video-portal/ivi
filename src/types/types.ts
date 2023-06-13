@@ -222,6 +222,7 @@ export interface IMovieRes {
     name: string;
   }[];
   similarFilms: ISimilarFilmRes[];
+  reviews?: [];
 }
 
 interface ISimilarFilmRes {

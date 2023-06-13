@@ -9,6 +9,8 @@ import { DATA_HOME_PAGE } from "@/Redux/homePage/action-types";
 import { DATA_BANNER } from "@/Redux/banner/action-types";
 import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
 import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
+import { DATA_COMMENTS } from "@/Redux/comments/action-types";
+import { sendCommentSaga } from "./comment-saga";
 export type InferValueTypes<T> = T extends { [key: string]: infer U }
   ? U
   : never;
@@ -22,6 +24,7 @@ export function* rootSaga() {
       //fork(getMoviesSaga),
       fork(watchFiltersSaga),
       takeEvery(DATA_HOME_PAGE.GET_DATA_HOME_PAGE, getDataHomePageSaga),
+      takeEvery(DATA_COMMENTS.SEND_COMMENT, sendCommentSaga),
       fork(watchMoviesSaga),
     ]);
   } catch (e) {

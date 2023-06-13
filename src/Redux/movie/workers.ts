@@ -1,5 +1,5 @@
 import axios from "axios";
-import data from "@/data/One_film_response_v2.json";
+import data from "../../data/movie.json";
 import { IMovieRes } from "@/types/types";
 export const getDatMovieWorker = async (id: string | string[]) => {
   try {
@@ -13,7 +13,7 @@ export const getDatMovieWorker = async (id: string | string[]) => {
     );
     return response.data;
   } catch (e) {
-    return new Promise<IMovieRes>((resolve, reject) => {
+    return new Promise<any>((resolve, reject) => {
       setTimeout(() => {
         resolve(data);
       }, 1000);

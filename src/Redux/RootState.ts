@@ -4,6 +4,7 @@ import { IMoviesState } from "./movies/reducer";
 import { IFilterState } from "./filter/reducer";
 import {
   AuthResponseType,
+  IMovieRes,
   ISimpleMovie,
   MoviesForSlidersOnHomePageT,
   RegistrationUserType,
@@ -20,5 +21,5 @@ export type RootState = {
   authData: AuthResponseType;
   registrationData: RegistrationUserType;
   comment: any;
-  movie: any;
+  movie: IMovieRes;
 };

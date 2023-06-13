@@ -20,6 +20,7 @@ import { useDispatch } from "react-redux";
 import { Loader } from "@/components/Loader";
 import dataForTrailers from "../../data/trailers_for_movie.json";
 import TrailerCard from "@/components/TrailerCard";
+import { getMovieData } from "@/Redux/movie/actions";
 
 const CardId: NextPage = ({ movie }: any) => {
   const [id, setId] = useState<any>();
@@ -49,6 +50,7 @@ const CardId: NextPage = ({ movie }: any) => {
       })
     );
     setId(router.asPath);
+    put(getMovieData({ id: router.query.id! }));
   }, []);
 
   //при изменения id фильма лоудер убирается
@@ -125,12 +127,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
   });
   const locale = context.params?.lang || "ru";
   let movie: IMovieRes;
+
   try {
     const movieResponse = await axios.get(
       `https://84.201.131.92:5003/film/${context.params?.id}?lang=${locale}`,
       { httpsAgent: agent, timeout: 5000 }
     );
-    console.log("movieResponse", movieResponse.status);
     movie = movieResponse.data;
   } catch (e) {
     movie = moviesData;

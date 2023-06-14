@@ -11,20 +11,16 @@ import { DATA_TOP_MOVIES } from "@/Redux/topTenMovies/action-types";
 import { MOVIES_ACTIONS } from "@/Redux/movies/action-types";
 import { DATA_COMMENTS } from "@/Redux/comments/action-types";
 import { sendCommentSaga } from "./comment-saga";
-export type InferValueTypes<T> = T extends { [key: string]: infer U }
-  ? U
-  : never;
+export type InferValueTypes<T> = T extends { [key: string]: infer U } ? U : never;
 
 export function* rootSaga() {
   try {
     yield all([
       takeEvery(DATA_BANNER.GET_DATA_BANNER, getDataBannerSaga),
       takeEvery(DATA_TOP_MOVIES.GET_DATA_TOP_MOVIES, getDataTopMoviesSaga),
-      takeEvery(MOVIES_ACTIONS.GET_MOVIES_DATA, getMoviesSaga),
-      //fork(getMoviesSaga),
-      fork(watchFiltersSaga),
       takeEvery(DATA_HOME_PAGE.GET_DATA_HOME_PAGE, getDataHomePageSaga),
       takeEvery(DATA_COMMENTS.SEND_COMMENT, sendCommentSaga),
+      fork(watchFiltersSaga),
       fork(watchMoviesSaga),
     ]);
   } catch (e) {

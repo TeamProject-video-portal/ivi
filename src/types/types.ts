@@ -132,6 +132,7 @@ export type RegistrationUserType = {
 export type AuthResponseType = {
   tokens: TokenType;
   user: UserType;
+  profile: ProfileType;
 };
 export interface IUser {
   id: number;
@@ -245,3 +246,15 @@ interface ISimilarFilmRes {
     name: string;
   }[];
 }
+
+export type reviewType = {
+  childReviews: [];
+  createdAt: string;
+  filmId: number;
+  id: number;
+  parentReviewId: number | null;
+  profile: { id: number; nickname: string };
+  profileId: number;
+  review: string;
+  updatedAt: string;
+};

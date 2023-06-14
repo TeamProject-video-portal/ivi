@@ -4,6 +4,13 @@ import { AUTH_DATA } from "./action-types";
 const initialState: AuthResponseType = {
   tokens: { accessToken: "", refreshToken: "" },
   user: { id: 0, email: "", password: "", createdAt: "", updatedAt: "" },
+  profile: {
+    id: 0,
+    userId: 0,
+    nickname: "",
+    createdAt: "",
+    updatedAt: "",
+  },
 };
 
 export const AuthUserReducer = (state = initialState, action: any) => {

@@ -57,13 +57,13 @@ export const Comments: FC = () => {
   //оправка комментария
   useEffect(() => {
     if (id) {
-      put(
-        sendComment({
-          idFilm: +router.query.id!,
-          idComment: `${id}`,
-          comment: newComment,
-        })
-      );
+      // put(
+      //   sendComment({
+      //     idFilm: +router.query.id!,
+      //     idComment: `${id}`,
+      //     comment: newComment,
+      //   })
+      // );
     }
   }, [id]);
 

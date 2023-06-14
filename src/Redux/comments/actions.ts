@@ -1,8 +1,8 @@
 import { DATA_COMMENTS } from "./action-types";
 
 export const sendComment = (payload: {
-  idFilm: number;
-  idComment: string;
+  parentReviewId: number | null;
+  id: number;
   comment: string;
 }) => {
   return {

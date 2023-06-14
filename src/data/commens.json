@@ -1,0 +1,24 @@
+[
+  {
+    "childReviews": [],
+    "createdAt": "2023-06-13T20:41:35.118Z",
+    "filmId": 309,
+    "id": 5,
+    "parentReviewId": null,
+    "profile": { "id": 6, "nickname": "test2" },
+    "profileId": 6,
+    "review": "Стоит посмотреть",
+    "updatedAt": "2023-06-13T20:41:35.118Z"
+  },
+  {
+    "childReviews": [],
+    "createdAt": "2023-06-13T20:41:35.118Z",
+    "filmId": 309,
+    "id": 1,
+    "parentReviewId": 1,
+    "profile": { "id": 6, "nickname": "test2" },
+    "profileId": 6,
+    "review": " посмотреть нужно",
+    "updatedAt": "2023-06-13T20:41:35.118Z"
+  }
+]

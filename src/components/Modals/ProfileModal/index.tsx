@@ -57,6 +57,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       localStorage.setItem("token", res.data.tokens.accessToken);
       localStorage.setItem("idUser", res.data.user.id.toString());
       localStorage.setItem("email", res.data.user.email);
+      localStorage.setItem("nickname", res.data.profile.nickname);
       put(getDataUserSuccess(res.data));
     } catch (e) {
       put(getDataUserFail());
@@ -76,6 +77,7 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
       localStorage.setItem("idUser", res.data.user.id.toString());
       localStorage.setItem("email", res.data.user.email);
       localStorage.setItem("nickname", res.data.profile.nickname);
+      setIsRegistration(true);
     } catch (e) {
       put(getDataUserRegistrationFail());
       console.log("registration", e);
@@ -102,7 +104,6 @@ const ProfileModal: FC<ProfileModalProps> = ({ openModal, setOpenModal }) => {
           password: inputData,
         });
         setInputData("");
-        setIsAuthorization(false);
       }
     } else {
       if (step === 1) {

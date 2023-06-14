@@ -39,18 +39,18 @@ const AuthResult: FC<Props> = (props) => {
   }, []);
 
   useEffect(() => {
-    if (
-      localStorage.getItem("email") !== "" &&
-      localStorage.getItem("nickname") === ""
-    ) {
+    if (props.isNewAccout === false && localStorage.getItem("idUser")) {
       setTitle("profile.success_auth");
+      setNicknameUser(localStorage.getItem("nickname"));
       setEmailUser(localStorage.getItem("email"));
     } else if (
-      localStorage.getItem("email") !== "" &&
-      localStorage.getItem("nickname") !== ""
+      props.isNewAccout &&
+      props.isRegistration &&
+      localStorage.getItem("idUser")
     ) {
       setTitle("profile.success_regist");
       setNicknameUser(localStorage.getItem("nickname"));
+      setEmailUser(localStorage.getItem("email"));
     } else if (
       localStorage.getItem("email") === "" &&
       localStorage.getItem("nickname") === ""
@@ -85,7 +85,7 @@ const AuthResult: FC<Props> = (props) => {
 
       <div className={styles.enter_data}>
         <div className={styles.continue}>
-          {emailUser !== "" || nicknameUser !== "" ? (
+          {localStorage.getItem("idUser") ? (
             <Button
               className={`${styles.continue_btn} ${styles.activeContinue} `}
               color="pink"

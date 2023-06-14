@@ -30,14 +30,6 @@ const Profile = () => {
     setNicknameUser(localStorage.getItem("nickname"));
   }, [resAuth, resRegistr]);
 
-  const session = useSession();
-  useEffect(() => {
-    console.log(session.status);
-    if (session.data?.user.name) {
-      localStorage.setItem("session", session.data?.user.name);
-    }
-  }, [session]);
-
   return (
     <>
       <Head>

@@ -61,13 +61,13 @@ export const PrevComments: FC<Props> = ({ dataComments, setData }) => {
   //оправить дочерний комментарий
 
   useEffect(() => {
-    put(
-      sendComment({
-        idFilm: +router.query.id!,
-        idComment: currentId!,
-        comment: newComment,
-      })
-    );
+    // put(
+    //   sendComment({
+    //     idFilm: +router.query.id!,
+    //     idComment: currentId!,
+    //     comment: newComment,
+    //   })
+    // );
   }, [currentId]);
 
   useEffect(() => {

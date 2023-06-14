@@ -1,10 +1,11 @@
 import { BannerType } from "@/types/types";
 import main_banner from "@/data/Main_banner.json";
 import axios from "axios";
+import $api from "@/profileRequests/configeAxios";
 
 export const SendCommentWorker = (
-  idFilm: number,
-  idComment: string,
+  parentReviewId: number | null,
+  id: number,
   comment: string
 ) => {
   const userId = localStorage.getItem("id");
@@ -13,25 +14,25 @@ export const SendCommentWorker = (
     rejectUnauthorized: false,
   });
 
-  const arrId = idComment.split(".");
-  const resId = arrId.map((item: string, index) => {
-    return {
-      id: item,
-      parenId: arrId[index - 1] === undefined ? null : arrId[index - 1],
-    };
-  });
-  console.log(resId);
-  // console.log(userId);
-  // const res = axios.post(
-  //   `https://84.201.131.92:5000/film/${+idFilm}/comment`,
-  //   {
-  //     id: idComment,
-  //     review: comment,
-  //     parentReviewId: null,
-  //     profileId: +userId!,
-  //     filmId: +idFilm,
-  //   },
-  //   { httpsAgent: agent }
-  // );
-  // console.log(res);
+  // const arrId = idComment.split(".");
+  // const resId = arrId.map((item: string, index) => {
+  //   return {
+  //     id: item,
+  //     parenId: arrId[index - 1] === undefined ? null : arrId[index - 1],
+  //   };
+  // });
+  // console.log(resId);
+  const currentUserId = +localStorage.getItem("idUser")!;
+  const res = $api.post(
+    `/film/${id}/comment`,
+    {
+      review: comment,
+      parentReviewId: parentReviewId,
+      profileId: currentUserId,
+    },
+
+    { httpsAgent: agent }
+  );
+
+  console.log(res);
 };

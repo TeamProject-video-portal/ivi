@@ -9,16 +9,16 @@ import { IMovieRes } from "@/types/types";
 import { call, put } from "redux-saga/effects";
 
 export function* sendCommentSaga({
-  idFilm,
-  idComment,
+  parentReviewId,
+  id,
   comment,
 }: ReturnType<typeof sendComment>) {
   yield put(sendCommentStart());
   try {
     const res: IMovieRes = yield call(
       SendCommentWorker,
-      idFilm,
-      idComment,
+      parentReviewId,
+      id,
       comment
     );
     yield put(sendCommentSuccess(res));

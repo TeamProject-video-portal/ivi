@@ -31,7 +31,6 @@ const admin = ({}) => {
       <div className={styles.adminPage}>
         <h1>Страница администратора</h1>
         <p>Добро пожаловать {nicknameUser}</p>
-        {/* {session && <div>Signed in as {session.user.email}</div>} */}
       </div>
     </>
   );

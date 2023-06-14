@@ -59,7 +59,7 @@ const CardId: NextPage = ({ movie }: any) => {
       setIsLoading(false);
     }
   }, [router]);
-
+  console.log(movie.reviews);
   return (
     <div className={styles.container}>
       <Breadcrumbs breadcrumbs={breadcrumbs} type="pages" del="/" />

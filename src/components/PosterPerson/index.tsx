@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { IPerson, PersonForSliderType } from "@/types/types";
 import { useRouter } from "next/router";
-import { strHandler } from "@/utils/strNumberHandler";
+import { strHandler } from "../../utils/strNumberHandler";
 
 export type PosterPersonProps = {
   person: PersonForSliderType;
